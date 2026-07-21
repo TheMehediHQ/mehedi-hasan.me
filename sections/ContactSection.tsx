@@ -31,7 +31,7 @@ export default function ContactSection() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16"
+      className="flex items-center justify-center px-4 sm:px-8 lg:px-16"
     >
       <div className="max-w-4xl w-full">
         <SectionTitle

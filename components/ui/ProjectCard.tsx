@@ -74,7 +74,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           <div className="flex flex-col gap-3 sm:gap-4">
             {/* Title */}
             <h3
-              className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight"
+              className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-tight"
               style={{ color: "var(--color-primary-text)" }}
             >
               {project.title}

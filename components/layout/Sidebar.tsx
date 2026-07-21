@@ -102,7 +102,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
       <aside
         className={cn(
           "fixed left-0 top-0 h-screen flex flex-col z-50 transition-transform duration-300",
-          "w-[340px] xl:w-[340px] lg:w-[340px]",
+          "w-[220px] xl:w-[200px] lg:w-[200px]",
           isOpen ? "translate-x-0" : "-translate-x-full",
           "lg:translate-x-0"
         )}

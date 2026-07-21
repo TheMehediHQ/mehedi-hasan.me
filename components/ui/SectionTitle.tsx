@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { cn, cv } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface SectionTitleProps {
   title: string;

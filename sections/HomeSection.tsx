@@ -7,7 +7,6 @@ import Button from "@/components/ui/Button";
 import { personalInfo } from "@/constants/personalInfo";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { cv } from "@/lib/utils";
 
 const brandIcons: Record<string, React.ReactNode> = {
   Github: (

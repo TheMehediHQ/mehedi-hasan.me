@@ -6,7 +6,6 @@ import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { skills, skillCategories } from "@/constants/skills";
 import { Code, Cpu, Database, Globe, Server, Smartphone } from "lucide-react";
-import { cv } from "@/lib/utils";
 
 const categoryIcons: Record<string, React.ElementType> = {
   Frontend: Globe,

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import { useState } from "react";
 import Image from "next/image";
 import { navItems } from "@/constants/navItems";
@@ -58,7 +57,6 @@ interface SidebarProps {
 
 export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
   const [isTabletOpen, setIsTabletOpen] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   return (
     <>

@@ -6,7 +6,6 @@ import { useRef } from "react";
 import { Experience } from "@/types";
 import Badge from "@/components/ui/Badge";
 import { Briefcase, Calendar } from "lucide-react";
-import { cn, cv } from "@/lib/utils";
 
 interface ExperienceCardProps {
   experience: Experience;

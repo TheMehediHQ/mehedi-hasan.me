@@ -8,7 +8,6 @@ import Badge from "@/components/ui/Badge";
 import { personalInfo } from "@/constants/personalInfo";
 import { skills } from "@/constants/skills";
 import { User, Target, Zap, Award } from "lucide-react";
-import { cv } from "@/lib/utils";
 
 export default function AboutSection() {
   const containerRef = useRef(null);

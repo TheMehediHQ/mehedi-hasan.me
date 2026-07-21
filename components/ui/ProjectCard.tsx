@@ -6,7 +6,6 @@ import { useRef } from "react";
 import { Project } from "@/types";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
-import { cn, cv } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: Project;

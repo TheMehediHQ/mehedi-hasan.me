@@ -1,18 +1,12 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
 export default function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { setTheme, resolvedTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDark = mounted ? resolvedTheme === "dark" : false;
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
@@ -31,8 +25,8 @@ export default function ThemeToggle() {
       }}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {mounted && isDark ? <Sun size={16} /> : <Moon size={16} />}
-      <span>{mounted && isDark ? "Light Mode" : "Dark Mode"}</span>
+      {isDark ? <Sun size={16} /> : <Moon size={16} />}
+      <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
     </button>
   );
 }

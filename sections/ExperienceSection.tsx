@@ -6,8 +6,8 @@ import { experiences } from "@/constants/experience";
 
 export default function ExperienceSection() {
   return (
-    <div className="min-h-screen px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
-      <div className="max-w-5xl mx-auto">
+    <div className=" px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+      <div className="max-w-4xl mx-auto">
         <SectionTitle
           title="Experience"
           subtitle="My professional journey"

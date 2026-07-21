@@ -28,9 +28,9 @@ export default function SkillsSection() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
+      className=" px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <SectionTitle
           title="Skills"
           subtitle="Technologies I work with"

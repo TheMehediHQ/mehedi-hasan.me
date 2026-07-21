@@ -5,7 +5,6 @@ import { useHashNavigation } from "@/hooks/useHashNavigation";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { sectionIds } from "@/constants/navItems";
 import Sidebar from "@/components/layout/Sidebar";
-import BottomNav from "@/components/layout/BottomNav";
 import HomeSection from "@/sections/HomeSection";
 import AboutSection from "@/sections/AboutSection";
 import ExperienceSection from "@/sections/ExperienceSection";
@@ -69,7 +68,7 @@ export default function ScrollLayout() {
         ))}
       </main>
 
-      <BottomNav activeSection={activeId} onNavClick={handleNavClick} />
+     
     </div>
   );
 }

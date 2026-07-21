@@ -229,17 +229,16 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
 </div>
 
 
-<div className="space-y-1 p-3 sm:p-4 border-t" style={{ borderColor: "var(--color-border)" }}>
 
-  {/* Socials list */}
-
-
-  {/* Resume button */}
+<div
+  className="flex justify-start p-3 sm:p-4 border-t"
+  style={{ borderColor: "var(--color-border)" }}
+>
   <a
     href={personalInfo.resume}
     target="_blank"
     rel="noopener noreferrer"
-    className="flex items-center justify-center gap-2 w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200"
+    className="flex w-full justify-center items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-medium transition-all duration-200"
     style={{
       backgroundColor: "var(--color-accent)",
       color: "var(--color-button-primary-text)",
@@ -254,8 +253,8 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
     <Download size={14} />
     Resume
   </a>
-
 </div>
+
 
 
 

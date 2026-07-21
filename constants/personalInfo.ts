@@ -3,7 +3,7 @@ export const personalInfo = {
   title: "Full Stack Developer",
   avatar: "/mh.png",
   resume: "/resume.pdf",
-  bio: "I'm a passionate full stack developer with expertise in building modern, scalable web applications. I specialize in React, Next.js, and TypeScript, with a keen eye for design and user experience.",
+  bio: "I'm a full‑stack developer from Bangladesh, focused on building modern, scalable web applications with React, Next.js, and TypeScript.",
   currentFocus: [
     "Building high-performance web applications with Next.js 16",
     "Exploring advanced CSS techniques and animations",

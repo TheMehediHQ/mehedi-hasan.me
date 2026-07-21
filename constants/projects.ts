@@ -3,10 +3,10 @@ import { Project, SocialLink } from "@/types";
 export const projects: Project[] = [
   {
     id: "1",
-    title: "E-Commerce Platform",
+    title: "Plants Care",
     description:
       "A full-featured e-commerce platform with real-time inventory, payment processing, and admin dashboard.",
-    image: "/projects/ecommerce.jpg",
+    image: "/projects/plant.png",
     technologies: ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Prisma"],
     github: "https://github.com/themehedihq/ecommerce",
     liveDemo: "https://ecommerce-demo.vercel.app",
@@ -15,10 +15,10 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    title: "Task Management App",
+    title: "Food Management App",
     description:
       "Collaborative task management application with real-time updates and team workspaces.",
-    image: "/projects/taskmanager.jpg",
+    image: "/projects/plant.png",
     technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Redis"],
     github: "https://github.com/themehedihq/taskmanager",
     liveDemo: "https://taskmanager-demo.vercel.app",
@@ -27,10 +27,10 @@ export const projects: Project[] = [
   },
   {
     id: "3",
-    title: "Weather Dashboard",
+    title: "Dhuranta Online",
     description:
       "Beautiful weather dashboard with 7-day forecasts, interactive maps, and location-based alerts.",
-    image: "/projects/weather.jpg",
+    image: "/projects/plant.png",
     technologies: ["React", "OpenWeather API", "Mapbox", "Tailwind CSS"],
     github: "https://github.com/themehedihq/weather-dashboard",
     liveDemo: "https://weather-dashboard-demo.vercel.app",

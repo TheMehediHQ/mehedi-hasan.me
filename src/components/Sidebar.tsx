@@ -86,7 +86,7 @@ export const Navigation = ({
       })}
 
       <Heading as="p" className="text-sm md:text-sm lg:text-sm pt-10 px-2 dark:text-neutral-400">
-        Socials
+        Connect with me
       </Heading>
       {socials.map((link: Navlink) => {
         const Icon = link.icon;

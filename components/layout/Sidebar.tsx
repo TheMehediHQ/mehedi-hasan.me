@@ -204,17 +204,11 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
               </button>
             );
           })}
+          
         </nav>
 
-        {/* Bottom section */}
-        <div
-          className="p-3 sm:p-4 border-t space-y-2 sm:space-y-3"
-          style={{ borderColor: "var(--color-border)" }}
-        >
-          <ThemeToggle />
 
-          {/* Social links */}
-          <div className="flex items-center justify-center gap-2 sm:gap-3 pt-1 sm:pt-2">
+<div>    <div className="flex items-center justify-center gap-2 sm:gap-3 pt-1 sm:pt-2">
             {socialLinks.map((link) => {
               const icon = brandIcons[link.icon];
               return (
@@ -243,8 +237,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
             })}
           </div>
 
-          {/* Resume button */}
-          <a
+           <a
             href={personalInfo.resume}
             target="_blank"
             rel="noopener noreferrer"
@@ -265,7 +258,32 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
             <Download size={14} />
             Resume
           </a>
-        </div>
+</div>
+
+
+
+
+
+        {/* Bottom section */}
+       <div
+  className="p-3 sm:p-4 border-t"
+  style={{ borderColor: "var(--color-border)" }}
+>
+  <div className="flex items-center justify-between">
+    {/* Icon-only Theme Toggle */}
+    <ThemeToggle />
+
+    {/* Copyright */}
+    <p
+      className="text-[10px] sm:text-xs font-medium"
+      style={{ color: "var(--color-muted-text)" }}
+    >
+      © {new Date().getFullYear()} {personalInfo.name}
+    </p>
+  </div>
+</div>
+
+
       </aside>
     </>
   );

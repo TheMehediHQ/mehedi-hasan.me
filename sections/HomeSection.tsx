@@ -15,7 +15,7 @@ export default function HomeSection() {
   return (
     <div
       ref={ref}
-      className="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16"
+      className="flex mt-20 items-center justify-center px-4 sm:px-8 lg:px-16"
     >
       <div className="max-w-4xl w-full">
        

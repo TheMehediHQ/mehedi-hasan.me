@@ -1,9 +1,9 @@
 export const personalInfo = {
   name: "Mehedi Hasan",
-  title: "Frontend-Focused Full Stack Engineer",
+  title: "Full Stack Developer",
   avatar: "/mh.png",
   resume: "/resume.pdf",
-  bio: "I'm a passionate frontend-focused full stack engineer with expertise in building modern, scalable web applications. I specialize in React, Next.js, and TypeScript, with a keen eye for design and user experience.",
+  bio: "I'm a passionate full stack developer with expertise in building modern, scalable web applications. I specialize in React, Next.js, and TypeScript, with a keen eye for design and user experience.",
   currentFocus: [
     "Building high-performance web applications with Next.js 16",
     "Exploring advanced CSS techniques and animations",

@@ -64,7 +64,7 @@ export default function ScrollLayout() {
       
       <main ref={mainRef} className="flex-1 lg:ml-[200px] xl:ml-[220px] overflow-y-auto">
         {sections.map(({ id, component }) => (
-          <section key={id} id={id} className="min-h-screen">
+          <section key={id} id={id}>
             {component}
           </section>
         ))}

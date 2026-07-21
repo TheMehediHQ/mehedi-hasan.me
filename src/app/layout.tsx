@@ -37,8 +37,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Sidebar />
-          <div className="lg:pl-2 lg:pt-2 bg-gray-100 dark:bg-neutral-950 flex-1 overflow-y-auto">
-            <div className="flex-1 bg-white dark:bg-neutral-900 min-h-screen lg:rounded-tl-xl border border-transparent lg:border-neutral-200 dark:lg:border-neutral-800 overflow-y-auto">
+          <div className=" bg-gray-100 dark:bg-neutral-950 flex-1 overflow-y-auto">
+            <div className="flex-1 bg-white dark:bg-neutral-900 min-h-screen  border border-transparent lg:border-neutral-200 dark:lg:border-neutral-800 overflow-y-auto">
               {children}
               <Footer />
             </div>

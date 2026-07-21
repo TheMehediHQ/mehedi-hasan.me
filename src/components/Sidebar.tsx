@@ -60,7 +60,7 @@ export const Sidebar = () => {
                     <SidebarHeader />
                     <ThemeToggle />
                   </div>
-                  <Navigation />
+                  <Navigation onClose={() => setOpen(false)} />
                 </div>
                 {/* <Badge href="/cv" text="View Resume" className="w-full" /> */}
 
@@ -92,7 +92,7 @@ export const Sidebar = () => {
                       </svg>
                     </button>
                   </div>
-                  <Navigation />
+                  <Navigation onClose={() => setOpen(false)} />
                 </div>
                 <div onClick={() => setOpen(false)}>
                   {/* <Badge href="/cv" text="View Resume" className="w-full" /> */}
@@ -115,7 +115,7 @@ export const Sidebar = () => {
   );
 };
 
-export const Navigation = () => {
+export const Navigation = ({ onClose }: { onClose?: () => void }) => {
   const pathname = usePathname();
 
   const isActive = (href: string) => pathname === href;
@@ -128,6 +128,11 @@ export const Navigation = () => {
           <Link
             key={link.href}
             href={link.href}
+            onClick={() => {
+              if (isMobile()) {
+                onClose?.();
+              }
+            }}
             className={twMerge(
               "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-xs sm:text-sm dark:text-neutral-400 dark:hover:text-neutral-100",
               isActive(link.href) && "bg-white shadow-lg text-primary dark:bg-neutral-800 dark:text-neutral-100 dark:shadow-none"
@@ -153,6 +158,11 @@ export const Navigation = () => {
           <Link
             key={link.href}
             href={link.href}
+            onClick={() => {
+              if (isMobile()) {
+                onClose?.();
+              }
+            }}
             className={twMerge(
               "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-xs sm:text-sm dark:text-neutral-400 dark:hover:text-neutral-100"
             )}

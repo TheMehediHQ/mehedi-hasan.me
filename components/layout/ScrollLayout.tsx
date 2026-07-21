@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useHashNavigation } from "@/hooks/useHashNavigation";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { sectionIds } from "@/constants/navItems";
@@ -23,8 +23,9 @@ const sections = [
 ];
 
 export default function ScrollLayout() {
+  const mainRef = useRef<HTMLElement>(null);
   const activeId = useScrollSpy(sectionIds);
-  const { scrollToSection } = useHashNavigation();
+  const { scrollToSection } = useHashNavigation(mainRef);
 
   const handleNavClick = useCallback((id: string) => {
     scrollToSection(id);
@@ -54,7 +55,7 @@ export default function ScrollLayout() {
     <div className="flex h-screen w-full overflow-hidden bg-[#0A0A0A]">
       <Sidebar activeSection={activeId} onNavClick={handleNavClick} />
       
-      <main className="flex-1 lg:ml-[200px] xl:ml-[220px] overflow-y-auto">
+      <main ref={mainRef} className="flex-1 lg:ml-[200px] xl:ml-[220px] overflow-y-auto">
         {sections.map(({ id, component }) => (
           <section key={id} id={id} className="min-h-screen">
             {component}

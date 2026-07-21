@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useEffect } from "react";
 import { useHashNavigation } from "@/hooks/useHashNavigation";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { sectionIds } from "@/constants/navItems";
@@ -25,9 +26,29 @@ export default function ScrollLayout() {
   const activeId = useScrollSpy(sectionIds);
   const { scrollToSection } = useHashNavigation();
 
-  const handleNavClick = (id: string) => {
+  const handleNavClick = useCallback((id: string) => {
     scrollToSection(id);
-  };
+  }, [scrollToSection]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const currentIndex = sectionIds.indexOf(activeId);
+      if (currentIndex === -1) return;
+
+      if (event.key === "ArrowDown" || event.key === "PageDown") {
+        event.preventDefault();
+        const nextIndex = Math.min(currentIndex + 1, sectionIds.length - 1);
+        scrollToSection(sectionIds[nextIndex]);
+      } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+        event.preventDefault();
+        const prevIndex = Math.max(currentIndex - 1, 0);
+        scrollToSection(sectionIds[prevIndex]);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeId, scrollToSection]);
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#0A0A0A]">

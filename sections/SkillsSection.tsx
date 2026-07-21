@@ -1,9 +1,12 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { skills, skillCategories } from "@/constants/skills";
 import { Code, Cpu, Database, Globe, Server, Smartphone } from "lucide-react";
-import { motion } from "framer-motion";
+import { cv } from "@/lib/utils";
 
 const categoryIcons: Record<string, React.ElementType> = {
   Frontend: Globe,
@@ -17,11 +20,17 @@ const categoryIcons: Record<string, React.ElementType> = {
 };
 
 export default function SkillsSection() {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-20%" });
+
   const getSkillsByCategory = (category: string) =>
     skills.filter((skill) => skill.category === category);
 
   return (
-    <div className="min-h-screen px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+    <div
+      ref={containerRef}
+      className="min-h-screen px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
+    >
       <div className="max-w-6xl mx-auto">
         <SectionTitle
           title="Skills"
@@ -37,15 +46,28 @@ export default function SkillsSection() {
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, delay: catIndex * 0.05 }}
-                className="bg-[#151515] border border-white/10 rounded-2xl p-4 sm:p-6 hover:border-white/20 transition-all duration-300"
+                className="rounded-2xl p-4 sm:p-6 transition-all duration-300"
+                style={{
+                  backgroundColor: "var(--color-card)",
+                  border: "1px solid var(--color-border)",
+                }}
               >
                 <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                  <div className="p-1.5 sm:p-2 rounded-lg bg-blue-500/10 text-blue-400">
+                  <div
+                    className="p-1.5 sm:p-2 rounded-lg"
+                    style={{
+                      backgroundColor: "var(--color-accent)",
+                      color: "var(--color-button-primary-text)",
+                    }}
+                  >
                     <Icon size={18} />
                   </div>
-                  <h3 className="text-base sm:text-lg font-semibold text-white">
+                  <h3
+                    className="text-base sm:text-lg font-semibold"
+                    style={{ color: "var(--color-primary-text)" }}
+                  >
                     {category}
                   </h3>
                 </div>
@@ -54,23 +76,35 @@ export default function SkillsSection() {
                   {categorySkills.map((skill, skillIndex) => (
                     <div key={skill.name}>
                       <div className="flex justify-between items-center mb-1.5 sm:mb-2">
-                        <span className="text-xs sm:text-sm text-gray-300">
+                        <span
+                          className="text-xs sm:text-sm"
+                          style={{ color: "var(--color-secondary-text)" }}
+                        >
                           {skill.name}
                         </span>
-                        <span className="text-[10px] sm:text-xs text-gray-500">
+                        <span
+                          className="text-[10px] sm:text-xs"
+                          style={{ color: "var(--color-muted-text)" }}
+                        >
                           {skill.level}%
                         </span>
                       </div>
-                      <div className="w-full bg-white/5 rounded-full h-1.5 sm:h-2 overflow-hidden">
+                      <div
+                        className="w-full rounded-full h-1.5 sm:h-2 overflow-hidden"
+                        style={{ backgroundColor: "var(--color-surface)" }}
+                      >
                         <motion.div
                           initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
+                          animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
                           transition={{
                             duration: 1,
                             delay: catIndex * 0.05 + skillIndex * 0.05,
                             ease: "easeOut",
                           }}
-                          className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                          className="h-full rounded-full"
+                          style={{
+                            background: "linear-gradient(to right, var(--color-accent), var(--color-accent-hover))",
+                          }}
                         />
                       </div>
                     </div>

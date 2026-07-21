@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import { useState } from "react";
 import Image from "next/image";
 import { navItems } from "@/constants/navItems";
 import { personalInfo } from "@/constants/personalInfo";
 import { socialLinks } from "@/constants/projects";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
   Home,
   User,
@@ -14,8 +16,6 @@ import {
   FolderOpen,
   Code,
   Mail,
-  Sun,
-  Moon,
   Download,
   Menu,
   X,
@@ -58,20 +58,17 @@ interface SidebarProps {
 
 export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
   const [isTabletOpen, setIsTabletOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
+  const { resolvedTheme } = useTheme();
 
   return (
     <>
       {/* Tablet hamburger menu - only visible on md (768px-1023px) */}
       <button
         onClick={() => setIsTabletOpen(!isTabletOpen)}
-        className="fixed top-4 left-4 z-50 p-2 rounded-lg bg-[#151515] border border-white/10 hidden md:flex lg:hidden"
+        className="fixed top-4 left-4 z-50 p-2 rounded-lg border border-[var(--color-border)] hidden md:flex lg:hidden"
+        style={{ backgroundColor: "var(--color-card)" }}
       >
-        {isTabletOpen ? <X size={24} /> : <Menu size={24} />}
+        {isTabletOpen ? <X size={24} style={{ color: "var(--color-primary-text)" }} /> : <Menu size={24} style={{ color: "var(--color-primary-text)" }} />}
       </button>
 
       {/* Tablet overlay - only visible on md */}
@@ -85,15 +82,22 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
       {/* Sidebar - hidden on mobile, drawer on tablet, visible on desktop */}
       <aside
         className={cn(
-          "fixed left-0 top-0 h-screen bg-[#0A0A0A] border-r border-white/10 flex flex-col z-50 transition-transform duration-300",
+          "fixed left-0 top-0 h-screen flex flex-col z-50 transition-transform duration-300",
           "w-[220px] xl:w-[220px] lg:w-[200px]",
           "hidden md:flex md:flex-col",
           isTabletOpen ? "md:translate-x-0" : "-translate-x-full",
           "lg:translate-x-0"
         )}
+        style={{
+          backgroundColor: "var(--color-background)",
+          borderRight: "1px solid var(--color-border)",
+        }}
       >
         {/* Avatar */}
-        <div className="p-4 sm:p-6 flex flex-col items-center border-b border-white/10">
+        <div
+          className="p-4 sm:p-6 flex flex-col items-center border-b"
+          style={{ borderColor: "var(--color-border)" }}
+        >
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-2 sm:mb-3">
             <Image
               src={personalInfo.avatar}
@@ -103,10 +107,16 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
               unoptimized
             />
           </div>
-          <h1 className="text-base sm:text-lg font-semibold text-white text-center">
+          <h1
+            className="text-base sm:text-lg font-semibold text-center"
+            style={{ color: "var(--color-primary-text)" }}
+          >
             {personalInfo.name}
           </h1>
-          <p className="text-[10px] sm:text-xs text-gray-400 text-center mt-1">
+          <p
+            className="text-[10px] sm:text-xs text-center mt-1"
+            style={{ color: "var(--color-muted-text)" }}
+          >
             {personalInfo.title}
           </p>
         </div>
@@ -127,22 +137,38 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
                 className={cn(
                   "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 relative group w-full text-left",
                   isActive
-                    ? "bg-blue-500/10 text-blue-400"
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                    ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                    : ""
                 )}
+                style={{
+                  color: isActive ? "var(--color-accent)" : "var(--color-secondary-text)",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.backgroundColor = "var(--color-hover)";
+                    e.currentTarget.style.color = "var(--color-primary-text)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.backgroundColor = "transparent";
+                    e.currentTarget.style.color = "var(--color-secondary-text)";
+                  }
+                }}
               >
                 <Icon
                   size={16}
-                  className={cn(
-                    "transition-colors duration-200 flex-shrink-0",
-                    isActive ? "text-blue-400" : "text-gray-500 group-hover:text-gray-300"
-                  )}
+                  className="flex-shrink-0 transition-colors duration-200"
+                  style={{
+                    color: isActive ? "var(--color-accent)" : "var(--color-muted-text)",
+                  }}
                 />
                 {item.label}
                 {isActive && (
                   <motion.div
                     layoutId="sidebar-active"
-                    className="absolute left-0 w-1 h-6 sm:h-8 bg-blue-500 rounded-r-full"
+                    className="absolute left-0 w-1 h-6 sm:h-8 rounded-r-full"
+                    style={{ backgroundColor: "var(--color-accent)" }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
@@ -152,15 +178,11 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
         </nav>
 
         {/* Bottom section */}
-        <div className="p-3 sm:p-4 border-t border-white/10 space-y-2 sm:space-y-3">
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            className="w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 rounded-xl text-xs sm:text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200"
-          >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-            {isDark ? "Light Mode" : "Dark Mode"}
-          </button>
+        <div
+          className="p-3 sm:p-4 border-t space-y-2 sm:space-y-3"
+          style={{ borderColor: "var(--color-border)" }}
+        >
+          <ThemeToggle />
 
           {/* Social links */}
           <div className="flex items-center justify-center gap-2 sm:gap-3 pt-1 sm:pt-2">
@@ -172,7 +194,16 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-1.5 sm:p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200"
+                  className="p-1.5 sm:p-2 rounded-lg transition-all duration-200"
+                  style={{ color: "var(--color-muted-text)" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "var(--color-hover)";
+                    e.currentTarget.style.color = "var(--color-primary-text)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "transparent";
+                    e.currentTarget.style.color = "var(--color-muted-text)";
+                  }}
                 >
                   {icon || <ExternalLink size={16} />}
                 </a>
@@ -185,7 +216,17 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
             href={personalInfo.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white text-xs sm:text-sm font-medium transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25"
+            className="flex items-center justify-center gap-2 w-full px-3 sm:px-4 py-2 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200"
+            style={{
+              backgroundColor: "var(--color-accent)",
+              color: "var(--color-button-primary-text)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-accent-hover)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-accent)";
+            }}
           >
             <Download size={14} />
             Resume

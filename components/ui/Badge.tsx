@@ -1,6 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { cn, cv } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
@@ -13,21 +16,40 @@ export default function Badge({
   variant = "default",
   className,
 }: BadgeProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
   const variants = {
-    default: "bg-white/10 text-gray-300",
-    primary: "bg-blue-500/10 text-blue-400 border border-blue-500/20",
-    success: "bg-green-500/10 text-green-400 border border-green-500/20",
+    default: {
+      backgroundColor: "var(--color-surface)",
+      color: "var(--color-secondary-text)",
+      border: "1px solid var(--color-border)",
+    },
+    primary: {
+      backgroundColor: "var(--color-accent)",
+      color: "var(--color-button-primary-text)",
+      border: "none",
+    },
+    success: {
+      backgroundColor: "#059669",
+      color: "#FFFFFF",
+      border: "none",
+    },
   };
 
   return (
-    <span
+    <motion.span
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
       className={cn(
         "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium",
-        variants[variant],
         className
       )}
+      style={variants[variant]}
     >
       {children}
-    </span>
+    </motion.span>
   );
 }

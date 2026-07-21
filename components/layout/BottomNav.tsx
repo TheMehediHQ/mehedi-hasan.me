@@ -27,7 +27,13 @@ interface BottomNavProps {
 
 export default function BottomNav({ activeSection, onNavClick }: BottomNavProps) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 h-16 bg-[#0A0A0A]/90 backdrop-blur-md border-t border-white/10 flex items-center justify-around z-50 md:hidden">
+    <nav
+      className="fixed bottom-0 left-0 right-0 h-16 flex items-center justify-around z-50 md:hidden backdrop-blur-md"
+      style={{
+        backgroundColor: "var(--color-background)",
+        borderTop: "1px solid var(--color-border)",
+      }}
+    >
       {navItems.map((item) => {
         const Icon = iconMap[item.icon] || Home;
         const isActive = activeSection === item.id;
@@ -37,11 +43,9 @@ export default function BottomNav({ activeSection, onNavClick }: BottomNavProps)
             key={item.id}
             onClick={() => onNavClick(item.id)}
             className={cn(
-              "flex flex-col items-center justify-center gap-0.5 p-2 rounded-xl transition-all duration-200 min-w-[60px]",
-              isActive
-                ? "text-blue-400"
-                : "text-gray-500 hover:text-gray-300"
+              "flex flex-col items-center justify-center gap-0.5 p-2 rounded-xl transition-all duration-200 min-w-[60px]"
             )}
+            style={{ color: isActive ? "var(--color-accent)" : "var(--color-muted-text)" }}
           >
             <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
             <span className="text-[10px] font-medium">{item.label}</span>

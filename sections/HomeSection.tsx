@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import Button from "@/components/ui/Button";
 import { personalInfo } from "@/constants/personalInfo";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { cv } from "@/lib/utils";
 
 const brandIcons: Record<string, React.ReactNode> = {
   Github: (
@@ -25,53 +28,76 @@ const brandIcons: Record<string, React.ReactNode> = {
 };
 
 export default function HomeSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-20%" });
+
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16">
+    <div
+      ref={ref}
+      className="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16"
+    >
       <div className="max-w-4xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs sm:text-sm mb-6 sm:mb-8">
-            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm mb-6 sm:mb-8"
+            style={{
+              backgroundColor: "var(--color-accent)",
+              color: "var(--color-button-primary-text)",
+            }}
+          >
+            <span
+              className="w-2 h-2 rounded-full animate-pulse"
+              style={{ backgroundColor: "var(--color-button-primary-text)" }}
+            />
             Available for work
           </div>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+          className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
+          style={{ color: "var(--color-primary-text)" }}
         >
           Hello, I&apos;m <br />
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(to right, var(--color-accent), var(--color-accent-hover))",
+            }}
+          >
             {personalInfo.name}
           </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl lg:text-2xl text-gray-400 mb-3 sm:mb-4"
+          className="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4"
+          style={{ color: "var(--color-secondary-text)" }}
         >
           {personalInfo.title}
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-gray-500 text-sm sm:text-base mb-8 sm:mb-10 max-w-2xl"
+          className="text-sm sm:text-base mb-8 sm:mb-10 max-w-2xl"
+          style={{ color: "var(--color-muted-text)" }}
         >
           {personalInfo.bio}
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-12"
         >
@@ -93,7 +119,7 @@ export default function HomeSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex items-center gap-4 sm:gap-6"
         >
@@ -101,7 +127,14 @@ export default function HomeSection() {
             href="https://github.com/mehedihasan"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-white transition-colors duration-200"
+            className="transition-colors duration-200"
+            style={{ color: "var(--color-muted-text)" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--color-primary-text)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--color-muted-text)";
+            }}
           >
             {brandIcons.Github}
           </a>
@@ -109,7 +142,14 @@ export default function HomeSection() {
             href="https://linkedin.com/in/mehedihasan"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-white transition-colors duration-200"
+            className="transition-colors duration-200"
+            style={{ color: "var(--color-muted-text)" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--color-primary-text)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--color-muted-text)";
+            }}
           >
             {brandIcons.Linkedin}
           </a>
@@ -117,13 +157,27 @@ export default function HomeSection() {
             href="https://twitter.com/mehedihasan"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-white transition-colors duration-200"
+            className="transition-colors duration-200"
+            style={{ color: "var(--color-muted-text)" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--color-primary-text)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--color-muted-text)";
+            }}
           >
             {brandIcons.Twitter}
           </a>
           <a
             href="mailto:mehedi@example.com"
-            className="text-gray-500 hover:text-white transition-colors duration-200"
+            className="transition-colors duration-200"
+            style={{ color: "var(--color-muted-text)" }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--color-primary-text)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--color-muted-text)";
+            }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
               <rect width="20" height="16" x="2" y="4" rx="2" />

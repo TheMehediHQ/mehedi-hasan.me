@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
 
@@ -23,8 +25,14 @@ const brandIcons: Record<string, React.ReactNode> = {
 };
 
 export default function ContactSection() {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-20%" });
+
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16">
+    <div
+      ref={containerRef}
+      className="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16"
+    >
       <div className="max-w-4xl w-full">
         <SectionTitle
           title="Contact Me"
@@ -35,23 +43,38 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ duration: 0.4, delay: 0.1 }}
             className="space-y-4 sm:space-y-6"
           >
-            <div className="bg-[#151515] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-white/20 transition-all duration-300">
+            <div
+              className="rounded-2xl p-5 sm:p-6 transition-all duration-300"
+              style={{
+                backgroundColor: "var(--color-card)",
+                border: "1px solid var(--color-border)",
+              }}
+            >
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="p-2 sm:p-3 rounded-xl bg-blue-500/10 text-blue-400">
+                <div
+                  className="p-2 sm:p-3 rounded-xl"
+                  style={{ backgroundColor: "var(--color-accent)", color: "var(--color-button-primary-text)" }}
+                >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-white font-medium text-sm sm:text-base">Email</h3>
+                  <h3
+                    className="font-medium text-sm sm:text-base"
+                    style={{ color: "var(--color-primary-text)" }}
+                  >
+                    Email
+                  </h3>
                   <a
                     href="mailto:mehedi@example.com"
-                    className="text-gray-400 hover:text-blue-400 transition-colors text-sm sm:text-base"
+                    className="text-sm sm:text-base transition-colors"
+                    style={{ color: "var(--color-secondary-text)" }}
                   >
                     mehedi@example.com
                   </a>
@@ -59,23 +82,53 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="bg-[#151515] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-white/20 transition-all duration-300">
+            <div
+              className="rounded-2xl p-5 sm:p-6 transition-all duration-300"
+              style={{
+                backgroundColor: "var(--color-card)",
+                border: "1px solid var(--color-border)",
+              }}
+            >
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="p-2 sm:p-3 rounded-xl bg-blue-500/10 text-blue-400">
+                <div
+                  className="p-2 sm:p-3 rounded-xl"
+                  style={{ backgroundColor: "var(--color-accent)", color: "var(--color-button-primary-text)" }}
+                >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-white font-medium text-sm sm:text-base">Location</h3>
-                  <p className="text-gray-400 text-sm sm:text-base">Dhaka, Bangladesh</p>
+                  <h3
+                    className="font-medium text-sm sm:text-base"
+                    style={{ color: "var(--color-primary-text)" }}
+                  >
+                    Location
+                  </h3>
+                  <p
+                    className="text-sm sm:text-base"
+                    style={{ color: "var(--color-secondary-text)" }}
+                  >
+                    Dhaka, Bangladesh
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-[#151515] border border-white/10 rounded-2xl p-5 sm:p-6">
-              <h3 className="text-white font-medium mb-3 sm:mb-4 text-sm sm:text-base">Social Links</h3>
+            <div
+              className="rounded-2xl p-5 sm:p-6"
+              style={{
+                backgroundColor: "var(--color-card)",
+                border: "1px solid var(--color-border)",
+              }}
+            >
+              <h3
+                className="font-medium mb-3 sm:mb-4 text-sm sm:text-base"
+                style={{ color: "var(--color-primary-text)" }}
+              >
+                Social Links
+              </h3>
               <div className="flex gap-2 sm:gap-3">
                 {[
                   { icon: "Github", href: "https://github.com/mehedihasan", label: "GitHub" },
@@ -87,7 +140,8 @@ export default function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-xl bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+                    className="p-2 sm:p-3 rounded-xl transition-all duration-200"
+                    style={{ backgroundColor: "var(--color-surface)" }}
                   >
                     {brandIcons[social.icon]}
                   </a>
@@ -98,40 +152,68 @@ export default function ContactSection() {
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="bg-[#151515] border border-white/10 rounded-2xl p-5 sm:p-6 lg:p-8"
+            className="rounded-2xl p-5 sm:p-6 lg:p-8"
+            style={{
+              backgroundColor: "var(--color-card)",
+              border: "1px solid var(--color-border)",
+            }}
           >
             <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
+                <label
+                  className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2"
+                  style={{ color: "var(--color-secondary-text)" }}
+                >
                   Name
                 </label>
                 <input
                   type="text"
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 transition-all duration-200"
+                  style={{
+                    backgroundColor: "var(--color-input)",
+                    border: "1px solid var(--color-border)",
+                    color: "var(--color-primary-text)",
+                  }}
                   placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
+                <label
+                  className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2"
+                  style={{ color: "var(--color-secondary-text)" }}
+                >
                   Email
                 </label>
                 <input
                   type="email"
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 transition-all duration-200"
+                  style={{
+                    backgroundColor: "var(--color-input)",
+                    border: "1px solid var(--color-border)",
+                    color: "var(--color-primary-text)",
+                  }}
                   placeholder="your@email.com"
                 />
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
+                <label
+                  className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2"
+                  style={{ color: "var(--color-secondary-text)" }}
+                >
                   Message
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 resize-none text-sm sm:text-base"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 transition-all duration-200 resize-none"
+                  style={{
+                    backgroundColor: "var(--color-input)",
+                    border: "1px solid var(--color-border)",
+                    color: "var(--color-primary-text)",
+                  }}
                   placeholder="Tell me about your project..."
                 />
               </div>

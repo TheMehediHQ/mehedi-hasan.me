@@ -1,27 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #0A0A0A;
-  --foreground: #ededed;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+:root {
+  --color-background: #FFFFFF;
+  --color-surface: #FAFAFA;
+  --color-card: #FFFFFF;
+  --color-border: #E4E4E7;
+  --color-primary-text: #09090B;
+  --color-secondary-text: #52525B;
+  --color-muted-text: #71717A;
+  --color-accent: #3B82F6;
+  --color-accent-hover: #2563EB;
+  --color-hover: #F4F4F5;
+  --color-selection: #DBEAFE;
+  --color-ring: #3B82F6;
+  --color-input: #FFFFFF;
+  --color-button-primary-text: #FFFFFF;
+  --color-button-secondary-text: #09090B;
+  --color-scrollbar-thumb: #D4D4D8;
+  --color-scrollbar-thumb-hover: #A1A1AA;
+}
+
+.dark {
+  --color-background: #09090B;
+  --color-surface: #111113;
+  --color-card: #18181B;
+  --color-border: #27272A;
+  --color-primary-text: #FAFAFA;
+  --color-secondary-text: #A1A1AA;
+  --color-muted-text: #71717A;
+  --color-accent: #3B82F6;
+  --color-accent-hover: #60A5FA;
+  --color-hover: rgba(255, 255, 255, 0.05);
+  --color-selection: #1E3A8A;
+  --color-ring: #3B82F6;
+  --color-input: #18181B;
+  --color-button-primary-text: #FFFFFF;
+  --color-button-secondary-text: #FAFAFA;
+  --color-scrollbar-thumb: #333333;
+  --color-scrollbar-thumb-hover: #444444;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-primary-text);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #333 transparent;
+  scrollbar-color: var(--color-scrollbar-thumb) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -33,10 +67,14 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #333;
+  background-color: var(--color-scrollbar-thumb);
   border-radius: 3px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #444;
+  background-color: var(--color-scrollbar-thumb-hover);
+}
+
+::selection {
+  background: var(--color-selection);
 }

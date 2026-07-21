@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import { Project } from "@/types";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
+import { cn, cv } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: Project;
@@ -11,27 +14,59 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
-      <div className="bg-[#151515] border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/20 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1 group h-full flex flex-col">
+      <div
+        className="rounded-2xl overflow-hidden transition-all duration-300 group h-full flex flex-col"
+        style={{
+          backgroundColor: "var(--color-card)",
+          border: "1px solid var(--color-border)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = "var(--color-border)";
+          e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.05)";
+          e.currentTarget.style.transform = "translateY(-2px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = "var(--color-border)";
+          e.currentTarget.style.boxShadow = "none";
+          e.currentTarget.style.transform = "translateY(0)";
+        }}
+      >
         {/* Image */}
-        <div className="relative h-40 sm:h-48 overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20">
+        <div
+          className="relative h-40 sm:h-48 overflow-hidden"
+          style={{ backgroundColor: "var(--color-surface)" }}
+        >
           <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl">
             {project.title.charAt(0)}
           </div>
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
+          <div
+            className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+          />
         </div>
 
         {/* Content */}
         <div className="p-4 sm:p-6 flex-1 flex flex-col">
-          <h3 className="text-lg sm:text-xl font-semibold text-white mb-1.5 sm:mb-2">
+          <h3
+            className="text-lg sm:text-xl font-semibold mb-1.5 sm:mb-2"
+            style={{ color: "var(--color-primary-text)" }}
+          >
             {project.title}
           </h3>
-          <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 flex-1">
+          <p
+            className="text-xs sm:text-sm mb-3 sm:mb-4 flex-1"
+            style={{ color: "var(--color-secondary-text)" }}
+          >
             {project.description}
           </p>
 

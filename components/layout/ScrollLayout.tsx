@@ -56,7 +56,10 @@ export default function ScrollLayout() {
   }, [activeId, scrollToSection]);
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#0A0A0A]">
+    <div
+      className="flex h-screen w-full overflow-hidden"
+      style={{ backgroundColor: "var(--color-background)" }}
+    >
       <Sidebar activeSection={activeId} onNavClick={handleNavClick} />
       
       <main ref={mainRef} className="flex-1 lg:ml-[200px] xl:ml-[220px] overflow-y-auto">

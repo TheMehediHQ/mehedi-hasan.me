@@ -72,11 +72,11 @@ export default function ContactSection() {
                     Email
                   </h3>
                   <a
-                    href="mailto:mehedi@example.com"
+                    href="mailto:mehedi.hasan16111@gmail.com"
                     className="text-sm sm:text-base transition-colors"
                     style={{ color: "var(--color-secondary-text)" }}
                   >
-                    mehedi@example.com
+                    mehedi.hasan16111@gmail.com
                   </a>
                 </div>
               </div>
@@ -131,9 +131,9 @@ export default function ContactSection() {
               </h3>
               <div className="flex gap-2 sm:gap-3">
                 {[
-                  { icon: "Github", href: "https://github.com/mehedihasan", label: "GitHub" },
-                  { icon: "Linkedin", href: "https://linkedin.com/in/mehedihasan", label: "LinkedIn" },
-                  { icon: "Twitter", href: "https://twitter.com/mehedihasan", label: "Twitter" },
+                  { icon: "Github", href: "https://github.com/themehedihq", label: "GitHub" },
+                  { icon: "Linkedin", href: "https://linkedin.com/in/themehedihq", label: "LinkedIn" },
+                  { icon: "Twitter", href: "https://twitter.com/themehedihq", label: "Twitter" },
                 ].map((social) => (
                   <a
                     key={social.label}

@@ -53,36 +53,21 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="rounded-2xl p-5 sm:p-6 lg:p-8"
-           
-          >
-            <h3
-              className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4"
-              style={{ color: "var(--color-primary-text)" }}
-            >
-              Current Focus
-            </h3>
-            <ul className="space-y-2 sm:space-y-3">
-              {personalInfo.currentFocus.map((item, index) => (
-                <li key={index} className="flex items-start gap-2 sm:gap-3">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"
-                    style={{ backgroundColor: "var(--color-accent)" }}
-                  />
-                  <span
-                    className="text-sm sm:text-base"
-                    style={{ color: "var(--color-secondary-text)" }}
-                  >
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+        <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+  transition={{ duration: 0.4, delay: 0.2 }}
+  className="rounded-2xl p-5 sm:p-6 lg:p-8 flex items-center justify-center"
+>
+  <div className="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-2xl overflow-hidden shadow-lg">
+    <img
+      src="/image.png"   // ⭐ your image path here
+      alt="Mehedi Hasan"
+      className="object-cover w-full h-full"
+    />
+  </div>
+</motion.div>
+
         </div>
 
 

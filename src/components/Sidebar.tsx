@@ -26,13 +26,13 @@ export const Sidebar = () => {
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
             exit={{ x: -200 }}
-            className="px-6  z-[100] py-10 bg-neutral-100 dark:bg-neutral-900 max-w-[16rem] lg:w-fit  fixed lg:relative  h-screen left-0 flex flex-col justify-between"
+            className="px-6  z-[100] py-10 bg-neutral-100 dark:bg-neutral-900 max-w-[18rem] lg:w-fit  fixed lg:relative  h-screen left-0 flex flex-col justify-between"
           >
             <div className="flex-1 overflow-auto">
-              <div className="flex items-center justify-between">
-                <SidebarHeader />
-                <ThemeToggle />
-              </div>
+              <div className="flex items-center gap-4">
+  <SidebarHeader />
+  <ThemeToggle />
+</div>
               <Navigation setOpen={setOpen} />
             </div>
             <div onClick={() => isMobile() && setOpen(false)}>
@@ -124,7 +124,7 @@ const SidebarHeader = () => {
       />
       <div className="flex text-sm flex-col">
         <p className="font-bold text-primary dark:text-neutral-100">Mehedi Hasan</p>
-        <p className="font-light text-secondary dark:text-neutral-400">Developer</p>
+        <p className="font-light text-secondary dark:text-neutral-400">Backend Developer</p>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ export const Sidebar = () => {
                   </div>
                   <Navigation />
                 </div>
-                <Badge href="/cv" text="View Resume" />
+                <Badge  href="/Resume_of_Mehedi_Hasan.pdf" text="View Resume" />
               </motion.div>
             ) : (
               <motion.div
@@ -88,7 +88,7 @@ export const Sidebar = () => {
                   <Navigation />
                 </div>
                 <div onClick={() => setOpen(false)}>
-                  <Badge href="/cv" text="View Resume" />
+                  <Badge  href="/Resume_of_Mehedi_Hasan.pdf" text="View Resume" />
                 </div>
               </motion.div>
             )}

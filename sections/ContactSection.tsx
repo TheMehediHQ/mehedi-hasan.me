@@ -49,10 +49,7 @@ export default function ContactSection() {
           >
             <div
               className="rounded-2xl p-5 sm:p-6 transition-all duration-300"
-              style={{
-                backgroundColor: "var(--color-card)",
-                border: "1px solid var(--color-border)",
-              }}
+             
             >
               <div className="flex items-center gap-3 sm:gap-4">
                 <div
@@ -84,10 +81,7 @@ export default function ContactSection() {
 
             <div
               className="rounded-2xl p-5 sm:p-6 transition-all duration-300"
-              style={{
-                backgroundColor: "var(--color-card)",
-                border: "1px solid var(--color-border)",
-              }}
+             
             >
               <div className="flex items-center gap-3 sm:gap-4">
                 <div
@@ -118,10 +112,7 @@ export default function ContactSection() {
 
             <div
               className="rounded-2xl p-5 sm:p-6"
-              style={{
-                backgroundColor: "var(--color-card)",
-                border: "1px solid var(--color-border)",
-              }}
+              
             >
               <h3
                 className="font-medium mb-3 sm:mb-4 text-sm sm:text-base"
@@ -155,10 +146,7 @@ export default function ContactSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
             transition={{ duration: 0.4, delay: 0.2 }}
             className="rounded-2xl p-5 sm:p-6 lg:p-8"
-            style={{
-              backgroundColor: "var(--color-card)",
-              border: "1px solid var(--color-border)",
-            }}
+          
           >
             <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div>

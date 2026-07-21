@@ -28,10 +28,7 @@ export default function ExperienceCard({
     >
       <div
         className="rounded-2xl p-4 sm:p-6 transition-all duration-300 h-full"
-        style={{
-          backgroundColor: "var(--color-card)",
-          border: "1px solid var(--color-border)",
-        }}
+       
         onMouseEnter={(e) => {
           e.currentTarget.style.borderColor = "var(--color-border)";
           e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.05)";

@@ -37,10 +37,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           "flex flex-col lg:flex-row rounded-3xl overflow-hidden transition-all duration-300",
           "focus-within:ring-2 focus-within:ring-[var(--color-ring)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-background)]"
         )}
-        style={{
-          backgroundColor: "var(--color-card)",
-          border: "1px solid var(--color-border)",
-        }}
+       
         whileHover={{
           y: -4,
           borderColor: "var(--color-border)",
@@ -53,13 +50,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Image */}
         <div
           className="relative w-full lg:w-[40%] aspect-video lg:aspect-auto lg:h-auto overflow-hidden flex-shrink-0"
-          style={{ backgroundColor: "var(--color-surface)" }}
+          
         >
           <Image
             src={project.image}
             alt={`${project.title} preview`}
             fill
-            className="object-cover transition-transform duration-500 ease-out"
+            className="object-cover transition-transform duration-500 ease-out p-8"
             sizes="(max-width: 1024px) 100vw, 40vw"
             unoptimized
           />

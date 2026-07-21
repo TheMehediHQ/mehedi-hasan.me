@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import { navItems } from "@/constants/navItems";
 import { personalInfo } from "@/constants/personalInfo";
 import { socialLinks } from "@/constants/projects";
@@ -93,11 +94,14 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
       >
         {/* Avatar */}
         <div className="p-4 sm:p-6 flex flex-col items-center border-b border-white/10">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xl sm:text-2xl font-bold mb-2 sm:mb-3">
-            {personalInfo.name
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-2 sm:mb-3">
+            <Image
+              src={personalInfo.avatar}
+              alt={personalInfo.name}
+              fill
+              className="object-cover"
+              unoptimized
+            />
           </div>
           <h1 className="text-base sm:text-lg font-semibold text-white text-center">
             {personalInfo.name}

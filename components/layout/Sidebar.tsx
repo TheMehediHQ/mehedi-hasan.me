@@ -113,10 +113,10 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
       >
         {/* Avatar */}
         <div
-          className="p-4 sm:p-6 flex flex-col items-center border-b"
+          className="p-4 sm:p-6 flex flex-col items-left border-b"
           style={{ borderColor: "var(--color-border)" }}
         >
-          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-2 sm:mb-3">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden mb-2 sm:mb-3">
             <Image
               src={personalInfo.avatar}
               alt={personalInfo.name}
@@ -126,13 +126,13 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
             />
           </div>
           <h1
-            className="text-base sm:text-lg font-semibold text-center"
+            className="text-base sm:text-lg font-semibold text-left"
             style={{ color: "var(--color-primary-text)" }}
           >
             {personalInfo.name}
           </h1>
           <p
-            className="text-[10px] sm:text-xs text-center mt-1"
+            className="text-[10px] sm:text-xs text-left mt-1"
             style={{ color: "var(--color-muted-text)" }}
           >
             {personalInfo.title}

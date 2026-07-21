@@ -36,19 +36,7 @@ export const projects: Project[] = [
     liveDemo: "https://weather-dashboard-demo.vercel.app",
     details:
       "A visually stunning weather dashboard featuring 7-day forecasts, interactive maps, severe weather alerts, and beautiful animated transitions between weather states.",
-  },
-  {
-    id: "4",
-    title: "Developer Portfolio",
-    description:
-      "Modern, animated portfolio website with 3D elements and smooth page transitions.",
-    image: "/projects/portfolio.jpg",
-    technologies: ["Next.js", "Framer Motion", "Three.js", "Tailwind CSS"],
-    github: "https://github.com/mehedihasan/portfolio",
-    liveDemo: "https://mehedihasan.dev",
-    details:
-      "A cutting-edge portfolio featuring 3D animations, smooth page transitions, and a custom content management system. Built with performance and accessibility in mind.",
-  },
+  }
 ];
 
 export const socialLinks: SocialLink[] = [

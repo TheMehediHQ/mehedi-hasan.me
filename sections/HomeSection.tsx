@@ -24,7 +24,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
+          className="text-4xl sm:text-3xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight"
           style={{ color: "var(--color-primary-text)" }}
         >
           Hello, I&apos;m <br />

@@ -22,21 +22,21 @@ export const Sidebar = () => {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ x: -200 }}
+            initial={{ x: -300 }}
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
-            exit={{ x: -200 }}
-            className="px-6  z-[100] py-10 bg-neutral-100 dark:bg-neutral-900 max-w-[18rem] lg:w-fit  fixed lg:relative  h-screen left-0 flex flex-col justify-between"
+            exit={{ x: -300 }}
+            className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-full sm:max-w-[18rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between"
           >
             <div className="flex-1 overflow-auto">
-              <div className="flex items-center gap-4">
-  <SidebarHeader />
-  <ThemeToggle />
-</div>
+              <div className="flex items-center gap-3">
+                <SidebarHeader />
+                <ThemeToggle />
+              </div>
               <Navigation setOpen={setOpen} />
             </div>
             <div onClick={() => isMobile() && setOpen(false)}>
-              <Badge href="/Resume_of_Mehedi_Hasan.pdf" text="View Resume" />
+              <Badge href="/cv" text="View Resume" />
             </div>
           </motion.div>
         )}
@@ -61,7 +61,7 @@ export const Navigation = ({
   const isActive = (href: string) => pathname === href;
 
   return (
-    <div className="flex flex-col space-y-1 my-10 relative z-[100]">
+    <div className="flex flex-col space-y-1 my-8 sm:my-10 relative z-[100]">
       {navlinks.map((link: Navlink) => {
         const Icon = link.icon;
         return (
@@ -70,7 +70,7 @@ export const Navigation = ({
             href={link.href}
             onClick={() => isMobile() && setOpen(false)}
             className={twMerge(
-              "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm dark:text-neutral-400 dark:hover:text-neutral-100",
+              "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-xs sm:text-sm dark:text-neutral-400 dark:hover:text-neutral-100",
               isActive(link.href) && "bg-white shadow-lg text-primary dark:bg-neutral-800 dark:text-neutral-100 dark:shadow-none"
             )}
           >
@@ -85,7 +85,7 @@ export const Navigation = ({
         );
       })}
 
-      <Heading as="p" className="text-sm md:text-sm lg:text-sm pt-10 px-2 dark:text-neutral-400">
+      <Heading as="p" className="text-xs sm:text-sm md:text-sm lg:text-sm pt-8 sm:pt-10 px-2 dark:text-neutral-400">
         Connect with me
       </Heading>
       {socials.map((link: Navlink) => {
@@ -95,7 +95,7 @@ export const Navigation = ({
             key={link.href}
             href={link.href}
             className={twMerge(
-              "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm dark:text-neutral-400 dark:hover:text-neutral-100"
+              "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-xs sm:text-sm dark:text-neutral-400 dark:hover:text-neutral-100"
             )}
           >
             <Icon
@@ -118,11 +118,11 @@ const SidebarHeader = () => {
       <Image
         src="/mh.png"
         alt="Avatar"
-        height={40}
-        width={40}
-        className="object-cover object-top rounded-full flex-shrink-0"
+        height={32}
+        width={32}
+        className="object-cover object-top rounded-full flex-shrink-0 h-8 w-8"
       />
-      <div className="flex text-sm flex-col">
+      <div className="flex text-xs sm:text-sm flex-col">
         <p className="font-bold text-primary dark:text-neutral-100">Mehedi Hasan</p>
         <p className="font-light text-secondary dark:text-neutral-400">Backend Developer</p>
       </div>

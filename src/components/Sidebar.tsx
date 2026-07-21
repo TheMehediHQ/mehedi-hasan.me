@@ -53,14 +53,18 @@ export const Sidebar = () => {
               <motion.div
                 className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 flex flex-col justify-between"
               >
-                <div className="flex-1 overflow-auto">
+                {/* <div className="flex-1 overflow-auto"> */}
+                <div className="flex-1 overflow-y-auto overflow-x-hidden">
+              
                   <div className="flex items-center gap-3">
                     <SidebarHeader />
                     <ThemeToggle />
                   </div>
                   <Navigation />
                 </div>
-                <Badge  href="/Resume_of_Mehedi_Hasan.pdf" text="View Resume" />
+                {/* <Badge href="/cv" text="View Resume" className="w-full" /> */}
+
+                <Badge href="/cv" text="View Resume" className="w-fit" />
               </motion.div>
             ) : (
               <motion.div
@@ -68,9 +72,12 @@ export const Sidebar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.2, ease: "linear" }}
-                className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-[85%] sm:w-auto sm:max-w-[18rem] fixed h-screen left-0 top-0 flex flex-col justify-between"
+
+                // className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-[85%] sm:w-auto sm:max-w-[18rem] fixed h-screen left-0 top-0 flex flex-col justify-between"
+              className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-[85%] sm:w-auto sm:max-w-[18rem] fixed h-screen left-0 top-0 flex flex-col justify-between overflow-x-hidden"
               >
-                <div className="flex-1 overflow-auto">
+                {/* <div className="flex-1 overflow-auto"> */}
+                <div className="flex-1 overflow-y-auto overflow-x-hidden">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <SidebarHeader />
@@ -88,7 +95,8 @@ export const Sidebar = () => {
                   <Navigation />
                 </div>
                 <div onClick={() => setOpen(false)}>
-                  <Badge  href="/Resume_of_Mehedi_Hasan.pdf" text="View Resume" />
+                  {/* <Badge href="/cv" text="View Resume" className="w-full" /> */}
+                  <Badge href="/cv" text="View Resume" className="w-fit" />
                 </div>
               </motion.div>
             )}

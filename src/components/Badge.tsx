@@ -3,20 +3,26 @@
 import React from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 export const Badge = ({
   text,
   href,
+  className,
   ...props
 }: {
   text: string;
   href: string;
+  className?: string;
   props?: React.ComponentProps<typeof Link>;
 }) => {
   return (
     <Link
       href={href}
-      className="bg-slate-900 dark:bg-neutral-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block"
+      className={twMerge(
+        "bg-slate-900 dark:bg-neutral-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block",
+        className
+      )}
       {...props}
     >
       <span className="absolute inset-0 overflow-hidden rounded-full ">

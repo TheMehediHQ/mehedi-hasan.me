@@ -1,0 +1,28 @@
+"use client";
+
+import SectionTitle from "@/components/ui/SectionTitle";
+import ExperienceCard from "@/components/ui/ExperienceCard";
+import { experiences } from "@/constants/experience";
+
+export default function ExperienceSection() {
+  return (
+    <div className="min-h-screen px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+      <div className="max-w-5xl mx-auto">
+        <SectionTitle
+          title="Experience"
+          subtitle="My professional journey"
+        />
+
+        <div className="space-y-4 sm:space-y-6">
+          {experiences.map((experience, index) => (
+            <ExperienceCard
+              key={experience.id}
+              experience={experience}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

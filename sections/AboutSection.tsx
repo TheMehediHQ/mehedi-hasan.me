@@ -28,10 +28,7 @@ export default function AboutSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.4, delay: 0.1 }}
             className="rounded-2xl p-5 sm:p-6 lg:p-8"
-            style={{
-              backgroundColor: "var(--color-card)",
-              border: "1px solid var(--color-border)",
-            }}
+           
           >
             <h3
               className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4"
@@ -61,10 +58,7 @@ export default function AboutSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.4, delay: 0.2 }}
             className="rounded-2xl p-5 sm:p-6 lg:p-8"
-            style={{
-              backgroundColor: "var(--color-card)",
-              border: "1px solid var(--color-border)",
-            }}
+           
           >
             <h3
               className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4"
@@ -97,10 +91,7 @@ export default function AboutSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.4, delay: 0.4 }}
           className="rounded-2xl p-5 sm:p-6 lg:p-8"
-          style={{
-            backgroundColor: "var(--color-card)",
-            border: "1px solid var(--color-border)",
-          }}
+          
         >
           <h3
             className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6"

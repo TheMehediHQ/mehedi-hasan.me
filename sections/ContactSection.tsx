@@ -31,14 +31,14 @@ export default function ContactSection() {
   return (
     <div
       ref={containerRef}
-      className="flex items-center justify-center px-4 sm:px-8 lg:px-16"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16"
     >
       <div className="max-w-4xl w-full">
-
         <SectionTitle
-                  title="Contact Me"
-                  subtitle="Let&apos;s work together"
-                />
+          title="Contact Me"
+          subtitle="Let&apos;s work together"
+          className="text-left"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           <motion.div

@@ -96,7 +96,7 @@ export const Sidebar = () => {
                 </div>
                 <div onClick={() => setOpen(false)}>
                   {/* <Badge href="/cv" text="View Resume" className="w-full" /> */}
-                  <Badge href="/cv" text="View Resume" className="w-fit" />
+                  <Badge href="/Resume_of_Mehedi_Hasan.pdf" text="View Resume" className="w-fit" />
                 </div>
               </motion.div>
             )}

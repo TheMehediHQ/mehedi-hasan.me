@@ -15,37 +15,57 @@ import { isMobile } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
 
 export const Sidebar = () => {
-  const [open, setOpen] = useState(isMobile() ? false : true);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ x: -300 }}
-            animate={{ x: 0 }}
-            transition={{ duration: 0.2, ease: "linear" }}
-            exit={{ x: -300 }}
-            className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-full sm:max-w-[18rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between"
-          >
-            <div className="flex-1 overflow-auto">
-              <div className="flex items-center gap-3">
-                <SidebarHeader />
-                <ThemeToggle />
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 z-[90] bg-black/20 backdrop-blur-sm lg:hidden"
+            />
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.2, ease: "linear" }}
+              exit={{ x: "-100%" }}
+              className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-[85%] sm:w-auto sm:max-w-[18rem] lg:w-fit fixed h-screen left-0 top-0 flex flex-col justify-between"
+            >
+              <div className="flex-1 overflow-auto">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <SidebarHeader />
+                    <ThemeToggle />
+                  </div>
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="lg:hidden -mr-2 p-2 text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 6 6 18M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <Navigation setOpen={setOpen} />
               </div>
-              <Navigation setOpen={setOpen} />
-            </div>
-            <div onClick={() => isMobile() && setOpen(false)}>
-              <Badge href="/cv" text="View Resume" />
-            </div>
-          </motion.div>
+              <div onClick={() => isMobile() && setOpen(false)}>
+                <Badge href="/cv" text="View Resume" />
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
       <button
-        className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 dark:border-neutral-800 rounded-full backdrop-blur-sm flex items-center justify-center z-50 bg-white dark:bg-neutral-900"
+        className="fixed lg:hidden bottom-4 right-4 h-10 w-10 border border-neutral-200 dark:border-neutral-800 rounded-full backdrop-blur-sm flex items-center justify-center z-50 bg-white dark:bg-neutral-900 shadow-lg"
         onClick={() => setOpen(!open)}
       >
-        <IconLayoutSidebarRightCollapse className="h-4 w-4 text-secondary dark:text-neutral-400" />
+        <IconLayoutSidebarRightCollapse className="h-5 w-5 text-secondary dark:text-neutral-400" />
       </button>
     </>
   );

@@ -123,7 +123,7 @@ const SidebarHeader = () => {
         className="object-cover object-top rounded-full flex-shrink-0"
       />
       <div className="flex text-sm flex-col">
-        <p className="font-bold text-primary dark:text-neutral-100">John Doe</p>
+        <p className="font-bold text-primary dark:text-neutral-100">Mehedi Hasan</p>
         <p className="font-light text-secondary dark:text-neutral-400">Developer</p>
       </div>
     </div>

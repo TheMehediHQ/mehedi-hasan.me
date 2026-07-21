@@ -24,9 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   } else {
     return {
-      title: "Projects | John Doe",
+      title: "Projects | Mehedi Hasan",
       description:
-        "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+        "Mehedi Hasan is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
     };
   }
 }

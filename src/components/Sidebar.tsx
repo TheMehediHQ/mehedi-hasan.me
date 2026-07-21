@@ -3,8 +3,8 @@ import { navlinks } from "@/constants/navlinks";
 import { Navlink } from "@/types/navlink";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
@@ -16,66 +16,98 @@ import { ThemeToggle } from "./ThemeToggle";
 
 export const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [isDesktop]);
 
   return (
     <>
       <AnimatePresence>
         {open && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setOpen(false)}
-              className="fixed inset-0 z-[90] bg-black/20 backdrop-blur-sm lg:hidden"
-            />
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              transition={{ duration: 0.2, ease: "linear" }}
-              exit={{ x: "-100%" }}
-              className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-[85%] sm:w-auto sm:max-w-[18rem] lg:w-fit fixed h-screen left-0 top-0 flex flex-col justify-between"
-            >
-              <div className="flex-1 overflow-auto">
-                <div className="flex items-center justify-between">
+            {!isDesktop && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={() => setOpen(false)}
+                className="fixed inset-0 z-[90] bg-black/20 backdrop-blur-sm lg:hidden"
+              />
+            )}
+            {isDesktop ? (
+              <motion.div
+                className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 flex flex-col justify-between"
+              >
+                <div className="flex-1 overflow-auto">
                   <div className="flex items-center gap-3">
                     <SidebarHeader />
                     <ThemeToggle />
                   </div>
-                  <button
-                    onClick={() => setOpen(false)}
-                    className="lg:hidden -mr-2 p-2 text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 6 6 18M6 6l12 12" />
-                    </svg>
-                  </button>
+                  <Navigation />
                 </div>
-                <Navigation setOpen={setOpen} />
-              </div>
-              <div onClick={() => isMobile() && setOpen(false)}>
                 <Badge href="/cv" text="View Resume" />
-              </div>
-            </motion.div>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ duration: 0.2, ease: "linear" }}
+                className="px-4 sm:px-6 z-[100] py-8 sm:py-10 bg-neutral-100 dark:bg-neutral-900 w-[85%] sm:w-auto sm:max-w-[18rem] fixed h-screen left-0 top-0 flex flex-col justify-between"
+              >
+                <div className="flex-1 overflow-auto">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <SidebarHeader />
+                      <ThemeToggle />
+                    </div>
+                    <button
+                      onClick={() => setOpen(false)}
+                      className="-mr-2 p-2 text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  <Navigation />
+                </div>
+                <div onClick={() => setOpen(false)}>
+                  <Badge href="/cv" text="View Resume" />
+                </div>
+              </motion.div>
+            )}
           </>
         )}
       </AnimatePresence>
-      <button
-        className="fixed lg:hidden bottom-4 right-4 h-10 w-10 border border-neutral-200 dark:border-neutral-800 rounded-full backdrop-blur-sm flex items-center justify-center z-50 bg-white dark:bg-neutral-900 shadow-lg"
-        onClick={() => setOpen(!open)}
-      >
-        <IconLayoutSidebarRightCollapse className="h-5 w-5 text-secondary dark:text-neutral-400" />
-      </button>
+      {!isDesktop && (
+        <button
+          className="fixed bottom-4 right-4 h-10 w-10 border border-neutral-200 dark:border-neutral-800 rounded-full backdrop-blur-sm flex items-center justify-center z-50 bg-white dark:bg-neutral-900 shadow-lg"
+          onClick={() => setOpen(!open)}
+        >
+          <IconLayoutSidebarRightCollapse className="h-5 w-5 text-secondary dark:text-neutral-400" />
+        </button>
+      )}
     </>
   );
 };
 
-export const Navigation = ({
-  setOpen,
-}: {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+export const Navigation = () => {
   const pathname = usePathname();
 
   const isActive = (href: string) => pathname === href;
@@ -88,7 +120,6 @@ export const Navigation = ({
           <Link
             key={link.href}
             href={link.href}
-            onClick={() => isMobile() && setOpen(false)}
             className={twMerge(
               "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-xs sm:text-sm dark:text-neutral-400 dark:hover:text-neutral-100",
               isActive(link.href) && "bg-white shadow-lg text-primary dark:bg-neutral-800 dark:text-neutral-100 dark:shadow-none"

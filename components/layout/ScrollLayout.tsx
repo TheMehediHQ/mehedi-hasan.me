@@ -53,7 +53,7 @@ export default function ScrollLayout() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeId, scrollToSection, sectionIds]);
+  }, [activeId, scrollToSection]);
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#0A0A0A]">

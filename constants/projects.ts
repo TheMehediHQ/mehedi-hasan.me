@@ -18,7 +18,7 @@ export const projects: Project[] = [
     title: "Food Management App",
     description:
       "Collaborative task management application with real-time updates and team workspaces.",
-    image: "/projects/plant.png",
+    image: "/projects/food.png",
     technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Redis"],
     github: "https://github.com/themehedihq/taskmanager",
     liveDemo: "https://taskmanager-demo.vercel.app",
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     title: "Dhuranta Online",
     description:
       "Beautiful weather dashboard with 7-day forecasts, interactive maps, and location-based alerts.",
-    image: "/projects/plant.png",
+    image: "/projects/duranta.png",
     technologies: ["React", "OpenWeather API", "Mapbox", "Tailwind CSS"],
     github: "https://github.com/themehedihq/weather-dashboard",
     liveDemo: "https://weather-dashboard-demo.vercel.app",

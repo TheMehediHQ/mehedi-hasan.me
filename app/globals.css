@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-cal);
+  --font-sans: var(--font-inter);
+  --font-title: var(--font-cal);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -48,9 +49,13 @@
 body {
   background: var(--color-background);
   color: var(--color-primary-text);
-  font-family: var(--font-cal), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cal), Arial, Helvetica, sans-serif;
 }
 
 * {

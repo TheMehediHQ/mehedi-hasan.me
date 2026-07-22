@@ -1,0 +1,8 @@
+- fix icon hover 
+- add github linkedin email link  in hero 
+- add image in tech stack
+- update hamburger btn 
+- update project link 
+- add node mailer in contact form 
+- remove sidebar indicator blue line 
+- hero mehedi hasan text will gradient

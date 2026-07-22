@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
-import Badge from "@/components/ui/Badge";
 import { personalInfo } from "@/constants/personalInfo";
 import { skills } from "@/constants/skills";
 
@@ -85,10 +84,27 @@ export default function AboutSection() {
             Tech Stack
           </h3>
           <div className="flex flex-wrap gap-2">
-            {skills.slice(0, 10).map((skill) => (
-              <Badge key={skill.name} variant="primary">
-                {skill.name}
-              </Badge>
+            {skills.slice(0, 20).map((skill) => (
+           <motion.div
+  key={skill.name}
+  className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl  backdrop-blur-md 
+              hover:scale-110 transition-transform duration-300 
+             flex items-center justify-center"
+>
+  <img
+  src={`/tech/${skill.icon || "default.svg"}`}
+  alt={skill.name}
+  className="
+    w-8 h-8
+    sm:w-10 sm:h-10
+    md:w-12 md:h-12
+    lg:w-14 lg:h-14
+    object-contain
+  "
+/>
+
+</motion.div>
+
             ))}
           </div>
         </motion.div>

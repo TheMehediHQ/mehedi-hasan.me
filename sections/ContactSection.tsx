@@ -36,7 +36,7 @@ export default function ContactSection() {
       <div className="max-w-4xl w-full">
         <SectionTitle
           title="Contact Me"
-          subtitle="Let&apos;s work together"
+          subtitle=""
           className="text-left"
         />
 

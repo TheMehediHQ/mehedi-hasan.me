@@ -20,7 +20,7 @@ export default function AboutSection() {
       className=" px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
     >
       <div className="max-w-4xl mx-auto">
-        <SectionTitle title="About Me" subtitle="Get to know me better" />
+        <SectionTitle title="About Me" subtitle="" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-10 lg:mb-12">
           <motion.div

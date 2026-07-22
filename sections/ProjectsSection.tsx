@@ -10,7 +10,7 @@ export default function ProjectsSection() {
       <div className="max-w-4xl mx-auto">
         <SectionTitle
           title="Projects"
-          subtitle="Things I&apos;ve built"
+          subtitle=""
           className="text-left"
         />
 

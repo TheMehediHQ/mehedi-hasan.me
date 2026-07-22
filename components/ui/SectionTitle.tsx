@@ -41,10 +41,10 @@ export default function SectionTitle({
           {subtitle}
         </p>
       )}
-      <div
+      {/* <div
         className="w-16 sm:w-20 h-1 rounded-full mt-3 sm:mt-4"
         style={{ backgroundColor: "var(--color-accent)" }}
-      />
+      /> */}
     </motion.div>
   );
 }

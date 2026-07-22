@@ -10,7 +10,7 @@ export default function ExperienceSection() {
       <div className="max-w-4xl mx-auto">
         <SectionTitle
           title="Experience"
-          subtitle="My professional journey"
+          subtitle=""
         />
 
         <div className="space-y-4 sm:space-y-6">

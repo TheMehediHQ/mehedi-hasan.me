@@ -5,11 +5,11 @@ export const projects: Project[] = [
     id: "1",
     title: "Plants Care",
     description:
-      "A full-featured e-commerce platform with real-time inventory, payment processing, and admin dashboard.",
+      "Plant Care Tracker is a digital gardening assistant that helps users manage plants, track watering schedules, and monitor plant health.",
     image: "/projects/plant.png",
-    technologies: ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Prisma"],
-    github: "https://github.com/themehedihq/ecommerce",
-    liveDemo: "https://ecommerce-demo.vercel.app",
+    technologies: ["React", "MongoDB", "Node.js", "Tailwind CSS"],
+    github: "https://github.com/TheMehediHQ/Plant-Care-Client",
+    liveDemo: "https://plant-care-tracker-bd.web.app",
     details:
       "Built a scalable e-commerce platform handling 10k+ daily active users. Features include real-time inventory tracking, Stripe integration, and a comprehensive admin dashboard with analytics.",
   },
@@ -17,23 +17,23 @@ export const projects: Project[] = [
     id: "2",
     title: "Food Management App",
     description:
-      "Collaborative task management application with real-time updates and team workspaces.",
+      "Food Management is a web application that helps users organize groceries, track expiry dates, and manage food inventory.",
     image: "/projects/food.png",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Redis"],
-    github: "https://github.com/themehedihq/taskmanager",
-    liveDemo: "https://taskmanager-demo.vercel.app",
+    technologies: ["React", "Node.js",  "MongoDB"],
+    github: "https://github.com/TheMehediHQ/Food-Garden-Client",
+    liveDemo: "https://food-garden-bd.web.app",
     details:
-      "A real-time task management app supporting multiple teams, Kanban boards, and live collaboration. Implemented using WebSockets for instant updates.",
+      "A comprehensive food management system enabling users to categorize groceries, set expiry alerts, and maintain an organized inventory with real-time updates.",
   },
   {
     id: "3",
     title: "Dhuranta Online",
     description:
-      "Beautiful weather dashboard with 7-day forecasts, interactive maps, and location-based alerts.",
+      "Duranta Online Ltd. is a trusted IT solutions provider offering reliable internet services for home and business users.",
     image: "/projects/duranta.png",
-    technologies: ["React", "OpenWeather API", "Mapbox", "Tailwind CSS"],
-    github: "https://github.com/themehedihq/weather-dashboard",
-    liveDemo: "https://weather-dashboard-demo.vercel.app",
+    technologies: ["Next.js", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+    github: "https://duranta-online.vercel.app",
+    liveDemo: "https://duranta-online.vercel.app",
     details:
       "A visually stunning weather dashboard featuring 7-day forecasts, interactive maps, severe weather alerts, and beautiful animated transitions between weather states.",
   }

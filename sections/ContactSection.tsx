@@ -124,7 +124,7 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 sm:p-3 rounded-xl transition-all duration-200"
-                    style={{ backgroundColor: "var(--color-surface)" }}
+                    
                   >
                     {brandIcons[social.icon]}
                   </a>

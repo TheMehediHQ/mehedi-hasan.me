@@ -5,210 +5,196 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
+import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { Send } from "lucide-react";
 
-const brandIcons: Record<string, React.ReactNode> = {
-  Github: (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-    </svg>
-  ),
-  Linkedin: (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  ),
-  Twitter: (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  ),
-};
+const socials = [
+  {
+    icon: FaGithub,
+    href: "https://github.com/themehedihq",
+    label: "GitHub",
+  },
+  {
+    icon: FaLinkedinIn,
+    href: "https://linkedin.com/in/themehedihq",
+    label: "LinkedIn",
+  },
+  {
+    icon: FaXTwitter,
+    href: "https://twitter.com/themehedihq",
+    label: "X",
+  },
+];
 
 export default function ContactSection() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-20%" });
 
   return (
-    <div
+    <section
       ref={containerRef}
-      className="flex items-center justify-center px-4 sm:px-8 lg:px-16 pb-20 mb:pb-0"
+      className="px-4 sm:px-8 lg:px-16 py-24"
+      style={{ backgroundColor: "var(--color-background)" }}
     >
-      <div className="max-w-4xl w-full">
-        <SectionTitle
-          title="Contact Me"
-          subtitle=""
-          className="text-left"
-        />
+      <div className="max-w-4xl mx-auto">
+        <SectionTitle title="Contact Me" subtitle="" className="text-left" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid lg:grid-cols-[280px_1fr] gap-12 items-start">
+          {/* LEFT SIDE */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.35 }}
+            className="space-y-10"
           >
-            <div
-              className="rounded-2xl p-5 sm:p-6 transition-all duration-300"
-             
-            >
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div
-                  className=""
-               >
-                  <img src="/icon/mail.svg" alt="Mail" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
-                </div>
-                <div>
-                  <h3
-                    className="font-medium text-sm sm:text-base"
-                    style={{ color: "var(--color-primary-text)" }}
-                  >
-                    Email
-                  </h3>
-                  <a
-                    href="mailto:mehedi.hasan16111@gmail.com"
-                    className="text-sm sm:text-base transition-colors"
-                    style={{ color: "var(--color-secondary-text)" }}
-                  >
-                    mehedi.hasan16111@gmail.com
-                  </a>
-                </div>
-              </div>
+            {/* Heading + Description */}
+            <div className="space-y-6">
+              <p className="text-base leading-8 max-w-sm text-[var(--color-secondary-text)]">
+                I&apos;m currently available  full-time
+                opportunities. Feel free to reach out.
+              </p>
             </div>
 
-            <div
-              className="rounded-2xl p-5 sm:p-6 transition-all duration-300"
-             
-            >
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div
-                  className=""
-               >
-                  <img src="/icon/location.svg" alt="Location" className="w-6 h-5 sm:w-6 sm:h-6 object-contain" />
-                </div>
-                <div>
-                  <h3
-                    className="font-medium text-sm sm:text-base"
-                    style={{ color: "var(--color-primary-text)" }}
-                  >
-                    Location
-                  </h3>
-                  <p
-                    className="text-sm sm:text-base"
-                    style={{ color: "var(--color-secondary-text)" }}
-                  >
-                    Dhaka, Bangladesh
-                  </p>
-                </div>
+            {/* Unified Info List */}
+            <div className="space-y-8">
+              {/* Email */}
+              <div className="space-y-1">
+                <p className="text-sm text-[var(--color-secondary-text)]">Email</p>
+                <a
+                  href="mailto:mehedi.hasan16111@gmail.com"
+                  className="text-sm transition-colors hover:opacity-80"
+                  style={{ color: "var(--color-primary-text)" }}
+                >
+                  mehedi.hasan16111@gmail.com
+                </a>
               </div>
-            </div>
 
-            <div
-              className="rounded-2xl p-5 sm:p-6"
-              
-            >
-              <h3
-                className="font-medium mb-3 sm:mb-4 text-sm sm:text-base"
-                style={{ color: "var(--color-primary-text)" }}
-              >
-                Social Links
-              </h3>
-              <div className="flex gap-2 sm:gap-3">
-                {[
-                  { icon: "Github", href: "https://github.com/themehedihq", label: "GitHub" },
-                  { icon: "Linkedin", href: "https://linkedin.com/in/themehedihq", label: "LinkedIn" },
-                  { icon: "Twitter", href: "https://twitter.com/themehedihq", label: "Twitter" },
-                ].map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 sm:p-3 rounded-xl transition-all duration-200"
-                    
-                  >
-                    {brandIcons[social.icon]}
-                  </a>
-                ))}
+              {/* Location */}
+              <div className="space-y-1">
+                <p className="text-sm text-[var(--color-secondary-text)]">Location</p>
+                <p className="text-sm text-[var(--color-primary-text)]">
+                  Dhaka, Bangladesh
+                </p>
+              </div>
+
+              {/* Social Icons */}
+              <div className="space-y-3">
+                <p className="text-sm text-[var(--color-secondary-text)]">Social</p>
+
+                <div className="flex items-center gap-6">
+                  {socials.map((social) => (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        relative flex items-center justify-center
+                        w-11 h-11 opacity-60 transition-all duration-300
+                        hover:opacity-100 hover:-translate-y-1
+                      "
+                      whileHover={{ y: -2, scale: 1.05 }}
+                    >
+                      <social.icon className="w-6 h-6 text-[var(--color-primary-text)]" />
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
 
+          {/* RIGHT SIDE — FORM */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="rounded-2xl p-5 sm:p-6 lg:p-8"
-          
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.35, delay: 0.05 }}
+            className="w-full max-w-2xl"
           >
-            <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div>
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              {/* Name */}
+              <div className="space-y-2">
                 <label
-                  className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2"
+                  htmlFor="name"
+                  className="text-sm font-medium"
                   style={{ color: "var(--color-secondary-text)" }}
                 >
                   Name
                 </label>
+
                 <input
+                  id="name"
                   type="text"
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 transition-all duration-200"
-                  style={{
-                    backgroundColor: "var(--color-input)",
-                    border: "1px solid var(--color-border)",
-                    color: "var(--color-primary-text)",
-                  }}
                   placeholder="Your name"
+                  className="
+                    w-full h-12 rounded-xl border border-[var(--color-border)]
+                    bg-transparent px-4 text-sm transition-all duration-300
+                    placeholder:text-[var(--color-secondary-text)]
+                    focus:outline-none focus:border-[var(--color-primary-text)]
+                  "
+                  style={{ color: "var(--color-primary-text)" }}
                 />
               </div>
 
-              <div>
+              {/* Email */}
+              <div className="space-y-2">
                 <label
-                  className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2"
+                  htmlFor="email"
+                  className="text-sm font-medium"
                   style={{ color: "var(--color-secondary-text)" }}
                 >
                   Email
                 </label>
+
                 <input
+                  id="email"
                   type="email"
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 transition-all duration-200"
-                  style={{
-                    backgroundColor: "var(--color-input)",
-                    border: "1px solid var(--color-border)",
-                    color: "var(--color-primary-text)",
-                  }}
                   placeholder="your@email.com"
+                  className="
+                    w-full h-12 rounded-xl border border-[var(--color-border)]
+                    bg-transparent px-4 text-sm transition-all duration-300
+                    placeholder:text-[var(--color-secondary-text)]
+                    focus:outline-none focus:border-[var(--color-primary-text)]
+                  "
+                  style={{ color: "var(--color-primary-text)" }}
                 />
               </div>
 
-              <div>
+              {/* Message */}
+              <div className="space-y-2">
                 <label
-                  className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2"
+                  htmlFor="message"
+                  className="text-sm font-medium"
                   style={{ color: "var(--color-secondary-text)" }}
                 >
                   Message
                 </label>
+
                 <textarea
-                  rows={4}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 transition-all duration-200 resize-none"
-                  style={{
-                    backgroundColor: "var(--color-input)",
-                    border: "1px solid var(--color-border)",
-                    color: "var(--color-primary-text)",
-                  }}
+                  id="message"
+                  rows={6}
                   placeholder="Tell me about your project..."
+                  className="
+                    w-full min-h-[180px] rounded-xl border border-[var(--color-border)]
+                    bg-transparent px-4 py-3 text-sm resize-none transition-all duration-300
+                    placeholder:text-[var(--color-secondary-text)]
+                    focus:outline-none focus:border-[var(--color-primary-text)]
+                  "
+                  style={{ color: "var(--color-primary-text)" }}
                 />
               </div>
 
-              <Button size="lg" className="w-full group">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
-                  <path d="m22 2-7 20-4-9-9-4Z" />
-                  <path d="M22 2 11 13" />
-                </svg>
-                Send Message
-              </Button>
+              {/* Button */}
+              <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                <Button size="lg" className="group h-12 w-full rounded-xl">
+                 <Send size={18} />
+
+                  <span>Send Message</span>
+                </Button>
+              </motion.div>
             </form>
           </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

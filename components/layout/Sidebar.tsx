@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";

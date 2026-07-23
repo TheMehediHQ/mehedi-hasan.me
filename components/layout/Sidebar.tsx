@@ -149,9 +149,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
                 }}
                 className={cn(
                   "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 relative group w-full text-left",
-                  isActive
-                    ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-                    : ""
+                  isActive && "bg-[var(--color-accent)]/10"
                 )}
                 style={{
                   color: isActive
@@ -184,18 +182,6 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
                   }}
                 />
                 {item.label}
-                {isActive && (
-                  <motion.div
-                    layoutId="sidebar-active"
-                    className="absolute left-0 w-1 h-6 sm:h-8 rounded-r-full"
-                    style={{ backgroundColor: "var(--color-accent)" }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  />
-                )}
               </button>
             );
           })}

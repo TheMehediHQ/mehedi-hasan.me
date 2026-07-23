@@ -15,7 +15,7 @@ export default function ThemeToggle() {
         color: "var(--color-secondary-text)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = "var(--color-hover)";
+        
         e.currentTarget.style.color = "var(--color-primary-text)";
       }}
       onMouseLeave={(e) => {

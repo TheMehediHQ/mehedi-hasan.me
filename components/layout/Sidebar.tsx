@@ -19,7 +19,7 @@ import {
   Download,
   Menu,
   X,
-  ExternalLink,
+ 
 
 } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
@@ -33,7 +33,6 @@ const iconMap: Record<string, React.ElementType> = {
   FolderOpen,
   Code,
   Mail,
-  ExternalLink,
   Download,
 };
 

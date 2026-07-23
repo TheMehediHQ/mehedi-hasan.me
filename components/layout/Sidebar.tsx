@@ -183,7 +183,6 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
         className="p-1.5 sm:p-2 rounded-lg transition-all duration-200"
         style={{ color: "var(--color-muted-text)" }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "var(--color-hover)";
           e.currentTarget.style.color = "var(--color-primary-text)";
         }}
         onMouseLeave={(e) => {

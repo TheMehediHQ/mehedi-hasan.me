@@ -49,7 +49,7 @@ export default function ExperienceCard({
     color: "var(--color-button-secondary-text)"
   }}
 >
-  <img src="/icon/work.svg" alt="Work" className="w-8 h-8 object-contain" />
+  <img src="/icon/work.svg" alt="Work" className="w-6 h-6 sm:w-6 sm:h-6 object-contain" />
 </div>
 
             <div>

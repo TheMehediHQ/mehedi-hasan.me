@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { personalInfo } from "@/constants/personalInfo";
-
-
-
+import HeroCTA from "@/components/ui/HeroCTA";
 
 export default function HomeSection() {
   const ref = useRef(null);
@@ -18,8 +16,6 @@ export default function HomeSection() {
       className="flex mt-20 items-center justify-center px-4 sm:px-8 lg:px-16"
     >
       <div className="max-w-4xl w-full">
-       
-
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -58,8 +54,21 @@ export default function HomeSection() {
           {personalInfo.bio}
         </motion.p>
 
-
-     
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <HeroCTA items={[
+            
+           
+          
+            { label: "mehedi.hasan16111@gmail.com", href: "mailto:mehedi.hasan16111@gmail.com" },
+            { label: "X", href: "https://twitter.com/themehedihq" },
+            { label: "GitHub", href: "https://github.com/themehedihq" },
+            { label: "LinkedIn", href: "https://linkedin.com/in/themehedihq" },
+          ]} />
+        </motion.div>
       </div>
     </div>
   );

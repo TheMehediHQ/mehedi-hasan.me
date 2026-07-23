@@ -57,7 +57,7 @@ function FloatingFab({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => vo
     <button
       onClick={onToggle}
       className={cn(
-        "fixed flex items-center justify-center h-14 w-14 rounded-full backdrop-blur-xl border shadow-2xl transition-all duration-300 ease-out hover:scale-110 active:scale-95",
+        "fixed flex items-center justify-center h-10 w-10 rounded-full backdrop-blur-xl border shadow-2xl transition-all duration-300 ease-out hover:scale-110 active:scale-95",
         "lg:hidden",
       )}
       style={{
@@ -71,7 +71,7 @@ function FloatingFab({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => vo
       }}
       aria-label={isOpen ? "Close menu" : "Open menu"}
     >
-      {isOpen ? <X size={24} /> : <Menu size={24} />}
+      {isOpen ? <X size={18} /> : <Menu size={18} />}
     </button>,
     document.body,
   );

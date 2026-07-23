@@ -8,7 +8,7 @@ import { Project } from "@/types";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
@@ -113,7 +113,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 onClick={() => window.open(project.liveDemo, "_blank")}
                 aria-label={`View live demo of ${project.title}`}
               >
-                <ExternalLink size={14} />
+                <ArrowUpRight size={14} />
                 Live Demo
               </Button>
             </div>

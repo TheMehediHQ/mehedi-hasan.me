@@ -16,7 +16,7 @@ export default function HomeSection() {
       className="flex mt-20 items-center justify-center px-4 sm:px-8 lg:px-16"
     >
       <div className="max-w-4xl w-full">
-        <motion.h1
+        {/* <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -32,7 +32,19 @@ export default function HomeSection() {
           >
             {personalInfo.name}
           </span>
-        </motion.h1>
+        </motion.h1> */}
+
+<div className="w-full flex justify-start mt-3  mb-8">
+  <img
+    src="/mehedi.png"
+    alt="signature"
+    className="w-32 h-auto opacity-90"
+  />
+</div>
+
+
+
+
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}

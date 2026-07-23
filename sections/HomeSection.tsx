@@ -60,13 +60,14 @@ export default function HomeSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <HeroCTA items={[
+
             
-           
-          
             { label: "mehedi.hasan16111@gmail.com", href: "mailto:mehedi.hasan16111@gmail.com" },
             { label: "X", href: "https://twitter.com/themehedihq" },
             { label: "GitHub", href: "https://github.com/themehedihq" },
             { label: "LinkedIn", href: "https://linkedin.com/in/themehedihq" },
+            { label: "Resume", href: "/resume.pdf" },
+            
           ]} />
         </motion.div>
       </div>

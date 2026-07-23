@@ -78,7 +78,7 @@ export default function HomeSection() {
             { label: "X", href: "https://twitter.com/themehedihq" },
             { label: "GitHub", href: "https://github.com/themehedihq" },
             { label: "LinkedIn", href: "https://linkedin.com/in/themehedihq" },
-            { label: "Resume", href: "/resume.pdf" },
+            { label: "Resume", href: "/Resume_of_Mehedi_Hasan.pdf" },
             
           ]} />
         </motion.div>

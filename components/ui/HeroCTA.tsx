@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface HeroCTAProps {
   items: Array<{ label: string; href: string }>;
@@ -31,7 +31,7 @@ export default function HeroCTA({ items }: HeroCTAProps) {
           }}
         >
           {item.label}
-          <ExternalLink size={14} className="opacity-70" />
+          <ArrowUpRight size={14} className="opacity-70" />
         </a>
       ))}
     </div>

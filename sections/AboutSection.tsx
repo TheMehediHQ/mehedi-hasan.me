@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
-import { personalInfo } from "@/constants/personalInfo";
 import { skills } from "@/constants/skills";
+import Image from "next/image";
 
 export default function AboutSection() {
   const containerRef = useRef(null);
@@ -35,12 +35,12 @@ export default function AboutSection() {
             >
               Who I Am
             </h3>
-            <p
+            {/* <p
               className="text-sm sm:text-base leading-relaxed mb-4 sm:mb-6"
               style={{ color: "var(--color-secondary-text)" }}
             >
               {personalInfo.bio}
-            </p>
+            </p> */}
             <p
               className="text-sm sm:text-base leading-relaxed"
               style={{ color: "var(--color-secondary-text)" }}
@@ -58,56 +58,59 @@ export default function AboutSection() {
   transition={{ duration: 0.4, delay: 0.2 }}
   className="rounded-2xl p-5 sm:p-6 lg:p-8 flex items-center justify-center"
 >
-  <div className="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-2xl overflow-hidden shadow-lg">
-    <img
-      src="/image.png"   // ⭐ your image path here
-      alt="Mehedi Hasan"
-      className="object-cover w-full h-full"
-    />
-  </div>
+  <div className="relative w-44 h-44 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
+  <Image
+    src="/image.png"
+    alt="Mehedi Hasan"
+    fill
+    className="object-cover"
+  />
+</div>
 </motion.div>
 
         </div>
 
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="rounded-2xl p-5 sm:p-6 lg:p-8"
-          
-        >
-          <h3
-            className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6"
-            style={{ color: "var(--color-primary-text)" }}
-          >
-            Tech Stack
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {skills.slice(0, 20).map((skill) => (
-           <motion.div
-  key={skill.name}
-  className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl  backdrop-blur-md 
-              hover:scale-110 transition-transform duration-300 
-             flex items-center justify-center"
+     <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+  transition={{ duration: 0.4, delay: 0.4 }}
 >
-  <img
-  src={`/tech/${skill.icon || "default.svg"}`}
-  alt={skill.name}
-  className="
-    w-8 h-8
-    sm:w-10 sm:h-10
-    md:w-12 md:h-12
-    lg:w-14 lg:h-14
-    object-contain
-  "
-/>
+  <h3
+    className="text-xl sm:text-2xl font-semibold mb-6"
+    style={{ color: "var(--color-primary-text)" }}
+  >
+    Tech Stack
+  </h3>
 
+  <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-x-10 gap-y-10">
+    {skills.slice(0, 20).map((skill, index) => (
+      <motion.div
+        key={skill.name}
+        initial={{ opacity: 0, y: 10 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{
+          duration: 0.3,
+          delay: index * 0.03,
+        }}
+        whileHover={{
+          y: -4,
+        }}
+        className="group flex flex-col items-center justify-center"
+      >
+        <Image
+          src={`/tech/${skill.icon || "default.svg"}`}
+          alt={skill.name}
+          width={40}
+          height={40}
+          className="object-contain transition-all duration-300 group-hover:scale-110"
+        />
+
+      
+      </motion.div>
+    ))}
+  </div>
 </motion.div>
-
-            ))}
-          </div>
-        </motion.div>
       </div>
     </div>
   );

@@ -148,37 +148,21 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
                 }}
                 className={cn(
                   "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 relative group w-full text-left",
-                  isActive && "bg-[var(--color-accent)]/10"
+                  "text-[var(--color-secondary-text)]",
+                  !isActive && "hover:text-[var(--color-primary-text)]",
+                 
+                  isActive && "bg-[var(--color-hover)]",
+                  isActive && "text-[var(--color-accent)]",
                 )}
-                style={{
-                  color: isActive
-                    ? "var(--color-accent)"
-                    : "var(--color-secondary-text)",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isActive) {
-                    e.currentTarget.style.backgroundColor =
-                      "var(--color-hover)";
-                    e.currentTarget.style.color =
-                      "var(--color-primary-text)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive) {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color =
-                      "var(--color-secondary-text)";
-                  }
-                }}
               >
                 <Icon
                   size={16}
-                  className="flex-shrink-0 transition-colors duration-200"
-                  style={{
-                    color: isActive
-                      ? "var(--color-accent)"
-                      : "var(--color-muted-text)",
-                  }}
+                  className={cn(
+                    "flex-shrink-0 transition-colors duration-200",
+                    "text-[var(--color-muted-text)]",
+                    !isActive && "group-hover:text-[var(--color-primary-text)]",
+                    isActive && "text-[var(--color-accent)]",
+                  )}
                 />
                 {item.label}
               </button>

@@ -5,7 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Experience } from "@/types";
 import Badge from "@/components/ui/Badge";
-import { Briefcase, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -42,12 +42,16 @@ export default function ExperienceCard({
       >
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <div
-              className="p-2 sm:p-3 rounded-xl flex-shrink-0"
-              style={{ backgroundColor: "var(--color-accent)", color: "var(--color-button-primary-text)" }}
-            >
-              <Briefcase size={20} />
-            </div>
+          <div
+  className=" flex-shrink-0 "
+  style={{
+    backgroundColor: "var(--color-button-secondary-bg)",
+    color: "var(--color-button-secondary-text)"
+  }}
+>
+  <img src="/icon/work.svg" alt="Work" className="w-8 h-8 object-contain" />
+</div>
+
             <div>
               <h3
                 className="text-base sm:text-lg font-semibold"

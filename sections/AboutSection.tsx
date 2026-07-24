@@ -37,7 +37,7 @@ export default function AboutSection() {
             </div>
 
             <p
-              className="text-sm sm:text-base  leading-6 line-clamp-6"
+              className="text-sm sm:text-base  leading-6 "
               style={{ color: "var(--color-secondary-text)" }}
             >
               I&apos;m passionate about creating seamless user experiences and
@@ -45,6 +45,7 @@ export default function AboutSection() {
               find me exploring new technologies, contributing to open-source, or
               sharing knowledge through technical writing.
             </p>
+            
           </motion.div>
 
           {/* RIGHT SIDE (DESKTOP IMAGE) */}

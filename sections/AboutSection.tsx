@@ -12,20 +12,17 @@ export default function AboutSection() {
   const isInView = useInView(containerRef, { once: true, margin: "-20%" });
 
   return (
-    <div
-      ref={containerRef}
-      className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
-    >
-      <div className="max-w-4xl mx-auto">
+    <div ref={containerRef} className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+      <div className="max-w-5xl mx-auto">
         <SectionTitle title="About Me" subtitle="" />
 
-        {/* WHO I AM + IMAGE */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6">
+        {/* WHO I AM SECTION */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 mb-10">
 
-          {/* LEFT: WHO I AM */}
+          {/* LEFT SIDE */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.1 }}
             className="rounded-2xl p-5 sm:p-6 lg:p-8"
           >
@@ -35,6 +32,16 @@ export default function AboutSection() {
             >
               Who I Am
             </h3>
+
+            {/* MOBILE/TABLET IMAGE */}
+            <div className="relative mb-4 w-32 sm:w-40 md:w-44 h-32 sm:h-40 md:h-44 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)] md:hidden">
+              <Image
+                src="/image.png"
+                alt="Mehedi Hasan"
+                fill
+                className="object-cover"
+              />
+            </div>
 
             <p
               className="text-sm sm:text-base leading-relaxed"
@@ -47,14 +54,14 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
-          {/* RIGHT: IMAGE */}
+          {/* DESKTOP IMAGE */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="rounded-2xl p-5 sm:p-6 lg:p-8"
+            className="rounded-2xl p-5 sm:p-6 lg:p-8 hidden md:flex justify-center"
           >
-            <div className="relative w-44 h-44 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
+            <div className="relative w-40 sm:w-48 lg:w-52 h-40 sm:h-48 lg:h-52 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
               <Image
                 src="/image.png"
                 alt="Mehedi Hasan"
@@ -65,12 +72,10 @@ export default function AboutSection() {
           </motion.div>
         </div>
 
-        
-
         {/* TECH STACK */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.4 }}
           className="rounded-2xl p-5 sm:p-6 lg:p-8"
         >
@@ -81,7 +86,15 @@ export default function AboutSection() {
             Tech Stack
           </h3>
 
-          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-x-10 gap-y-10">
+          <div className="
+            grid 
+            grid-cols-4 
+            sm:grid-cols-5 
+            md:grid-cols-6 
+            lg:grid-cols-7 
+            gap-x-8 sm:gap-x-10 
+            gap-y-10
+          ">
             {skills.slice(0, 20).map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -102,7 +115,6 @@ export default function AboutSection() {
             ))}
           </div>
         </motion.div>
-
       </div>
     </div>
   );

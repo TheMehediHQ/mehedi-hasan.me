@@ -28,7 +28,7 @@ export default function SectionTitle({
       className={cn("mb-6 sm:mb-8 lg:mb-10", className)}
     >
       <h2
-        className="text-3xl sm:text-4xl font-bold mb-2 sm:mb-3"
+        className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3"
         style={{ color: "var(--color-primary-text)" }}
       >
         {title}

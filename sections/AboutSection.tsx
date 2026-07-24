@@ -13,7 +13,7 @@ export default function AboutSection() {
 
   return (
     <div ref={containerRef} className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <SectionTitle title="About Me" subtitle="" />
 
         {/* WHO I AM SECTION */}

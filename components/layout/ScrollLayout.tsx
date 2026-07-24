@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Toaster } from "sonner";
 import { useHashNavigation } from "@/hooks/useHashNavigation";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { sectionIds } from "@/constants/navItems";
@@ -57,13 +58,13 @@ export default function ScrollLayout() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeId, scrollToSection]);
 
-  return (
+return (
     <div
       className="flex h-screen w-full overflow-hidden"
       style={{ backgroundColor: "var(--color-background)" }}
     >
       <Sidebar activeSection={activeId} onNavClick={handleNavClick} />
-      
+
       <main ref={mainRef} className="flex-1 lg:ml-[200px] xl:ml-[220px] overflow-y-auto">
         {sections.map(({ id, component }) => (
           <section key={id} id={id}>
@@ -72,7 +73,7 @@ export default function ScrollLayout() {
         ))}
       </main>
 
-     
+      <Toaster />
     </div>
   );
 }

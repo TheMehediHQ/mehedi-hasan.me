@@ -66,7 +66,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4 leading-6 line-clamp-3"
+          className="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4 leading-6 "
           style={{ color: "var(--color-secondary-text)" }}
         >
           {personalInfo.title}
@@ -76,7 +76,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm sm:text-base mb-8 sm:mb-10 max-w-2xl  leading-6 line-clamp-3"
+          className="text-sm sm:text-base mb-8 sm:mb-10 max-w-2xl  leading-6 "
          style={{ color: "var(--color-secondary-text)" }}
           
         >

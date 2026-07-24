@@ -86,7 +86,7 @@
 //           </h3>
 
 //           <p
-//             className="mt-2 max-w-xl text-sm leading-6 line-clamp-3"
+//             className="mt-2 max-w-xl text-sm leading-6 "
 //             style={{
 //               color: "var(--color-secondary-text)",
 //             }}
@@ -210,7 +210,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </h3>
 
           <p
-            className="mt-2 max-w-xl text-sm leading-6 line-clamp-3"
+            className="mt-2 max-w-xl text-sm leading-6 "
             style={{ color: "var(--color-secondary-text)" }}
           >
             {project.description}

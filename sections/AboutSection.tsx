@@ -37,7 +37,7 @@ export default function AboutSection() {
             </div>
 
             <p
-              className="text-sm sm:text-base leading-relaxed"
+              className="text-sm sm:text-base  leading-6 line-clamp-6"
               style={{ color: "var(--color-secondary-text)" }}
             >
               I&apos;m passionate about creating seamless user experiences and

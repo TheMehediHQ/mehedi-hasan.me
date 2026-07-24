@@ -33,7 +33,7 @@ export default function ContactSection() {
           >
             {/* Heading + Description */}
             <div className="space-y-6">
-              <p className=" leading-6 line-clamp-3 text-sm max-w-sm text-[var(--color-secondary-text)]">
+              <p className=" leading-6  text-sm max-w-sm text-[var(--color-secondary-text)]">
                 I&apos;m currently available  full-time
                 opportunities. Feel free to reach out.
               </p>

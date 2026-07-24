@@ -82,7 +82,7 @@ export default function EducationCard({
         </div>
 
         <p
-          className="text-sm leading-6 line-clamp-3 sm:text-sm mb-3 sm:mb-4 "
+          className="text-sm leading-6  sm:text-sm mb-3 sm:mb-4 "
           style={{ color: "var(--color-secondary-text)" }}
         >
           {education.description}

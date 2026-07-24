@@ -81,7 +81,7 @@ export async function POST(req: Request) {
     });
 
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "Portfolio <contact@mehedi-hasan.me>",
+      from: process.env.RESEND_FROM_EMAIL || "Mehedi Hasan <contact@mehedi-hasan.me>",
       to: email,
       subject: "Thanks for contacting Mehedi Hasan",
       html: `
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
         <p>Thank you for reaching out through my portfolio.</p>
         <p>I've successfully received your message and appreciate your interest.</p>
         <p>I'll review it and get back to you within 24–48 hours.</p>
-        <p>Best regards,<br/>Mehedi Hasan<br/>Frontend-Focused Full Stack Developer</p>
+        <p>Best regards,<br/>Mehedi Hasan<br/>Full Stack Developer</p>
         <p>Portfolio:<br/><a href="https://mehedi-hasan.me">https://mehedi-hasan.me</a></p>
       `,
     });

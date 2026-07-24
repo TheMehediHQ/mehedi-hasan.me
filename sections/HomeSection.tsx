@@ -91,8 +91,8 @@ export default function HomeSection() {
          <HeroCTA
   items={[
     {
-      label: "mehedi.hasan16111@gmail.com",
-      href: "mailto:mehedi.hasan16111@gmail.com",
+      label: "hello@mehedi-hasan.me",
+      href: "mailto:hello@mehedi-hasan.me",
     },
     ...socials,
     {

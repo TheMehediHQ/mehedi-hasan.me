@@ -67,7 +67,7 @@ export async function POST(req: Request) {
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "Portfolio <contact@mehedi-hasan.me>",
+      from: process.env.RESEND_FROM_EMAIL || "Portfolio <hello@mehedi-hasan.me>",
       to: process.env.CONTACT_TO_EMAIL || "mehedi.hasan16111@gmail.com",
       replyTo: email,
       subject: "New Portfolio Contact",
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
     });
 
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "Mehedi Hasan <contact@mehedi-hasan.me>",
+      from: process.env.RESEND_FROM_EMAIL || "Mehedi Hasan <hello@mehedi-hasan.me>",
       to: email,
       subject: "Thanks for contacting Mehedi Hasan",
       html: `

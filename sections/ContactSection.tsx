@@ -95,11 +95,11 @@ try {
               <div className="space-y-1">
                 <p className="text-sm text-[var(--color-secondary-text)]">Email</p>
                 <a
-                  href="mailto:mehedi.hasan16111@gmail.com"
+                  href="mailto:hello@mehedi-hasan.me"
                   className="text-sm hover:opacity-80"
                   style={{ color: "var(--color-primary-text)" }}
                 >
-                  mehedi.hasan16111@gmail.com
+                  hello@mehedi-hasan.me
                 </a>
               </div>
 

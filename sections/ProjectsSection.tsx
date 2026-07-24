@@ -6,7 +6,7 @@ import { projects } from "@/constants/projects";
 
 export default function ProjectsSection() {
   return (
-      <div className="min-h-screen px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+      <div className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
       <div className="max-w-4xl mx-auto">
         <SectionTitle
           title="Projects"

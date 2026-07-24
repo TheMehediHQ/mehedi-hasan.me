@@ -36,14 +36,28 @@ export default function HomeSection() {
           </span>
         </motion.h1> */}
 
-<div className="w-full flex justify-start mt-3  mb-8">
+{/* <div className="w-full flex justify-start mt-3  mb-8">
   <img
     src="/mehedi.png"
     alt="signature"
     className="w-32 h-auto opacity-90"
   />
-</div>
+</div> */}
 
+<div className="w-full flex justify-start mt-3 mb-8">
+  <img
+    src="/mehedi.png"
+    alt="signature"
+    className="
+      w-20        /* mobile */
+      sm:w-24     /* small screens */
+      md:w-26     /* medium screens */
+      lg:w-28     /* large screens */
+      xl:w-28     /* extra large screens */
+      h-auto opacity-90
+    "
+  />
+</div>
 
 
 
@@ -52,7 +66,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4"
+          className="text-lg sm:text-xl lg:text-2xl mb-3 sm:mb-4 leading-6 line-clamp-3"
           style={{ color: "var(--color-secondary-text)" }}
         >
           {personalInfo.title}
@@ -62,8 +76,9 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm sm:text-base mb-8 sm:mb-10 max-w-2xl"
-          style={{ color: "var(--color-muted-text)" }}
+          className="text-sm sm:text-base mb-8 sm:mb-10 max-w-2xl  leading-6 line-clamp-3"
+         style={{ color: "var(--color-secondary-text)" }}
+          
         >
           {personalInfo.bio}
         </motion.p>

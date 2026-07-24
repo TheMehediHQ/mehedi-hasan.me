@@ -13,7 +13,7 @@ export default function EducationSection() {
           subtitle=""
         />
 
-        <div className="space-y-4 sm:space-y-6">
+       <div className="space-y-6 lg:space-y-10">
           {educations.map((education, index) => (
             <EducationCard
               key={education.id}

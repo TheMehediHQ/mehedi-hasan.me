@@ -14,7 +14,8 @@ export default function ProjectsSection() {
           className="text-left"
         />
 
-        <div className="flex flex-col gap-4 sm:gap-6">
+        <div className="flex flex-col gap-6 lg:gap-10">
+
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

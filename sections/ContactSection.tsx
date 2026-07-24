@@ -172,7 +172,7 @@ export default function ContactSection() {
                 <textarea
                   id="message"
                   rows={6}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about the position or project..."
                   className="
                     w-full min-h-[180px] rounded-xl border border-[var(--color-border)]
                     bg-transparent px-4 py-3 text-sm resize-none transition-all duration-300

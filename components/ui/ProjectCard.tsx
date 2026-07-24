@@ -170,10 +170,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         transition={{ duration: 0.2 }}
         tabIndex={0}
         className={cn(
-          // ALWAYS IMAGE LEFT → content right
+          // Always image left, content right
           "group flex flex-col md:flex-row items-start gap-5 md:gap-6 lg:gap-8",
-
-          "p-4 sm:p-5 lg:p-6",
+          "p-4 lg:p-5",
           "transition-all duration-300"
         )}
       >
@@ -194,7 +193,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             alt={project.title}
             fill
             unoptimized
-            sizes="(max-width: 768px) 100vw, 340px"
+            sizes="(max-width: 768px) 100vw, 280px"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
 
@@ -204,14 +203,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* CONTENT — ALWAYS RIGHT */}
         <div className="flex-1 flex flex-col justify-center">
           <h3
-            className="text-xl sm:text-2xl font-semibold tracking-tight"
+            className="text-xl lg:text-2xl font-semibold tracking-tight"
             style={{ color: "var(--color-primary-text)" }}
           >
             {project.title}
           </h3>
 
           <p
-            className="mt-2 max-w-xl text-sm sm:text-base leading-6 line-clamp-3"
+            className="mt-2 max-w-xl text-sm leading-6 line-clamp-3"
             style={{ color: "var(--color-secondary-text)" }}
           >
             {project.description}

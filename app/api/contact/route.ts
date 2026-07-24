@@ -89,8 +89,69 @@ export async function POST(req: Request) {
         <p>Thank you for reaching out through my portfolio.</p>
         <p>I've successfully received your message and appreciate your interest.</p>
         <p>I'll review it and get back to you within 24–48 hours.</p>
-        <p>Best regards,<br/>Mehedi Hasan<br/>Full Stack Developer</p>
-        <p>Portfolio:<br/><a href="https://mehedi-hasan.me">https://mehedi-hasan.me</a></p>
+
+
+<p>Best regards,<br><hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0;">
+
+<table cellpadding="0" cellspacing="0" border="0" style="font-family:'Segoe UI',Arial,sans-serif;">
+  <tr>
+
+    <td valign="middle" style="padding-right:18px;">
+      <a href="https://www.mehedi-hasan.me" target="_blank">
+        <img
+          src="https://www.mehedi-hasan.me/profile/mh.png"
+          alt="Mehedi Hasan"
+          width="80"
+          height="80"
+          style="display:block;width:80px;height:80px;border-radius:50%;border:2px solid #E5E7EB;"
+        >
+      </a>
+    </td>
+
+    <td width="3">
+      <div style="width:3px;height:80px;background:#2563EB;border-radius:2px;"></div>
+    </td>
+
+    <td style="padding-left:18px;">
+
+      <div style="font-size:18px;font-weight:700;color:#111827;">
+        Mehedi Hasan
+      </div>
+
+      <div style="font-size:13px;color:#2563EB;font-weight:600;margin-top:4px;">
+        Full Stack Developer
+      </div>
+
+      <div style="font-size:12px;color:#6B7280;margin-top:10px;">
+        🌐
+        <a
+          href="https://www.mehedi-hasan.me"
+          style="color:#2563EB;text-decoration:none;">
+          mehedi-hasan.me
+        </a>
+      </div>
+
+      <div style="margin-top:14px;">
+
+        <a href="https://github.com/themehedihq">GitHub</a>
+        &nbsp;•&nbsp;
+
+        <a href="https://www.linkedin.com/in/themehedihq/">LinkedIn</a>
+        &nbsp;•&nbsp;
+
+        <a href="https://x.com/themehedihq">X</a>
+      </div>
+
+       
+
+      </div>
+
+    </td>
+
+  </tr>
+</table>
+
+
       `,
     });
 

@@ -46,7 +46,7 @@ export default function HomeSection() {
 
 <div className="w-full flex justify-start mt-3 mb-8">
   <img
-    src="/mehedi.png"
+    src={personalInfo.signature}
     alt="signature"
     className="
       w-20        /* mobile */

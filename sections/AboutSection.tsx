@@ -5,6 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Image from "next/image";
+import { personalInfo } from "@/constants/personalInfo";
 
 export default function AboutSection() {
   const containerRef = useRef(null);
@@ -28,7 +29,7 @@ export default function AboutSection() {
             {/* MOBILE IMAGE */}
             <div className="relative mb-4 w-32 sm:w-40 md:w-44 h-32 sm:h-40 md:h-44 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)] md:hidden">
               <Image
-                src="/image.png"
+                src={personalInfo.profile}
                 alt="Mehedi Hasan"
                 fill
                 sizes="(max-width: 768px) 100vw, 200px"
@@ -57,7 +58,7 @@ export default function AboutSection() {
           >
             <div className="relative w-40 sm:w-48 lg:w-52 h-40 sm:h-48 lg:h-52 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
               <Image
-                src="/image.png"
+                src={personalInfo.profile}
                 alt="Mehedi Hasan"
                 fill
                 sizes="(max-width: 768px) 100vw, 300px"

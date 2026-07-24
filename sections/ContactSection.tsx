@@ -185,7 +185,7 @@ export default function ContactSection() {
 
               {/* Button */}
               <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
-                <Button size="lg" className="group h-12 w-full rounded-xl">
+                <Button size="lg" className="group h-12 w-full rounded-xl cursor-pointer">
                  <Send size={18} />
 
                   <span>Send Message</span>

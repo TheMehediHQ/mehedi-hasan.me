@@ -106,7 +106,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
            <Button
   variant="secondary"
   size="sm"
-  className="gap-2"
+  className="gap-2 cursor-pointer"
   onClick={() => window.open(project.github, "_blank")}
 >
   <FaGithub size={15} />  
@@ -116,7 +116,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             <Button
               variant="primary"
               size="sm"
-              className="gap-2"
+              className="gap-2 cursor-pointer"
               onClick={() => window.open(project.liveDemo, "_blank")}
             >
               <ArrowUpRight size={15} />

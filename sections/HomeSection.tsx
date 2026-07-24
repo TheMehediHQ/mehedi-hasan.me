@@ -5,6 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { personalInfo } from "@/constants/personalInfo";
 import HeroCTA from "@/components/ui/HeroCTA";
+import { socials } from "@/constants/socials";
 
 export default function HomeSection() {
   const ref = useRef(null);
@@ -71,17 +72,19 @@ export default function HomeSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <HeroCTA items={[
-
-            
-            { label: "mehedi.hasan16111@gmail.com", href: "mailto:mehedi.hasan16111@gmail.com" },
-            { label: "X", href: "https://twitter.com/themehedihq" },
-            { label: "GitHub", href: "https://github.com/themehedihq" },
-            { label: "LinkedIn", href: "https://linkedin.com/in/themehedihq" },
-            { label: "Resume", href: "/Resume_of_Mehedi_Hasan.pdf" },
-            
-          ]} />
-        </motion.div>
+         <HeroCTA
+  items={[
+    {
+      label: "mehedi.hasan16111@gmail.com",
+      href: "mailto:mehedi.hasan16111@gmail.com",
+    },
+    ...socials,
+    {
+      label: "Resume",
+      href: personalInfo.resume,
+    },
+  ]}
+/>   </motion.div>
       </div>
     </div>
   );

@@ -36,3 +36,12 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
+
+export interface Education {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  description: string;
+  subjects?: string[];
+}

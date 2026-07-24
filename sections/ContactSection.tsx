@@ -5,26 +5,10 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Button from "@/components/ui/Button";
-import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+
 import { Send } from "lucide-react";
 
-const socials = [
-  {
-    icon: FaGithub,
-    href: "https://github.com/themehedihq",
-    label: "GitHub",
-  },
-  {
-    icon: FaLinkedinIn,
-    href: "https://linkedin.com/in/themehedihq",
-    label: "LinkedIn",
-  },
-  {
-    icon: FaXTwitter,
-    href: "https://twitter.com/themehedihq",
-    label: "X",
-  },
-];
+import { socials } from "@/constants/socials";
 
 export default function ContactSection() {
   const containerRef = useRef(null);

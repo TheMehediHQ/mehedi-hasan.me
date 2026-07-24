@@ -1,4 +1,4 @@
-import { Project, SocialLink } from "@/types";
+import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
@@ -39,9 +39,3 @@ export const projects: Project[] = [
   }
 ];
 
-export const socialLinks: SocialLink[] = [
-  { name: "GitHub", url: "https://github.com/themehedihq", icon: "Github" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/themehedihq", icon: "Linkedin" },
-  { name: "Twitter", url: "https://twitter.com/themehedihq", icon: "Twitter" },
-  { name: "Email", url: "mailto:mehedi.hasan16111@gmail.com", icon: "Mail" },
-];

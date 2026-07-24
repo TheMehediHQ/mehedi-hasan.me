@@ -10,11 +10,13 @@ import AboutSection from "@/sections/AboutSection";
 import ExperienceSection from "@/sections/ExperienceSection";
 import ProjectsSection from "@/sections/ProjectsSection";
 import ContactSection from "@/sections/ContactSection";
+import EducationSection from "@/sections/EducationSection";
 
 const sections = [
   { id: "home", component: <HomeSection key="home" /> },
   { id: "about", component: <AboutSection key="about" /> },
   { id: "experience", component: <ExperienceSection key="experience" /> },
+   { id: "education", component: <EducationSection key="education" /> },
   { id: "projects", component: <ProjectsSection key="projects" /> },
   
   { id: "contact", component: <ContactSection key="contact" /> },

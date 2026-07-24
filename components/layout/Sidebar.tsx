@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { navItems } from "@/constants/navItems";
 import { personalInfo } from "@/constants/personalInfo";
-import { socialLinks } from "@/constants/projects";
+import { socials } from "@/constants/socials";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
@@ -22,8 +22,7 @@ import {
  
 
 } from "lucide-react";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import {  FaXTwitter } from "react-icons/fa6";
+
 
 
 const iconMap: Record<string, React.ElementType> = {
@@ -37,12 +36,6 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 
-const brandIcons: Record<string, React.ReactNode> = {
-  Github: <FaGithub size={18} className="w-[18px] h-[18px]" />,
-  Linkedin: <FaLinkedinIn size={18} className="w-[18px] h-[18px]" />,
-  Twitter: <FaXTwitter size={18} className="w-[18px] h-[18px]" />,
-  Mail: <Mail size={18} className="w-[18px] h-[18px]" />,
-};
 
 
 interface SidebarProps {
@@ -107,7 +100,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
       >
         {/* Avatar */}
         <div
-          className="p-4 sm:p-6 flex flex-col items-left border-b"
+          className="p-4 sm:p-6 flex flex-col items-left "
           style={{ borderColor: "var(--color-border)" }}
         >
           <div className="relative w-8 h-8 rounded-full overflow-hidden mb-2 sm:mb-3">
@@ -125,10 +118,13 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
           >
             {personalInfo.name}
           </h1>
+          
           <p
-            className="text-[10px] sm:text-xs text-left mt-1"
-            style={{ color: "var(--color-muted-text)" }}
-          >
+  className="text-sm text-left mt-1"
+  style={{ color: "var(--color-muted-text)" }}
+>
+ 
+
             {personalInfo.title}
           </p>
         </div>
@@ -171,35 +167,34 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
           
         </nav>
 <div className="flex items-center justify-center gap-2 sm:gap-3 pt-1 sm:pt-2">
-  {socialLinks.map((link) => {
-    const icon = brandIcons[link.icon];
+ {socials.map((social) => {
+  const Icon = social.icon;
 
-    return (
-      <a
-        key={link.name}
-        href={link.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-1.5 sm:p-2 rounded-lg transition-all duration-200"
-        style={{ color: "var(--color-muted-text)" }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.color = "var(--color-primary-text)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "transparent";
-          e.currentTarget.style.color = "var(--color-muted-text)";
-        }}
-      >
-        {icon}
-      </a>
-    );
-  })}
+  return (
+    <a
+      key={social.label}
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-1.5 sm:p-2 rounded-lg transition-all duration-200"
+      style={{ color: "var(--color-muted-text)" }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = "var(--color-primary-text)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = "var(--color-muted-text)";
+      }}
+    >
+      <Icon size={18} />
+    </a>
+  );
+})}
 </div>
 
 
 
 <div
-  className="flex justify-start p-3 sm:p-4 border-t"
+  className="flex justify-start p-3 sm:p-4 "
   style={{ borderColor: "var(--color-border)" }}
 >
   <a
@@ -230,7 +225,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
 
         {/* Bottom section */}
        <div
-  className="p-3 sm:p-4 border-t"
+  className="p-3 sm:p-4 "
   style={{ borderColor: "var(--color-border)" }}
 >
   <div className="flex items-center justify-between">

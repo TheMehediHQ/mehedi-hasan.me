@@ -172,7 +172,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         className={cn(
           // Always image left, content right
           "group flex flex-col md:flex-row items-start gap-5 md:gap-6 lg:gap-8",
-          "p-4 lg:p-5",
+         
           "transition-all duration-300"
         )}
       >

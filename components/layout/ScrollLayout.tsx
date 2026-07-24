@@ -11,6 +11,8 @@ import ExperienceSection from "@/sections/ExperienceSection";
 import ProjectsSection from "@/sections/ProjectsSection";
 import ContactSection from "@/sections/ContactSection";
 import EducationSection from "@/sections/EducationSection";
+import SkillSection from "@/sections/SkillSection";
+
 
 const sections = [
   { id: "home", component: <HomeSection key="home" /> },
@@ -18,7 +20,7 @@ const sections = [
   { id: "experience", component: <ExperienceSection key="experience" /> },
    { id: "education", component: <EducationSection key="education" /> },
   { id: "projects", component: <ProjectsSection key="projects" /> },
-  
+  { id: "skills", component: <SkillSection key="skills" /> },
   { id: "contact", component: <ContactSection key="contact" /> },
 ];
 

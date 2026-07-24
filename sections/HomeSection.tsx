@@ -14,7 +14,8 @@ export default function HomeSection() {
   return (
     <div
       ref={ref}
-      className="flex mt-20 items-center justify-center px-4 sm:px-8 lg:px-16"
+      className="flex  items-center justify-center px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
+      
     >
       <div className="max-w-4xl w-full">
         {/* <motion.h1

@@ -27,7 +27,7 @@ export default function ExperienceCard({
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
       <div
-        className="rounded-2xl p-4 sm:p-6 transition-all duration-300 h-full"
+        className=" transition-all duration-300 h-full"
        
         onMouseEnter={(e) => {
           e.currentTarget.style.borderColor = "var(--color-border)";

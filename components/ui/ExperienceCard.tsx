@@ -31,8 +31,8 @@ export default function ExperienceCard({
        
         onMouseEnter={(e) => {
           e.currentTarget.style.borderColor = "var(--color-border)";
-          e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.05)";
-          e.currentTarget.style.transform = "translateY(-2px)";
+          // e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.05)";
+          // e.currentTarget.style.transform = "translateY(-2px)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.borderColor = "var(--color-border)";

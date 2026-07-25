@@ -43,7 +43,7 @@ export default function SkillSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.03 }}
-                whileHover={{ y: -4 }}
+                // whileHover={{ y: -4 }}
                 className="group flex flex-col items-center justify-center"
               >
                 <Image
@@ -51,7 +51,7 @@ export default function SkillSection() {
                   alt={skill.name}
                   width={40}
                   height={40}
-                  className="object-contain transition-all duration-300 group-hover:scale-110"
+                  className="object-contain transition-all duration-300 "
                 />
               </motion.div>
             ))}

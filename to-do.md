@@ -1,1 +1,2 @@
-- fix email by sender
+- fix coler flicker 
+- fiz seo 

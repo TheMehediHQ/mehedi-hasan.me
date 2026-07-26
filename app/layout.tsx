@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@teispace/next-themes";
+import { getTheme } from "@teispace/next-themes/server";
 import ScrollLayout from "@/components/layout/ScrollLayout";
 import "./globals.css";
 
@@ -67,7 +68,8 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout() {
+export default async function RootLayout() {
+  const initialTheme = await getTheme();
   return (
     <html
       lang="en"
@@ -77,8 +79,8 @@ export default function RootLayout() {
       <body className="min-h-full">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={true}
+          defaultTheme={initialTheme || "dark"}
+          enableSystem
           disableTransitionOnChange={false}
         >
           <ScrollLayout />

@@ -10,9 +10,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
-   const baseStyles =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
-  
+    const baseStyles =
+      "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
+
     const variants = {
       primary: {
         backgroundColor: "var(--color-accent)",
@@ -22,7 +22,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       secondary: {
         backgroundColor: "transparent",
         color: "var(--color-button-secondary-text)",
-        border: "1px solid var(--color-border)",
+        border: "1px solid var(--secondary-border)",
       },
       ghost: {
         backgroundColor: "transparent",
@@ -37,23 +37,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       lg: "px-8 py-3.5 text-base",
     };
 
-    const hoverStyles = {
-      primary: { backgroundColor: "var(--color-accent-hover)" },
-      secondary: { backgroundColor: "var(--color-hover)" },
-      ghost: { backgroundColor: "var(--color-hover)" },
-    };
-
     return (
       <button
         ref={ref}
-        className={cn(baseStyles, sizes[size], className)}
+        className={cn(
+          baseStyles,
+          sizes[size],
+          "btn-flicker-fix",
+          className,
+          variant === "primary" && "hover:bg-[var(--color-accent-hover)]",
+          variant === "secondary" && "secondary-btn hover:bg-[var(--color-hover)]",
+          variant === "ghost" && "hover:bg-[var(--color-hover)]",
+        )}
         style={variants[variant]}
-        onMouseEnter={(e) => {
-          Object.assign(e.currentTarget.style, hoverStyles[variant]);
-        }}
-        onMouseLeave={(e) => {
-          Object.assign(e.currentTarget.style, variants[variant]);
-        }}
         {...props}
       >
         {children}

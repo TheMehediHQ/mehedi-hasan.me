@@ -118,8 +118,10 @@ try {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative flex items-center justify-center w-11 h-11 opacity-60 transition-all duration-300 hover:opacity-100 hover:-translate-y-1"
-                      whileHover={{ y: -2, scale: 1.05 }}
+                      className="flex items-center justify-center w-11 h-11 opacity-60 transition-all duration-300 hover:opacity-100"
+                      initial={{ opacity: 0.6, scale: 1 }}
+                      whileHover={{ scale: 1.1, opacity: 1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
                     >
                       <social.icon className="w-6 h-6 text-[var(--color-primary-text)]" />
                     </motion.a>
@@ -207,9 +209,14 @@ try {
                 </p>
               )}
 
-              <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+              <motion.div
+                initial={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
+              >
                 <Button
                   type="submit"
+                  variant="secondary"
                   size="lg"
                   disabled={isSubmitting}
                   className="group h-12 w-full rounded-xl cursor-pointer"

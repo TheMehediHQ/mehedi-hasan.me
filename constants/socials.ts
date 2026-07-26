@@ -1,4 +1,3 @@
-import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
 export const socials = [

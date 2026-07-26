@@ -83,3 +83,32 @@ h1, h2, h3, h4, h5, h6 {
 ::selection {
   background: var(--color-selection);
 }
+
+html.light {
+  --secondary-border: rgba(0,0,0,0.12);
+  --btn-border: rgba(0,0,0,0.12);
+  --btn-bg: rgba(255,255,255,0.02);
+  --btn-bg-hover: rgba(255,255,255,0.06);
+  --btn-text: var(--color-primary-text);
+}
+
+html.dark {
+  --secondary-border: rgba(255,255,255,0.18);
+  --btn-border: rgba(255,255,255,0.18);
+  --btn-bg: rgba(255,255,255,0.04);
+  --btn-bg-hover: rgba(255,255,255,0.08);
+  --btn-text: var(--color-primary-text);
+}
+
+.btn-flicker-fix {
+  transform: translateZ(0);
+  will-change: border-color, background-color;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.secondary-btn {
+  border-color: var(--secondary-border);
+  transform: translateZ(0);
+  will-change: border-color;
+  transition: border-color 0.25s ease;
+}

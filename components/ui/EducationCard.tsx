@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { motion, useInView } from "framer-motion";
@@ -26,17 +28,10 @@ export default function EducationCard({
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
       <div
-        className=" transition-all duration-300 h-full"
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = "var(--color-border)";
-          // e.currentTarget.style.boxShadow =
-          //   "0 4px 6px -1px rgba(0, 0, 0, 0.05)";
-          // e.currentTarget.style.transform = "translateY(-2px)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = "var(--color-border)";
-          e.currentTarget.style.boxShadow = "none";
-          e.currentTarget.style.transform = "translateY(0)";
+        className="transition-all duration-300 h-full btn-flicker-fix"
+        style={{
+          borderColor: "var(--btn-border)",
+          // backgroundColor removed completely
         }}
       >
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -82,7 +77,7 @@ export default function EducationCard({
         </div>
 
         <p
-          className="text-sm leading-6  sm:text-sm mb-3 sm:mb-4 "
+          className="text-sm leading-6 sm:text-sm mb-3 sm:mb-4"
           style={{ color: "var(--color-secondary-text)" }}
         >
           {education.description}

@@ -1,8 +1,6 @@
 "use client";
 
-
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import Image from "next/image";
 import { navItems } from "@/constants/navItems";
 import { personalInfo } from "@/constants/personalInfo";
@@ -44,13 +42,11 @@ interface SidebarProps {
 }
 
 function FloatingFab({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
-  if (typeof document === "undefined") return null;
-
-  return createPortal(
+  return (
     <button
       onClick={onToggle}
       className={cn(
-        "fixed flex items-center justify-center h-10 w-10 rounded-full backdrop-blur-xl border shadow-2xl transition-all duration-300 ease-out hover:scale-110 active:scale-95",
+        "fixed flex items-center justify-center h-10 w-10 rounded-full backdrop-blur-xl border btn-flicker-fix shadow-2xl transition-all duration-300 ease-out hover:scale-110 active:scale-95",
         "lg:hidden",
       )}
       style={{
@@ -65,8 +61,7 @@ function FloatingFab({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => vo
       aria-label={isOpen ? "Close menu" : "Open menu"}
     >
       {isOpen ? <X size={18} /> : <Menu size={18} />}
-    </button>,
-    document.body,
+    </button>
   );
 }
 
@@ -143,7 +138,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
                   setIsOpen(false);
                 }}
                 className={cn(
-                  "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 relative group w-full text-left",
+                  "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium btn-flicker-fix transition-all duration-200 relative group w-full text-left",
                   "text-[var(--color-secondary-text)]",
                   !isActive && "hover:text-[var(--color-primary-text)]",
                  
@@ -167,50 +162,38 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
           
         </nav>
 <div className="flex items-center justify-center gap-2 sm:gap-3 pt-1 sm:pt-2">
- {socials.map((social) => {
-  const Icon = social.icon;
+  {socials.map((social) => {
+    const Icon = social.icon;
 
-  return (
-    <a
-      key={social.label}
-      href={social.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-1.5 sm:p-2 rounded-lg transition-all duration-200"
-      style={{ color: "var(--color-muted-text)" }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = "var(--color-primary-text)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = "var(--color-muted-text)";
-      }}
-    >
-      <Icon size={18} />
-    </a>
-  );
-})}
+    return (
+      <a
+        key={social.label}
+        href={social.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-1.5 sm:p-2 rounded-lg transition-all duration-200 hover:text-[var(--color-primary-text)]"
+        style={{ color: "var(--color-muted-text)" }}
+      >
+        <Icon size={18} />
+      </a>
+    );
+  })}
 </div>
 
 
 
 <div
-  className="flex justify-start p-3 sm:p-4 "
+  className="flex justify-start p-3 sm:p-4"
   style={{ borderColor: "var(--color-border)" }}
 >
   <a
     href={personalInfo.resume}
     target="_blank"
     rel="noopener noreferrer"
-    className="flex w-full justify-center items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-medium transition-all duration-200"
+    className="flex w-full justify-center items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-medium btn-flicker-fix transition-all duration-200 hover:bg-[var(--color-accent-hover)]"
     style={{
       backgroundColor: "var(--color-accent)",
       color: "var(--color-button-primary-text)",
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.backgroundColor = "var(--color-accent-hover)";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.backgroundColor = "var(--color-accent)";
     }}
   >
     <Download size={14} />

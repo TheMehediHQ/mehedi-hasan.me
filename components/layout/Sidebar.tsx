@@ -8,7 +8,7 @@ import { navItems } from "@/constants/navItems";
 import { personalInfo } from "@/constants/personalInfo";
 import { socials } from "@/constants/socials";
 import { cn } from "@/lib/utils";
-import { FaWhatsapp, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
+// import { FaWhatsapp, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
 
 import ThemeToggle from "@/components/ThemeToggle";
 import {
@@ -190,9 +190,9 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
           
 
 
+
 {/* Vertical Contact Section */}
-{/* Vertical Contact Section */}
-<div>
+{/* <div>
   <p
     className="text-xs font-semibold px-3 sm:px-4 mb-2"
     style={{ color: "var(--color-primary-text)" }}
@@ -202,8 +202,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
 
   <div className="space-y-1">
 
-    {/* WhatsApp */}
-    <a
+   <a
       href="https://wa.me/8801747874773"
       target="_blank"
       rel="noopener noreferrer"
@@ -216,8 +215,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
       <span>WhatsApp</span>
     </a>
 
-    {/* Email */}
-    <a
+     <a
       href="mailto:hello@mehedi-hasan.me"
       className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 
                  rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 
@@ -228,7 +226,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
       <span>Email Me</span>
     </a>
 
-    {/* Calendly */}
+   
     <a
       href="https://cal.com/TheMehediHQ/15min"
       target="_blank"
@@ -243,7 +241,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
     </a>
 
   </div>
-</div>
+</div> */}
 
 
 

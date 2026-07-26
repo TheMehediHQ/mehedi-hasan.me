@@ -108,6 +108,35 @@ try {
                 <p className="text-sm text-[var(--color-primary-text)]">Dhaka, Bangladesh</p>
               </div>
 
+    {/* WHATSAPP */}
+              <div className="space-y-1">
+                <p className="text-sm text-[var(--color-secondary-text)]">WhatsApp</p>
+                <a
+                  href="https://wa.me/8801747874773"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm hover:opacity-80"
+                  style={{ color: "var(--color-primary-text)" }}
+                >
+                  +880 1747 874 773
+                </a>
+              </div>
+
+              {/* CALENDLY */}
+              <div className="space-y-1">
+                <p className="text-sm text-[var(--color-secondary-text)]">Schedule a Call</p>
+                <a
+                  href="https://cal.com/TheMehediHQ/15min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm hover:opacity-80"
+                  style={{ color: "var(--color-primary-text)" }}
+                >
+                  cal.com/themehedihq
+                </a>
+              </div>
+
+
               <div className="space-y-3">
                 <p className="text-sm text-[var(--color-secondary-text)]">Social</p>
 

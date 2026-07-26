@@ -142,7 +142,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
                   <Icon
                     size={16}
                     className={cn(
-                      "flex-shrink-0 transition-colors duration-200",
+                      "flex-shrink-0 ",
                       "text-[var(--color-muted-text)]",
                       !isActive && "group-hover:text-[var(--color-primary-text)]",
                       isActive && "text-[var(--color-accent)]"

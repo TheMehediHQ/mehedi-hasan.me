@@ -8,6 +8,8 @@ import { navItems } from "@/constants/navItems";
 import { personalInfo } from "@/constants/personalInfo";
 import { socials } from "@/constants/socials";
 import { cn } from "@/lib/utils";
+import { FaWhatsapp, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
+
 import ThemeToggle from "@/components/ThemeToggle";
 import {
   Home,
@@ -182,6 +184,78 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
               })}
             </div>
           </div>
+
+
+        
+          
+
+
+{/* Vertical Contact Section */}
+{/* Vertical Contact Section */}
+<div>
+  <p
+    className="text-xs font-semibold px-3 sm:px-4 mb-2"
+    style={{ color: "var(--color-primary-text)" }}
+  >
+    Contact
+  </p>
+
+  <div className="space-y-1">
+
+    {/* WhatsApp */}
+    <a
+      href="https://wa.me/8801747874773"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 
+                 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 
+                 hover:text-[var(--color-primary-text)]"
+      style={{ color: "var(--color-muted-text)" }}
+    >
+      <FaWhatsapp size={16} className="text-[var(--color-muted-text)]" />
+      <span>WhatsApp</span>
+    </a>
+
+    {/* Email */}
+    <a
+      href="mailto:hello@mehedi-hasan.me"
+      className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 
+                 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 
+                 hover:text-[var(--color-primary-text)]"
+      style={{ color: "var(--color-muted-text)" }}
+    >
+      <FaEnvelope size={16} className="text-[var(--color-muted-text)]" />
+      <span>Email Me</span>
+    </a>
+
+    {/* Calendly */}
+    <a
+      href="https://cal.com/TheMehediHQ/15min"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 
+                 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 
+                 hover:text-[var(--color-primary-text)]"
+      style={{ color: "var(--color-muted-text)" }}
+    >
+      <FaCalendarAlt size={16} className="text-[var(--color-muted-text)]" />
+      <span>Schedule a Call</span>
+    </a>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+          
         </div>
 
    

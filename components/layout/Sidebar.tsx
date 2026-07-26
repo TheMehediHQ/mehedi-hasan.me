@@ -398,21 +398,22 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
         </div>
 
         {/* Read Resume Button (Rounded Pill Layout) */}
-        <div className="p-3 sm:p-4">
-          <a
-            href={personalInfo.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full justify-between items-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium btn-flicker-fix transition-all duration-200 hover:bg-[var(--color-accent-hover)]"
-            style={{
-              backgroundColor: "var(--color-accent)",
-              color: "var(--color-button-primary-text)",
-            }}
-          >
-            <span>Read Resume</span>
-            <ChevronRight size={16} />
-          </a>
-        </div>
+       <div className="p-3 sm:p-4">
+  <a
+    href={personalInfo.resume}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[12px] font-medium btn-flicker-fix transition-all duration-200 mx-auto hover:bg-[var(--color-accent-hover)]"
+    style={{
+      backgroundColor: "var(--color-accent)",
+      color: "var(--color-button-primary-text)",
+    }}
+  >
+    <span>Read Resume</span>
+    <ChevronRight size={14} />
+  </a>
+</div>
+
 
         {/* Bottom Theme & Copyright Section */}
         <div className="p-3 sm:p-4 pt-0">

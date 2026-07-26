@@ -6,46 +6,69 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* -------------------------------------------------------
+   LIGHT MODE — BASE COLOR: #F5F4EF
+-------------------------------------------------------- */
 :root {
-  --color-background: #FFFFFF;
-  --color-surface: #FAFAFA;
-  --color-card: #FFFFFF;
-  --color-border: #E4E4E7;
-  --color-primary-text: #09090B;
-  --color-secondary-text: #52525B;
-  --color-muted-text: #71717A;
+  --color-background: #F5F4EF;
+  --color-surface: #F5F4EF;
+  --color-card: transparent; /* premium transparent cards */
+  --color-border: rgba(0,0,0,0.12);
+
+  --color-primary-text: #171717;
+  --color-secondary-text: #3A3A3A;
+  --color-muted-text: #5A5A5A;
+
   --color-accent: #3B82F6;
   --color-accent-hover: #2563EB;
-  --color-hover: #F4F4F5;
+
+  --color-hover: rgba(0,0,0,0.04);
+
   --color-selection: #DBEAFE;
   --color-ring: #3B82F6;
+
   --color-input: #FFFFFF;
+
   --color-button-primary-text: #FFFFFF;
-  --color-button-secondary-text: #09090B;
+  --color-button-secondary-text: #171717;
+
   --color-scrollbar-thumb: #D4D4D8;
   --color-scrollbar-thumb-hover: #A1A1AA;
 }
 
+/* -------------------------------------------------------
+   DARK MODE — BASE COLOR: #171717
+-------------------------------------------------------- */
 .dark {
-  --color-background: #09090B;
-  --color-surface: #111113;
-  --color-card: #18181B;
-  --color-border: #27272A;
-  --color-primary-text: #FAFAFA;
-  --color-secondary-text: #A1A1AA;
-  --color-muted-text: #71717A;
+  --color-background: #171717;
+  --color-surface: #171717;
+  --color-card: transparent; /* premium transparent cards */
+  --color-border: rgba(255,255,255,0.18);
+
+  --color-primary-text: #F5F4EF;
+  --color-secondary-text: #CFCFCF;
+  --color-muted-text: #A1A1AA;
+
   --color-accent: #3B82F6;
   --color-accent-hover: #60A5FA;
-  --color-hover: rgba(255, 255, 255, 0.05);
+
+  --color-hover: rgba(255,255,255,0.06);
+
   --color-selection: #1E3A8A;
   --color-ring: #3B82F6;
-  --color-input: #18181B;
+
+  --color-input: #1F1F1F;
+
   --color-button-primary-text: #FFFFFF;
-  --color-button-secondary-text: #FAFAFA;
+  --color-button-secondary-text: #F5F4EF;
+
   --color-scrollbar-thumb: #333333;
   --color-scrollbar-thumb-hover: #444444;
 }
 
+/* -------------------------------------------------------
+   GLOBAL BODY
+-------------------------------------------------------- */
 body {
   background: var(--color-background);
   color: var(--color-primary-text);
@@ -58,6 +81,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cal), Arial, Helvetica, sans-serif;
 }
 
+/* -------------------------------------------------------
+   SCROLLBAR
+-------------------------------------------------------- */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-scrollbar-thumb) transparent;
@@ -84,18 +110,21 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-selection);
 }
 
+/* -------------------------------------------------------
+   BUTTON / CARD FLICKER FIX
+-------------------------------------------------------- */
 html.light {
   --secondary-border: rgba(0,0,0,0.12);
   --btn-border: rgba(0,0,0,0.12);
-  --btn-bg: rgba(255,255,255,0.02);
-  --btn-bg-hover: rgba(255,255,255,0.06);
+  --btn-bg: transparent;
+  --btn-bg-hover: rgba(0,0,0,0.06);
   --btn-text: var(--color-primary-text);
 }
 
 html.dark {
   --secondary-border: rgba(255,255,255,0.18);
   --btn-border: rgba(255,255,255,0.18);
-  --btn-bg: rgba(255,255,255,0.04);
+  --btn-bg: transparent;
   --btn-bg-hover: rgba(255,255,255,0.08);
   --btn-text: var(--color-primary-text);
 }

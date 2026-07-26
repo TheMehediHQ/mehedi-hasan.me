@@ -398,7 +398,7 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
         </div>
 
         {/* Read Resume Button (Rounded Pill Layout) */}
-       <div className="p-3 sm:p-4">
+       {/* <div className="p-3 sm:p-4">
   <a
     href={personalInfo.resume}
     target="_blank"
@@ -411,6 +411,37 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
   >
     <span>Read Resume</span>
     <ChevronRight size={14} />
+  </a>
+</div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="p-3 sm:p-4 flex justify-center">
+  <a
+    href={personalInfo.resume}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="relative group flex items-center justify-between gap-2 px-4 py-2.5 rounded-full text-[12px] font-medium btn-flicker-fix transition-all duration-200 overflow-hidden hover:bg-[var(--color-accent-hover)]"
+    style={{
+      backgroundColor: "var(--color-accent)",
+      color: "var(--color-button-primary-text)",
+    }}
+  >
+    {/* Border Beam Animation Background */}
+    <span className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+    {/* Button Text & Icon */}
+    <span className="relative z-10">Read Resume</span>
+    <ChevronRight size={14} className="relative z-10" />
   </a>
 </div>
 

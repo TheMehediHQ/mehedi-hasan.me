@@ -240,7 +240,7 @@ try {
 
               <motion.div
                 initial={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -2 }}
+                // whileHover={{ y: -2 }}
                 transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
               >
                 <Button

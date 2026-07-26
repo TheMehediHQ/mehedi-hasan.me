@@ -12,7 +12,7 @@
 :root {
   --color-background: #F5F4EF;
   --color-surface: #F5F4EF;
-  --color-card: transparent; /* premium transparent cards */
+  --color-card: transparent;
   --color-border: rgba(0,0,0,0.12);
 
   --color-primary-text: #171717;
@@ -42,7 +42,7 @@
 .dark {
   --color-background: #171717;
   --color-surface: #171717;
-  --color-card: transparent; /* premium transparent cards */
+  --color-card: transparent;
   --color-border: rgba(255,255,255,0.18);
 
   --color-primary-text: #F5F4EF;
@@ -119,6 +119,7 @@ html.light {
   --btn-bg: transparent;
   --btn-bg-hover: rgba(0,0,0,0.06);
   --btn-text: var(--color-primary-text);
+  --color-hover-border: rgba(0,0,0,0.08);
 }
 
 html.dark {
@@ -127,6 +128,7 @@ html.dark {
   --btn-bg: transparent;
   --btn-bg-hover: rgba(255,255,255,0.08);
   --btn-text: var(--color-primary-text);
+  --color-hover-border: rgba(255,255,255,0.10);
 }
 
 .btn-flicker-fix {
@@ -135,11 +137,53 @@ html.dark {
   transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
+/* -------------------------------------------------------
+   BUTTON HOVER EFFECTS - ADD THIS SECTION
+-------------------------------------------------------- */
+
+/* Secondary Button */
 .secondary-btn {
   border-color: var(--secondary-border);
   transform: translateZ(0);
   will-change: border-color;
-  transition: border-color 0.25s ease;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background-color: var(--color-hover) !important;
+  border-color: var(--color-hover-border);
+
+}
+
+/* Primary Button (if using CSS class) */
+.primary-btn:hover {
+  background-color: var(--color-accent-hover) !important;
+
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Ghost Button */
+.ghost-btn:hover {
+  background-color: var(--color-hover) !important;
+
+}
+
+/* Hero CTA Buttons */
+.hero-cta-btn.resume:hover {
+  background-color: var(--color-accent-hover) !important;
+  color: var(--color-button-primary-text) !important;
+ 
+}
+
+.hero-cta-btn.default:hover {
+  background-color: var(--btn-bg-hover) !important;
+  color: var(--btn-text) !important;
+
+}
+
+/* Active state for all buttons */
+.btn-active:active {
+  transform: translateY(0px) scale(0.98);
 }
 
 html.light {

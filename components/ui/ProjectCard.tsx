@@ -98,7 +98,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
 
           <div className="mt-5 flex flex-wrap gap-2.5">
-            <Button
+            {/* <Button
               variant="secondary"
               size="sm"
               className="gap-2 cursor-pointer"
@@ -106,9 +106,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             >
               <FaGithub size={15} />
               GitHub
-            </Button>
+            </Button> */}
 
-            <Button
+            {/* <Button
               variant="primary"
               size="sm"
               className="gap-2 cursor-pointer"
@@ -116,7 +116,23 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             >
               <ArrowUpRight size={15} />
               Live Demo
-            </Button>
+            </Button> */}
+
+
+            <Button
+  variant="primary"
+  size="sm"
+  className="gap-2 cursor-pointer"
+  onClick={() => window.open(project.liveDemo, "_blank")}
+>
+
+
+  {project.liveDemo
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .replace(/\/$/, "")}
+      <ArrowUpRight size={15} />
+</Button>
           </div>
         </div>
       </motion.article>

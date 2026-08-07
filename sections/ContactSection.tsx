@@ -243,16 +243,20 @@ try {
                 // whileHover={{ y: -2 }}
                 transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 20 }}
               >
-                <Button
-                  type="submit"
-                  variant="secondary"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="group h-12 w-full rounded-xl cursor-pointer"
-                >
-                  <Send size={18} />
-                  <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-                </Button>
+               <Button
+  type="submit"
+  variant="secondary"
+  size="lg"
+  disabled={isSubmitting}
+  className=" h-12 w-full rounded-xl cursor-pointer"
+>
+  <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+
+  <Send
+    size={18}
+    className="transition-transform duration-200 "
+  />
+</Button>
               </motion.div>
             </form>
           </motion.div>

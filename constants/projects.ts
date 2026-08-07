@@ -3,39 +3,38 @@ import { Project } from "@/types";
 export const projects: Project[] = [
   {
     id: "1",
-    title: "Plants Care",
+    title: "XGari",
     description:
-      "Plant Care Tracker is a digital gardening assistant that helps users manage plants, track watering schedules, and monitor plant health.",
-    image: "/projects/plant.png",
-    technologies: ["React", "MongoDB", "Node.js", "Tailwind CSS"],
-    github: "https://github.com/TheMehediHQ/Plant-Care-Client",
-    liveDemo: "https://plant-care-tracker-bd.web.app",
+      "A modern automotive marketplace platform where users can browse, compare, and discover vehicles with a fast and responsive user experience.",
+    image: "/projects/xgari.png",
+    technologies: ["Next.js", "PostgreSQL", "Hono", "Tailwind CSS"],
+    github: "",
+    liveDemo: "https://xgari.com",
     details:
-      "Built a scalable e-commerce platform handling 10k+ daily active users. Features include real-time inventory tracking, Stripe integration, and a comprehensive admin dashboard with analytics.",
+      "Built a scalable automotive marketplace with secure authentication, advanced search, responsive UI, and a powerful admin dashboard for managing vehicles, users, and platform content.",
   },
   {
     id: "2",
-    title: "Food Management App",
+    title: "AYVoice",
     description:
-      "Food Management is a web application that helps users organize groceries, track expiry dates, and manage food inventory.",
-    image: "/projects/food.png",
-    technologies: ["React", "Node.js",  "MongoDB"],
-    github: "https://github.com/TheMehediHQ/Food-Garden-Client",
-    liveDemo: "https://food-garden-bd.web.app",
+      "A cloud-based bulk SMS and voice calling platform that enables businesses to manage campaigns, contacts, and communication efficiently.",
+    image: "/projects/ayvoice.png",
+    technologies: ["Next.js", "Hono", "PostgreSQL"],
+    github: "",
+    liveDemo: "https://ayvoice.com",
     details:
-      "A comprehensive food management system enabling users to categorize groceries, set expiry alerts, and maintain an organized inventory with real-time updates.",
+      "Developed a communication platform with campaign management, contact organization, message history, and third-party API integration for bulk SMS and voice call services.",
   },
   {
     id: "3",
-    title: "Dhuranta Online",
+    title: "NexVibe",
     description:
-      "Duranta Online Ltd. is a trusted IT solutions provider offering reliable internet services for home and business users.",
-    image: "/projects/duranta.png",
-    technologies: ["Next.js", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-    github: "https://duranta-online.vercel.app",
-    liveDemo: "https://duranta-online.vercel.app",
+      "A modern software agency website showcasing services, portfolio, and business solutions with a clean, responsive, and high-performance design.",
+    image: "/projects/nexvibe.png",
+    technologies: ["Next.js", "Tailwind CSS"],
+    github: "",
+    liveDemo: "https://nexvibe.tech",
     details:
-      "A visually stunning weather dashboard featuring 7-day forecasts, interactive maps, severe weather alerts, and beautiful animated transitions between weather states.",
-  }
+      "Built a fast and SEO-friendly business website using Next.js with responsive layouts, smooth animations, optimized performance, and a professional user experience.",
+  },
 ];
-

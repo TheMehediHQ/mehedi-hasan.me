@@ -117,7 +117,6 @@ export default function InsightsContext() {
               const itunesData = await itunesRes.json();
 
               if (itunesData.results?.[0]?.artworkUrl100) {
-                // Upscale resolution to 600x600
                 albumArtUrl = itunesData.results[0].artworkUrl100.replace(
                   "100x100bb",
                   "600x600bb"
@@ -159,7 +158,7 @@ export default function InsightsContext() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {/* 1. MAP / LOCATION CARD */}
-          <div className="relative h-[220px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-[#181818]">
+          <div className="relative h-[220px] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-lg bg-neutral-900">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-90"
               style={{
@@ -193,13 +192,16 @@ export default function InsightsContext() {
             rel="noopener noreferrer"
             className="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-white/10 shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:border-white/20 no-underline select-none"
           >
-            {/* Dynamic Background Blur */}
+            {/* Dynamic Background Blur (Optimized for both Light & Dark view) */}
             {track?.albumArt && (
               <div
-                className="absolute inset-0 bg-cover bg-center blur-2xl opacity-20 pointer-events-none scale-150 transition-all duration-700"
+                className="absolute inset-0 bg-cover bg-center blur-3xl opacity-35 dark:opacity-25 pointer-events-none scale-150 transition-all duration-700"
                 style={{ backgroundImage: `url(${track.albumArt})` }}
               />
             )}
+            
+            {/* Subtle Overlay to enhance text readability */}
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none" />
 
             {/* Top Bar: Spotify Icon & Vinyl Record Album Cover */}
             <div className="relative z-10 flex items-start justify-between">
@@ -211,7 +213,7 @@ export default function InsightsContext() {
               <div className="relative flex items-center justify-end">
                 {/* Vinyl Record Behind */}
                 <div
-                  className={`absolute top-0 right-3 w-16 h-16 rounded-full bg-black border-2 border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 ${
+                  className={`absolute top-0 right-3 w-16 h-16 rounded-full bg-black border-2 border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 shadow-md ${
                     track?.isPlaying ? "animate-spin-slow" : ""
                   }`}
                 >
@@ -279,7 +281,7 @@ export default function InsightsContext() {
                   {track?.title || "Off Endz"}
                 </h3>
                 <p
-                  className="text-sm text-neutral-400 truncate font-medium"
+                  className="text-sm text-neutral-300 truncate font-medium"
                   title={track?.artist || "Raf Saperra"}
                 >
                   {track?.artist || "Raf Saperra"}

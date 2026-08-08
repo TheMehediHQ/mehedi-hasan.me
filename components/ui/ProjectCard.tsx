@@ -1,5 +1,147 @@
 
 
+// "use client";
+
+// import { motion, useInView } from "framer-motion";
+// import { useRef } from "react";
+// import Image from "next/image";
+// import { ArrowUpRight } from "lucide-react";
+
+// import { Project } from "@/types";
+// import Button from "@/components/ui/Button";
+// import Badge from "@/components/ui/Badge";
+// import { cn } from "@/lib/utils";
+// import { FaGithub } from "react-icons/fa";
+
+// interface ProjectCardProps {
+//   project: Project;
+//   index: number;
+// }
+
+// export default function ProjectCard({ project, index }: ProjectCardProps) {
+//   const ref = useRef(null);
+
+//   const isInView = useInView(ref, {
+//     once: true,
+//     margin: "-10%",
+//   });
+
+//   return (
+//     <motion.div
+//       ref={ref}
+//       initial={{ opacity: 0, y: 20 }}
+//       animate={isInView ? { opacity: 1, y: 0 } : {}}
+//       transition={{
+//         duration: 0.45,
+//         delay: index * 0.08,
+//       }}
+//     >
+//       <motion.article
+//         // whileHover={{ y: -4 }}
+//         transition={{ duration: 0.2 }}
+//         tabIndex={0}
+//         className={cn(
+//           // Always image left, content right
+//           "group flex flex-col md:flex-row items-start gap-5 md:gap-6 lg:gap-8",
+         
+//           "transition-all duration-300"
+//         )}
+//       >
+//         {/* IMAGE — ALWAYS LEFT */}
+//         <div
+//           className="
+//             relative
+//             w-full
+//             max-w-[240px] sm:max-w-[260px] lg:max-w-[280px]
+//             aspect-[16/10]
+//             overflow-hidden
+//             rounded-xl
+//             flex-shrink-0
+//             bg-[var(--color-hover)]
+//           "
+//         >
+//           <Image
+//             src={project.image}
+//             alt={project.title}
+//             fill
+//             unoptimized
+//             sizes="(max-width: 768px) 100vw, 280px"
+//             className="object-cover transition-transform duration-500 p-4"
+//           />
+
+//           <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent opacity-0 opacity-100 transition-opacity duration-300" />
+       
+//         </div>
+
+//         {/* CONTENT — ALWAYS RIGHT */}
+//         <div className="flex-1 flex flex-col justify-center">
+//           <h3
+//             className="text-xl lg:text-2xl font-semibold tracking-tight"
+//             style={{ color: "var(--color-primary-text)" }}
+//           >
+//             {project.title}
+//           </h3>
+
+//           <p
+//             className="mt-2 max-w-xl text-sm leading-6 "
+//             style={{ color: "var(--color-secondary-text)" }}
+//           >
+//             {project.description}
+//           </p>
+
+//           <div className="mt-4 flex flex-wrap gap-2">
+//             {project.technologies.map((tech) => (
+//               <Badge key={tech} variant="default">
+//                 {tech}
+//               </Badge>
+//             ))}
+//           </div>
+
+//           <div className="mt-5 flex flex-wrap gap-2.5">
+//             {/* <Button
+//               variant="secondary"
+//               size="sm"
+//               className="gap-2 cursor-pointer"
+//               onClick={() => window.open(project.github, "_blank")}
+//             >
+//               <FaGithub size={15} />
+//               GitHub
+//             </Button> */}
+
+//             {/* <Button
+//               variant="primary"
+//               size="sm"
+//               className="gap-2 cursor-pointer"
+//               onClick={() => window.open(project.liveDemo, "_blank")}
+//             >
+//               <ArrowUpRight size={15} />
+//               Live Demo
+//             </Button> */}
+
+
+//             <Button
+//   variant="primary"
+//   size="sm"
+//   className="gap-2 cursor-pointer"
+//   onClick={() => window.open(project.liveDemo, "_blank")}
+// >
+
+
+//   {project.liveDemo
+//     .replace(/^https?:\/\//, "")
+//     .replace(/^www\./, "")
+//     .replace(/\/$/, "")}
+//       <ArrowUpRight size={15} />
+// </Button>
+//           </div>
+//         </div>
+//       </motion.article>
+//     </motion.div>
+//   );
+// }
+
+
+
 "use client";
 
 import { motion, useInView } from "framer-motion";
@@ -11,7 +153,6 @@ import { Project } from "@/types";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
-import { FaGithub } from "react-icons/fa";
 
 interface ProjectCardProps {
   project: Project;
@@ -37,41 +178,39 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       }}
     >
       <motion.article
-        // whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
         tabIndex={0}
         className={cn(
-          // Always image left, content right
-          "group flex flex-col md:flex-row items-start gap-5 md:gap-6 lg:gap-8",
-         
-          "transition-all duration-300"
+          "group flex flex-col md:flex-row items-start gap-5 md:gap-6 lg:gap-8 transition-all duration-300"
         )}
       >
-        {/* IMAGE — ALWAYS LEFT */}
-        <div
-          className="
-            relative
-            w-full
-            max-w-[240px] sm:max-w-[260px] lg:max-w-[280px]
-            aspect-[16/10]
-            overflow-hidden
-            rounded-xl
-            flex-shrink-0
-            bg-[var(--color-hover)]
-          "
-        >
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            unoptimized
-            sizes="(max-width: 768px) 100vw, 280px"
-            className="object-cover transition-transform duration-500 p-4"
-          />
+        
+       {/* IMAGE — ALWAYS LEFT */}
+<div
+  className="
+    relative
+    w-full
+    max-w-[240px] sm:max-w-[260px] lg:max-w-[280px]
+    aspect-[16/10]
+    overflow-hidden
+    rounded-xl
+    flex-shrink-0
+    bg-[var(--color-hover)]
+    border border-(--color-border)
+    shadow-sm
+  "
+>
+  <Image
+    src={project.image}
+    alt={project.title}
+    fill
+    unoptimized
+    sizes="(max-width: 768px) 100vw, 280px"
+    className="object-cover object-top transition-transform duration-500 "
+  />
 
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent opacity-0 opacity-100 transition-opacity duration-300" />
-       
-        </div>
+  <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent pointer-events-none" />
+</div>
 
         {/* CONTENT — ALWAYS RIGHT */}
         <div className="flex-1 flex flex-col justify-center">
@@ -83,7 +222,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </h3>
 
           <p
-            className="mt-2 max-w-xl text-sm leading-6 "
+            className="mt-2 max-w-xl text-sm leading-6"
             style={{ color: "var(--color-secondary-text)" }}
           >
             {project.description}
@@ -98,41 +237,20 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
 
           <div className="mt-5 flex flex-wrap gap-2.5">
-            {/* <Button
-              variant="secondary"
-              size="sm"
-              className="gap-2 cursor-pointer"
-              onClick={() => window.open(project.github, "_blank")}
-            >
-              <FaGithub size={15} />
-              GitHub
-            </Button> */}
-
-            {/* <Button
-              variant="primary"
-              size="sm"
-              className="gap-2 cursor-pointer"
-              onClick={() => window.open(project.liveDemo, "_blank")}
-            >
-              <ArrowUpRight size={15} />
-              Live Demo
-            </Button> */}
-
-
-            <Button
-  variant="primary"
-  size="sm"
-  className="gap-2 cursor-pointer"
-  onClick={() => window.open(project.liveDemo, "_blank")}
->
-
-
-  {project.liveDemo
-    .replace(/^https?:\/\//, "")
-    .replace(/^www\./, "")
-    .replace(/\/$/, "")}
-      <ArrowUpRight size={15} />
-</Button>
+            {project.liveDemo && (
+              <Button
+                variant="primary"
+                size="sm"
+                className="gap-2 cursor-pointer"
+                onClick={() => window.open(project.liveDemo, "_blank")}
+              >
+                {project.liveDemo
+                  .replace(/^https?:\/\//, "")
+                  .replace(/^www\./, "")
+                  .replace(/\/$/, "")}
+                <ArrowUpRight size={15} />
+              </Button>
+            )}
           </div>
         </div>
       </motion.article>

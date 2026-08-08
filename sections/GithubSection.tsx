@@ -12,13 +12,17 @@ export default function GithubSection() {
         />
 
         <div className="mt-6 lg:mt-10 overflow-x-auto">
-          <div className="min-w-[700px] flex justify-center">
-            <img
-              src="https://ghchart.rshah.org/themehedihq?bg_color=000000&color=FFFFFF&line=469600&point=FFFFFF"
-              alt="GitHub contribution graph"
-              className="w-full max-w-4xl rounded-lg"
-            />
-          </div>
+      
+            <div className=" rounded-lg overflow-hidden ">
+          <img
+            src="https://ghchart.rshah.org/themehedihq"
+            alt="Mehedi Hasan's GitHub Contribution Graph"
+            className="w-full h-auto"
+            loading="lazy"
+          />
+
+      
+        </div>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ import EducationSection from "@/sections/EducationSection";
 import SkillSection from "@/sections/SkillSection";
 import GithubSection from "@/sections/GithubSection";
 import InsightsContext from "@/sections/InsightSection";
-
+import BottomNav from "@/components/layout/BottomNav";
 
 const sections = [
   { id: "home", component: <HomeSection key="home" /> },
@@ -33,12 +33,17 @@ export default function ScrollLayout() {
   const mainRef = useRef<HTMLElement>(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const activeId = useScrollSpy(sectionIds, !isScrolling);
-  const { scrollToSection } = useHashNavigation(mainRef, () => setIsScrolling(false));
+  const { scrollToSection } = useHashNavigation(mainRef, () =>
+    setIsScrolling(false),
+  );
 
-  const handleNavClick = useCallback((id: string) => {
-    setIsScrolling(true);
-    scrollToSection(id);
-  }, [scrollToSection]);
+  const handleNavClick = useCallback(
+    (id: string) => {
+      setIsScrolling(true);
+      scrollToSection(id);
+    },
+    [scrollToSection],
+  );
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -62,20 +67,26 @@ export default function ScrollLayout() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeId, scrollToSection]);
 
-return (
+  return (
     <div
       className="flex h-screen w-full overflow-hidden"
       style={{ backgroundColor: "var(--color-background)" }}
     >
       <Sidebar activeSection={activeId} onNavClick={handleNavClick} />
 
-      <main ref={mainRef} className="flex-1 lg:ml-[200px] xl:ml-[220px] overflow-y-auto">
+      <main
+        ref={mainRef}
+        className="flex-1 lg:ml-[200px] xl:ml-[220px] overflow-y-auto scroll-smooth pb-24 lg:pb-0"
+      >
         {sections.map(({ id, component }) => (
           <section key={id} id={id}>
             {component}
           </section>
         ))}
       </main>
+
+    {/* Mobile Bottom Navigation Dock */}
+    <BottomNav activeSection={activeId} onNavClick={handleNavClick} />
 
       <Toaster />
     </div>

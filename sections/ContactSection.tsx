@@ -72,7 +72,7 @@ try {
   return (
     <section
       ref={containerRef}
-      className="px-4 sm:px-8 lg:px-16 py-24"
+      className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
       style={{ backgroundColor: "var(--color-background)" }}
     >
       <div className="max-w-4xl mx-auto">

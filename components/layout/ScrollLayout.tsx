@@ -16,6 +16,7 @@ import SkillSection from "@/sections/SkillSection";
 import GithubSection from "@/sections/GithubSection";
 import InsightsContext from "@/sections/InsightSection";
 import BottomNav from "@/components/layout/BottomNav";
+import MobileFooter from "./MobileFooter";
 
 const sections = [
   { id: "home", component: <HomeSection key="home" /> },
@@ -83,6 +84,7 @@ export default function ScrollLayout() {
             {component}
           </section>
         ))}
+        <MobileFooter />
       </main>
 
     {/* Mobile Bottom Navigation Dock */}

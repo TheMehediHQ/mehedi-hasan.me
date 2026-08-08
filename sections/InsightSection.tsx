@@ -212,18 +212,58 @@ export default function InsightsContext() {
               {/* Album Art Container */}
               <div className="relative flex items-center justify-end">
                 {/* Vinyl Record Behind */}
-                <div
-                  className={`absolute top-0 right-3 w-16 h-16 rounded-full bg-black border-2 border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 shadow-md ${
+                {/* <div
+                  className={`absolute top-1.25 right-10 w-22 h-22 rounded-full bg-black border-2 border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 shadow-md ${
                     track?.isPlaying ? "animate-spin-slow" : ""
                   }`}
                 >
-                  <div className="w-5 h-5 rounded-full bg-amber-600 border border-black flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-amber-600 border border-black flex items-center justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-black" />
                   </div>
-                </div>
+                </div> */}
 
+{/* Vinyl Record Behind */}
+<div
+  className="absolute top-1.25 right-10 w-18 h-18 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 shadow-xl animate-spin overflow-hidden"
+  style={{ animationDuration: '6s' }} /* আপনার পছন্দমতো গতি কমাতে/বাড়াতে পারেন */
+>
+  {/* Asymmetric Light Glossy Reflection - static অনুভব দূর করবে */}
+  <div 
+    className="absolute inset-0 rounded-full opacity-60 pointer-events-none"
+    style={{
+      background: `
+        conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.35) 30deg,
+          transparent 70deg,
+          transparent 180deg,
+          rgba(255, 255, 255, 0.25) 210deg,
+          transparent 250deg
+        )
+      `
+    }}
+  />
+
+  {/* Outer Vinyl Grooves Ring */}
+  <div className="w-18 h-18 rounded-full border border-neutral-700/50 flex items-center justify-center relative">
+    
+    {/* Vinyl Lines / Grooves */}
+    <div className="absolute inset-1 rounded-full border border-neutral-800/80" />
+    <div className="absolute inset-3 rounded-full border border-neutral-800/60" />
+
+    {/* Center Label (Assymetric detail for obvious 360 spin) */}
+    <div className="w-6 h-6 rounded-full bg-amber-600 border border-black/80 flex items-center justify-center shadow-inner relative">
+      {/* Label Accent (এই ছোট ডট থাকার কারণে 360° ঘূর্ণন স্পষ্ট বোঝা যায়) */}
+      {/* <div className="absolute top-1 w-1.5 h-1.5 bg-black/70 rounded-full" /> */}
+      
+      {/* Center Hole */}
+      <div className="w-2.5 h-2.5 rounded-full bg-black border border-neutral-800" />
+    </div>
+  </div>
+</div>
                 {/* Cover Image */}
-                <div className="relative z-10 w-16 h-16 rounded-xl overflow-hidden border border-(--color-border) bg-neutral-900 shadow-lg flex items-center justify-center">
+                <div className="relative z-10 w-20 h-20 rounded-xl overflow-hidden border border-(--color-border) bg-neutral-900 shadow-lg flex items-center justify-center">
                   {track?.albumArt && !imgError ? (
                     <img
                       src={track.albumArt}

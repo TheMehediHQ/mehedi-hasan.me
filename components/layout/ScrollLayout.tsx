@@ -13,15 +13,19 @@ import ProjectsSection from "@/sections/ProjectsSection";
 import ContactSection from "@/sections/ContactSection";
 import EducationSection from "@/sections/EducationSection";
 import SkillSection from "@/sections/SkillSection";
+import GithubSection from "@/sections/GithubSection";
+import InsightsContext from "@/sections/InsightSection";
 
 
 const sections = [
   { id: "home", component: <HomeSection key="home" /> },
   { id: "about", component: <AboutSection key="about" /> },
   { id: "experience", component: <ExperienceSection key="experience" /> },
-   { id: "education", component: <EducationSection key="education" /> },
   { id: "projects", component: <ProjectsSection key="projects" /> },
   { id: "skills", component: <SkillSection key="skills" /> },
+  { id: "education", component: <EducationSection key="education" /> },
+  { id: "insights", component: <InsightsContext key="insights" /> },
+  { id: "github", component: <GithubSection key="github" /> },
   { id: "contact", component: <ContactSection key="contact" /> },
 ];
 

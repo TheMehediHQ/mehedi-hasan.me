@@ -154,7 +154,7 @@ export default function InsightsContext() {
   return (
     <section className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
       <div className="max-w-4xl mx-auto">
-        <SectionTitle title="Insights & Context" subtitle="" />
+        <SectionTitle title="Live Signals" subtitle="" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {/* 1. MAP / LOCATION CARD */}
@@ -291,29 +291,52 @@ export default function InsightsContext() {
           </a>
 
           {/* 3. DHAKA TIME CARD */}
-          <div className="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-white/10 shadow-lg flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                Local Time
-              </span>
-              <Globe2 className="w-5 h-5 text-neutral-400" />
-            </div>
+         <div className="relative h-[220px] rounded-2xl p-6 bg-gradient-to-b from-[#1E1E1E] to-[#141414] border border-white/10 shadow-xl flex flex-col justify-between overflow-hidden group">
+  
+  {/* Ambient Background Glow Effect */}
+  <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-blue-500/20 transition-all duration-500" />
 
-            <div>
-              <div className="text-3xl font-bold text-white tracking-tight font-mono">
-                {dhakaTime ? dhakaTime.split(" ")[0] : "--:--:--"}
-                <span className="text-sm text-neutral-400 ml-2 font-sans font-normal">
-                  {dhakaTime ? dhakaTime.split(" ")[1] : ""}
-                </span>
-              </div>
-              <p className="text-xs text-neutral-400 mt-1">Dhaka, Bangladesh (GMT+6)</p>
-            </div>
+  {/* Top Bar: Title & Icon */}
+  <div className="flex items-center justify-between relative z-10">
+    <span className="text-[11px] font-bold uppercase tracking-widest text-neutral-400/90 flex items-center gap-2">
+      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+      Local Time
+    </span>
+    <Globe2 className="w-5 h-5 text-neutral-400 group-hover:text-blue-400 transition-colors duration-300 animate-spin-slow" />
+  </div>
 
-            <div className="pt-3 border-t border-white/10 text-xs text-neutral-400 flex justify-between items-center">
-              <span>Status</span>
-              <span className="text-emerald-400 font-medium">● Active</span>
-            </div>
-          </div>
+  {/* Main Time Display */}
+  <div className="my-auto relative z-10">
+    <div className="flex items-baseline gap-2">
+      <span className="text-4xl font-extrabold text-white tracking-tight font-mono drop-shadow-md">
+        {dhakaTime ? dhakaTime.split(" ")[0] : "--:--:--"}
+      </span>
+      {dhakaTime && (
+        <span className="text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md backdrop-blur-sm">
+          {dhakaTime.split(" ")[1]}
+        </span>
+      )}
+    </div>
+    <p className="text-xs font-medium text-neutral-400 mt-2 flex items-center gap-1.5">
+      <span>Dhaka, Bangladesh</span>
+      <span className="text-neutral-600">•</span>
+      <span className="text-neutral-500 font-mono">GMT+6</span>
+    </p>
+  </div>
+
+  {/* Bottom Bar: Status */}
+  <div className="pt-3 border-t border-white/10 text-xs text-neutral-400 flex justify-between items-center relative z-10">
+    <span className="font-medium text-neutral-500">Status</span>
+    <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full">
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span className="text-emerald-400 font-medium text-[11px] tracking-wide">Active</span>
+    </div>
+  </div>
+
+</div>
         </div>
       </div>
     </section>

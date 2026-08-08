@@ -17,7 +17,7 @@ export default function HomeSection() {
       className="flex  items-center justify-center px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
       
     >
-      <div className="max-w-4xl w-full">
+      <div className="max-w-4xl w-full ">
         {/* <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

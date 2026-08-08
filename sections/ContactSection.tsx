@@ -75,7 +75,7 @@ try {
       className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12"
       style={{ backgroundColor: "var(--color-background)" }}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto pb-0 lg:pb-18">
         <SectionTitle title="Contact Me" subtitle="" className="text-left" />
 
         <div className="grid lg:grid-cols-[280px_1fr] gap-12 items-start">

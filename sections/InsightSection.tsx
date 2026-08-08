@@ -51,7 +51,9 @@ function getLargestAlbumArt(images: LastFmImage[] = []): string | undefined {
     if (url) return url;
   }
 
-  const fallbackUrl = images.find((img) => img?.["#text"]?.trim())?.["#text"]?.trim();
+  const fallbackUrl = images
+    .find((img) => img?.["#text"]?.trim())
+    ?.["#text"]?.trim();
   return fallbackUrl || undefined;
 }
 
@@ -93,7 +95,8 @@ export default function InsightsContext() {
         const res = await fetch(url);
         const data = await res.json();
 
-        const recentTrack: LastFmTrack | undefined = data?.recenttracks?.track?.[0];
+        const recentTrack: LastFmTrack | undefined =
+          data?.recenttracks?.track?.[0];
 
         if (recentTrack) {
           const isPlaying = recentTrack["@attr"]?.nowplaying === "true";
@@ -101,7 +104,9 @@ export default function InsightsContext() {
           const artist =
             typeof recentTrack.artist === "string"
               ? recentTrack.artist
-              : recentTrack.artist?.["#text"] || recentTrack.artist?.name || "Unknown Artist";
+              : recentTrack.artist?.["#text"] ||
+                recentTrack.artist?.name ||
+                "Unknown Artist";
           const trackUrl = recentTrack.url;
 
           // 1. Try Last.fm image first
@@ -112,14 +117,14 @@ export default function InsightsContext() {
             try {
               const query = encodeURIComponent(`${artist} ${title}`);
               const itunesRes = await fetch(
-                `https://itunes.apple.com/search?term=${query}&entity=song&limit=1`
+                `https://itunes.apple.com/search?term=${query}&entity=song&limit=1`,
               );
               const itunesData = await itunesRes.json();
 
               if (itunesData.results?.[0]?.artworkUrl100) {
                 albumArtUrl = itunesData.results[0].artworkUrl100.replace(
                   "100x100bb",
-                  "600x600bb"
+                  "600x600bb",
                 );
               }
             } catch (e) {
@@ -205,7 +210,11 @@ export default function InsightsContext() {
 
             {/* Top Bar: Spotify Icon & Vinyl Record Album Cover */}
             <div className="relative z-10 flex items-start justify-between">
-              <svg className="w-8 h-8 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                className="w-8 h-8 text-[#1DB954]"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.899 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.019zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-.1.2-.78-.42-.6-.18-.6-.6.18-.78 4.2-1.26 11.28-1.02 15.72 1.62.54.3.719 1.02.419 1.56-.299.421-1.02.599-1.439.3z" />
               </svg>
 
@@ -222,16 +231,18 @@ export default function InsightsContext() {
                   </div>
                 </div> */}
 
-{/* Vinyl Record Behind */}
-<div
-  className="absolute top-1.25 right-10 w-18 h-18 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 shadow-xl animate-spin overflow-hidden"
-  style={{ animationDuration: '6s' }} /* আপনার পছন্দমতো গতি কমাতে/বাড়াতে পারেন */
->
-  {/* Asymmetric Light Glossy Reflection - static অনুভব দূর করবে */}
-  <div 
-    className="absolute inset-0 rounded-full opacity-60 pointer-events-none"
-    style={{
-      background: `
+                {/* Vinyl Record Behind */}
+                <div
+                  className="absolute top-2 right-12 w-18 h-18 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:-translate-x-1 shadow-xl animate-spin overflow-hidden"
+                  style={{
+                    animationDuration: "6s",
+                  }} /* আপনার পছন্দমতো গতি কমাতে/বাড়াতে পারেন */
+                >
+                  {/* Asymmetric Light Glossy Reflection - static অনুভব দূর করবে */}
+                  <div
+                    className="absolute inset-0 rounded-full opacity-60 pointer-events-none"
+                    style={{
+                      background: `
         conic-gradient(
           from 0deg,
           transparent 0deg,
@@ -241,29 +252,28 @@ export default function InsightsContext() {
           rgba(255, 255, 255, 0.25) 210deg,
           transparent 250deg
         )
-      `
-    }}
-  />
+      `,
+                    }}
+                  />
 
-  {/* Outer Vinyl Grooves Ring */}
-  <div className="w-18 h-18 rounded-full border border-neutral-700/50 flex items-center justify-center relative">
-    
-    {/* Vinyl Lines / Grooves */}
-    <div className="absolute inset-1 rounded-full border border-neutral-800/80" />
-    <div className="absolute inset-3 rounded-full border border-neutral-800/60" />
+                  {/* Outer Vinyl Grooves Ring */}
+                  <div className="w-18 h-18 rounded-full border border-neutral-700/50 flex items-center justify-center relative">
+                    {/* Vinyl Lines / Grooves */}
+                    <div className="absolute inset-1 rounded-full border border-neutral-800/80" />
+                    <div className="absolute inset-3 rounded-full border border-neutral-800/60" />
 
-    {/* Center Label (Assymetric detail for obvious 360 spin) */}
-    <div className="w-6 h-6 rounded-full bg-amber-600 border border-black/80 flex items-center justify-center shadow-inner relative">
-      {/* Label Accent (এই ছোট ডট থাকার কারণে 360° ঘূর্ণন স্পষ্ট বোঝা যায়) */}
-      {/* <div className="absolute top-1 w-1.5 h-1.5 bg-black/70 rounded-full" /> */}
-      
-      {/* Center Hole */}
-      <div className="w-2.5 h-2.5 rounded-full bg-black border border-neutral-800" />
-    </div>
-  </div>
-</div>
+                    {/* Center Label (Assymetric detail for obvious 360 spin) */}
+                    <div className="w-6 h-6 rounded-full bg-amber-600 border border-black/80 flex items-center justify-center shadow-inner relative">
+                      {/* Label Accent (এই ছোট ডট থাকার কারণে 360° ঘূর্ণন স্পষ্ট বোঝা যায়) */}
+                      {/* <div className="absolute top-1 w-1.5 h-1.5 bg-black/70 rounded-full" /> */}
+
+                      {/* Center Hole */}
+                      <div className="w-2.5 h-2.5 rounded-full bg-black border border-neutral-800" />
+                    </div>
+                  </div>
+                </div>
                 {/* Cover Image */}
-                <div className="relative z-10 w-20 h-20 rounded-xl overflow-hidden border border-(--color-border) bg-neutral-900 shadow-lg flex items-center justify-center">
+                <div className="relative z-10 w-22 h-22 rounded-xl overflow-hidden border border-(--color-border) bg-neutral-900 shadow-lg flex items-center justify-center">
                   {track?.albumArt && !imgError ? (
                     <img
                       src={track.albumArt}
@@ -294,12 +304,16 @@ export default function InsightsContext() {
                   />
                   <span
                     className={`w-[2.5px] bg-[#1DB954] rounded-full ${
-                      track?.isPlaying ? "animate-bounce delay-100 h-3.5" : "h-3.5"
+                      track?.isPlaying
+                        ? "animate-bounce delay-100 h-3.5"
+                        : "h-3.5"
                     }`}
                   />
                   <span
                     className={`w-[2.5px] bg-[#1DB954] rounded-full ${
-                      track?.isPlaying ? "animate-bounce delay-200 h-2" : "h-1.5"
+                      track?.isPlaying
+                        ? "animate-bounce delay-200 h-2"
+                        : "h-1.5"
                     }`}
                   />
                 </div>
@@ -307,8 +321,8 @@ export default function InsightsContext() {
                   {loadingTrack
                     ? "Loading..."
                     : track?.isPlaying
-                    ? "Now playing"
-                    : "Last played"}
+                      ? "Now playing"
+                      : "Last played"}
                 </span>
               </div>
 

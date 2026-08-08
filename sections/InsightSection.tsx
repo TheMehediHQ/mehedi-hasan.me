@@ -80,7 +80,7 @@ export default function InsightsContext() {
     return () => clearInterval(timer);
   }, []);
 
-  // 2. Fetch Real Track Data from Last.fm API
+  // 2. Fetch Real Track Data with iTunes Fallback
   useEffect(() => {
     async function fetchLastFmTrack() {
       if (!LASTFM_USERNAME || !LASTFM_API_KEY) {
@@ -104,7 +104,29 @@ export default function InsightsContext() {
               : recentTrack.artist?.["#text"] || recentTrack.artist?.name || "Unknown Artist";
           const trackUrl = recentTrack.url;
 
-          const albumArtUrl = getLargestAlbumArt(recentTrack.image);
+          // 1. Try Last.fm image first
+          let albumArtUrl = getLargestAlbumArt(recentTrack.image);
+
+          // 2. Fallback to iTunes Search API if Last.fm image is missing
+          if (!albumArtUrl) {
+            try {
+              const query = encodeURIComponent(`${artist} ${title}`);
+              const itunesRes = await fetch(
+                `https://itunes.apple.com/search?term=${query}&entity=song&limit=1`
+              );
+              const itunesData = await itunesRes.json();
+
+              if (itunesData.results?.[0]?.artworkUrl100) {
+                // Upscale resolution to 600x600
+                albumArtUrl = itunesData.results[0].artworkUrl100.replace(
+                  "100x100bb",
+                  "600x600bb"
+                );
+              }
+            } catch (e) {
+              console.error("iTunes album art fetch failed:", e);
+            }
+          }
 
           setImgError(false);
 
@@ -136,10 +158,9 @@ export default function InsightsContext() {
         <SectionTitle title="Insights & Context" subtitle="" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          
           {/* 1. MAP / LOCATION CARD */}
           <div className="relative h-[220px] rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-[#181818]">
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center opacity-90"
               style={{
                 backgroundImage: `url('/profile/dhaka.png')`,
@@ -174,7 +195,7 @@ export default function InsightsContext() {
           >
             {/* Dynamic Background Blur */}
             {track?.albumArt && (
-              <div 
+              <div
                 className="absolute inset-0 bg-cover bg-center blur-2xl opacity-20 pointer-events-none scale-150 transition-all duration-700"
                 style={{ backgroundImage: `url(${track.albumArt})` }}
               />
@@ -183,13 +204,17 @@ export default function InsightsContext() {
             {/* Top Bar: Spotify Icon & Vinyl Record Album Cover */}
             <div className="relative z-10 flex items-start justify-between">
               <svg className="w-8 h-8 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.899 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.019zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-.1.2-.78-.42-.6-.18-.6-.6.18-.78 4.2-1.26 11.28-1.02 15.72 1.62.54.3.719 1.02.419 1.56-.299.421-1.02.599-1.439.3z"/>
+                <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.899 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.019zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-.1.2-.78-.42-.6-.18-.6-.6.18-.78 4.2-1.26 11.28-1.02 15.72 1.62.54.3.719 1.02.419 1.56-.299.421-1.02.599-1.439.3z" />
               </svg>
 
               {/* Album Art Container */}
               <div className="relative flex items-center justify-end">
                 {/* Vinyl Record Behind */}
-                <div className={`absolute top-0 right-3 w-16 h-16 rounded-full bg-black border-2 border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 ${track?.isPlaying ? 'animate-spin-slow' : ''}`}>
+                <div
+                  className={`absolute top-0 right-3 w-16 h-16 rounded-full bg-black border-2 border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 ${
+                    track?.isPlaying ? "animate-spin-slow" : ""
+                  }`}
+                >
                   <div className="w-5 h-5 rounded-full bg-amber-600 border border-black flex items-center justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-black" />
                   </div>
@@ -198,15 +223,17 @@ export default function InsightsContext() {
                 {/* Cover Image */}
                 <div className="relative z-10 w-16 h-16 rounded-xl overflow-hidden border border-white/10 bg-neutral-900 shadow-lg flex items-center justify-center">
                   {track?.albumArt && !imgError ? (
-                    <img 
-                      src={track.albumArt} 
-                      alt={track.title} 
+                    <img
+                      src={track.albumArt}
+                      alt={track.title}
                       onError={() => setImgError(true)}
                       className="w-full h-full object-cover"
                     />
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center text-center p-1 bg-gradient-to-br from-neutral-800 to-neutral-900">
-                      <span className="text-[10px] font-medium text-neutral-400 leading-tight">No Cover</span>
+                      <span className="text-[10px] font-medium text-neutral-400 leading-tight">
+                        No Cover
+                      </span>
                     </div>
                   )}
                 </div>
@@ -218,21 +245,43 @@ export default function InsightsContext() {
               {/* Sound Wave Bars / Status Icon */}
               <div className="flex items-center gap-2 mb-1.5">
                 <div className="flex items-end gap-[2px] h-3.5">
-                  <span className={`w-[2.5px] bg-[#1DB954] rounded-full ${track?.isPlaying ? 'animate-bounce h-3' : 'h-2'}`} />
-                  <span className={`w-[2.5px] bg-[#1DB954] rounded-full ${track?.isPlaying ? 'animate-bounce delay-100 h-3.5' : 'h-3.5'}`} />
-                  <span className={`w-[2.5px] bg-[#1DB954] rounded-full ${track?.isPlaying ? 'animate-bounce delay-200 h-2' : 'h-1.5'}`} />
+                  <span
+                    className={`w-[2.5px] bg-[#1DB954] rounded-full ${
+                      track?.isPlaying ? "animate-bounce h-3" : "h-2"
+                    }`}
+                  />
+                  <span
+                    className={`w-[2.5px] bg-[#1DB954] rounded-full ${
+                      track?.isPlaying ? "animate-bounce delay-100 h-3.5" : "h-3.5"
+                    }`}
+                  />
+                  <span
+                    className={`w-[2.5px] bg-[#1DB954] rounded-full ${
+                      track?.isPlaying ? "animate-bounce delay-200 h-2" : "h-1.5"
+                    }`}
+                  />
                 </div>
                 <span className="text-xs font-medium text-[#1DB954] tracking-wide">
-                  {loadingTrack ? "Loading..." : track?.isPlaying ? "Now playing" : "Last played"}
+                  {loadingTrack
+                    ? "Loading..."
+                    : track?.isPlaying
+                    ? "Now playing"
+                    : "Last played"}
                 </span>
               </div>
 
-              {/* Track Details (Underline Removed) */}
+              {/* Track Details */}
               <div>
-                <h3 className="font-bold text-lg text-white truncate leading-snug" title={track?.title || "Off Endz"}>
+                <h3
+                  className="font-bold text-lg text-white truncate leading-snug"
+                  title={track?.title || "Off Endz"}
+                >
                   {track?.title || "Off Endz"}
                 </h3>
-                <p className="text-sm text-neutral-400 truncate font-medium" title={track?.artist || "Raf Saperra"}>
+                <p
+                  className="text-sm text-neutral-400 truncate font-medium"
+                  title={track?.artist || "Raf Saperra"}
+                >
                   {track?.artist || "Raf Saperra"}
                 </p>
               </div>
@@ -263,7 +312,6 @@ export default function InsightsContext() {
               <span className="text-emerald-400 font-medium">● Active</span>
             </div>
           </div>
-
         </div>
       </div>
     </section>

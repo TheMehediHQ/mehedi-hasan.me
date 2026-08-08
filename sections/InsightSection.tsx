@@ -18,10 +18,48 @@ interface TrackInfo {
   url?: string;
 }
 
+// ==========================================
+// 🎧 Last.fm API Types
+// ==========================================
+interface LastFmImage {
+  size?: string;
+  "#text"?: string;
+}
+
+interface LastFmArtist {
+  name?: string;
+  "#text"?: string;
+}
+
+interface LastFmTrack {
+  name?: string;
+  artist?: LastFmArtist | string;
+  url?: string;
+  image?: LastFmImage[];
+  "@attr"?: {
+    nowplaying?: string;
+  };
+}
+
+const IMAGE_SIZE_PRIORITY = ["extralarge", "large", "medium", "small"];
+
+function getLargestAlbumArt(images: LastFmImage[] = []): string | undefined {
+  if (!Array.isArray(images) || images.length === 0) return undefined;
+
+  for (const size of IMAGE_SIZE_PRIORITY) {
+    const url = images.find((img) => img?.size === size)?.["#text"]?.trim();
+    if (url) return url;
+  }
+
+  const fallbackUrl = images.find((img) => img?.["#text"]?.trim())?.["#text"]?.trim();
+  return fallbackUrl || undefined;
+}
+
 export default function InsightsContext() {
   const [dhakaTime, setDhakaTime] = useState<string>("");
   const [track, setTrack] = useState<TrackInfo | null>(null);
   const [loadingTrack, setLoadingTrack] = useState<boolean>(true);
+  const [imgError, setImgError] = useState<boolean>(false);
 
   // 1. Real-time Clock (Dhaka Time)
   useEffect(() => {
@@ -55,26 +93,25 @@ export default function InsightsContext() {
         const res = await fetch(url);
         const data = await res.json();
 
-        const recentTrack = data?.recenttracks?.track?.[0];
+        const recentTrack: LastFmTrack | undefined = data?.recenttracks?.track?.[0];
 
         if (recentTrack) {
           const isPlaying = recentTrack["@attr"]?.nowplaying === "true";
-          const title = recentTrack.name;
-          const artist = recentTrack.artist["#text"] || recentTrack.artist.name;
-          const trackUrl = recentTrack.url; // 👈 নির্দিষ্ট গানের URL
+          const title = recentTrack.name || "Unknown Track";
+          const artist =
+            typeof recentTrack.artist === "string"
+              ? recentTrack.artist
+              : recentTrack.artist?.["#text"] || recentTrack.artist?.name || "Unknown Artist";
+          const trackUrl = recentTrack.url;
 
-          const images = recentTrack.image || [];
-          const albumArtUrl =
-            images.find((img: { size: string; "#text": string }) => img.size === "extralarge")?.["#text"] ||
-            images.find((img: { size: string; "#text": string }) => img.size === "large")?.["#text"] ||
-            images.find((img: { size: string; "#text": string }) => img.size === "medium")?.["#text"] ||
-            images[images.length - 1]?.["#text"] ||
-            "";
+          const albumArtUrl = getLargestAlbumArt(recentTrack.image);
+
+          setImgError(false);
 
           setTrack({
             title,
             artist,
-            albumArt: albumArtUrl.trim() !== "" ? albumArtUrl : undefined,
+            albumArt: albumArtUrl,
             isPlaying,
             url: trackUrl,
           });
@@ -91,18 +128,12 @@ export default function InsightsContext() {
     return () => clearInterval(interval);
   }, []);
 
-  // Fallback URL: গান লোড না থাকলে সরাসরি আপনার প্রোফাইলের রিফ্রেশ্ড লাস্ট ট্র্যাক লিস্টে যাবে
   const fallbackUrl = `https://www.last.fm/user/${LASTFM_USERNAME}`;
 
   return (
     <section className="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
       <div className="max-w-4xl mx-auto">
-       
-       
-          <SectionTitle
-                  title="Insights & Context"
-                  subtitle=""
-                />
+        <SectionTitle title="Insights & Context" subtitle="" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           
@@ -117,7 +148,6 @@ export default function InsightsContext() {
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-            {/* Glowing Map Pin Dot */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative flex items-center justify-center">
                 <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-blue-500 opacity-75" />
@@ -125,7 +155,6 @@ export default function InsightsContext() {
               </div>
             </div>
 
-            {/* Location Tag (Wikipedia Link) */}
             <a
               href="https://en.wikipedia.org/wiki/Dhaka"
               target="_blank"
@@ -141,12 +170,12 @@ export default function InsightsContext() {
             href={track?.url || fallbackUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-white/10 shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:border-white/20"
+            className="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-white/10 shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:border-white/20 no-underline select-none"
           >
             {/* Dynamic Background Blur */}
             {track?.albumArt && (
               <div 
-                className="absolute inset-0 bg-cover bg-center blur-2xl opacity-25 pointer-events-none scale-150 transition-all duration-700"
+                className="absolute inset-0 bg-cover bg-center blur-2xl opacity-20 pointer-events-none scale-150 transition-all duration-700"
                 style={{ backgroundImage: `url(${track.albumArt})` }}
               />
             )}
@@ -158,7 +187,7 @@ export default function InsightsContext() {
               </svg>
 
               {/* Album Art Container */}
-              <div className="relative">
+              <div className="relative flex items-center justify-end">
                 {/* Vinyl Record Behind */}
                 <div className={`absolute top-0 right-3 w-16 h-16 rounded-full bg-black border-2 border-neutral-800 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-3 ${track?.isPlaying ? 'animate-spin-slow' : ''}`}>
                   <div className="w-5 h-5 rounded-full bg-amber-600 border border-black flex items-center justify-center">
@@ -167,11 +196,12 @@ export default function InsightsContext() {
                 </div>
 
                 {/* Cover Image */}
-                <div className="relative z-10 w-16 h-16 rounded-lg overflow-hidden border border-white/10 bg-neutral-900 shadow-md flex items-center justify-center">
-                  {track?.albumArt ? (
+                <div className="relative z-10 w-16 h-16 rounded-xl overflow-hidden border border-white/10 bg-neutral-900 shadow-lg flex items-center justify-center">
+                  {track?.albumArt && !imgError ? (
                     <img 
                       src={track.albumArt} 
                       alt={track.title} 
+                      onError={() => setImgError(true)}
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -185,33 +215,27 @@ export default function InsightsContext() {
 
             {/* Bottom Info */}
             <div className="relative z-10">
-              <div className="flex items-center gap-1.5 mb-1.5">
-                <span className="flex h-2 w-2 relative">
-                  {track?.isPlaying && (
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1DB954] opacity-75"></span>
-                  )}
-                  <span className={`relative inline-flex rounded-full h-2 w-2 ${track?.isPlaying ? 'bg-[#1DB954]' : 'bg-gray-400'}`}></span>
-                </span>
+              {/* Sound Wave Bars / Status Icon */}
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="flex items-end gap-[2px] h-3.5">
+                  <span className={`w-[2.5px] bg-[#1DB954] rounded-full ${track?.isPlaying ? 'animate-bounce h-3' : 'h-2'}`} />
+                  <span className={`w-[2.5px] bg-[#1DB954] rounded-full ${track?.isPlaying ? 'animate-bounce delay-100 h-3.5' : 'h-3.5'}`} />
+                  <span className={`w-[2.5px] bg-[#1DB954] rounded-full ${track?.isPlaying ? 'animate-bounce delay-200 h-2' : 'h-1.5'}`} />
+                </div>
                 <span className="text-xs font-medium text-[#1DB954] tracking-wide">
                   {loadingTrack ? "Loading..." : track?.isPlaying ? "Now playing" : "Last played"}
                 </span>
               </div>
 
-              {track ? (
-                <div>
-                  <h3 className="font-bold text-lg text-white truncate leading-snug group-hover:underline" title={track.title}>
-                    {track.title}
-                  </h3>
-                  <p className="text-sm text-neutral-400 truncate font-medium" title={track.artist}>
-                    {track.artist}
-                  </p>
-                </div>
-              ) : (
-                <div>
-                  <h3 className="font-bold text-base text-neutral-300">Off Endz</h3>
-                  <p className="text-sm text-neutral-400">Raf Saperra</p>
-                </div>
-              )}
+              {/* Track Details (Underline Removed) */}
+              <div>
+                <h3 className="font-bold text-lg text-white truncate leading-snug" title={track?.title || "Off Endz"}>
+                  {track?.title || "Off Endz"}
+                </h3>
+                <p className="text-sm text-neutral-400 truncate font-medium" title={track?.artist || "Raf Saperra"}>
+                  {track?.artist || "Raf Saperra"}
+                </p>
+              </div>
             </div>
           </a>
 

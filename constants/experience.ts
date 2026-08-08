@@ -7,8 +7,9 @@ export const experiences: Experience[] = [
     company: "NexVibe",
     period: "May 2026 - Present",
     description:
-      "Leading frontend development for a SaaS platform serving 100k+ users. Implemented micro-frontend architecture and improved performance by 40%.",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "GraphQL"],
+      "Leading full-stack development for a SaaS platform serving 100k+ users. Implemented micro-frontend architecture and improved performance by 40%.",
+   technologies: ["React", "Next.js", "TypeScript","PostgreSQL", "Node.js"]
+
   },
   {
     id: "2",

@@ -15,8 +15,88 @@ import { personalInfo } from "@/constants/personalInfo";
     © {new Date().getFullYear()} {personalInfo.name}
   </p>
 
+  <!-- Last Visitor -->
+  <div id="last-visitor" class="text-xs" style="color: var(--color-muted-text);">
+    <span id="last-visitor-text"></span>
+  </div>
+
   <!-- Theme Toggle Button -->
   <div class="flex items-center">
     <ThemeToggle />
   </div>
 </footer>
+
+<script>
+  function countryCodeToFlag(cc: string): string {
+    return cc
+      .toUpperCase()
+      .replace(/./g, (c) =>
+        String.fromCodePoint(0x1f1e6 - 0x41 + c.charCodeAt(0)),
+      );
+  }
+
+  function relativeTime(iso: string): string {
+    const diff = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
+    if (diff < 60) return "just now";
+    const mins = Math.floor(diff / 60);
+    if (mins < 60) return `${mins} min ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    const days = Math.floor(hrs / 24);
+    return `${days}d ago`;
+  }
+
+  function renderVisitor(el: HTMLElement, data: { visitor: { city: string; country: string; countryCode: string; visitedAt: string } | null }) {
+    const textEl = el.querySelector("#last-visitor-text");
+    if (!textEl) return;
+
+    const v = data.visitor;
+    if (!v) {
+      textEl.textContent = "";
+      return;
+    }
+
+    const flag = countryCodeToFlag(v.countryCode);
+    textEl.textContent = `${flag} ${v.city}, ${v.country} · ${relativeTime(v.visitedAt)}`;
+    el.dataset.visitedAt = v.visitedAt;
+  }
+
+  function tick(el: HTMLElement) {
+    const visitedAt = el.dataset.visitedAt;
+    const textEl = el.querySelector("#last-visitor-text");
+    if (!visitedAt || !textEl) return;
+    const diff = Math.floor((Date.now() - new Date(visitedAt).getTime()) / 1000);
+    if (diff < 60) {
+      textEl.textContent = textEl.textContent!.replace(/· .*$/, "· just now");
+    } else {
+      const mins = Math.floor(diff / 60);
+      const label = mins < 60 ? `${mins} min ago` : `${Math.floor(mins / 60)}h ago`;
+      textEl.textContent = textEl.textContent!.replace(/· .*$/, `· ${label}`);
+    }
+  }
+
+  let intervalId: ReturnType<typeof setInterval> | null = null;
+
+  function cleanup() {
+    if (intervalId !== null) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  }
+
+  function init() {
+    cleanup();
+    const el = document.getElementById("last-visitor");
+    if (!el) return;
+
+    fetch("/api/visitor")
+      .then((r) => r.json())
+      .then((data) => renderVisitor(el, data))
+      .catch(() => {});
+
+    intervalId = setInterval(() => tick(el), 45_000);
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-swap", cleanup);
+</script>

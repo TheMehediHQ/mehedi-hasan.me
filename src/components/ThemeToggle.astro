@@ -3,28 +3,29 @@ import { Icon } from "astro-icon/components";
 ---
 
 <button
-  id="theme-toggle"
+  class="theme-toggle-btn flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-[var(--nav-active-bg)]"
   type="button"
   aria-label="Toggle theme"
-  class="flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-[var(--nav-active-bg)]"
   style="color: var(--color-primary-text);"
 >
-  <Icon name="lucide:moon" id="theme-icon-moon" class="h-4 w-4" />
-  <Icon name="lucide:sun" id="theme-icon-sun" class="h-4 w-4 hidden" />
+  <Icon name="lucide:moon" class="theme-icon-moon h-4 w-4" />
+  <Icon name="lucide:sun" class="theme-icon-sun h-4 w-4 hidden" />
 </button>
 
 <script>
-  const button = document.getElementById("theme-toggle");
-  const moonIcon = document.getElementById("theme-icon-moon");
-  const sunIcon = document.getElementById("theme-icon-sun");
+  const buttons = document.querySelectorAll(".theme-toggle-btn");
 
-  if (button && moonIcon && sunIcon) {
-    const updateIcon = () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      moonIcon.classList.toggle("hidden", isDark);
-      sunIcon.classList.toggle("hidden", !isDark);
-    };
+  const updateAllIcons = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    document.querySelectorAll(".theme-icon-moon").forEach((el) => {
+      el.classList.toggle("hidden", isDark);
+    });
+    document.querySelectorAll(".theme-icon-sun").forEach((el) => {
+      el.classList.toggle("hidden", !isDark);
+    });
+  };
 
+  buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const html = document.documentElement;
       const isDark = html.classList.contains("dark");
@@ -32,9 +33,9 @@ import { Icon } from "astro-icon/components";
       html.classList.toggle("dark", !isDark);
       localStorage.setItem("theme", !isDark ? "dark" : "light");
 
-      updateIcon();
+      updateAllIcons();
     });
+  });
 
-    updateIcon();
-  }
+  updateAllIcons();
 </script>

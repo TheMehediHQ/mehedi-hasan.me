@@ -1,0 +1,48 @@
+---
+---
+
+<div class="relative h-[220px] overflow-hidden rounded-2xl border border-(--color-border) bg-neutral-900 shadow-lg">
+  <!-- Dhaka Map -->
+  <div
+    class="absolute inset-0 bg-center bg-no-repeat opacity-90"
+    style="
+      background-image: url('/profile/dhaka.png');
+      background-size: 240%;
+    "
+  ></div>
+
+  <!-- Dark Gradient -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+  ></div>
+
+  <!-- Live Location Marker -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="relative flex items-center justify-center">
+      <!-- Slow pulse ring -->
+      <span
+        class="absolute h-10 w-10 animate-[ping_2.5s_ease-out_infinite] rounded-full bg-blue-500/30"
+      ></span>
+
+      <!-- Soft glow -->
+      <span
+        class="absolute h-7 w-7 rounded-full bg-blue-500/25 blur-sm"
+      ></span>
+
+      <!-- Location dot -->
+      <span
+        class="relative h-4 w-4 rounded-full border-[3px] border-white bg-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.85)]"
+      ></span>
+    </div>
+  </div>
+
+  <!-- Location Label -->
+  <a
+    href="https://en.wikipedia.org/wiki/Dhaka"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="absolute bottom-3 right-3 rounded-lg border border-(--color-border) bg-black/70 px-3 py-1.5 text-xs font-medium text-gray-200 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-black/90"
+  >
+    Dhaka, BD
+  </a>
+</div>

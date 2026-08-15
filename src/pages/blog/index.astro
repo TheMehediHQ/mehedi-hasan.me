@@ -16,9 +16,10 @@ const posts = (await getCollection('blog')).sort(
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <BaseHead title={`Blog — Mehedi Hasan`} description={SITE_DESCRIPTION} />
-  </head>
+  <BaseHead
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+/>
 
   <body>
     <div

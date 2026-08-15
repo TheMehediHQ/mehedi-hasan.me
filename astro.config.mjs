@@ -2,6 +2,7 @@
 
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 import icon from "astro-icon";
 import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
@@ -13,6 +14,7 @@ export default defineConfig({
     "@": "./src",
   },
 
+  adapter: vercel(),
   integrations: [
     mdx(),
     sitemap(),

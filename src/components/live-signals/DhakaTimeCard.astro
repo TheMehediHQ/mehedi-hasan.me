@@ -3,8 +3,8 @@ import { Icon } from "astro-icon/components";
 ---
 
 <div
-  class="relative h-[220px] rounded-2xl p-6 border border-(--color-border) shadow-xl flex flex-col justify-between overflow-hidden group"
-  style="background: linear-gradient(to bottom, #1E1E1E, #141414);"
+  class="relative h-[220px] rounded-2xl p-6 border shadow-xl flex flex-col justify-between overflow-hidden group"
+  style="background: linear-gradient(to bottom, #1E1E1E, #141414); border-color: rgba(255, 255, 255, 0.18);"
 >
   <!-- Ambient Background Glow -->
   <div
@@ -65,7 +65,7 @@ import { Icon } from "astro-icon/components";
   <!-- Bottom Bar: Status -->
   <div
     class="pt-3 border-t text-xs flex justify-between items-center relative z-10"
-    style="border-color: var(--color-border);"
+    style="border-color: rgba(255, 255, 255, 0.18);"
   >
     <span class="font-medium" style="color: #737373;">
       Status

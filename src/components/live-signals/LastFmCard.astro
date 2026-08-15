@@ -10,7 +10,8 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
   href={fallbackUrl}
   target="_blank"
   rel="noopener noreferrer"
-  class="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-(--color-border) shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 no-underline select-none"
+  class="relative h-[220px] rounded-2xl p-5 bg-[#181818] border shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 no-underline select-none"
+  style="border-color: rgba(255, 255, 255, 0.18);"
 >
   <!-- Dynamic Background Blur -->
   <div
@@ -105,7 +106,8 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
 
       <!-- Album Cover -->
       <div
-        class="relative z-10 flex h-22 w-22 items-center justify-center overflow-hidden rounded-xl border border-(--color-border) bg-neutral-900 shadow-lg"
+        class="relative z-10 flex h-22 w-22 items-center justify-center overflow-hidden rounded-xl border bg-neutral-900 shadow-lg"
+        style="border-color: rgba(255, 255, 255, 0.18);"
       >
         <img
           id="album-art"

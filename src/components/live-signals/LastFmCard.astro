@@ -1,9 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const LASTFM_USERNAME = "themehedihq";
-const LASTFM_API_KEY = "3d105f75746c8a720a34f4a6df3e0088";
-const fallbackUrl = `https://www.last.fm/user/${LASTFM_USERNAME}`;
+const lastfmUsername = import.meta.env.LASTFM_USERNAME || "themehedihq";
+const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
 ---
 
 <a
@@ -68,55 +67,16 @@ const fallbackUrl = `https://www.last.fm/user/${LASTFM_USERNAME}`;
 </style>
 
 <script>
-  const LASTFM_USERNAME = "themehedihq";
-  const LASTFM_API_KEY = "3d105f75746c8a720a34f4a6df3e0088";
-
-  const IMAGE_SIZE_PRIORITY = ["extralarge", "large", "medium", "small"];
-
-  function getLargestAlbumArt(images: any[]) {
-    if (!Array.isArray(images) || images.length === 0) return undefined;
-    for (const size of IMAGE_SIZE_PRIORITY) {
-      const img = images.find((i) => i && i.size === size);
-      const url = img && img["#text"] ? img["#text"].trim() : "";
-      if (url) return url;
-    }
-    const fallback = images.find((i) => i && i["#text"] && i["#text"].trim());
-    return fallback ? fallback["#text"].trim() : undefined;
-  }
-
   async function fetchLastFmTrack() {
-    if (!LASTFM_USERNAME || !LASTFM_API_KEY) return;
-
     try {
-      const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USERNAME}&api_key=${LASTFM_API_KEY}&format=json&limit=1`;
-      const res = await fetch(url);
+      const res = await fetch("/api/lastfm");
+      if (!res.ok) return;
       const data = await res.json();
 
-      const recentTrack = data?.recenttracks?.track?.[0];
-      if (!recentTrack) return;
+      const track = data?.track;
+      if (!track) return;
 
-      const isPlaying = recentTrack["@attr"]?.nowplaying === "true";
-      const title = recentTrack.name || "Unknown Track";
-      const artist =
-        typeof recentTrack.artist === "string"
-          ? recentTrack.artist
-          : recentTrack.artist?.["#text"] || recentTrack.artist?.name || "Unknown Artist";
-      const trackUrl = recentTrack.url;
-
-      let albumArtUrl = getLargestAlbumArt(recentTrack.image);
-
-      if (!albumArtUrl) {
-        try {
-          const query = encodeURIComponent(`${artist} ${title}`);
-          const itunesRes = await fetch(`https://itunes.apple.com/search?term=${query}&entity=song&limit=1`);
-          const itunesData = await itunesRes.json();
-          if (itunesData.results?.[0]?.artworkUrl100) {
-            albumArtUrl = itunesData.results[0].artworkUrl100.replace("100x100bb", "600x600bb");
-          }
-        } catch (e) {
-          console.error("iTunes album art fetch failed:", e);
-        }
-      }
+      const { title, artist, isPlaying, trackUrl, albumArtUrl } = track;
 
       const musicCard = document.getElementById("music-card") as HTMLAnchorElement | null;
       const albumArt = document.getElementById("album-art") as HTMLImageElement | null;

@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 ---
 
 <div
-  class="relative h-[220px] rounded-2xl border border-(--color-border) bg-gradient-to-b from-[#1E1E1E] to-[#141414] p-6 shadow-xl flex flex-col justify-between overflow-hidden group"
+  class="relative flex h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-(--color-border) bg-gradient-to-b from-[#1E1E1E] to-[#141414] p-6 shadow-xl group"
 >
   <!-- Ambient Glow -->
   <div
@@ -16,8 +16,9 @@ import { Icon } from "astro-icon/components";
       class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400/90"
     >
       <span
-        class="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_7px_rgba(96,165,250,0.8)] animate-pulse"
+        class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400 shadow-[0_0_7px_rgba(96,165,250,0.8)]"
       ></span>
+
       Local Time
     </span>
 
@@ -63,9 +64,10 @@ import { Icon } from "astro-icon/components";
     >
       <!-- Live Indicator -->
       <span class="relative flex h-2 w-2 items-center justify-center">
-        <!-- Pulse -->
+        <!-- Animated Pulse -->
         <span
-          class="status-pulse absolute inset-0 rounded-full bg-emerald-400"
+          id="status-pulse"
+          class="status-pulse absolute left-1/2 top-1/2 rounded-full bg-emerald-400"
         ></span>
 
         <!-- Core -->
@@ -85,23 +87,38 @@ import { Icon } from "astro-icon/components";
 
 <style>
   .status-pulse {
-    transform-origin: center;
-    animation: status-pulse 2s ease-out infinite;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    opacity: 0.7;
+    pointer-events: none;
+    will-change: width, height, margin-left, margin-top, opacity;
+    animation: status-pulse 1.8s ease-out infinite;
   }
 
   @keyframes status-pulse {
     0% {
-      transform: scale(1);
+      width: 8px;
+      height: 8px;
+      margin-left: -4px;
+      margin-top: -4px;
       opacity: 0.7;
     }
 
     70% {
-      transform: scale(2.8);
+      width: 24px;
+      height: 24px;
+      margin-left: -12px;
+      margin-top: -12px;
       opacity: 0;
     }
 
     100% {
-      transform: scale(2.8);
+      width: 24px;
+      height: 24px;
+      margin-left: -12px;
+      margin-top: -12px;
       opacity: 0;
     }
   }
@@ -109,6 +126,11 @@ import { Icon } from "astro-icon/components";
   @media (prefers-reduced-motion: reduce) {
     .status-pulse {
       animation: none;
+      width: 8px;
+      height: 8px;
+      margin-left: -4px;
+      margin-top: -4px;
+      opacity: 0.5;
     }
   }
 </style>
@@ -152,8 +174,22 @@ import { Icon } from "astro-icon/components";
     }
   }
 
+  function restartPulse() {
+    const pulse = document.getElementById("status-pulse");
+
+    if (!pulse) return;
+
+    // Force animation restart after Astro navigation
+    pulse.style.animation = "none";
+
+    void pulse.offsetWidth;
+
+    pulse.style.animation = "";
+  }
+
   function initClock() {
     updateTime();
+    restartPulse();
 
     const clockInterval = setInterval(updateTime, 1000);
 

@@ -3,7 +3,8 @@ import { Icon } from "astro-icon/components";
 ---
 
 <div
-  class="relative h-[220px] rounded-2xl p-6 bg-gradient-to-b from-[#1E1E1E] to-[#141414] border border-[#2A2A2A] shadow-xl flex flex-col justify-between overflow-hidden group"
+  class="relative h-[220px] rounded-2xl p-6 border border-(--color-border) shadow-xl flex flex-col justify-between overflow-hidden group"
+  style="background: linear-gradient(to bottom, #1E1E1E, #141414);"
 >
   <!-- Ambient Background Glow -->
   <div
@@ -57,14 +58,16 @@ import { Icon } from "astro-icon/components";
 
   <!-- Bottom Bar: Status -->
   <div
-    class="pt-3 border-t border-[#2A2A2A] text-xs text-neutral-400 flex justify-between items-center relative z-10"
+    class="pt-3 border-t border-(--color-border) text-xs text-neutral-400 flex justify-between items-center relative z-10"
   >
     <span class="font-medium text-neutral-500">
       Status
     </span>
 
     <!-- Active Status -->
-    <div class="flex items-center gap-2 px-2.5 py-1 rounded-full">
+    <div
+      class="flex items-center gap-2  px-2.5 py-1 rounded-full"
+    >
       <span class="relative flex h-2 w-2">
         <!-- Pulse Ring -->
         <span

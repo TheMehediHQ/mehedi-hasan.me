@@ -1,9 +1,7 @@
 ---
 ---
 
-<div
-  class="relative h-[220px] overflow-hidden rounded-2xl border border-[#2A2A2A] bg-neutral-900 shadow-lg"
->
+<div class="relative h-[220px] overflow-hidden rounded-2xl border border-(--color-border) bg-neutral-900 shadow-lg">
   <!-- Dhaka Map -->
   <div
     class="absolute inset-0 bg-center bg-no-repeat opacity-90"
@@ -15,7 +13,8 @@
 
   <!-- Dark Gradient -->
   <div
-    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+    class="absolute inset-0"
+    style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2) 50%, transparent);"
   ></div>
 
   <!-- Live Location Marker -->
@@ -23,17 +22,20 @@
     <div class="relative flex items-center justify-center">
       <!-- Slow pulse ring -->
       <span
-        class="absolute h-10 w-10 animate-[ping_2.5s_ease-out_infinite] rounded-full bg-blue-500/30"
+        class="absolute h-10 w-10 animate-[ping_2.5s_ease-out_infinite] rounded-full"
+        style="background-color: rgba(59, 130, 246, 0.3);"
       ></span>
 
       <!-- Soft glow -->
       <span
-        class="absolute h-7 w-7 rounded-full bg-blue-500/25 blur-sm"
+        class="absolute h-7 w-7 rounded-full"
+        style="background-color: rgba(59, 130, 246, 0.25); filter: blur(8px);"
       ></span>
 
       <!-- Location dot -->
       <span
-        class="relative h-4 w-4 rounded-full border-[3px] border-white bg-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.85)]"
+        class="relative h-4 w-4 rounded-full"
+        style="border: 3px solid white; background-color: #3B82F6; box-shadow: 0 0 14px rgba(59, 130, 246, 0.85);"
       ></span>
     </div>
   </div>
@@ -43,7 +45,7 @@
     href="https://en.wikipedia.org/wiki/Dhaka"
     target="_blank"
     rel="noopener noreferrer"
-    class="absolute bottom-3 right-3 rounded-lg border border-[#2A2A2A] bg-black/70 px-3 py-1.5 text-xs font-medium text-gray-200 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-black/90"
+    class="absolute bottom-3 right-3 rounded-lg border border-(--color-border) bg-black/70 px-3 py-1.5 text-xs font-medium text-gray-200 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-black/90"
   >
     Dhaka, BD
   </a>

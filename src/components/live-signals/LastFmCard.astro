@@ -10,12 +10,12 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
   href={fallbackUrl}
   target="_blank"
   rel="noopener noreferrer"
-  class="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-[#2A2A2A] shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 no-underline select-none"
+  class="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-(--color-border) shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 no-underline select-none"
 >
   <!-- Dynamic Background Blur -->
   <div
     id="music-bg-blur"
-    class="absolute inset-0 bg-cover bg-center blur-3xl opacity-25 pointer-events-none scale-150 transition-all duration-700"
+    class="absolute inset-0 bg-cover bg-center blur-3xl opacity-35 dark:opacity-25 pointer-events-none scale-150 transition-all duration-700"
   ></div>
 
   <!-- Dark Overlay -->
@@ -105,7 +105,7 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
 
       <!-- Album Cover -->
       <div
-        class="relative z-10 flex h-22 w-22 items-center justify-center overflow-hidden rounded-xl border border-[#2A2A2A] bg-neutral-900 shadow-lg"
+        class="relative z-10 flex h-22 w-22 items-center justify-center overflow-hidden rounded-xl border border-(--color-border) bg-neutral-900 shadow-lg"
       >
         <img
           id="album-art"
@@ -116,7 +116,8 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
 
         <div
           id="no-cover"
-          class="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-neutral-800 to-neutral-900 p-1 text-center"
+          class="flex h-full w-full flex-col items-center justify-center p-1 text-center"
+          style="background: linear-gradient(to bottom right, #262626, #171717);"
         >
           <span
             class="text-[10px] font-medium leading-tight text-neutral-400"

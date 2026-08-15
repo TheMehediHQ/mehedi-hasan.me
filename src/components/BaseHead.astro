@@ -50,3 +50,13 @@ const { title, description, image = FallbackImage } = Astro.props;
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
+
+<!-- Theme initialization (prevents flash) -->
+<script is:inline>
+  (function() {
+    const theme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = theme === "dark" || (!theme && prefersDark);
+    document.documentElement.classList.toggle("dark", isDark);
+  })();
+</script>

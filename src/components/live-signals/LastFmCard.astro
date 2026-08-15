@@ -16,12 +16,14 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
   <!-- Dynamic Background Blur -->
   <div
     id="music-bg-blur"
-    class="absolute inset-0 bg-cover bg-center blur-3xl opacity-35 dark:opacity-25 pointer-events-none scale-150 transition-all duration-700"
+    class="absolute inset-0 pointer-events-none transition-all duration-700"
+    style="background-size: cover; background-position: center; transform: scale(1.5); filter: blur(40px); opacity: 0.6;"
   ></div>
 
   <!-- Dark Overlay -->
   <div
-    class="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none"
+    class="absolute inset-0 pointer-events-none"
+    style="background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px);"
   ></div>
 
   <!-- Top Section -->

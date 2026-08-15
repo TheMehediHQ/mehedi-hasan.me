@@ -12,57 +12,179 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
   rel="noopener noreferrer"
   class="relative h-[220px] rounded-2xl p-5 bg-[#181818] border border-(--color-border) shadow-lg flex flex-col justify-between overflow-hidden group transition-all duration-300 no-underline select-none"
 >
-  <div id="music-bg-blur" class="absolute inset-0 bg-cover bg-center blur-3xl opacity-35 dark:opacity-25 pointer-events-none scale-150 transition-all duration-700"></div>
-  <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none"></div>
+  <!-- Dynamic Background Blur -->
+  <div
+    id="music-bg-blur"
+    class="absolute inset-0 bg-cover bg-center blur-3xl opacity-35 dark:opacity-25 pointer-events-none scale-150 transition-all duration-700"
+  ></div>
 
+  <!-- Dark Overlay -->
+  <div
+    class="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none"
+  ></div>
+
+  <!-- Top Section -->
   <div class="relative z-10 flex items-start justify-between">
-    <Icon name="fa6-brands:spotify" size={32} class="text-[#1DB954]" />
+    <!-- Spotify Icon -->
+    <Icon
+      name="fa6-brands:spotify"
+      size={32}
+      class="text-[#1DB954]"
+    />
 
-  
+    <!-- CD + Album Art -->
     <div class="relative flex items-center justify-end">
-      <div class="vinyl-disc absolute top-2 right-12 w-18 h-18 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center shadow-xl overflow-hidden">
-        <div class="absolute inset-0 rounded-full opacity-60 pointer-events-none" style="background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.35) 30deg, transparent 70deg, transparent 180deg, rgba(255,255,255,0.25) 210deg, transparent 250deg);"></div>
-        <div class="w-18 h-18 rounded-full border border-neutral-700/50 flex items-center justify-center relative">
-          <div class="absolute inset-1 rounded-full border border-neutral-800/80"></div>
-          <div class="absolute inset-3 rounded-full border border-neutral-800/60"></div>
-          <div class="w-6 h-6 rounded-full bg-amber-600 border border-black/80 flex items-center justify-center shadow-inner relative">
-            <div class="w-2.5 h-2.5 rounded-full bg-black border border-neutral-800"></div>
-          </div>
+
+      <!-- ================================= -->
+      <!-- Realistic Black CD / Vinyl -->
+      <!-- ================================= -->
+      <div
+        class="cd-disc absolute top-2 right-12 w-18 h-18 rounded-full bg-[#0b0b0b] border border-neutral-700 flex items-center justify-center shadow-xl overflow-hidden"
+      >
+        <!-- Glossy Reflection -->
+        <div
+          class="absolute inset-0 rounded-full opacity-50 pointer-events-none"
+          style="
+            background: conic-gradient(
+              from 0deg,
+              transparent 0deg,
+              rgba(255,255,255,0.18) 30deg,
+              transparent 70deg,
+              transparent 180deg,
+              rgba(255,255,255,0.12) 210deg,
+              transparent 250deg,
+              transparent 360deg
+            );
+          "
+        ></div>
+
+        <!-- Outer Groove -->
+        <div
+          class="absolute inset-1 rounded-full border border-neutral-800"
+        ></div>
+
+        <!-- Vinyl Grooves -->
+        <div
+          class="absolute inset-2 rounded-full border border-neutral-800/90"
+        ></div>
+
+        <div
+          class="absolute inset-3 rounded-full border border-neutral-700/70"
+        ></div>
+
+        <div
+          class="absolute inset-4 rounded-full border border-neutral-800/80"
+        ></div>
+
+        <!-- Inner Groove -->
+        <div
+          class="absolute inset-5 rounded-full border border-neutral-700/50"
+        ></div>
+
+        <!-- Center Label -->
+        <div
+          class="relative w-6 h-6 rounded-full bg-amber-600 border border-black/90 flex items-center justify-center shadow-inner"
+        >
+          <!-- Center Hole -->
+          <div
+            class="w-2.5 h-2.5 rounded-full bg-black border border-neutral-800"
+          ></div>
         </div>
       </div>
-      <div class="relative z-10 w-22 h-22 rounded-xl overflow-hidden border border-(--color-border) bg-neutral-900 shadow-lg flex items-center justify-center">
-        <img id="album-art" src="" alt="" class="w-full h-full object-cover hidden" />
-        <div id="no-cover" class="w-full h-full flex flex-col items-center justify-center text-center p-1 bg-gradient-to-br from-neutral-800 to-neutral-900">
-          <span class="text-[10px] font-medium text-neutral-400 leading-tight">No Cover</span>
+
+      <!-- Album Cover -->
+      <div
+        class="relative z-10 w-22 h-22 rounded-xl overflow-hidden border border-(--color-border) bg-neutral-900 shadow-lg flex items-center justify-center"
+      >
+        <img
+          id="album-art"
+          src=""
+          alt=""
+          class="w-full h-full object-cover hidden"
+        />
+
+        <div
+          id="no-cover"
+          class="w-full h-full flex flex-col items-center justify-center text-center p-1 bg-gradient-to-br from-neutral-800 to-neutral-900"
+        >
+          <span
+            class="text-[10px] font-medium text-neutral-400 leading-tight"
+          >
+            No Cover
+          </span>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Bottom Info -->
   <div class="relative z-10">
+    <!-- Music Status -->
     <div class="flex items-center gap-2 mb-1.5">
       <div class="flex items-end gap-[2px] h-3.5">
-        <span id="bar1" class="w-[2.5px] bg-[#1DB954] rounded-full h-2"></span>
-        <span id="bar2" class="w-[2.5px] bg-[#1DB954] rounded-full h-3.5"></span>
-        <span id="bar3" class="w-[2.5px] bg-[#1DB954] rounded-full h-1.5"></span>
+        <span
+          id="bar1"
+          class="w-[2.5px] bg-[#1DB954] rounded-full h-2"
+        ></span>
+
+        <span
+          id="bar2"
+          class="w-[2.5px] bg-[#1DB954] rounded-full h-3.5"
+        ></span>
+
+        <span
+          id="bar3"
+          class="w-[2.5px] bg-[#1DB954] rounded-full h-1.5"
+        ></span>
       </div>
-      <span id="music-status" class="text-xs font-medium text-[#1DB954] tracking-wide">Loading...</span>
+
+      <span
+        id="music-status"
+        class="text-xs font-medium text-[#1DB954] tracking-wide"
+      >
+        Loading...
+      </span>
     </div>
+
+    <!-- Track Details -->
     <div>
-      <h3 id="track-title" class="font-bold text-lg text-white truncate leading-snug" title="Off Endz">Off Endz</h3>
-      <p id="track-artist" class="text-sm text-neutral-300 truncate font-medium" title="Raf Saperra">Raf Saperra</p>
+      <h3
+        id="track-title"
+        class="font-bold text-lg text-white truncate leading-snug"
+        title="Off Endz"
+      >
+        Off Endz
+      </h3>
+
+      <p
+        id="track-artist"
+        class="text-sm text-neutral-300 truncate font-medium"
+        title="Raf Saperra"
+      >
+        Raf Saperra
+      </p>
     </div>
   </div>
 </a>
 
 <style>
-  .vinyl-disc {
-    animation: spin 6s linear infinite;
+  /* ============================= */
+  /* Black CD / Vinyl Rotation */
+  /* ============================= */
+
+  .cd-disc {
+    animation: cd-spin 6s linear infinite;
+    transform-origin: center;
   }
 
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  @keyframes cd-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>
 
@@ -70,69 +192,183 @@ const fallbackUrl = `https://www.last.fm/user/${lastfmUsername}`;
   async function fetchLastFmTrack() {
     try {
       const res = await fetch("/api/lastfm");
+
       if (!res.ok) return;
+
       const data = await res.json();
 
       const track = data?.track;
+
       if (!track) return;
 
-      const { title, artist, isPlaying, trackUrl, albumArtUrl } = track;
+      const {
+        title,
+        artist,
+        isPlaying,
+        trackUrl,
+        albumArtUrl,
+      } = track;
 
-      const musicCard = document.getElementById("music-card") as HTMLAnchorElement | null;
-      const albumArt = document.getElementById("album-art") as HTMLImageElement | null;
-      const noCover = document.getElementById("no-cover");
-      const bgBlur = document.getElementById("music-bg-blur");
-      const statusEl = document.getElementById("music-status");
-      const titleEl = document.getElementById("track-title");
-      const artistEl = document.getElementById("track-artist");
-      const bar1 = document.getElementById("bar1");
-      const bar2 = document.getElementById("bar2");
-      const bar3 = document.getElementById("bar3");
+      const musicCard =
+        document.getElementById(
+          "music-card"
+        ) as HTMLAnchorElement | null;
 
-      if (musicCard && trackUrl) musicCard.href = trackUrl;
-      if (titleEl) { titleEl.textContent = title; titleEl.title = title; }
-      if (artistEl) { artistEl.textContent = artist; artistEl.title = artist; }
-      if (statusEl) statusEl.textContent = isPlaying ? "Now playing" : "Last played";
+      const albumArt =
+        document.getElementById(
+          "album-art"
+        ) as HTMLImageElement | null;
 
+      const noCover =
+        document.getElementById("no-cover");
+
+      const bgBlur =
+        document.getElementById("music-bg-blur");
+
+      const statusEl =
+        document.getElementById("music-status");
+
+      const titleEl =
+        document.getElementById("track-title");
+
+      const artistEl =
+        document.getElementById("track-artist");
+
+      const bar1 =
+        document.getElementById("bar1");
+
+      const bar2 =
+        document.getElementById("bar2");
+
+      const bar3 =
+        document.getElementById("bar3");
+
+      /* Card Link */
+      if (musicCard && trackUrl) {
+        musicCard.href = trackUrl;
+      }
+
+      /* Track Title */
+      if (titleEl) {
+        titleEl.textContent = title;
+        titleEl.title = title;
+      }
+
+      /* Artist */
+      if (artistEl) {
+        artistEl.textContent = artist;
+        artistEl.title = artist;
+      }
+
+      /* Status */
+      if (statusEl) {
+        statusEl.textContent = isPlaying
+          ? "Now playing"
+          : "Last played";
+      }
+
+      /* Album Art */
       if (albumArt && albumArtUrl) {
         albumArt.src = albumArtUrl;
         albumArt.alt = title;
+
         albumArt.classList.remove("hidden");
+
         albumArt.onerror = () => {
           albumArt.classList.add("hidden");
-          if (noCover) noCover.classList.remove("hidden");
+
+          if (noCover) {
+            noCover.classList.remove("hidden");
+          }
         };
-        if (noCover) noCover.classList.add("hidden");
-        if (bgBlur) bgBlur.style.backgroundImage = `url(${albumArtUrl})`;
+
+        if (noCover) {
+          noCover.classList.add("hidden");
+        }
+
+        if (bgBlur) {
+          bgBlur.style.backgroundImage =
+            `url(${albumArtUrl})`;
+        }
       }
 
+      /* Music Bars */
       if (isPlaying) {
-        if (bar1) { bar1.classList.add("animate-bounce"); bar1.style.height = "0.75rem"; }
-        if (bar2) { bar2.classList.add("animate-bounce"); bar2.style.height = "0.875rem"; }
-        if (bar3) { bar3.classList.add("animate-bounce"); bar3.style.height = "0.5rem"; }
+        if (bar1) {
+          bar1.classList.add("animate-bounce");
+          bar1.style.height = "0.75rem";
+        }
+
+        if (bar2) {
+          bar2.classList.add("animate-bounce");
+          bar2.style.height = "0.875rem";
+        }
+
+        if (bar3) {
+          bar3.classList.add("animate-bounce");
+          bar3.style.height = "0.5rem";
+        }
+      } else {
+        if (bar1) {
+          bar1.classList.remove("animate-bounce");
+          bar1.style.height = "0.5rem";
+        }
+
+        if (bar2) {
+          bar2.classList.remove("animate-bounce");
+          bar2.style.height = "0.875rem";
+        }
+
+        if (bar3) {
+          bar3.classList.remove("animate-bounce");
+          bar3.style.height = "0.375rem";
+        }
       }
     } catch (error) {
-      console.error("Failed to fetch Last.fm track:", error);
+      console.error(
+        "Failed to fetch Last.fm track:",
+        error
+      );
     }
   }
 
+  /* ============================= */
+  /* Initialize Last.fm */
+  /* ============================= */
+
   function initLastFm() {
     fetchLastFmTrack();
-    const musicInterval = setInterval(fetchLastFmTrack, 30000);
+
+    const musicInterval =
+      setInterval(fetchLastFmTrack, 30000);
 
     document.addEventListener(
       "astro:before-swap",
       () => {
         clearInterval(musicInterval);
       },
-      { once: true }
+      {
+        once: true,
+      }
     );
   }
 
-  document.addEventListener("astro:page-load", initLastFm);
-  if (document.readyState === "complete" || document.readyState === "interactive") {
+  /* Astro Page Load */
+  document.addEventListener(
+    "astro:page-load",
+    initLastFm
+  );
+
+  /* Initial Load */
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
     initLastFm();
   } else {
-    document.addEventListener("DOMContentLoaded", initLastFm);
+    document.addEventListener(
+      "DOMContentLoaded",
+      initLastFm
+    );
   }
 </script>

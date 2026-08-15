@@ -15,8 +15,9 @@ import { Icon } from "astro-icon/components";
     <span
       class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400/90"
     >
+      <!-- Local Time Pulse -->
       <span
-        class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400 shadow-[0_0_7px_rgba(96,165,250,0.8)]"
+        class="local-time-dot h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_7px_rgba(96,165,250,0.8)]"
       ></span>
 
       Local Time
@@ -64,15 +65,14 @@ import { Icon } from "astro-icon/components";
     >
       <!-- Live Indicator -->
       <span class="relative flex h-2 w-2 items-center justify-center">
-        <!-- Animated Pulse -->
+        <!-- Animated Pulse Ring -->
         <span
-          id="status-pulse"
-          class="status-pulse absolute left-1/2 top-1/2 rounded-full bg-emerald-400"
+          class="status-pulse pointer-events-none absolute inset-0 rounded-full bg-emerald-400"
         ></span>
 
         <!-- Core -->
         <span
-          class="relative h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+          class="relative z-10 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"
         ></span>
       </span>
 
@@ -87,27 +87,45 @@ import { Icon } from "astro-icon/components";
 
 <style>
   /*
-   * Mobile-friendly pulse animation
-   * Uses transform instead of width/height/margin animation
-   * for smoother rendering on mobile browsers.
+   * Mobile-friendly animations
+   * Uses only transform + opacity for smooth GPU rendering.
    */
+
+  /* Local Time dot */
+  .local-time-dot {
+    animation: local-time-pulse 1.6s ease-in-out infinite;
+    will-change: transform, opacity;
+    transform-origin: center;
+  }
+
+  @keyframes local-time-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.65;
+    }
+
+    50% {
+      transform: scale(1.35);
+      opacity: 1;
+    }
+  }
+
+  /* Active status ring */
   .status-pulse {
     width: 8px;
     height: 8px;
-    margin-left: -4px;
-    margin-top: -4px;
-    opacity: 0.7;
-    pointer-events: none;
-    will-change: transform, opacity;
     transform: scale(1);
+    opacity: 0.75;
     transform-origin: center;
-    animation: status-pulse 1.8s ease-out infinite;
+    will-change: transform, opacity;
+    animation: status-ring 1.6s cubic-bezier(0.2, 0, 0.4, 1) infinite;
   }
 
-  @keyframes status-pulse {
+  @keyframes status-ring {
     0% {
       transform: scale(1);
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     70% {
@@ -121,11 +139,21 @@ import { Icon } from "astro-icon/components";
     }
   }
 
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
+    .local-time-dot,
     .status-pulse {
       animation: none;
+    }
+
+    .local-time-dot {
+      opacity: 0.8;
       transform: scale(1);
-      opacity: 0.5;
+    }
+
+    .status-pulse {
+      opacity: 0.4;
+      transform: scale(1);
     }
   }
 </style>

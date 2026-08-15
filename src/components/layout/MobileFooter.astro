@@ -27,76 +27,87 @@ import { personalInfo } from "@/constants/personalInfo";
 </footer>
 
 <script>
-  function countryCodeToFlag(cc: string): string {
-    return cc
-      .toUpperCase()
-      .replace(/./g, (c) =>
-        String.fromCodePoint(0x1f1e6 - 0x41 + c.charCodeAt(0)),
-      );
-  }
-
-  function relativeTime(iso: string): string {
-    const diff = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
-    if (diff < 60) return "just now";
-    const mins = Math.floor(diff / 60);
-    if (mins < 60) return `${mins} min ago`;
-    const hrs = Math.floor(mins / 60);
-    if (hrs < 24) return `${hrs}h ago`;
-    const days = Math.floor(hrs / 24);
-    return `${days}d ago`;
-  }
-
-  function renderVisitor(el: HTMLElement, data: { visitor: { city: string; country: string; countryCode: string; visitedAt: string } | null }) {
-    const textEl = el.querySelector("#last-visitor-text");
-    if (!textEl) return;
-
-    const v = data.visitor;
-    if (!v) {
-      textEl.textContent = "";
-      return;
-    }
-
-    const flag = countryCodeToFlag(v.countryCode);
-    textEl.textContent = `${flag} ${v.city}, ${v.country} · ${relativeTime(v.visitedAt)}`;
-    el.dataset.visitedAt = v.visitedAt;
-  }
-
-  function tick(el: HTMLElement) {
-    const visitedAt = el.dataset.visitedAt;
-    const textEl = el.querySelector("#last-visitor-text");
-    if (!visitedAt || !textEl) return;
-    const diff = Math.floor((Date.now() - new Date(visitedAt).getTime()) / 1000);
-    if (diff < 60) {
-      textEl.textContent = textEl.textContent!.replace(/· .*$/, "· just now");
-    } else {
-      const mins = Math.floor(diff / 60);
-      const label = mins < 60 ? `${mins} min ago` : `${Math.floor(mins / 60)}h ago`;
-      textEl.textContent = textEl.textContent!.replace(/· .*$/, `· ${label}`);
-    }
-  }
+  type Visitor = {
+    city: string;
+    country: string;
+    countryCode: string;
+    visitedAt: string;
+  };
 
   let intervalId: ReturnType<typeof setInterval> | null = null;
 
-  function cleanup() {
-    if (intervalId !== null) {
-      clearInterval(intervalId);
-      intervalId = null;
+  function countryCodeToFlag(code: string) {
+    return code
+      .toUpperCase()
+      .split("")
+      .map((char) =>
+        String.fromCodePoint(char.charCodeAt(0) + 127397),
+      )
+      .join("");
+  }
+
+  function relativeTime(iso: string) {
+    const diff = Math.floor(
+      (Date.now() - new Date(iso).getTime()) / 1000,
+    );
+
+    if (diff < 60) return "just now";
+
+    const minutes = Math.floor(diff / 60);
+
+    if (minutes < 60) return `${minutes} min ago`;
+
+    const hours = Math.floor(minutes / 60);
+
+    if (hours < 24) return `${hours}h ago`;
+
+    return `${Math.floor(hours / 24)}d ago`;
+  }
+
+  async function loadVisitor() {
+    const textEl = document.getElementById("last-visitor-text");
+
+    if (!textEl) return;
+
+    try {
+      const response = await fetch("/api/visitor", {
+        cache: "no-store",
+      });
+
+      if (!response.ok) return;
+
+      const data: { visitor: Visitor | null } =
+        await response.json();
+
+      if (!data.visitor) return;
+
+      const visitor = data.visitor;
+
+      const render = () => {
+        textEl.textContent =
+          `${countryCodeToFlag(visitor.countryCode)} ${visitor.city}, ${visitor.country} · ${relativeTime(visitor.visitedAt)}`;
+      };
+
+      render();
+
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+
+      intervalId = setInterval(render, 45_000);
+    } catch (error) {
+      console.error("Visitor loading failed:", error);
     }
   }
 
-  function init() {
-    cleanup();
-    const el = document.getElementById("last-visitor");
-    if (!el) return;
+  loadVisitor();
 
-    fetch("/api/visitor")
-      .then((r) => r.json())
-      .then((data) => renderVisitor(el, data))
-      .catch(() => {});
+  document.addEventListener("astro:page-load", loadVisitor);
 
-    intervalId = setInterval(() => tick(el), 45_000);
-  }
-
-  document.addEventListener("astro:page-load", init);
-  document.addEventListener("astro:before-swap", cleanup);
+  document.addEventListener("astro:before-swap", () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  });
 </script>

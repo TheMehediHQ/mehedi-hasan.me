@@ -1,0 +1,74 @@
+---
+import MobileFooter from "@/components/layout/MobileFooter.astro";
+import BaseHead from "../components/BaseHead.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="404 — Page Not Found"
+      description="The page you're looking for doesn't exist."
+    />
+  </head>
+
+  <body>
+  <main class="min-h-screen flex flex-col px-6 sm:px-10 py-14">
+  <div
+    class="w-full max-w-4xl mx-auto flex-1 grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-8 sm:gap-6"
+  >
+    <!-- Index -->
+    <div>
+      <a
+        href="/"
+        class="group inline-flex items-center gap-1.5 text-sm transition-opacity hover:opacity-70"
+        style="color: var(--color-primary-text);"
+      >
+        <Icon
+          name="lucide:arrow-left"
+          class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
+        />
+        <span>Index</span>
+      </a>
+    </div>
+
+    <!-- 404 Content -->
+    <div>
+      <h1
+        class="text-base sm:text-[16px] font-semibold tracking-tight mb-7"
+        style="color: var(--color-primary-text);"
+      >
+        404—<span class="font-bold">not found</span>
+      </h1>
+
+      <p
+        class="max-w-xl text-sm sm:text-[16px] leading-6"
+        style="color: var(--color-secondary-text);"
+      >
+        The page you're looking for is no longer available.
+        <a
+          href="/contact"
+          class="group inline-flex items-center gap-1 mx-1 font-medium transition-opacity duration-200 hover:opacity-70"
+          style="color: var(--color-primary-text);"
+        >
+          Contact me
+          <Icon
+            name="lucide:arrow-up-right"
+            class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </a>
+        if you need help finding something.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="w-full mt-auto">
+    <MobileFooter />
+  </div>
+</main>
+
+    
+  </body>
+</html>

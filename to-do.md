@@ -1,2 +1,0 @@
-- fix coler flicker 
-- fiz seo 

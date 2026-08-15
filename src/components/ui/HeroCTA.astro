@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Item {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-2 sm:gap-3 items-center">
+  {
+    items.map((item) => {
+      const isResume = item.label === "Resume";
+
+      return (
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={[
+            "flex items-center gap-2 px-2 py-1 rounded-xl text-sm font-medium btn-flicker-fix transition-all duration-200",
+            isResume ? "hero-cta-btn resume" : "hero-cta-btn default border",
+          ]}
+          style={{
+            borderColor: isResume ? "transparent" : "var(--btn-border)",
+            backgroundColor: isResume
+              ? "var(--color-accent)"
+              : "var(--btn-bg)",
+            color: isResume
+              ? "var(--color-button-primary-text)"
+              : "var(--btn-text)",
+          }}
+        >
+          {item.label}
+
+          <Icon name="lucide:arrow-up-right" size={14} class="opacity-70" />
+        </a>
+      );
+    })
+  }
+</div>

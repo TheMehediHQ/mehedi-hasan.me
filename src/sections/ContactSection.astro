@@ -1,0 +1,221 @@
+---
+import { Icon } from "astro-icon/components";
+import SectionTitle from "@/components/ui/SectionTitle.astro";
+import Button from "@/components/ui/Button.astro";
+import { socials } from "@/constants/socials";
+---
+
+<section class="animate-on-scroll px-4 sm:px-8 lg:px-16 py-8 sm:py-12" style="background-color: var(--color-background);">
+  <div class="max-w-4xl mx-auto pb-0 lg:pb-18">
+    <SectionTitle title="Contact Me" subtitle="" class="text-left" />
+
+    <div class="grid lg:grid-cols-[280px_1fr] gap-12 items-start">
+      <!-- LEFT -->
+      <div class="space-y-10">
+        <div class="space-y-6">
+          <p class="leading-6 text-sm max-w-sm text-[var(--color-secondary-text)]">
+            I&apos;m currently available for full‑time opportunities. Feel free to reach out.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="space-y-1">
+            <p class="text-sm text-[var(--color-secondary-text)]">Email</p>
+            <a href="mailto:hello@mehedi-hasan.me" class="text-sm hover:opacity-80" style="color: var(--color-primary-text);">
+              hello@mehedi-hasan.me
+            </a>
+          </div>
+
+          <div class="space-y-1">
+            <p class="text-sm text-[var(--color-secondary-text)]">Location</p>
+            <p class="text-sm text-[var(--color-primary-text)]">Dhaka, Bangladesh</p>
+          </div>
+
+          <div class="space-y-1">
+            <p class="text-sm text-[var(--color-secondary-text)]">WhatsApp</p>
+            <a href="https://wa.me/8801747874773" target="_blank" rel="noopener noreferrer" class="text-sm hover:opacity-80" style="color: var(--color-primary-text);">
+              +880 1747 874 773
+            </a>
+          </div>
+
+          <div class="space-y-1">
+            <p class="text-sm text-[var(--color-secondary-text)]">Schedule a Call</p>
+            <a href="https://cal.com/TheMehediHQ/15min" target="_blank" rel="noopener noreferrer" class="text-sm hover:opacity-80" style="color: var(--color-primary-text);">
+              cal.com/themehedihq
+            </a>
+          </div>
+
+          <div class="space-y-3">
+            <p class="text-sm text-[var(--color-secondary-text)]">Social</p>
+            <div class="flex items-center gap-6">
+              {socials.map((social) => (
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-center w-11 h-11 opacity-60 transition-all duration-300 hover:opacity-100 hover:scale-110"
+                >
+                  <Icon name={social.icon} size={24} style="color: var(--color-primary-text);" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT (FORM) -->
+      <div class="w-full max-w-2xl">
+        <form id="contact-form" class="space-y-6">
+          <input type="text" name="honeypot" class="hidden" tabindex={-1} autocomplete="off" />
+
+          <div class="space-y-2">
+            <label for="name" class="text-sm font-medium" style="color: var(--color-secondary-text);">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Your name"
+              required
+              class="w-full h-12 rounded-xl border border-[var(--color-border)] bg-transparent px-4 text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)] disabled:opacity-50"
+              style="color: var(--color-primary-text);"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="email" class="text-sm font-medium" style="color: var(--color-secondary-text);">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="your@email.com"
+              required
+              class="w-full h-12 rounded-xl border border-[var(--color-border)] bg-transparent px-4 text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)] disabled:opacity-50"
+              style="color: var(--color-primary-text);"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="message" class="text-sm font-medium" style="color: var(--color-secondary-text);">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows={6}
+              placeholder="Tell me about the position or project..."
+              required
+              class="w-full min-h-[180px] rounded-xl border border-[var(--color-border)] bg-transparent px-4 py-3 text-sm resize-none placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)] disabled:opacity-50"
+              style="color: var(--color-primary-text);"
+            ></textarea>
+          </div>
+
+          <p id="form-error" class="text-sm text-red-500 hidden" role="alert"></p>
+          <p id="form-success" class="text-sm text-emerald-500 hidden" role="status"></p>
+
+          <Button type="submit" variant="secondary" size="lg" class="h-12 w-full rounded-xl cursor-pointer">
+            <span id="submit-text">Send Message</span>
+            <Icon name="lucide:send" size={18} />
+          </Button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "-20%" }
+  );
+  document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
+
+  // Contact form
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const errorEl = document.getElementById("form-error");
+  const successEl = document.getElementById("form-success");
+  const submitText = document.getElementById("submit-text");
+  let isSubmitting = false;
+
+  function showError(msg: string) {
+    if (errorEl) { errorEl.textContent = msg; errorEl.classList.remove("hidden"); }
+    if (successEl) successEl.classList.add("hidden");
+  }
+  function showSuccess(msg: string) {
+    if (successEl) { successEl.textContent = msg; successEl.classList.remove("hidden"); }
+    if (errorEl) errorEl.classList.add("hidden");
+  }
+  function hideMessages() {
+    errorEl?.classList.add("hidden");
+    successEl?.classList.add("hidden");
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    isSubmitting = true;
+    hideMessages();
+
+    if (submitText) submitText.textContent = "Sending...";
+
+    const formData = new FormData(form);
+    const body = {
+      name: (formData.get("name") as string)?.trim(),
+      email: (formData.get("email") as string)?.trim(),
+      message: (formData.get("message") as string)?.trim(),
+      honeypot: formData.get("honeypot") as string,
+    };
+
+    if (!body.name || !body.email || !body.message) {
+      showError("All fields are required");
+      isSubmitting = false;
+      if (submitText) submitText.textContent = "Send Message";
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(body.email)) {
+      showError("Please enter a valid email address");
+      isSubmitting = false;
+      if (submitText) submitText.textContent = "Send Message";
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        form.reset();
+        showSuccess("Message sent successfully! I'll get back to you within 24–48 hours.");
+      } else {
+        showError(data.error || "Failed to send message");
+      }
+    } catch {
+      showError("Network error. Please try again.");
+    } finally {
+      isSubmitting = false;
+      if (submitText) submitText.textContent = "Send Message";
+    }
+  });
+</script>

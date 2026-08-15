@@ -1,0 +1,224 @@
+---
+import Sidebar from "./Sidebar.astro";
+import BottomNav from "./BottomNav.astro";
+import MobileFooter from "./MobileFooter.astro";
+
+import HomeSection from "../../sections/HomeSection.astro";
+
+import AboutSection from "../../sections/AboutSection.astro";
+import ExperienceSection from "../../sections/ExperienceSection.astro";
+import ProjectsSection from "../../sections/ProjectsSection.astro";
+import SkillSection from "../../sections/SkillSection.astro";
+import EducationSection from "../../sections/EducationSection.astro";
+import InsightSection from "../../sections/InsightSection.astro";
+import GithubSection from "../../sections/GithubSection.astro";
+import ContactSection from "../../sections/ContactSection.astro";
+
+const sections = [
+  { id: "home", component: HomeSection },
+  { id: "about", component: AboutSection },
+  { id: "experience", component: ExperienceSection },
+  { id: "projects", component: ProjectsSection },
+  { id: "skills", component: SkillSection },
+  { id: "education", component: EducationSection },
+  { id: "insights", component: InsightSection },
+  { id: "github", component: GithubSection },
+  { id: "contact", component: ContactSection },
+];
+
+const sectionIds = sections.map((section) => section.id);
+---
+
+<div
+  id="portfolio-layout"
+  class="flex h-screen w-full overflow-hidden"
+  style="background-color: var(--color-background);"
+>
+  <!-- Desktop Sidebar -->
+  <Sidebar />
+
+  <!-- Main Scroll Container -->
+  <main
+    id="main-scroll-container"
+    class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:ml-[200px] lg:pb-0 xl:ml-[220px]"
+  >
+    {
+      sections.map(({ id, component: Component }) => (
+        <section id={id} data-section={id}>
+          <Component />
+        </section>
+      ))
+    }
+
+    <MobileFooter />
+  </main>
+
+  <!-- Mobile Navigation -->
+  <BottomNav />
+</div>
+
+<script>
+  const sectionIds = [
+    "home",
+    "about",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "insights",
+    "github",
+    "contact",
+  ];
+
+  const main = document.getElementById("main-scroll-container");
+
+  if (main) {
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    /*
+     * Scroll to section
+     */
+    const scrollToSection = (id: string) => {
+      const section = document.getElementById(id);
+
+      if (!section || !main) return;
+
+      main.scrollTo({
+        top: section.offsetTop,
+        behavior: "smooth",
+      });
+
+      history.replaceState(null, "", `#${id}`);
+    };
+
+    /*
+     * Navigation click
+     */
+    document.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+
+      const navElement = target.closest<HTMLElement>(
+        "[data-nav-section]",
+      );
+
+      if (!navElement) return;
+
+      const id = navElement.dataset.navSection;
+
+      if (id && sectionIds.includes(id)) {
+        event.preventDefault();
+        scrollToSection(id);
+      }
+    });
+
+    /*
+     * Active section tracking via scroll
+     */
+    let currentActive = "home";
+
+    const setActiveNav = (id: string) => {
+      if (id === currentActive) return;
+      currentActive = id;
+
+      document
+        .querySelectorAll("[data-nav-section]")
+        .forEach((element) => {
+          const navId = element.getAttribute("data-nav-section");
+          element.setAttribute("data-active", navId === id ? "true" : "false");
+        });
+
+      history.replaceState(null, "", `#${id}`);
+    };
+
+    let ticking = false;
+
+    const updateActiveSection = () => {
+      const scrollTop = main.scrollTop;
+      const offset = main.clientHeight * 0.3;
+
+      let activeId = sectionIds[0];
+
+      for (const section of sections) {
+        if (section.offsetTop - offset <= scrollTop) {
+          activeId = section.id;
+        }
+      }
+
+      setActiveNav(activeId);
+      ticking = false;
+    };
+
+    main.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(updateActiveSection);
+        ticking = true;
+      }
+    });
+
+    updateActiveSection();
+
+    /*
+     * Keyboard navigation
+     */
+    document.addEventListener("keydown", (event) => {
+      const activeElement = document.querySelector(
+        "[data-nav-section][data-active='true']",
+      );
+
+      const activeId =
+        activeElement?.getAttribute("data-nav-section") ||
+        sectionIds[0];
+
+      const currentIndex = sectionIds.indexOf(activeId);
+
+      if (currentIndex === -1) return;
+
+      if (
+        event.key === "ArrowDown" ||
+        event.key === "PageDown"
+      ) {
+        event.preventDefault();
+
+        const nextIndex = Math.min(
+          currentIndex + 1,
+          sectionIds.length - 1,
+        );
+
+        scrollToSection(sectionIds[nextIndex]);
+      }
+
+      if (
+        event.key === "ArrowUp" ||
+        event.key === "PageUp"
+      ) {
+        event.preventDefault();
+
+        const previousIndex = Math.max(
+          currentIndex - 1,
+          0,
+        );
+
+        scrollToSection(sectionIds[previousIndex]);
+      }
+    });
+
+    /*
+     * Handle initial hash
+     */
+    const initialHash = window.location.hash.replace(
+      "#",
+      "",
+    );
+
+    if (
+      initialHash &&
+      sectionIds.includes(initialHash)
+    ) {
+      requestAnimationFrame(() => {
+        scrollToSection(initialHash);
+      });
+    }
+  }
+</script>

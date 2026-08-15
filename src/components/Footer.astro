@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components";
+
+const today = new Date();
+---
+
+<footer>
+  &copy; {today.getFullYear()} Mehedi Hasan. All rights reserved.
+  <div class="social-links">
+    <a href="https://twitter.com/themehedihq" target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">Follow on Twitter</span>
+      <Icon name="fa6-brands:x-twitter" size={24} />
+    </a>
+    <a href="https://github.com/themehedihq" target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">GitHub</span>
+      <Icon name="fa6-brands:github" size={24} />
+    </a>
+    <a href="https://linkedin.com/in/themehedihq" target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">LinkedIn</span>
+      <Icon name="fa6-brands:linkedin" size={24} />
+    </a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 2em 1em 6em 1em;
+    color: var(--color-muted-text);
+    text-align: center;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+  }
+  .social-links a {
+    text-decoration: none;
+    color: var(--color-muted-text);
+    transition: color 0.2s ease;
+  }
+  .social-links a:hover {
+    color: var(--color-primary-text);
+  }
+</style>

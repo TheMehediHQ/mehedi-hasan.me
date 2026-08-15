@@ -1,0 +1,40 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  class?: string;
+  href?: string;
+}
+
+const { class: className = "", href } = Astro.props;
+---
+
+{
+  href ? (
+    <a
+      {href}
+      class:list={[
+        "card-component rounded-2xl p-6 transition-all duration-300 cursor-pointer",
+        className,
+      ]}
+      style="background-color: var(--color-card); border: 1px solid var(--color-border);"
+    >
+      <slot />
+    </a>
+  ) : (
+    <div
+      class:list={["card-component rounded-2xl p-6 transition-all duration-300", className]}
+      style="background-color: var(--color-card); border: 1px solid var(--color-border);"
+    >
+      <slot />
+    </div>
+  )
+}
+
+<style>
+  .card-component:hover {
+    border-color: var(--color-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+</style>

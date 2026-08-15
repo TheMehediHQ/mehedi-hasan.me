@@ -2,82 +2,75 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div
-  class="relative flex h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-(--color-border) bg-gradient-to-b from-[#1E1E1E] to-[#141414] p-6 shadow-xl group"
->
-  <!-- Ambient Glow -->
+<div class="relative h-[220px] rounded-2xl p-6 bg-gradient-to-b from-[#1E1E1E] to-[#141414] border border-(--color-border) shadow-xl flex flex-col justify-between overflow-hidden group">
+  <!-- Ambient Background Glow Effect -->
   <div
-    class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-blue-500/10 blur-2xl transition-all duration-500 group-hover:bg-blue-500/20"
-  ></div>
+    class="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-blue-500/20 transition-all duration-500"
+  />
 
-  <!-- Header -->
-  <div class="relative z-10 flex items-center justify-between">
+  <!-- Top Bar: Title & Icon -->
+  <div class="flex items-center justify-between relative z-10">
     <span
-      class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400/90"
+      class="text-[11px] font-bold uppercase tracking-widest text-neutral-400/90 flex items-center gap-2"
     >
-      <!-- Local Time Pulse -->
-      <span
-        class="local-time-dot h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_7px_rgba(96,165,250,0.8)]"
-      ></span>
-
+      <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
       Local Time
     </span>
 
     <Icon
-      name="lucide:globe"
-      class="h-5 w-5 text-neutral-400 transition-colors duration-300 group-hover:text-blue-400"
+      name="lucide:globe-2"
+      class="w-5 h-5 text-neutral-400 group-hover:text-blue-400 transition-colors duration-300 animate-spin-slow"
     />
   </div>
 
-  <!-- Time -->
-  <div class="relative z-10 my-auto">
+  <!-- Main Time Display -->
+  <div class="my-auto relative z-10">
     <div class="flex items-baseline gap-2">
       <span
         id="dhaka-time"
-        class="font-mono text-4xl font-extrabold tracking-tight text-white drop-shadow-md"
+        class="text-4xl font-extrabold text-white tracking-tight font-mono drop-shadow-md"
       >
         --:--:--
       </span>
 
       <span
-        id="dhaka-ampm"
-        class="hidden rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-blue-400 backdrop-blur-sm"
-      ></span>
+        id="dhaka-period"
+        class="text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md backdrop-blur-sm"
+      >
+        --
+      </span>
     </div>
 
     <p
-      class="mt-2 flex items-center gap-1.5 text-xs font-medium text-neutral-400"
+      class="text-xs font-medium text-neutral-400 mt-2 flex items-center gap-1.5"
     >
       <span>Dhaka, Bangladesh</span>
       <span class="text-neutral-600">•</span>
-      <span class="font-mono text-neutral-500">GMT+6</span>
+      <span class="text-neutral-500 font-mono">GMT+6</span>
     </p>
   </div>
 
-  <!-- Status -->
+  <!-- Bottom Bar: Status -->
   <div
-    class="relative z-10 flex items-center justify-between border-t border-(--color-border) pt-3 text-xs text-neutral-400"
+    class="pt-3 border-t border-(--color-border) text-xs text-neutral-400 flex justify-between items-center relative z-10"
   >
     <span class="font-medium text-neutral-500">Status</span>
 
     <div
-      class="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1"
+      class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full"
     >
-      <!-- Live Indicator -->
-      <span class="relative flex h-2 w-2 items-center justify-center">
-        <!-- Animated Pulse Ring -->
+      <span class="relative flex h-2 w-2">
         <span
-          class="status-pulse pointer-events-none absolute inset-0 rounded-full bg-emerald-400"
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
         ></span>
 
-        <!-- Core -->
         <span
-          class="relative z-10 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+          class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
         ></span>
       </span>
 
       <span
-        class="text-[11px] font-medium tracking-wide text-emerald-400"
+        class="text-emerald-400 font-medium text-[11px] tracking-wide"
       >
         Active
       </span>
@@ -85,140 +78,37 @@ import { Icon } from "astro-icon/components";
   </div>
 </div>
 
-<style>
-  /*
-   * Mobile-friendly animations
-   * Uses only transform + opacity for smooth GPU rendering.
-   */
-
-  /* Local Time dot */
-  .local-time-dot {
-    animation: local-time-pulse 1.6s ease-in-out infinite;
-    will-change: transform, opacity;
-    transform-origin: center;
-  }
-
-  @keyframes local-time-pulse {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 0.65;
-    }
-
-    50% {
-      transform: scale(1.35);
-      opacity: 1;
-    }
-  }
-
-  /* Active status ring */
-  .status-pulse {
-    width: 8px;
-    height: 8px;
-    transform: scale(1);
-    opacity: 0.75;
-    transform-origin: center;
-    will-change: transform, opacity;
-    animation: status-ring 1.6s cubic-bezier(0.2, 0, 0.4, 1) infinite;
-  }
-
-  @keyframes status-ring {
-    0% {
-      transform: scale(1);
-      opacity: 0.75;
-    }
-
-    70% {
-      transform: scale(3);
-      opacity: 0;
-    }
-
-    100% {
-      transform: scale(3);
-      opacity: 0;
-    }
-  }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .local-time-dot,
-    .status-pulse {
-      animation: none;
-    }
-
-    .local-time-dot {
-      opacity: 0.8;
-      transform: scale(1);
-    }
-
-    .status-pulse {
-      opacity: 0.4;
-      transform: scale(1);
-    }
-  }
-</style>
-
 <script>
-  function updateTime() {
-    const timeEl = document.getElementById("dhaka-time");
-    const ampmEl = document.getElementById("dhaka-ampm");
-
-    if (!timeEl) return;
-
+  const updateDhakaTime = () => {
     const now = new Date();
 
-    const formatter = new Intl.DateTimeFormat("en-US", {
+    const formattedTime = now.toLocaleTimeString("en-US", {
       timeZone: "Asia/Dhaka",
-      hour: "2-digit",
+      hour: "numeric",
       minute: "2-digit",
       second: "2-digit",
       hour12: true,
     });
 
-    const parts = formatter.formatToParts(now);
+    const [time, period] = formattedTime.split(" ");
 
-    const hour =
-      parts.find((part) => part.type === "hour")?.value || "--";
+    const timeElement = document.getElementById("dhaka-time");
+    const periodElement = document.getElementById("dhaka-period");
 
-    const minute =
-      parts.find((part) => part.type === "minute")?.value || "--";
-
-    const second =
-      parts.find((part) => part.type === "second")?.value || "--";
-
-    const dayPeriod =
-      parts.find((part) => part.type === "dayPeriod")?.value || "";
-
-    timeEl.textContent = `${hour}:${minute}:${second}`;
-
-    if (ampmEl && dayPeriod) {
-      ampmEl.textContent = dayPeriod;
-      ampmEl.classList.remove("hidden");
+    if (timeElement) {
+      timeElement.textContent = time;
     }
-  }
 
-  function initClock() {
-    updateTime();
+    if (periodElement) {
+      periodElement.textContent = period;
+    }
+  };
 
-    const clockInterval = setInterval(updateTime, 1000);
+  updateDhakaTime();
 
-    document.addEventListener(
-      "astro:before-swap",
-      () => {
-        clearInterval(clockInterval);
-      },
-      { once: true }
-    );
-  }
+  const timer = setInterval(updateDhakaTime, 1000);
 
-  document.addEventListener("astro:page-load", initClock);
-
-  if (
-    document.readyState === "complete" ||
-    document.readyState === "interactive"
-  ) {
-    initClock();
-  } else {
-    document.addEventListener("DOMContentLoaded", initClock);
-  }
+  document.addEventListener("astro:before-swap", () => {
+    clearInterval(timer);
+  });
 </script>

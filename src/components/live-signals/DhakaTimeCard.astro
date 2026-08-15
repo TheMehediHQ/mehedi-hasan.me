@@ -86,6 +86,11 @@ import { Icon } from "astro-icon/components";
 </div>
 
 <style>
+  /*
+   * Mobile-friendly pulse animation
+   * Uses transform instead of width/height/margin animation
+   * for smoother rendering on mobile browsers.
+   */
   .status-pulse {
     width: 8px;
     height: 8px;
@@ -93,32 +98,25 @@ import { Icon } from "astro-icon/components";
     margin-top: -4px;
     opacity: 0.7;
     pointer-events: none;
-    will-change: width, height, margin-left, margin-top, opacity;
+    will-change: transform, opacity;
+    transform: scale(1);
+    transform-origin: center;
     animation: status-pulse 1.8s ease-out infinite;
   }
 
   @keyframes status-pulse {
     0% {
-      width: 8px;
-      height: 8px;
-      margin-left: -4px;
-      margin-top: -4px;
+      transform: scale(1);
       opacity: 0.7;
     }
 
     70% {
-      width: 24px;
-      height: 24px;
-      margin-left: -12px;
-      margin-top: -12px;
+      transform: scale(3);
       opacity: 0;
     }
 
     100% {
-      width: 24px;
-      height: 24px;
-      margin-left: -12px;
-      margin-top: -12px;
+      transform: scale(3);
       opacity: 0;
     }
   }
@@ -126,10 +124,7 @@ import { Icon } from "astro-icon/components";
   @media (prefers-reduced-motion: reduce) {
     .status-pulse {
       animation: none;
-      width: 8px;
-      height: 8px;
-      margin-left: -4px;
-      margin-top: -4px;
+      transform: scale(1);
       opacity: 0.5;
     }
   }
@@ -174,22 +169,8 @@ import { Icon } from "astro-icon/components";
     }
   }
 
-  function restartPulse() {
-    const pulse = document.getElementById("status-pulse");
-
-    if (!pulse) return;
-
-    // Force animation restart after Astro navigation
-    pulse.style.animation = "none";
-
-    void pulse.offsetWidth;
-
-    pulse.style.animation = "";
-  }
-
   function initClock() {
     updateTime();
-    restartPulse();
 
     const clockInterval = setInterval(updateTime, 1000);
 

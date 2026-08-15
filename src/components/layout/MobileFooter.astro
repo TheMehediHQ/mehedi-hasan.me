@@ -4,19 +4,19 @@ import { personalInfo } from "@/data/personalInfo";
 ---
 
 <footer
-  class="max-w-4xl mx-auto flex items-center justify-between px-6 lg:px-0 py-4"
+  class="max-w-4xl mx-auto flex items-center justify-between gap-3 px-6 lg:px-0 py-4"
   style="border-color: var(--color-border);"
 >
   <!-- Copyright Text -->
   <p
-    class="text-xs font-medium"
+    class="text-xs font-medium whitespace-nowrap"
     style="color: var(--color-muted-text);"
   >
     © {new Date().getFullYear()} {personalInfo.name}
   </p>
 
   <!-- Last Visitor -->
-  <div id="last-visitor" class="text-xs" style="color: var(--color-muted-text);">
+  <div id="last-visitor" class="text-xs text-right truncate" style="color: var(--color-muted-text);">
     <span id="last-visitor-text"></span>
   </div>
 

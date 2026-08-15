@@ -7,14 +7,16 @@ import {
   Briefcase,
   FolderOpen,
   Mail,
+  BookOpen,
 } from "lucide-react";
 
-// শুধু ব্যবহৃত আইকনগুলো ইমপোর্ট করা হয়েছে
+// শুধু ব্যবহৃত আইকনগুলো ইমপোর্ট করা হয়েছে
 const iconMap: Record<string, React.ElementType> = {
   Home,
   Briefcase,
   FolderOpen,
   Mail,
+  BookOpen,
 };
 
 interface BottomNavProps {
@@ -44,6 +46,27 @@ export default function BottomNav({ activeSection, onNavClick }: BottomNavProps)
       {filteredNavItems.map((item) => {
         const Icon = iconMap[item.icon] || Home;
         const isActive = activeSection === item.id;
+        const isExternal = !!item.href;
+
+        if (isExternal) {
+          return (
+            <a
+              key={item.id}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "relative flex flex-col items-center justify-center flex-1 py-1 transition-all duration-200 active:scale-95",
+                "text-[var(--color-muted-text)] hover:text-[var(--color-primary-text)]"
+              )}
+            >
+              <Icon size={20} className="transition-transform duration-200" />
+              <span className="text-[10px] tracking-tight mt-1">
+                {item.label}
+              </span>
+            </a>
+          );
+        }
 
         return (
           <button

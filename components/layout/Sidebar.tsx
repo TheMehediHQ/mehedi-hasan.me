@@ -16,6 +16,8 @@ import {
   Mail,
   Download,
   ChevronRight,
+  BookOpen,
+  ExternalLink,
 } from "lucide-react";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -26,6 +28,7 @@ const iconMap: Record<string, React.ElementType> = {
   Code,
   Mail,
   Download,
+  BookOpen,
 };
 
 interface SidebarProps {
@@ -83,28 +86,49 @@ export default function Sidebar({ activeSection, onNavClick }: SidebarProps) {
           {navItems.map((item) => {
             const Icon = iconMap[item.icon] || Home;
             const isActive = activeSection === item.id;
+            const isExternal = !!item.href;
+
+            const linkClasses = cn(
+              "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium group w-full text-left transition-all duration-200",
+              "text-[var(--color-secondary-text)]",
+              !isActive && "hover:text-[var(--color-primary-text)]",
+              isActive && "bg-[var(--nav-active-bg)]",
+              isActive && "text-[var(--color-accent)] font-semibold"
+            );
+
+            const iconClasses = cn(
+              "flex-shrink-0 transition-colors duration-200",
+              "text-[var(--color-muted-text)]",
+              !isActive && "group-hover:text-[var(--color-primary-text)]",
+              isActive && "text-[var(--color-accent)]"
+            );
+
+            if (isExternal) {
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClasses}
+                >
+                  <Icon size={16} className={iconClasses} />
+                  <span className="flex-1">{item.label}</span>
+                  <ExternalLink
+                    size={12}
+                    className="flex-shrink-0 text-[var(--color-muted-text)] group-hover:text-[var(--color-primary-text)] transition-colors duration-200"
+                  />
+                </a>
+              );
+            }
 
             return (
               <button
                 key={item.id}
                 onClick={() => onNavClick(item.id)}
-                className={cn(
-                  "flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium group w-full text-left transition-all duration-200",
-                  "text-[var(--color-secondary-text)]",
-                  !isActive && "hover:text-[var(--color-primary-text)]",
-                  isActive && "bg-[var(--nav-active-bg)]",
-                  isActive && "text-[var(--color-accent)] font-semibold"
-                )}
+                className={linkClasses}
               >
-                <Icon
-                  size={16}
-                  className={cn(
-                    "flex-shrink-0 transition-colors duration-200",
-                    "text-[var(--color-muted-text)]",
-                    !isActive && "group-hover:text-[var(--color-primary-text)]",
-                    isActive && "text-[var(--color-accent)]"
-                  )}
-                />
+                <Icon size={16} className={iconClasses} />
                 <span>{item.label}</span>
               </button>
             );

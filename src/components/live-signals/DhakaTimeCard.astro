@@ -2,51 +2,126 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="relative h-[220px] rounded-2xl p-6 bg-gradient-to-b from-[#1E1E1E] to-[#141414] border border-(--color-border) shadow-xl flex flex-col justify-between overflow-hidden group">
-  <div class="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-blue-500/20 transition-all duration-500"></div>
+<div
+  class="relative h-[220px] rounded-2xl border border-(--color-border) bg-gradient-to-b from-[#1E1E1E] to-[#141414] p-6 shadow-xl flex flex-col justify-between overflow-hidden group"
+>
+  <!-- Ambient Glow -->
+  <div
+    class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-blue-500/10 blur-2xl transition-all duration-500 group-hover:bg-blue-500/20"
+  ></div>
 
-  <div class="flex items-center justify-between relative z-10">
-    <span class="text-[11px] font-bold uppercase tracking-widest text-neutral-400/90 flex items-center gap-2">
-      <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+  <!-- Header -->
+  <div class="relative z-10 flex items-center justify-between">
+    <span
+      class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400/90"
+    >
+      <span
+        class="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_7px_rgba(96,165,250,0.8)] animate-pulse"
+      ></span>
       Local Time
     </span>
-    <Icon name="lucide:globe" class="w-5 h-5 text-neutral-400 group-hover:text-blue-400 transition-colors duration-300" />
+
+    <Icon
+      name="lucide:globe"
+      class="h-5 w-5 text-neutral-400 transition-colors duration-300 group-hover:text-blue-400"
+    />
   </div>
 
-  <div class="my-auto relative z-10">
+  <!-- Time -->
+  <div class="relative z-10 my-auto">
     <div class="flex items-baseline gap-2">
-      <span id="dhaka-time" class="text-4xl font-extrabold text-white tracking-tight font-mono drop-shadow-md">
+      <span
+        id="dhaka-time"
+        class="font-mono text-4xl font-extrabold tracking-tight text-white drop-shadow-md"
+      >
         --:--:--
       </span>
-      <span id="dhaka-ampm" class="text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md backdrop-blur-sm hidden">
-      </span>
+
+      <span
+        id="dhaka-ampm"
+        class="hidden rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-blue-400 backdrop-blur-sm"
+      ></span>
     </div>
-    <p class="text-xs font-medium text-neutral-400 mt-2 flex items-center gap-1.5">
+
+    <p
+      class="mt-2 flex items-center gap-1.5 text-xs font-medium text-neutral-400"
+    >
       <span>Dhaka, Bangladesh</span>
       <span class="text-neutral-600">•</span>
-      <span class="text-neutral-500 font-mono">GMT+6</span>
+      <span class="font-mono text-neutral-500">GMT+6</span>
     </p>
   </div>
 
-  <div class="pt-3 border-t border-(--color-border) text-xs text-neutral-400 flex justify-between items-center relative z-10">
+  <!-- Status -->
+  <div
+    class="relative z-10 flex items-center justify-between border-t border-(--color-border) pt-3 text-xs text-neutral-400"
+  >
     <span class="font-medium text-neutral-500">Status</span>
-    <div class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+
+    <div
+      class="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1"
+    >
+      <!-- Live Indicator -->
+      <span class="relative flex h-2 w-2 items-center justify-center">
+        <!-- Pulse -->
+        <span
+          class="status-pulse absolute inset-0 rounded-full bg-emerald-400"
+        ></span>
+
+        <!-- Core -->
+        <span
+          class="relative h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+        ></span>
       </span>
-      <span class="text-emerald-400 font-medium text-[11px] tracking-wide">Active</span>
+
+      <span
+        class="text-[11px] font-medium tracking-wide text-emerald-400"
+      >
+        Active
+      </span>
     </div>
   </div>
 </div>
+
+<style>
+  .status-pulse {
+    transform-origin: center;
+    animation: status-pulse 2s ease-out infinite;
+  }
+
+  @keyframes status-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    70% {
+      transform: scale(2.8);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(2.8);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status-pulse {
+      animation: none;
+    }
+  }
+</style>
 
 <script>
   function updateTime() {
     const timeEl = document.getElementById("dhaka-time");
     const ampmEl = document.getElementById("dhaka-ampm");
+
     if (!timeEl) return;
 
     const now = new Date();
+
     const formatter = new Intl.DateTimeFormat("en-US", {
       timeZone: "Asia/Dhaka",
       hour: "2-digit",
@@ -56,12 +131,21 @@ import { Icon } from "astro-icon/components";
     });
 
     const parts = formatter.formatToParts(now);
-    const hour = parts.find((p) => p.type === "hour")?.value || "--";
-    const minute = parts.find((p) => p.type === "minute")?.value || "--";
-    const second = parts.find((p) => p.type === "second")?.value || "--";
-    const dayPeriod = parts.find((p) => p.type === "dayPeriod")?.value || "";
+
+    const hour =
+      parts.find((part) => part.type === "hour")?.value || "--";
+
+    const minute =
+      parts.find((part) => part.type === "minute")?.value || "--";
+
+    const second =
+      parts.find((part) => part.type === "second")?.value || "--";
+
+    const dayPeriod =
+      parts.find((part) => part.type === "dayPeriod")?.value || "";
 
     timeEl.textContent = `${hour}:${minute}:${second}`;
+
     if (ampmEl && dayPeriod) {
       ampmEl.textContent = dayPeriod;
       ampmEl.classList.remove("hidden");
@@ -70,6 +154,7 @@ import { Icon } from "astro-icon/components";
 
   function initClock() {
     updateTime();
+
     const clockInterval = setInterval(updateTime, 1000);
 
     document.addEventListener(
@@ -82,7 +167,11 @@ import { Icon } from "astro-icon/components";
   }
 
   document.addEventListener("astro:page-load", initClock);
-  if (document.readyState === "complete" || document.readyState === "interactive") {
+
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
     initClock();
   } else {
     document.addEventListener("DOMContentLoaded", initClock);

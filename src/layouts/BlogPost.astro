@@ -94,17 +94,32 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
                 <slot />
               </div>
 
+             
               <!-- Bottom Nav -->
-              <div class="mt-12 pt-6" style="border-top: 1px solid var(--color-border);">
-                <a
-                  href="/blog"
-                  class="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 hover:opacity-70"
-                  style="color: var(--color-accent);"
-                >
-                  <Icon name="lucide:arrow-left" size={14} />
-                  All Posts
-                </a>
-              </div>
+<div
+  class="mt-12 pt-6 flex items-center justify-between gap-4"
+  style="border-top: 1px solid var(--color-border);"
+>
+  <a
+    href="/blog"
+    class="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 hover:opacity-70"
+    style="color: var(--color-accent);"
+  >
+    <Icon name="lucide:arrow-left" size={14} />
+    All Posts
+  </a>
+
+  <button
+    id="back-to-top"
+    type="button"
+    class="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 hover:opacity-70"
+    style="color: var(--color-accent);"
+    aria-label="Back to top"
+  >
+    Back to Top
+    <Icon name="lucide:arrow-up" size={14} />
+  </button>
+</div>
 
             </div>
           </div>
@@ -310,3 +325,16 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   :global(.dark) .blog-prose :global(.astro-code.github-dark [style*="--shiki-dark:#FFA657"]) { color: #ffa657 !important; }
   :global(.dark) .blog-prose :global(.shiki.dark span[style*="color"]) { color: #e6edf3 !important; }
 </style>
+
+
+<script>
+  const backToTop = document.getElementById("back-to-top");
+  const scrollContainer = document.getElementById("main-scroll-container");
+
+  backToTop?.addEventListener("click", () => {
+    scrollContainer?.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+</script>

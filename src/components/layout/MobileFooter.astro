@@ -8,7 +8,7 @@ import { personalInfo } from "@/data/personalInfo";
   style="border-color: var(--color-border);"
 >
   <!-- Copyright Text -->
-  <p
+   <div class="space-y-1.5"> <p
     class="text-xs font-medium whitespace-nowrap"
     style="color: var(--color-muted-text);"
   >
@@ -16,9 +16,10 @@ import { personalInfo } from "@/data/personalInfo";
   </p>
 
   <!-- Last Visitor -->
-  <div id="last-visitor" class="text-xs text-right truncate" style="color: var(--color-muted-text);">
-    <span id="last-visitor-text"></span>
-  </div>
+  <div id="last-visitor" class="text-xs text-right truncate flex items-center justify-end gap-1" style="color: var(--color-muted-text);">
+   <span>Last visit from</span> <span id="last-visitor-text"></span>
+  </div></div>
+ 
 
   <!-- Theme Toggle Button -->
   <div class="flex items-center">

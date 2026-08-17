@@ -79,7 +79,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                 <button
                   data-category="all"
                   class="blog-filter-btn rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200"
-                  style="background-color: var(--color-accent); color: #fff;"
+                  style="background-color: var(--color-hover); color: var(--color-primary-text);"
                 >
                   All
                 </button>
@@ -272,8 +272,8 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
         b.style.backgroundColor = "var(--color-card)";
         b.style.color = "var(--color-secondary-text)";
       });
-      btn.style.backgroundColor = "var(--color-accent)";
-      btn.style.color = "#fff";
+      btn.style.backgroundColor = "var(--color-hover)";
+      btn.style.color = "var(--color-primary-text)";
 
       filterPosts();
     });

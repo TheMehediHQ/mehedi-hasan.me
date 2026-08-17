@@ -3,6 +3,8 @@ title: 'ES6 Interview Questions & Answers — Complete Bengali & English Guide'
 description: 'A complete Bengali and English guide to common ES6 and JavaScript interview questions, covering modern JavaScript concepts with code examples.'
 pubDate: 'Dec 16 2025'
 heroImage: '../../assets/es6.webp'
+category: 'Tech'
+tags: ['javascript', 'interview', 'es6']
 ---
 
 # 📘 ES6 Interview Questions — English + Bengali

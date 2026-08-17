@@ -12,6 +12,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const categories = [...new Set(posts.map((p) => p.data.category))];
 ---
 
 <!doctype html>
@@ -53,13 +55,67 @@ const posts = (await getCollection('blog')).sort(
               </p>
             </div>
 
+            <!-- Search & Filter -->
+            <div class="mb-6 flex flex-col gap-4">
+              <!-- Search Input -->
+              <div class="relative">
+                <Icon
+                  name="lucide:search"
+                  size={16}
+                  class="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                  style="color: var(--color-muted-text);"
+                />
+                <input
+                  id="blog-search"
+                  type="text"
+                  placeholder="Search posts..."
+                  class="w-full h-12 rounded-xl border border-[var(--color-border)] bg-transparent pl-10 pr-4 text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)]"
+                  style="color: var(--color-primary-text);"
+                />
+              </div>
+
+              <!-- Category Filters -->
+              <div class="flex flex-wrap gap-2">
+                <button
+                  data-category="all"
+                  class="blog-filter-btn rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200"
+                  style="background-color: var(--color-accent); color: #fff;"
+                >
+                  All
+                </button>
+                {categories.map((cat) => (
+                  <button
+                    data-category={cat}
+                    class="blog-filter-btn rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200"
+                    style="background-color: var(--color-card); color: var(--color-secondary-text);"
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              <!-- Post Count -->
+              <p
+                id="blog-post-count"
+                class="text-xs"
+                style="color: var(--color-muted-text);"
+              >
+                {posts.length} {posts.length === 1 ? 'post' : 'posts'} found
+              </p>
+            </div>
+
             <!-- Posts Grid -->
-            <div class="flex flex-col gap-6">
+            <div id="blog-posts-grid" class="flex flex-col gap-6">
               {posts.map((post) => (
                 <a
                   href={`/blog/${post.id}/`}
-                  class="group block rounded-2xl p-5 sm:p-6 transition-all duration-300"
-                  style=" background-color: var(--color-card);"
+                  data-blog-post
+                  data-category={post.data.category}
+                  data-title={post.data.title.toLowerCase()}
+                  data-description={(post.data.description || '').toLowerCase()}
+                  data-tags={post.data.tags.join(',').toLowerCase()}
+                  class="blog-post-card group block rounded-2xl p-5 sm:p-6 transition-all duration-300"
+                  style="background-color: var(--color-card);"
                 >
                   <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
                     <!-- Hero Image -->
@@ -81,6 +137,12 @@ const posts = (await getCollection('blog')).sort(
                         <Icon name="lucide:calendar" size={12} style="color: var(--color-muted-text);" />
                         <span class="text-xs" style="color: var(--color-muted-text);">
                           <FormattedDate date={post.data.pubDate} />
+                        </span>
+                        <span
+                          class="rounded-full px-2 py-0.5 text-[10px] font-medium"
+                          style="background-color: var(--color-hover); color: var(--color-secondary-text);"
+                        >
+                          {post.data.category}
                         </span>
                       </div>
 
@@ -107,6 +169,30 @@ const posts = (await getCollection('blog')).sort(
               ))}
             </div>
 
+            <!-- Empty State -->
+            <div
+              id="blog-empty-state"
+              class="hidden flex-col items-center justify-center py-16 text-center"
+            >
+              <Icon
+                name="lucide:search-x"
+                size={40}
+                style="color: var(--color-muted-text);"
+              />
+              <p
+                class="mt-4 text-sm font-medium"
+                style="color: var(--color-secondary-text);"
+              >
+                No posts found
+              </p>
+              <p
+                class="mt-1 text-xs"
+                style="color: var(--color-muted-text);"
+              >
+                Try a different search term or category.
+              </p>
+            </div>
+
           </div>
         </div>
 
@@ -118,3 +204,78 @@ const posts = (await getCollection('blog')).sort(
     </div>
   </body>
 </html>
+
+<style>
+  .blog-post-card[hidden] {
+    display: none;
+  }
+
+</style>
+
+<script>
+  const searchInput = document.getElementById("blog-search") as HTMLInputElement;
+  const filterButtons = document.querySelectorAll(".blog-filter-btn");
+  const postCards = document.querySelectorAll("[data-blog-post]");
+  const postCount = document.getElementById("blog-post-count");
+  const emptyState = document.getElementById("blog-empty-state");
+  const postsGrid = document.getElementById("blog-posts-grid");
+
+  let activeCategory = "all";
+
+  function filterPosts() {
+    const query = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    postCards.forEach((card) => {
+      const el = card as HTMLElement;
+      const category = el.dataset.category || "";
+      const title = el.dataset.title || "";
+      const description = el.dataset.description || "";
+      const tags = el.dataset.tags || "";
+
+      const matchesCategory =
+        activeCategory === "all" || category === activeCategory;
+      const matchesSearch =
+        !query ||
+        title.includes(query) ||
+        description.includes(query) ||
+        tags.includes(query);
+
+      if (matchesCategory && matchesSearch) {
+        el.removeAttribute("hidden");
+        visibleCount++;
+      } else {
+        el.setAttribute("hidden", "");
+      }
+    });
+
+    if (postCount) {
+      postCount.textContent = `${visibleCount} ${visibleCount === 1 ? "post" : "posts"} found`;
+    }
+
+    if (postsGrid) {
+      postsGrid.classList.toggle("hidden", visibleCount === 0);
+    }
+    if (emptyState) {
+      emptyState.classList.toggle("hidden", visibleCount > 0);
+      emptyState.classList.toggle("flex", visibleCount === 0);
+    }
+  }
+
+  searchInput?.addEventListener("input", filterPosts);
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeCategory = (btn as HTMLElement).dataset.category || "all";
+
+      filterButtons.forEach((b) => {
+        b.style.backgroundColor = "var(--color-card)";
+        b.style.color = "var(--color-secondary-text)";
+      });
+      btn.style.backgroundColor = "var(--color-accent)";
+      btn.style.color = "#fff";
+
+      filterPosts();
+    });
+  });
+</script>

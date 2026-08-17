@@ -5,6 +5,7 @@ readTime: 3 min read
 category: Personal Growth
 description: How meditation helped me overcome failure, depression, and transform my life.
 heroImage: ../../assets/meditation.jpg
+tags: ['meditation', 'mindfulness', 'self-improvement']
 ---
 
 

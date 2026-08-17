@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 interface Item {
   label: string;
   href: string;
+  previewImage?: string;
 }
 
 interface Props {
@@ -19,29 +20,77 @@ const { items } = Astro.props;
       const isResume = item.label === "Resume";
 
       return (
-        <a
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class:list={[
-            "flex items-center gap-2 px-2 py-1 rounded-xl text-sm font-medium btn-flicker-fix transition-all duration-200",
-            isResume ? "hero-cta-btn resume" : "hero-cta-btn default border",
-          ]}
-          style={{
-            borderColor: isResume ? "transparent" : "var(--btn-border)",
-            backgroundColor: isResume
-              ? "var(--color-accent)"
-              : "var(--btn-bg)",
-            color: isResume
-              ? "var(--color-button-primary-text)"
-              : "var(--btn-text)",
-          }}
-        >
-          {item.label}
+        <span class:list={["hero-cta-wrapper", { "has-preview": !!item.previewImage }]}>
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              "flex items-center gap-2 px-2 py-1 rounded-xl text-sm font-medium btn-flicker-fix transition-all duration-200",
+              isResume ? "hero-cta-btn resume" : "hero-cta-btn default border",
+            ]}
+            style={{
+              borderColor: isResume ? "transparent" : "var(--btn-border)",
+              backgroundColor: isResume
+                ? "var(--color-accent)"
+                : "var(--btn-bg)",
+              color: isResume
+                ? "var(--color-button-primary-text)"
+                : "var(--btn-text)",
+            }}
+          >
+            {item.label}
 
-          <Icon name="lucide:arrow-up-right" size={14} class="opacity-70" />
-        </a>
+            <Icon name="lucide:arrow-up-right" size={14} class="opacity-70" />
+          </a>
+          {item.previewImage && (
+            <span class="hero-cta-preview">
+              <img src={item.previewImage} alt={`Preview of ${item.label}`} class="hero-cta-preview-img" />
+            </span>
+          )}
+        </span>
       );
     })
   }
 </div>
+
+<style>
+  .hero-cta-wrapper {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .hero-cta-preview {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 50;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border, #27272a);
+    background-color: var(--color-card, #18181b);
+    /* ছোট সাইজ ফিক্সড করা হলো */
+    width: 200px;
+    height: 115px;
+  }
+
+  .hero-cta-wrapper:hover .hero-cta-preview {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    pointer-events: auto;
+  }
+
+  .hero-cta-preview-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+</style>

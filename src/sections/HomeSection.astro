@@ -55,8 +55,8 @@ import HeroCTA from "../components/ui/HeroCTA.astro";
           ...socials.map((s) => {
             const previewMap: Record<string, string> = {
               LinkedIn: "/images/linkedin.png",
-              GitHub: "/images/github.gif",
-              X: "/images/x.webp",
+              GitHub: "/images/github.png",
+              X: "/images/x.png",
             };
             return previewMap[s.label]
               ? { ...s, previewImage: previewMap[s.label] }

@@ -12,6 +12,7 @@ export const projects: Project[] = [
     liveDemo: "https://xgari.com",
     details:
       "Built a scalable automotive marketplace with secure authentication, advanced search, responsive UI, and a powerful admin dashboard for managing vehicles, users, and platform content.",
+    type: "professional",
   },
   {
     id: "2",
@@ -24,6 +25,7 @@ export const projects: Project[] = [
     liveDemo: "https://ayvoice.com",
     details:
       "Developed a communication platform with campaign management, contact organization, message history, and third-party API integration for bulk SMS and voice call services.",
+    type: "professional",
   },
   {
     id: "3",
@@ -36,5 +38,19 @@ export const projects: Project[] = [
     liveDemo: "https://nexvibe.tech",
     details:
       "Built a fast and SEO-friendly business website using Next.js with responsive layouts, smooth animations, optimized performance, and a professional user experience.",
+    type: "professional",
+  },
+  {
+    id: "4",
+    title: "Kashly",
+    description:
+      "A modern money management app that helps users track income and expenses, set budgets, and achieve financial goals with real-time dashboards.",
+    image: "/projects/kashly.png",
+    technologies: ["Next.js", "TypeScript", "Express", "MongoDB", "Tailwind CSS"],
+    github: "https://github.com/TheMehediHQ/Kashly",
+    liveDemo: "https://kashly.mehedi-hasan.me",
+    details:
+      "Built a full-stack financial tracking platform with secure authentication via Clerk, real-time expense monitoring, smart budgeting, categorized transaction history, and a responsive UI using Next.js, Express, and MongoDB.",
+    type: "personal",
   },
 ];

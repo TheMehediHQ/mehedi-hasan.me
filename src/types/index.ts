@@ -31,6 +31,7 @@ export interface Project {
   github: string;
   liveDemo: string;
   details: string;
+  type: "professional" | "personal";
 }
 
 export interface SocialLink {

@@ -52,14 +52,41 @@ const cleanUrl = (url: string) =>
         ))}
       </div>
 
-      <div class="mt-5 flex flex-wrap gap-2.5">
-        {project.liveDemo && (
-          <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
-            <Button variant="primary" size="sm" class="gap-2 cursor-pointer">
-              {cleanUrl(project.liveDemo)}
-              <Icon name="lucide:arrow-up-right" size={15} />
-            </Button>
-          </a>
+      <div class="mt-5 flex flex-wrap items-center gap-2.5">
+        {project.type === "professional" ? (
+          <>
+            {project.liveDemo && (
+              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                <Button variant="primary" size="sm" class="gap-2 cursor-pointer">
+                  {cleanUrl(project.liveDemo)}
+                  <Icon name="lucide:arrow-up-right" size={15} />
+                </Button>
+              </a>
+            )}
+            <span class="inline-flex items-center gap-1.5 text-xs" style="color: var(--color-secondary-text);">
+              <Icon name="lucide:lock" size={13} />
+              Private Repository
+            </span>
+          </>
+        ) : (
+          <>
+            {project.liveDemo && (
+              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                <Button variant="primary" size="sm" class="gap-2 cursor-pointer">
+                  {cleanUrl(project.liveDemo)}
+                  <Icon name="lucide:arrow-up-right" size={15} />
+                </Button>
+              </a>
+            )}
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer">
+                <Button variant="secondary" size="sm" class="gap-2 cursor-pointer">
+                  GitHub
+                  <Icon name="lucide:arrow-up-right" size={15} />
+                </Button>
+              </a>
+            )}
+          </>
         )}
       </div>
     </div>

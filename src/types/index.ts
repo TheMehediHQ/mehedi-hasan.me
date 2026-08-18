@@ -18,7 +18,8 @@ export interface Experience {
   company: string;
   period: string;
   description: string;
-  technologies: string[];
+  technologies?: string[];
+  type?: "full-time" | "internship" | "volunteer";
 }
 
 export interface Project {

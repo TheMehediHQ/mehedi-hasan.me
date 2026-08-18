@@ -19,5 +19,15 @@ export const experiences: Experience[] = [
     description:
       "Built and maintained multiple client projects from concept to deployment. Specialized in React ecosystems and RESTful API design.",
     technologies: ["React", "Node.js", "Express", "PostgreSQL", "AWS"],
+  },
+  {
+    id: "3",
+    role: "Volunteer",
+    company: "Quantum Foundation",
+    period: "February 2018 - Present",
+    description:
+      "Working as a volunteer, contributing to motivational initiatives and community outreach programs to inspire and uplift people.",
+    technologies: ["Motivational Speaking", "Community Outreach", "Leadership", "Public Speaking"],
+    type: "volunteer",
   }
 ];

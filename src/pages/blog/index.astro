@@ -126,7 +126,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                   <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
                     <!-- Hero Image -->
                     {post.data.heroImage && (
-                      <div class="w-full h-44 sm:w-48 sm:h-32 flex-shrink-0 rounded-xl overflow-hidden bg-[var(--color-hover)]">
+                      <div class="w-full sm:w-48 aspect-[16/10] flex-shrink-0 rounded-xl overflow-hidden bg-[var(--color-hover)]">
                         <Image
                           src={post.data.heroImage}
                           alt=""

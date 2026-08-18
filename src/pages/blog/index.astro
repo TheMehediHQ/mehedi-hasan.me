@@ -68,30 +68,33 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                 <input
                   id="blog-search"
                   type="text"
+                  inputmode="search"
                   placeholder="Search posts..."
-                  class="w-full h-12 rounded-xl border border-[var(--color-border)] bg-transparent pl-10 pr-4 text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)]"
+                  class="w-full h-11 sm:h-12 rounded-xl border border-[var(--color-border)] bg-transparent pl-10 pr-4 text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)]"
                   style="color: var(--color-primary-text);"
                 />
               </div>
 
               <!-- Category Filters -->
-              <div class="flex flex-wrap gap-2">
-                <button
-                  data-category="all"
-                  class="blog-filter-btn rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200"
-                  style="background-color: var(--color-hover); color: var(--color-primary-text);"
-                >
-                  All
-                </button>
-                {categories.map((cat) => (
+              <div class="-mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto scrollbar-none">
+                <div class="flex gap-2 w-max sm:flex-wrap sm:w-auto">
                   <button
-                    data-category={cat}
-                    class="blog-filter-btn rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200"
-                    style="background-color: var(--color-card); color: var(--color-secondary-text);"
+                    data-category="all"
+                    class="blog-filter-btn shrink-0 rounded-full px-3.5 py-2 text-xs font-medium transition-all duration-200 sm:py-1.5"
+                    style="background-color: var(--color-hover); color: var(--color-primary-text);"
                   >
-                    {cat}
+                    All
                   </button>
-                ))}
+                  {categories.map((cat) => (
+                    <button
+                      data-category={cat}
+                      class="blog-filter-btn shrink-0 rounded-full px-3.5 py-2 text-xs font-medium transition-all duration-200 sm:py-1.5"
+                      style="background-color: var(--color-card); color: var(--color-secondary-text);"
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <!-- Post Count -->
@@ -120,7 +123,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                   <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
                     <!-- Hero Image -->
                     {post.data.heroImage && (
-                      <div class="sm:w-48 sm:h-32 flex-shrink-0 rounded-xl overflow-hidden bg-[var(--color-hover)]">
+                      <div class="w-full h-44 sm:w-48 sm:h-32 flex-shrink-0 rounded-xl overflow-hidden bg-[var(--color-hover)]">
                         <Image
                           src={post.data.heroImage}
                           alt=""
@@ -207,6 +210,14 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
 
 <style>
   .blog-post-card[hidden] {
+    display: none;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
 

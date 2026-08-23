@@ -56,8 +56,7 @@ export const POST: APIRoute = async ({ request }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
-        tags: ["blog-newsletter"],
+        email_address: email,
       }),
     });
 
@@ -70,7 +69,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (res.status === 400) {
       const data = await res.json();
-      if (data.email?.[0]?.includes("already subscribed")) {
+      if (data.email_address?.[0]?.includes("already subscribed") || data.detail?.[0]?.includes("already subscribed")) {
         return new Response(JSON.stringify({ ok: true, message: "Already subscribed!" }), {
           status: 200,
           headers: { "Content-Type": "application/json" },

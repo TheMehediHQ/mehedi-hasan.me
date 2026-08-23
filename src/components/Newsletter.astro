@@ -1,0 +1,145 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section
+  class="animate-on-scroll w-full rounded-2xl p-4 sm:p-6"
+  style="background-color: var(--color-card);"
+>
+  <div class="flex flex-col items-start text-left w-full">
+
+    <h3
+      class="text-lg sm:text-xl font-semibold mb-2"
+      style="color: var(--color-primary-text);"
+    >
+      Subscribe to the Newsletter
+    </h3>
+    <p class="text-sm leading-6 mb-6" style="color: var(--color-secondary-text);">
+      Get notified when I publish new blog posts. No spam, unsubscribe anytime.
+    </p>
+
+    <form id="newsletter-form" class="w-full flex flex-col sm:flex-row gap-3">
+      <input type="text" name="honeypot" class="hidden" tabindex={-1} autocomplete="off" />
+
+      <input
+        id="newsletter-email"
+        name="email"
+        type="email"
+        placeholder="your@email.com"
+        required
+        class="w-full sm:flex-1 sm:min-w-0 h-12 rounded-xl border border-[var(--color-border)] bg-transparent px-4 text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)] disabled:opacity-50"
+        style="color: var(--color-primary-text);"
+      />
+
+      <button
+        id="newsletter-btn"
+        type="submit"
+        class="inline-flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-6 rounded-xl text-sm font-medium bg-transparent border border-[var(--secondary-border)] transition-all duration-200 hover:!bg-[var(--color-hover)] hover:!border-[var(--color-hover-border)] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+        style="color: var(--color-button-secondary-text);"
+      >
+        <span id="newsletter-btn-text">Subscribe</span>
+        <Icon name="lucide:arrow-right" size={16} id="newsletter-btn-icon" />
+      </button>
+    </form>
+
+    <p id="newsletter-error" class="text-sm text-red-500 hidden mt-3" role="alert"></p>
+    <p id="newsletter-success" class="text-sm text-emerald-500 hidden mt-3" role="status"></p>
+  </div>
+</section>
+
+<style>
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const form = document.getElementById("newsletter-form") as HTMLFormElement;
+  const emailInput = document.getElementById("newsletter-email") as HTMLInputElement;
+  const btn = document.getElementById("newsletter-btn") as HTMLButtonElement;
+  const btnText = document.getElementById("newsletter-btn-text");
+  const btnIcon = document.getElementById("newsletter-btn-icon");
+  const errorEl = document.getElementById("newsletter-error");
+  const successEl = document.getElementById("newsletter-success");
+  let isSubmitting = false;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "-20%" }
+  );
+  document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
+
+  function showError(msg: string) {
+    if (errorEl) { errorEl.textContent = msg; errorEl.classList.remove("hidden"); }
+    if (successEl) successEl.classList.add("hidden");
+  }
+  function showSuccess(msg: string) {
+    if (successEl) { successEl.textContent = msg; successEl.classList.remove("hidden"); }
+    if (errorEl) errorEl.classList.add("hidden");
+  }
+  function hideMessages() {
+    errorEl?.classList.add("hidden");
+    successEl?.classList.add("hidden");
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    isSubmitting = true;
+    hideMessages();
+
+    if (btnText) btnText.textContent = "Subscribing...";
+    if (btn) btn.disabled = true;
+    if (btnIcon) btnIcon.style.display = "none";
+
+    const email = emailInput?.value?.trim();
+
+    if (!email) {
+      showError("Email is required");
+      isSubmitting = false;
+      if (btnText) btnText.textContent = "Subscribe";
+      if (btn) btn.disabled = false;
+      if (btnIcon) btnIcon.style.display = "";
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          honeypot: (form.querySelector('[name="honeypot"]') as HTMLInputElement)?.value || "",
+        }),
+      });
+      const data = await res.json();
+
+      if (res.ok || res.status === 201) {
+        form.reset();
+        showSuccess(data.message || "Subscribed! Check your inbox to confirm.");
+      } else {
+        showError(data.error || "Failed to subscribe");
+      }
+    } catch {
+      showError("Network error. Please try again.");
+    } finally {
+      isSubmitting = false;
+      if (btnText) btnText.textContent = "Subscribe";
+      if (btn) btn.disabled = false;
+      if (btnIcon) btnIcon.style.display = "";
+    }
+  });
+</script>

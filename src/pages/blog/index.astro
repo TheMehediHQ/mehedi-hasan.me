@@ -7,6 +7,7 @@ import BottomNav from '../../components/layout/BottomNav.astro';
 import MobileFooter from '../../components/layout/MobileFooter.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { Icon } from 'astro-icon/components';
+import Newsletter from '../../components/Newsletter.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
@@ -197,6 +198,11 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
               >
                 Try a different search term or category.
               </p>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="mt-12">
+              <Newsletter />
             </div>
 
           </div>

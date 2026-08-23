@@ -6,6 +6,7 @@ import Sidebar from '../components/layout/Sidebar.astro';
 import BottomNav from '../components/layout/BottomNav.astro';
 import MobileFooter from '../components/layout/MobileFooter.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import Newsletter from '../components/Newsletter.astro';
 import { Icon } from 'astro-icon/components';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -94,7 +95,18 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
                 <slot />
               </div>
 
-             
+
+
+  <!-- Newsletter -->
+              <div class="mt-12">
+                <Newsletter />
+              </div>
+
+
+
+
+
+
               <!-- Bottom Nav -->
 <div
   class="mt-12 pt-6 flex items-center justify-between gap-4"
@@ -120,6 +132,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     <Icon name="lucide:arrow-up" size={14} />
   </button>
 </div>
+
+            
 
             </div>
           </div>

@@ -17,6 +17,7 @@ A modern, open-source personal portfolio and blog built with [Astro](https://ast
 - 📡 **Live Signals** — Real-time Last.fm integration showing currently playing music
 - 👤 **Visitor Tracking** — Live visitor counter powered by Upstash Redis
 - 📬 **Contact Form** — Serverless contact form via Resend API
+- 📰 **Newsletter** — Blog newsletter subscription powered by Buttondown
 - 🗺️ **Sitemap & RSS** — Auto-generated sitemap and RSS feed for blog posts
 - 🔍 **SEO Optimized** — Canonical URLs, Open Graph tags, and structured metadata
 - 🖼️ **Optimized Images** — Sharp-powered image processing
@@ -46,7 +47,7 @@ A modern, open-source personal portfolio and blog built with [Astro](https://ast
 - **Fonts:** Atkinson (self-hosted)
 - **Blog:** MDX with content collections
 - **Deployment:** [Vercel](https://vercel.com)
-- **APIs:** Resend (email), Last.fm (music), Upstash Redis (visitor tracking)
+- **APIs:** Resend (email), Last.fm (music), Upstash Redis (visitor tracking), Buttondown (newsletter)
 
 ## Project Structure
 
@@ -111,6 +112,7 @@ A modern, open-source personal portfolio and blog built with [Astro](https://ast
    | `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis REST token           | No       |
    | `IP_GEOLOCATION_API_URL`   | IP geolocation API endpoint        | No       |
    | `IP_GEOLOCATION_API_KEY`   | IP geolocation API key             | No       |
+   | `BUTTONDOWN_API_KEY`       | Buttondown API key for newsletter  | No       |
 
 4. **Start the dev server:**
 

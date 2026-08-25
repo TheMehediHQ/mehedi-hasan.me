@@ -66,4 +66,17 @@ export const projects: Project[] = [
       "Built a full-stack plant care application with secure authentication via Clerk, plant collection management, care guides, watering schedule tracking, and a responsive UI using React, Express, MongoDB, Firebase, and Tailwind CSS.",
     type: "personal",
   },
+  {
+    id: "6",
+    title: "Foodly",
+    description:
+      "Foodly is a food delivery web application that helps users browse restaurants, order meals, and track their deliveries in real-time.",
+    image: "/projects/foodly.png",
+    technologies: ["React", "Express", "MongoDB", "Firebase", "Tailwind CSS"],
+    github: "https://github.com/TheMehediHQ/Foodly",
+    liveDemo: "https://foodly.mehedi-hasan.me",
+    details:
+      "Built a full-stack food delivery application with secure authentication via Clerk, restaurant browsing, meal ordering, delivery tracking, and a responsive UI using React, Express, MongoDB, Firebase, and Tailwind CSS.",
+    type: "personal",
+  },
 ];

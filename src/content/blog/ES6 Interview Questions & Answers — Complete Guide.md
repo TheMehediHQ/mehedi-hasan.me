@@ -1,27 +1,23 @@
 ---
-title: 'ES6 Interview Questions & Answers — Complete Bengali & English Guide'
-description: 'A complete Bengali and English guide to common ES6 and JavaScript interview questions, covering modern JavaScript concepts with code examples.'
+title: 'ES6 Interview Questions & Answers — Complete Guide'
+description: 'A complete guide to common ES6 and JavaScript interview questions, covering modern JavaScript concepts with code examples.'
 pubDate: 'Dec 16 2025'
 heroImage: '../../assets/es6.webp'
 category: 'Tech'
 tags: ['javascript', 'interview', 'es6']
 ---
 
-# 📘 ES6 Interview Questions — English + Bengali
+# ES6 Interview Questions — Complete Guide
 
-JavaScript interview তে ES6 concepts জানাটা essential। এই guide-এ common ES6 questions গুলো code examples সহ explain করা হয়েছে — English ও বাংলা দুটোতেই।
+JavaScript interviews heavily test ES6 concepts. This guide explains common ES6 questions with code examples.
 
-> **Tip:** শুধু মুখস্থ না করে concept বুঝে practice করো। Interview-এ follow-up questions আসবেই।
+> **Tip:** Don't just memorize definitions — understand the concepts and practice. Follow-up questions are guaranteed in interviews.
 
 ---
 
 ## 1. What is ES6? What features have you used?
 
-**English:**
 ES6 (ECMAScript 2015) is a major update to JavaScript that introduced modern, cleaner syntax and powerful features.
-
-**বাংলা:**
-ES6 (ECMAScript 2015) হলো JavaScript-এর একটি বড় update, যা modern syntax এবং powerful features নিয়ে এসেছে।
 
 **Key Features:**
 
@@ -38,16 +34,14 @@ ES6 (ECMAScript 2015) হলো JavaScript-এর একটি বড় update,
 
 ## 2. var vs let vs const
 
-**English:** The main differences are in scoping, reassignment, and hoisting.
-
-**বাংলা:** মূল পার্থক্য scoping, reassignment এবং hoisting-এ।
+The main differences are in scoping, reassignment, and hoisting.
 
 | Feature | `var` | `let` | `const` |
 |---------|-------|-------|---------|
 | Scope | Function | Block | Block |
-| Redeclare | ✅ Yes | ❌ No | ❌ No |
-| Reassign | ✅ Yes | ✅ Yes | ❌ No |
-| Hoisted | ✅ Yes (undefined) | ✅ Yes (TDZ) | ✅ Yes (TDZ) |
+| Redeclare | Yes | No | No |
+| Reassign | Yes | Yes | No |
+| Hoisted | Yes (undefined) | Yes (TDZ) | Yes (TDZ) |
 
 ```js
 var x = 1;    // function-scoped, can redeclare
@@ -69,18 +63,16 @@ console.log(b); // ReferenceError
 
 ## 3. What are Default Parameters?
 
-**English:** Default parameters let functions use predefined values when no argument is passed.
-
-**বাংলা:** Default parameter দিয়ে function-এ argument না পাঠালেও একটি predefined value ব্যবহার করা যায়।
+Default parameters let functions use predefined values when no argument is passed.
 
 ```js
-// ❌ Old way
+// Old way
 function greet(name) {
   name = name || 'Guest';
   console.log(`Hello ${name}`);
 }
 
-// ✅ ES6 way
+// ES6 way
 function greet(name = 'Guest') {
   console.log(`Hello ${name}`);
 }
@@ -94,8 +86,6 @@ greet('Mehedi'); // "Hello Mehedi"
 ## 4. Spread Operator vs Rest Operator
 
 Both use `...` syntax but serve opposite purposes.
-
-দুটোতেই `...` syntax, কিন্তু কাজ উল্টো।
 
 | Operator | Purpose | Example |
 |----------|---------|---------|
@@ -126,18 +116,16 @@ sum(1, 2, 3, 4); // 10
 
 ## 5. Template Literals
 
-**English:** Template literals use backticks and allow embedded expressions with `${}`.
-
-**বাংলা:** Template literal backtick ব্যবহার করে এবং `${}` দিয়ে string-এ variable বসানো যায়।
+Template literals use backticks and allow embedded expressions with `${}`.
 
 ```js
 const name = 'Mehedi';
 const age = 24;
 
-// ❌ Old way
+// Old way
 const msg = 'Hello ' + name + ', you are ' + age + ' years old';
 
-// ✅ ES6 way
+// ES6 way
 const msg = `Hello ${name}, you are ${age} years old`;
 
 // Multi-line strings
@@ -153,9 +141,7 @@ const html = `
 
 ## 6. Destructuring
 
-**English:** Destructuring extracts values from arrays or properties from objects into variables.
-
-**বাংলা:** Destructuring দিয়ে array বা object থেকে সহজে value বের করে variable-এ রাখা যায়।
+Destructuring extracts values from arrays or properties from objects into variables.
 
 ### Object Destructuring
 
@@ -195,9 +181,7 @@ let a = 1, b = 2;
 
 ## 7. Arrow Functions vs Regular Functions
 
-**English:** Arrow functions have shorter syntax and inherit `this` from the parent scope.
-
-**বাংলা:** Arrow function-এ syntax ছোট এবং এটি parent scope থেকে `this` inherit করে।
+Arrow functions have shorter syntax and inherit `this` from the parent scope.
 
 | Feature | Regular Function | Arrow Function |
 |---------|-----------------|----------------|
@@ -234,9 +218,7 @@ const obj = {
 
 ## 8. What is a Higher-Order Function?
 
-**English:** A function that takes another function as an argument, returns a function, or both.
-
-**বাংলা:** যে function অন্য function-কে argument হিসেবে নেয় অথবা function return করে।
+A function that takes another function as an argument, returns a function, or both.
 
 ```js
 // Takes a function as argument
@@ -262,9 +244,7 @@ numbers.reduce((sum, n) => sum + n, 0); // 15
 
 ## 9. What is an IIFE?
 
-**English:** IIFE (Immediately Invoked Function Expression) runs immediately after creation.
-
-**বাংলা:** IIFE হলো এমন function যা define হওয়ার সাথে সাথে execute হয়ে যায়।
+IIFE (Immediately Invoked Function Expression) runs immediately after creation.
 
 ```js
 // Traditional IIFE
@@ -290,12 +270,10 @@ numbers.reduce((sum, n) => sum + n, 0); // 15
 
 ## 10. Promise & Async/Await
 
-**English:** Promises handle asynchronous operations. `async/await` is syntactic sugar over promises.
-
-**বাংলা:** Promise asynchronous operations handle করে। `async/await` হলো promise-এর উপর cleaner syntax।
+Promises handle asynchronous operations. `async/await` is syntactic sugar over promises.
 
 ```js
-// Callback hell ❌
+// Callback hell
 getData(function(a) {
   getMore(a, function(b) {
     getEvenMore(b, function(c) {
@@ -304,14 +282,14 @@ getData(function(a) {
   });
 });
 
-// Promise chain ✅
+// Promise chain
 getData()
   .then(a => getMore(a))
   .then(b => getEvenMore(b))
   .then(c => console.log(c))
   .catch(err => console.error(err));
 
-// Async/Await ✅✅ (cleanest)
+// Async/Await (cleanest)
 async function fetchData() {
   try {
     const a = await getData();
@@ -328,9 +306,7 @@ async function fetchData() {
 
 ## 11. Classes in ES6
 
-**English:** ES6 classes provide cleaner syntax for creating objects and handling inheritance.
-
-**বাংলা:** ES6 class object তৈরি এবং inheritance handle করার জন্য cleaner syntax দেয়।
+ES6 classes provide cleaner syntax for creating objects and handling inheritance.
 
 ```js
 class Animal {
@@ -362,9 +338,7 @@ dog.speak(); // "Rex barks"
 
 ## 12. Modules — Import / Export
 
-**English:** ES6 modules allow you to split code into separate files and import only what you need.
-
-**বাংলা:** ES6 modules দিয়ে code আলাদা file-এ ভাগ করা যায় এবং দরকারি অংশ import করা যায়।
+ES6 modules allow you to split code into separate files and import only what you need.
 
 ```js
 // math.js — Named exports
@@ -429,7 +403,7 @@ const total = products.reduce((sum, p) => sum + p.price, 0);
 |---------|--------------|-----------------|---------|
 | Expires | Never (manual) | Tab close | Set date |
 | Size | ~5MB | ~5MB | ~4KB |
-| Sent to server | ❌ No | ❌ No | ✅ Yes |
+| Sent to server | No | No | Yes |
 | Access | Client only | Client only | Client + Server |
 
 ```js
@@ -448,9 +422,7 @@ document.cookie = 'user=Mehedi; expires=Fri, 31 Dec 2026 12:00:00 UTC; path=/';
 
 ## 15. Call by Value vs Call by Reference
 
-**English:** Primitives are passed by value, objects/arrays by reference.
-
-**বাংলা:** Primitive data value হিসেবে pass হয়, object/array reference হিসেবে।
+Primitives are passed by value, objects/arrays by reference.
 
 ```js
 // Call by Value (primitives)
@@ -475,9 +447,7 @@ console.log(obj1.value); // 20 — safe
 
 ## 16. Ternary Operator
 
-**English:** Shorthand for `if-else` conditions.
-
-**বাংলা:** `if-else` লেখার short syntax।
+Shorthand for `if-else` conditions.
 
 ```js
 // Syntax: condition ? valueIfTrue : valueIfFalse
@@ -499,9 +469,7 @@ isLoggedIn ? showDashboard() : showLogin();
 
 ## 17. Prototype Chain
 
-**English:** JavaScript's mechanism for object inheritance — objects inherit from other objects through the prototype chain.
-
-**বাংলা:** JavaScript-এর inheritance mechanism — একটি object অন্য object থেকে properties ও methods inherit করে।
+JavaScript's mechanism for object inheritance — objects inherit from other objects through the prototype chain.
 
 ```js
 function Person(name) {
@@ -526,9 +494,7 @@ console.log(me.hasOwnProperty('greet')); // false (inherited)
 
 ## 18. How to Debug JavaScript?
 
-**English:** Use browser DevTools, console methods, breakpoints, and network inspection.
-
-**বাংলা:** Browser DevTools, console methods, breakpoints এবং Network tab ব্যবহার করা যায়।
+Use browser DevTools, console methods, breakpoints, and network inspection.
 
 **Essential Tools:**
 
@@ -561,16 +527,14 @@ function calculate(x) {
 
 ## 19. What is an API? GET vs POST
 
-**English:** An API (Application Programming Interface) allows different systems to communicate.
-
-**বাংলা:** API বিভিন্ন software system-এর মধ্যে communication করতে সাহায্য করে।
+An API (Application Programming Interface) allows different systems to communicate.
 
 | Feature | GET | POST |
 |---------|-----|------|
 | Purpose | Retrieve data | Send/Create data |
 | Data location | URL params | Request body |
-| Cacheable | ✅ Yes | ❌ No |
-| Idempotent | ✅ Yes | ❌ No |
+| Cacheable | Yes | No |
+| Idempotent | Yes | No |
 | Data size limit | Yes (~2048 chars) | No limit |
 
 ```js
@@ -606,14 +570,14 @@ const response = await fetch('https://api.example.com/users', {
 
 ## Final Thoughts
 
-ES6 concepts JavaScript interview-এ বারবার আসে। শুধু definition না, **code example সহ practice করো**। Interview-এ follow-up questions আসবেই, তাই concept clearly বুঝো।
+ES6 concepts appear frequently in JavaScript interviews. Don't just memorize definitions — **practice with code examples**. Interviewers will ask follow-up questions, so make sure you clearly understand each concept.
 
 **Preparation Checklist:**
-- ✅ `let` / `const` / `var` differences
-- ✅ Arrow functions & `this` behavior
-- ✅ Destructuring (object + array)
-- ✅ Spread vs Rest
-- ✅ Promises & async/await
-- ✅ Array methods (map, filter, reduce)
-- ✅ ES6 classes & inheritance
-- ✅ Modules (import/export)
+- `let` / `const` / `var` differences
+- Arrow functions & `this` behavior
+- Destructuring (object + array)
+- Spread vs Rest
+- Promises & async/await
+- Array methods (map, filter, reduce)
+- ES6 classes & inheritance
+- Modules (import/export)

@@ -8,6 +8,7 @@ import HomeSection from "../../sections/HomeSection.astro";
 import AboutSection from "../../sections/AboutSection.astro";
 import ExperienceSection from "../../sections/ExperienceSection.astro";
 import ProjectsSection from "../../sections/ProjectsSection.astro";
+import ClientProjectsSection from "../../sections/ClientProjectsSection.astro";
 import SkillSection from "../../sections/SkillSection.astro";
 import EducationSection from "../../sections/EducationSection.astro";
 import InsightSection from "../../sections/InsightSection.astro";
@@ -18,7 +19,8 @@ const sections = [
   { id: "home", component: HomeSection },
   { id: "about", component: AboutSection },
   { id: "experience", component: ExperienceSection },
-  { id: "projects", component: ProjectsSection },
+   { id: "projects", component: ProjectsSection },
+  { id: "client-projects", component: ClientProjectsSection },
   { id: "skills", component: SkillSection },
   { id: "education", component: EducationSection },
   { id: "insights", component: InsightSection },
@@ -63,6 +65,7 @@ const sectionIds = sections.map((section) => section.id);
     "about",
     "experience",
     "projects",
+    "client-projects",
     "skills",
     "education",
     "insights",

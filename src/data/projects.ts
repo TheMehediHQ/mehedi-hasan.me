@@ -70,13 +70,13 @@ export const projects: Project[] = [
     id: "6",
     title: "Foodly",
     description:
-      "Foodly is a food delivery web application that helps users browse restaurants, order meals, and track their deliveries in real-time.",
+      "Foodly is a smart food inventory app that tracks expiry dates, monitors freshness, and prevents food waste in real-time.",
     image: "/projects/foodly.png",
     technologies: ["React", "Express", "MongoDB", "Firebase", "Tailwind CSS"],
     github: "https://github.com/TheMehediHQ/Foodly",
     liveDemo: "https://foodly.mehedi-hasan.me",
     details:
-      "Built a full-stack food delivery application with secure authentication via Clerk, restaurant browsing, meal ordering, delivery tracking, and a responsive UI using React, Express, MongoDB, Firebase, and Tailwind CSS.",
+      "Built a full-stack food inventory application with secure authentication via Clerk, expiry date tracking, freshness monitoring, waste prevention, and a responsive UI using React, Express, MongoDB, Firebase, and Tailwind CSS.",
     type: "personal",
   },
 ];

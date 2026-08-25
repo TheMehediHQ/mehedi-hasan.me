@@ -53,4 +53,17 @@ export const projects: Project[] = [
       "Built a full-stack financial tracking platform with secure authentication via Clerk, real-time expense monitoring, smart budgeting, categorized transaction history, and a responsive UI using Next.js, Express, and MongoDB.",
     type: "personal",
   },
+  {
+    id: "5",
+    title: "Treely",
+    description:
+      "Treely is a plant care tracking and management web application that helps users manage their plant collections, access care guides, and track watering schedules.",
+    image: "/projects/treely.png",
+    technologies: ["React", "Express", "MongoDB", "Firebase", "Tailwind CSS"],
+    github: "https://github.com/TheMehediHQ/Treely",
+    liveDemo: "https://treely.mehedi-hasan.me",
+    details:
+      "Built a full-stack plant care application with secure authentication via Clerk, plant collection management, care guides, watering schedule tracking, and a responsive UI using React, Express, MongoDB, Firebase, and Tailwind CSS.",
+    type: "personal",
+  },
 ];

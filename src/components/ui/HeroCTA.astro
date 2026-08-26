@@ -45,7 +45,7 @@ const { items } = Astro.props;
           </a>
           {item.previewImage && (
             <span class="hero-cta-preview">
-              <img src={item.previewImage} alt={`Preview of ${item.label}`} class="hero-cta-preview-img" />
+              <img src={item.previewImage} alt={`Preview of ${item.label}`} width={200} height={115} loading="lazy" class="hero-cta-preview-img" />
             </span>
           )}
         </span>

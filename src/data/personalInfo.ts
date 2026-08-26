@@ -1,9 +1,9 @@
 export const personalInfo = {
   name: "Mehedi Hasan",
   title: "Software Developer",
-  avatar: "/profile/mh.png",
-  signature: "/profile/sign.png",
-  profile: "/profile/mehedi-hasan.png",
+  avatar: "/profile/mh.webp",
+  signature: "/profile/sign.webp",
+  profile: "/profile/mehedi-hasan.webp",
   resume: "/Resume_of_Mehedi_Hasan.pdf",
   bio: "I'm a software developer from Bangladesh, focused on building modern, scalable, and reliable software with React, Next.js, TypeScript, and Node.js.",
   currentFocus: [

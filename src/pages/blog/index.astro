@@ -126,17 +126,18 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                 >
                   <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
                     <!-- Hero Image -->
-                    {post.data.heroImage && (
-                      <div class="w-full sm:w-48 aspect-[16/10] flex-shrink-0 rounded-xl overflow-hidden bg-[var(--color-hover)]">
-                        <Image
-                          src={post.data.heroImage}
-                          alt=""
-                          width={400}
-                          height={250}
-                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                    )}
+                     {post.data.heroImage && (
+                       <div class="w-full sm:w-48 aspect-[16/10] flex-shrink-0 rounded-xl overflow-hidden bg-[var(--color-hover)]">
+                         <Image
+                           src={post.data.heroImage}
+                           alt={post.data.title}
+                           width={400}
+                           height={250}
+                           loading="lazy"
+                           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         />
+                       </div>
+                     )}
 
                     <!-- Content -->
                     <div class="flex-1 flex flex-col justify-center">

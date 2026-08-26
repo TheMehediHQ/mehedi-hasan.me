@@ -15,6 +15,9 @@ import { personalInfo } from "@/data/personalInfo";
           <img
             src={personalInfo.profile}
             alt="Mehedi Hasan"
+            width={2500}
+            height={2500}
+            loading="lazy"
             class="w-full h-full object-cover"
           />
         </div>
@@ -28,15 +31,18 @@ import { personalInfo } from "@/data/personalInfo";
       </div>
 
       <!-- RIGHT (DESKTOP IMAGE) -->
-      <div class="rounded-2xl hidden md:flex justify-center">
-        <div class="relative w-40 sm:w-48 lg:w-52 h-40 sm:h-48 lg:h-52 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
-          <img
-            src={personalInfo.profile}
-            alt="Mehedi Hasan"
-            class="w-full h-full object-cover"
-          />
+        <div class="rounded-2xl hidden md:flex justify-center">
+          <div class="relative w-40 sm:w-48 lg:w-52 h-40 sm:h-48 lg:h-52 rounded-3xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
+            <img
+              src={personalInfo.profile}
+              alt="Mehedi Hasan"
+              width={2500}
+              height={2500}
+              loading="lazy"
+              class="w-full h-full object-cover"
+            />
+          </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

@@ -19,6 +19,10 @@ import HeroCTA from "../components/ui/HeroCTA.astro";
       <img
         src={personalInfo.signature}
         alt="Mehedi Hasan signature"
+        width={806}
+        height={574}
+        loading="eager"
+        fetchpriority="high"
         class="h-auto w-20 opacity-90 sm:w-24 md:w-26 lg:w-28 xl:w-28"
       />
     </div>
@@ -54,9 +58,9 @@ import HeroCTA from "../components/ui/HeroCTA.astro";
           },
           ...socials.map((s) => {
             const previewMap: Record<string, string> = {
-              LinkedIn: "/images/linkedin.png",
-              GitHub: "/images/github.png",
-              X: "/images/x.png",
+              LinkedIn: "/images/linkedin.webp",
+              GitHub: "/images/github.webp",
+              X: "/images/x.webp",
             };
             return previewMap[s.label]
               ? { ...s, previewImage: previewMap[s.label] }

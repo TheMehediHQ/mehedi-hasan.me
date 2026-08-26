@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: "XGari",
     description:
       "A modern automotive marketplace platform where users can browse, compare, and discover vehicles with a fast and responsive user experience.",
-    image: "/projects/xgari.png",
+    image: "/projects/xgari.webp",
     technologies: ["Next.js", "PostgreSQL", "Hono", "Tailwind CSS"],
     github: "",
     liveDemo: "https://xgari.com",
@@ -19,7 +19,7 @@ export const projects: Project[] = [
     title: "AYVoice",
     description:
       "A cloud-based bulk SMS and voice calling platform that enables businesses to manage campaigns, contacts, and communication efficiently.",
-    image: "/projects/ayvoice.png",
+    image: "/projects/ayvoice.webp",
     technologies: ["Next.js", "Hono", "PostgreSQL"],
     github: "",
     liveDemo: "https://ayvoice.com",
@@ -32,7 +32,7 @@ export const projects: Project[] = [
     title: "NexVibe",
     description:
       "A modern software agency website showcasing services, portfolio, and business solutions with a clean, responsive, and high-performance design.",
-    image: "/projects/nexvibe.png",
+    image: "/projects/nexvibe.webp",
     technologies: ["Next.js", "Tailwind CSS"],
     github: "",
     liveDemo: "https://nexvibe.tech",
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     title: "Kashly",
     description:
       "A modern money management app that helps users track income and expenses, set budgets, and achieve financial goals with real-time dashboards.",
-    image: "/projects/kashly.png",
+    image: "/projects/kashly.webp",
     technologies: ["Next.js", "TypeScript", "Express", "MongoDB", "Tailwind CSS"],
     github: "https://github.com/TheMehediHQ/Kashly",
     liveDemo: "https://kashly.mehedi-hasan.me",
@@ -58,7 +58,7 @@ export const projects: Project[] = [
     title: "Treely",
     description:
       "Treely is a plant care tracking and management web application that helps users manage their plant collections, access care guides, and track watering schedules.",
-    image: "/projects/treely.png",
+    image: "/projects/treely.webp",
     technologies: ["React", "Express", "MongoDB", "Firebase", "Tailwind CSS"],
     github: "https://github.com/TheMehediHQ/Treely",
     liveDemo: "https://treely.mehedi-hasan.me",
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     title: "Foodly",
     description:
       "Foodly is a smart food inventory app that tracks expiry dates, monitors freshness, and prevents food waste in real-time.",
-    image: "/projects/foodly.png",
+    image: "/projects/foodly.webp",
     technologies: ["React", "Express", "MongoDB", "Firebase", "Tailwind CSS"],
     github: "https://github.com/TheMehediHQ/Foodly",
     liveDemo: "https://foodly.mehedi-hasan.me",

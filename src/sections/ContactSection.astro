@@ -21,8 +21,9 @@ import { socials } from "@/data/socials";
         <div class="space-y-8">
           <div class="space-y-1">
             <p class="text-sm text-[var(--color-secondary-text)]">Email</p>
-            <a href="mailto:hello@mehedi-hasan.me" class="contact-link text-sm" style="color: var(--color-primary-text);">
+            <a href="mailto:hello@mehedi-hasan.me" class="contact-link inline-flex items-center gap-1 text-sm" style="color: var(--color-primary-text);">
               hello@mehedi-hasan.me
+              <Icon name="lucide:arrow-up-right" size={12} class="opacity-0 -translate-x-1 transition-all duration-200" />
             </a>
           </div>
 
@@ -33,15 +34,17 @@ import { socials } from "@/data/socials";
 
           <div class="space-y-1">
             <p class="text-sm text-[var(--color-secondary-text)]">WhatsApp</p>
-            <a href="https://wa.me/8801747874773" target="_blank" rel="noopener noreferrer" class="contact-link text-sm" style="color: var(--color-primary-text);">
+            <a href="https://wa.me/8801747874773" target="_blank" rel="noopener noreferrer" class="contact-link inline-flex items-center gap-1 text-sm" style="color: var(--color-primary-text);">
               +880 1747 874 773
+              <Icon name="lucide:arrow-up-right" size={12} class="opacity-0 -translate-x-1 transition-all duration-200" />
             </a>
           </div>
 
           <div class="space-y-1">
             <p class="text-sm text-[var(--color-secondary-text)]">Schedule a Call</p>
-            <a href="https://cal.com/TheMehediHQ/15min" target="_blank" rel="noopener noreferrer" class="contact-link text-sm" style="color: var(--color-primary-text);">
+            <a href="https://cal.com/TheMehediHQ/15min" target="_blank" rel="noopener noreferrer" class="contact-link inline-flex items-center gap-1 text-sm" style="color: var(--color-primary-text);">
               cal.com/themehedihq
+              <Icon name="lucide:arrow-up-right" size={12} class="opacity-0 -translate-x-1 transition-all duration-200" />
             </a>
           </div>
 
@@ -147,6 +150,10 @@ import { socials } from "@/data/socials";
   }
   .contact-link:hover::after {
     width: 100%;
+  }
+  .contact-link:hover svg {
+    opacity: 1;
+    transform: translateX(0);
   }
 </style>
 

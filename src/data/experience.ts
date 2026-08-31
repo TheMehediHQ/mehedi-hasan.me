@@ -5,6 +5,7 @@ export const experiences: Experience[] = [
     id: "1",
     role: "Full Stack Developer",
     company: "NexVibe",
+    companyUrl: "https://www.nexvibe.tech",
     period: "May 2026 - Present",
     description:
       "Leading full-stack development for a SaaS platform serving 100k+ users. Implemented micro-frontend architecture and improved performance by 40%.",
@@ -15,6 +16,7 @@ export const experiences: Experience[] = [
     id: "2",
     role: "Full Stack Developer Intern",
     company: "Apexiums Technologies",
+    companyUrl: "https://www.apexiumstechnologies.com",
     period: "March 2026 - April 2026",
     description:
       "Built and maintained multiple client projects from concept to deployment. Specialized in React ecosystems and RESTful API design.",
@@ -24,6 +26,7 @@ export const experiences: Experience[] = [
     id: "3",
     role: "Volunteer",
     company: "Quantum Foundation",
+    companyUrl: "https://quantummethod.org",
     period: "February 2018 - Present",
     description:
       "Working as a volunteer, contributing to motivational initiatives and community outreach programs to inspire and uplift people.",

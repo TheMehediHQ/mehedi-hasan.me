@@ -41,7 +41,18 @@ const { experience, index = 0 } = Astro.props;
             class="text-xs sm:text-sm"
             style="color: var(--color-accent);"
           >
-            {experience.company}
+            {experience.companyUrl ? (
+              <a
+                href={experience.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline transition-opacity duration-200 hover:opacity-80"
+              >
+                {experience.company}
+              </a>
+            ) : (
+              experience.company
+            )}
           </p>
         </div>
       </div>

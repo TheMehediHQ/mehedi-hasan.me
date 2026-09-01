@@ -1,19 +1,19 @@
 import type { Project } from "@/types";
 
 export const projects: Project[] = [
-  {
-    id: "1",
-    title: "XGari",
-    description:
-      "A modern automotive marketplace platform where users can browse, compare, and discover vehicles with a fast and responsive user experience.",
-    image: "/projects/xgari.webp",
-    technologies: ["Next.js", "PostgreSQL", "Hono", "Tailwind CSS"],
-    github: "",
-    liveDemo: "https://xgari.com",
-    details:
-      "Built a scalable automotive marketplace with secure authentication, advanced search, responsive UI, and a powerful admin dashboard for managing vehicles, users, and platform content.",
-    type: "professional",
-  },
+  // {
+  //   id: "1",
+  //   title: "XGari",
+  //   description:
+  //     "A modern automotive marketplace platform where users can browse, compare, and discover vehicles with a fast and responsive user experience.",
+  //   image: "/projects/xgari.webp",
+  //   technologies: ["Next.js", "PostgreSQL", "Hono", "Tailwind CSS"],
+  //   github: "",
+  //   liveDemo: "https://xgari.com",
+  //   details:
+  //     "Built a scalable automotive marketplace with secure authentication, advanced search, responsive UI, and a powerful admin dashboard for managing vehicles, users, and platform content.",
+  //   type: "professional",
+  // },
   {
     id: "2",
     title: "AYVoice",

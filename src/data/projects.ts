@@ -16,7 +16,7 @@ export const projects: Project[] = [
   // },
   {
     id: "2",
-    title: "AYVoice",
+    title: "AY Voice",
     description:
       "A cloud-based bulk SMS and voice calling platform that enables businesses to manage campaigns, contacts, and communication efficiently.",
     image: "/projects/ayvoice.webp",

@@ -141,7 +141,7 @@ export const POST: APIRoute = async ({ request }) => {
   if (!baseUrl) {
     if (import.meta.env.GROQ_API_KEY && !import.meta.env.AI_API_KEY) {
       baseUrl = "https://api.groq.com/openai/v1";
-      model = model || "llama-3.1-8b-instant";
+      model = model || "qwen/qwen3.8-27b";
     } else if (import.meta.env.OPENROUTER_API_KEY && !import.meta.env.AI_API_KEY) {
       baseUrl = "https://openrouter.ai/api/v1";
       model = model || "openai/gpt-4o-mini";

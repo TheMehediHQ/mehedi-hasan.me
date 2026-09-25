@@ -2,6 +2,7 @@
 import Sidebar from "./Sidebar.astro";
 import BottomNav from "./BottomNav.astro";
 import MobileFooter from "./MobileFooter.astro";
+import Chatbot from "../chat/Chatbot.astro";
 
 import HomeSection from "../../sections/HomeSection.astro";
 
@@ -57,6 +58,9 @@ const sectionIds = sections.map((section) => section.id);
 
   <!-- Mobile Navigation -->
   <BottomNav />
+
+  <!-- AI Portfolio Assistant Chatbot -->
+  <Chatbot />
 </div>
 
 <script>

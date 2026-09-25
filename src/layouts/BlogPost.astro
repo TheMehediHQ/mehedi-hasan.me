@@ -7,6 +7,7 @@ import BottomNav from '../components/layout/BottomNav.astro';
 import MobileFooter from '../components/layout/MobileFooter.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Newsletter from '../components/Newsletter.astro';
+import Chatbot from '../components/chat/Chatbot.astro';
 import { Icon } from 'astro-icon/components';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -146,6 +147,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
       <!-- Mobile Navigation -->
       <BottomNav />
+
+      <!-- AI Portfolio Assistant Chatbot -->
+      <Chatbot />
     </div>
   </body>
 </html>

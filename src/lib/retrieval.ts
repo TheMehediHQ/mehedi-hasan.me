@@ -59,9 +59,12 @@ export function retrievePortfolioKnowledge(query: string, maxSections = 3): Retr
   if (/\b(blog|blogs|article|articles|post|posts|writing|read|reading)\b/i.test(normalizedQuery)) {
     detectedIntents.push("blogs");
   }
+  if (/^(hi|hello|hey|good\s*(morning|afternoon|evening)|howdy|greetings|sup|yo|what'?s?\s*up|assalamu\s*alaikum|salam)\b/i.test(normalizedQuery.trim())) {
+    detectedIntents.push("greeting");
+  }
 
   // Always include personal bio if query is generic or asking who/about Mehedi / current role
-  const isGenericOrBio = /\b(who|mehedi|about|tell me|summary|yourself|intro|hello|hi|role|specialize|specialization)\b/i.test(normalizedQuery);
+  const isGenericOrBio = /\b(who|mehedi|about|tell me|summary|yourself|intro|role|specialize|specialization)\b/i.test(normalizedQuery);
 
   // Score each section
   const scoredSections = PORTFOLIO_KNOWLEDGE.map((section) => {
@@ -127,6 +130,11 @@ export function retrievePortfolioKnowledge(query: string, maxSections = 3): Retr
     .slice(0, maxSections)
     .map((item) => item.section);
 
+  // If greeting detected, use minimal context — don't dump the full bio
+  if (detectedIntents.includes("greeting")) {
+    selected = PORTFOLIO_KNOWLEDGE.filter((s) => s.id === "personal-bio");
+  }
+
   // If no sections matched, fallback to personal bio & skills
   if (selected.length === 0) {
     selected = PORTFOLIO_KNOWLEDGE.filter(
@@ -186,7 +194,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Booking or scheduling
   if (retrieval.detectedIntents.includes("booking") || /\b(call|meeting|schedule|book|calendar)\b/i.test(q)) {
     return {
-      text: "Yes, you can schedule a direct 15-minute call with Mehedi through his public Cal.com calendar. He is always happy to discuss new opportunities, projects, or technical collaborations.",
+      text: "Absolutely! You can book a 15-minute call with Mehedi directly through his Cal.com page. He's always happy to chat about new opportunities or collaborations.",
       actions: [
         { type: "booking", label: "Book a 15-min Call", url: "https://cal.com/TheMehediHQ/15min" },
         { type: "email", label: "Email Directly", url: "mailto:hello@mehedi-hasan.me" },
@@ -197,7 +205,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Resume
   if (retrieval.detectedIntents.includes("resume") || /\b(resume|cv)\b/i.test(q)) {
     return {
-      text: "You can view and download Mehedi Hasan's official resume directly via the link below. It outlines his full-stack work history, education, skills, and projects.",
+      text: "Sure! Here's Mehedi's resume — it covers his full-stack experience, skills, education, and projects.",
       actions: [
         { type: "resume", label: "View Resume (PDF)", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -268,7 +276,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Specialization & Current Role
   if (/specialize|specialization|current role|role/i.test(q)) {
     return {
-      text: "Mehedi Hasan is an **AI/LLM Developer** and **Full Stack Developer**. He is currently a **Full Stack Developer at NexVibe**, leading engineering for a SaaS platform serving 100k+ users. He specializes in high-performance web applications with React, Next.js, and TypeScript, alongside intelligent applications using LLMs and modern AI APIs.",
+      text: "Mehedi is an **AI/LLM Developer** and **Full Stack Developer**. He's currently at **NexVibe**, leading engineering for a SaaS platform with 100k+ users. His focus is on high-performance web apps with React, Next.js, and TypeScript, plus AI-powered applications using LLMs.",
       actions: [
         { type: "resume", label: "Read Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
         { type: "booking", label: "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" }
@@ -279,7 +287,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Availability / hiring
   if (retrieval.detectedIntents.includes("hiring") || /\b(available|hire|freelance|job|opportunity)\b/i.test(q)) {
     return {
-      text: "Mehedi is actively available for full-time software engineering and AI/LLM developer roles, as well as high-impact freelance/contract projects. You can reach out directly via email or schedule an introductory call.",
+      text: "Yes, Mehedi is actively looking for full-time software engineering and AI/LLM developer roles. He's also open to high-impact contract work. Feel free to reach out or book a call!",
       actions: [
         { type: "booking", label: "Schedule a 15-min Call", url: "https://cal.com/TheMehediHQ/15min" },
         { type: "email", label: "hello@mehedi-hasan.me", url: "mailto:hello@mehedi-hasan.me" },
@@ -340,9 +348,20 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
     };
   }
 
+  // Greeting
+  if (retrieval.detectedIntents.includes("greeting") || /^(hi|hello|hey|good\s*(morning|afternoon|evening)|howdy|greetings|sup|yo|assalamu\s*alaikum|salam)\b/i.test(q.trim())) {
+    return {
+      text: "Hey there! 👋 I'm Mehedi's AI assistant. Happy to tell you about his work, skills, or how to get in touch — what would you like to know?",
+      actions: [
+        { type: "booking", label: "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" },
+        { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
   // Default bio & overview
   return {
-    text: "Mehedi Hasan is an AI/LLM Developer and Full Stack Developer based in Dhaka, Bangladesh. He specializes in building scalable web applications with React, Next.js, TypeScript, and Node.js, alongside intelligent applications using LLMs and RAG architectures.",
+    text: "Mehedi is an AI/LLM Developer and Full Stack Developer based in Dhaka, Bangladesh. He builds scalable web apps with React, Next.js, and TypeScript, along with AI-powered solutions using LLMs and RAG architectures. Want to know more about his projects, skills, or experience?",
     actions: retrieval.suggestedActions,
   };
 }

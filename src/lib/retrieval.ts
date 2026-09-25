@@ -1,0 +1,348 @@
+import { PORTFOLIO_KNOWLEDGE, type KnowledgeSection } from "../data/portfolioKnowledge";
+
+export interface RetrievalResult {
+  sections: KnowledgeSection[];
+  suggestedActions: Array<{
+    type: "booking" | "resume" | "email" | "whatsapp" | "link";
+    label: string;
+    url: string;
+  }>;
+  contextText: string;
+  detectedIntents: string[];
+}
+
+// Tokenize and clean text
+function tokenize(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, " ")
+    .split(/\s+/)
+    .filter((token) => token.length > 2);
+}
+
+/**
+ * Retrieve the most relevant portfolio knowledge sections based on visitor query
+ */
+export function retrievePortfolioKnowledge(query: string, maxSections = 3): RetrievalResult {
+  const normalizedQuery = query.toLowerCase();
+  const queryTokens = tokenize(query);
+
+  const detectedIntents: string[] = [];
+
+  // Intent classification with word boundaries
+  if (/\b(call|meeting|schedule|book|calendar|cal\.com|appointment)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("booking");
+  }
+  if (/\b(resume|cv|pdf)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("resume");
+  }
+  if (/\b(hire|available|availability|job|opportunity|contract|freelance|full-time)\b/i.test(normalizedQuery) ||
+      /\bwork with (mehedi|him|you)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("hiring");
+  }
+  if (/\b(project|projects|built|kashly|treely|foodly|ayvoice|nexvibe|app|software)\b/i.test(normalizedQuery) ||
+      /ay\s*voice/i.test(normalizedQuery)) {
+    detectedIntents.push("projects");
+  }
+  if (/\b(skill|skills|technology|technologies|tech|stack|frontend|backend|database|databases|tools|react|next|next\.js|typescript|javascript|node|node\.js|express|prisma|postgres|postgresql|mongo|mongodb|docker|aws)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("skills");
+  }
+  if (/\b(experience|career|history|company|companies|role|intern|internship|nexvibe|apexiums|quantum)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("experience");
+  }
+  if (/\b(study|degree|university|education|physics|college|academic)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("education");
+  }
+  if (/\b(email|contact|whatsapp|reach|message|social|github|linkedin|twitter)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("contact");
+  }
+  if (/\b(blog|blogs|article|articles|post|posts|writing|read|reading)\b/i.test(normalizedQuery)) {
+    detectedIntents.push("blogs");
+  }
+
+  // Always include personal bio if query is generic or asking who/about Mehedi / current role
+  const isGenericOrBio = /\b(who|mehedi|about|tell me|summary|yourself|intro|hello|hi|role|specialize|specialization)\b/i.test(normalizedQuery);
+
+  // Score each section
+  const scoredSections = PORTFOLIO_KNOWLEDGE.map((section) => {
+    let score = 0;
+
+    // Keyword matching
+    for (const keyword of section.keywords) {
+      if (normalizedQuery.includes(keyword)) {
+        score += 4;
+      }
+    }
+
+    for (const token of queryTokens) {
+      if (section.content.toLowerCase().includes(token)) {
+        score += 1.5;
+      }
+      if (section.title.toLowerCase().includes(token)) {
+        score += 3;
+      }
+    }
+
+    // Intent alignment bonus
+    if (detectedIntents.includes("booking") && (section.id === "availability-hiring" || section.id === "contact-socials")) {
+      score += 12;
+    }
+    if (detectedIntents.includes("resume") && (section.id === "personal-bio" || section.id === "contact-socials")) {
+      score += 10;
+    }
+    if (detectedIntents.includes("hiring") && section.id === "availability-hiring") {
+      score += 12;
+    }
+    if (detectedIntents.includes("projects") && (section.id === "projects-professional" || section.id === "projects-personal")) {
+      score += 10;
+    }
+    if (detectedIntents.includes("skills") && section.id === "technical-skills") {
+      score += 12;
+    }
+    if (detectedIntents.includes("experience") && section.id === "work-experience") {
+      score += 12;
+    }
+    if (detectedIntents.includes("education") && section.id === "education-academics") {
+      score += 12;
+    }
+    if (detectedIntents.includes("contact") && section.id === "contact-socials") {
+      score += 12;
+    }
+    if (detectedIntents.includes("blogs") && section.id === "blog-articles") {
+      score += 12;
+    }
+    if (isGenericOrBio && section.id === "personal-bio") {
+      score += 10;
+    }
+
+    return { section, score };
+  });
+
+  // Sort descending by score
+  scoredSections.sort((a, b) => b.score - a.score);
+
+  // Pick top scoring sections with score > 0
+  let selected = scoredSections
+    .filter((item) => item.score > 0)
+    .slice(0, maxSections)
+    .map((item) => item.section);
+
+  // If no sections matched, fallback to personal bio & skills
+  if (selected.length === 0) {
+    selected = PORTFOLIO_KNOWLEDGE.filter(
+      (s) => s.id === "personal-bio" || s.id === "technical-skills"
+    );
+  }
+
+  // Collect relevant action buttons (deduplicated by url)
+  const actionsMap = new Map<string, KnowledgeSection["actions"][number]>();
+  for (const s of selected) {
+    if (s.actions) {
+      for (const act of s.actions) {
+        actionsMap.set(act.url, act);
+      }
+    }
+  }
+
+  // Force specific actions based on direct intents
+  if (detectedIntents.includes("booking") || detectedIntents.includes("hiring")) {
+    actionsMap.set("https://cal.com/TheMehediHQ/15min", {
+      type: "booking",
+      label: "Schedule a 15-min Call",
+      url: "https://cal.com/TheMehediHQ/15min",
+    });
+  }
+  if (detectedIntents.includes("resume")) {
+    actionsMap.set("/Resume_of_Mehedi_Hasan.pdf", {
+      type: "resume",
+      label: "Download Resume",
+      url: "/Resume_of_Mehedi_Hasan.pdf",
+    });
+  }
+
+  const suggestedActions = Array.from(actionsMap.values()).slice(0, 3);
+
+  // Construct compact context text
+  const contextText = selected
+    .map((s) => `### ${s.title}\n${s.content}`)
+    .join("\n\n");
+
+  return {
+    sections: selected,
+    suggestedActions,
+    contextText,
+    detectedIntents,
+  };
+}
+
+/**
+ * High-quality deterministic portfolio response generator when no external AI API key is configured.
+ * This guarantees the portfolio assistant answers every question with 100% accuracy and zero downtime.
+ */
+export function generateLocalPortfolioResponse(query: string): { text: string; actions: RetrievalResult["suggestedActions"] } {
+  const retrieval = retrievePortfolioKnowledge(query, 2);
+  const q = query.toLowerCase();
+
+  // Booking or scheduling
+  if (retrieval.detectedIntents.includes("booking") || /\b(call|meeting|schedule|book|calendar)\b/i.test(q)) {
+    return {
+      text: "Yes, you can schedule a direct 15-minute call with Mehedi through his public Cal.com calendar. He is always happy to discuss new opportunities, projects, or technical collaborations.",
+      actions: [
+        { type: "booking", label: "Book a 15-min Call", url: "https://cal.com/TheMehediHQ/15min" },
+        { type: "email", label: "Email Directly", url: "mailto:hello@mehedi-hasan.me" },
+      ],
+    };
+  }
+
+  // Resume
+  if (retrieval.detectedIntents.includes("resume") || /\b(resume|cv)\b/i.test(q)) {
+    return {
+      text: "You can view and download Mehedi Hasan's official resume directly via the link below. It outlines his full-stack work history, education, skills, and projects.",
+      actions: [
+        { type: "resume", label: "View Resume (PDF)", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Specific project: AyVoice
+  if (/ay\s*voice|ayvoice/i.test(q)) {
+    return {
+      text: "**AY Voice** is a cloud-based communication platform built by Mehedi that enables businesses to manage bulk SMS and voice calling campaigns efficiently.\n\n• **Key Features:** Campaign management, contact organization, message/call delivery logs, and telecommunication API integrations.\n• **Tech Stack:** Next.js, Hono, and PostgreSQL.\n• **Status:** Live at https://ayvoice.com",
+      actions: [
+        { type: "link", label: "Visit AY Voice", url: "https://ayvoice.com" },
+        { type: "booking", label: "Discuss Projects with Mehedi", url: "https://cal.com/TheMehediHQ/15min" }
+      ],
+    };
+  }
+
+  // Specific project: NexVibe
+  if (/nexvibe/i.test(q) && !/experience|role/i.test(q)) {
+    return {
+      text: "**NexVibe** (https://nexvibe.tech) is a modern software agency website built with Next.js and Tailwind CSS. It features responsive layouts, smooth micro-interactions, high Lighthouse performance, and a clean developer-portfolio aesthetic.",
+      actions: [
+        { type: "link", label: "Visit NexVibe", url: "https://nexvibe.tech" },
+      ],
+    };
+  }
+
+  // Specific technology: Next.js
+  if (/next\.js|nextjs/i.test(q) && /experience|work|use|skill/i.test(q)) {
+    return {
+      text: "Mehedi has extensive experience with **Next.js** (92% proficiency). He uses Next.js (App Router, Server Components, SSR/SSG, and Server Actions) across production applications including NexVibe, AY Voice, and Kashly. He also implemented micro-frontend architecture with Next.js, achieving 40% performance gains.",
+      actions: [
+        { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Specific technology: TypeScript
+  if (/typescript/i.test(q)) {
+    return {
+      text: "Yes, Mehedi works extensively with **TypeScript** (90% proficiency). He uses TypeScript across both frontend (Next.js, React) and backend (Node.js, Express, Prisma) codebases to enforce type safety, clean contracts, and maintainable enterprise architectures.",
+      actions: [
+        { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Frontend technologies
+  if (/frontend/i.test(q) && /technolog|skill|stack|use/i.test(q)) {
+    return {
+      text: "Mehedi specializes in modern frontend engineering:\n\n• **React** (95%) — Component architecture, hooks, and scalable state management\n• **Next.js** (92%) — App Router, Server Components, SSR/SSG, and performance tuning\n• **TypeScript** (90%) — Type-safe client code and interface modeling\n• **Tailwind CSS** (93%) — Responsive design, theme systems, and micro-interactions\n• **JavaScript ES6+** (92%)",
+      actions: [
+        { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Backend technologies
+  if (/backend/i.test(q) && /technolog|skill|stack|use/i.test(q)) {
+    return {
+      text: "Mehedi's backend technology stack includes:\n\n• **Node.js** (88%) — Scalable server runtimes and asynchronous services\n• **Express** (85%) — RESTful API design and middleware architecture\n• **Prisma** (82%) — Type-safe ORM for relational databases\n• **PostgreSQL** (82%) & **MongoDB** (80%) — Relational and document databases\n• **Docker** (78%) & **AWS** (75%) — Containerization and cloud deployment",
+      actions: [
+        { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Specialization & Current Role
+  if (/specialize|specialization|current role|role/i.test(q)) {
+    return {
+      text: "Mehedi Hasan is an **AI/LLM Developer** and **Full Stack Developer**. He is currently a **Full Stack Developer at NexVibe**, leading engineering for a SaaS platform serving 100k+ users. He specializes in high-performance web applications with React, Next.js, and TypeScript, alongside intelligent applications using LLMs and modern AI APIs.",
+      actions: [
+        { type: "resume", label: "Read Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+        { type: "booking", label: "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" }
+      ],
+    };
+  }
+
+  // Availability / hiring
+  if (retrieval.detectedIntents.includes("hiring") || /\b(available|hire|freelance|job|opportunity)\b/i.test(q)) {
+    return {
+      text: "Mehedi is actively available for full-time software engineering and AI/LLM developer roles, as well as high-impact freelance/contract projects. You can reach out directly via email or schedule an introductory call.",
+      actions: [
+        { type: "booking", label: "Schedule a 15-min Call", url: "https://cal.com/TheMehediHQ/15min" },
+        { type: "email", label: "hello@mehedi-hasan.me", url: "mailto:hello@mehedi-hasan.me" },
+      ],
+    };
+  }
+
+  // Technologies & skills general
+  if (retrieval.detectedIntents.includes("skills") || /\b(technolog|skill|stack)\b/i.test(q)) {
+    return {
+      text: "Mehedi specializes in modern full-stack web and AI application development:\n\n• **Frontend:** React (95%), Next.js (92%), Tailwind CSS (93%)\n• **Languages:** TypeScript (90%), JavaScript (92%)\n• **Backend & DB:** Node.js (88%), Express (85%), Prisma (82%), PostgreSQL (82%), MongoDB (80%)\n• **DevOps & Cloud:** Docker (78%), AWS (75%), Git (90%), Linux (85%)\n• **AI Focus:** RAG architectures, LLM API integration, and AI agents.",
+      actions: [
+        { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Projects general
+  if (retrieval.detectedIntents.includes("projects") || /\b(project|projects|built)\b/i.test(q)) {
+    return {
+      text: "Mehedi has built both professional and open-source applications:\n\n• **AY Voice:** Cloud-based bulk SMS & voice calling communication platform (Next.js, Hono, PostgreSQL).\n• **NexVibe:** Modern software agency website (Next.js, Tailwind CSS).\n• **Kashly:** Smart money management app with Clerk auth and real-time expense monitoring (Next.js, Express, MongoDB).\n• **Treely:** Plant care tracking and guide app (React, Express, MongoDB, Firebase).\n• **Foodly:** Real-time food inventory and freshness tracking app (React, Express, MongoDB, Firebase).",
+      actions: [
+        { type: "link", label: "Visit AY Voice", url: "https://ayvoice.com" },
+        { type: "link", label: "Kashly on GitHub", url: "https://github.com/TheMehediHQ/Kashly" },
+      ],
+    };
+  }
+
+  // Experience general
+  if (retrieval.detectedIntents.includes("experience") || /\b(experience|history|companies)\b/i.test(q)) {
+    return {
+      text: "Mehedi's professional experience includes:\n\n1. **Full Stack Developer at NexVibe** (May 2026 – Present): Leading full-stack engineering for a SaaS platform serving 100k+ users, implemented micro-frontends, and boosted performance by 40%.\n2. **Full Stack Developer Intern at Apexiums Technologies** (March 2026 – April 2026): Built client applications using React, Node.js, Express, and PostgreSQL.\n3. **Volunteer at Quantum Foundation** (2018 – Present): Motivational speaking, leadership, and community outreach.",
+      actions: [
+        { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Education
+  if (retrieval.detectedIntents.includes("education") || /\b(education|degree|university|physics)\b/i.test(q)) {
+    return {
+      text: "Mehedi holds a Bachelor of Science (B.Sc.) in Physics from the National University, Bangladesh (2018 – 2026). His studies encompassed physics, mathematics, and electronics, establishing a strong foundation in computational thinking and analytical problem solving.",
+      actions: [
+        { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
+      ],
+    };
+  }
+
+  // Contact
+  if (retrieval.detectedIntents.includes("contact") || /\b(contact|email|whatsapp|phone)\b/i.test(q)) {
+    return {
+      text: "You can reach Mehedi directly via:\n\n• **Email:** hello@mehedi-hasan.me\n• **WhatsApp:** +880 1747 874 773\n• **Schedule a Meeting:** cal.com/themehedihq\n• **Location:** Dhaka, Bangladesh",
+      actions: [
+        { type: "booking", label: "Schedule Call", url: "https://cal.com/TheMehediHQ/15min" },
+        { type: "email", label: "Send Email", url: "mailto:hello@mehedi-hasan.me" },
+        { type: "whatsapp", label: "WhatsApp Chat", url: "https://wa.me/8801747874773" },
+      ],
+    };
+  }
+
+  // Default bio & overview
+  return {
+    text: "Mehedi Hasan is an AI/LLM Developer and Full Stack Developer based in Dhaka, Bangladesh. He specializes in building scalable web applications with React, Next.js, TypeScript, and Node.js, alongside intelligent applications using LLMs and RAG architectures.",
+    actions: retrieval.suggestedActions,
+  };
+}

@@ -1,0 +1,664 @@
+---
+import { Icon } from "astro-icon/components";
+import { personalInfo } from "@/data/personalInfo";
+
+const suggestedPrompts = [
+  "Tell me about Mehedi",
+  "What technologies does he use?",
+  "What projects has he built?",
+  "Tell me about his experience",
+  "Is Mehedi available for work?",
+  "Can I schedule a call?",
+];
+---
+
+<div id="ai-portfolio-chatbot" class="relative z-50">
+  <!-- FLOATING TRIGGER BUTTON -->
+  <button
+    id="chatbot-trigger-btn"
+    type="button"
+    aria-label="Open AI Portfolio Assistant"
+    aria-expanded="false"
+    aria-controls="chatbot-panel"
+    class="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md border"
+    style="
+      background-color: var(--color-surface);
+      color: var(--color-primary-text);
+      border-color: var(--color-border);
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--color-border);
+    "
+  >
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+    </span>
+    <Icon name="lucide:sparkles" size={16} class="text-blue-500 transition-transform group-hover:rotate-12" />
+    <span class="tracking-tight font-medium">✨ Ask Me</span>
+  </button>
+
+  <!-- CHAT PANEL CONTAINER -->
+  <div
+    id="chatbot-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="chatbot-title"
+    class="fixed z-50 opacity-0 pointer-events-none scale-95 transition-all duration-200 ease-out flex flex-col overflow-hidden border rounded-2xl shadow-2xl backdrop-blur-xl
+           inset-x-3 bottom-20 top-16 sm:inset-auto sm:bottom-6 sm:right-6 sm:w-[400px] sm:h-[560px]"
+    style="
+      background-color: var(--color-background);
+      border-color: var(--color-border);
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--color-border);
+    "
+  >
+    <!-- HEADER -->
+    <div
+      class="flex items-center justify-between px-4 py-3.5 border-b select-none"
+      style="border-color: var(--color-border); background-color: var(--color-surface);"
+    >
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-[var(--color-border)]">
+          <img
+            src={personalInfo.avatar}
+            alt={personalInfo.name}
+            width={32}
+            height={32}
+            class="w-full h-full object-cover"
+          />
+          <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-[var(--color-surface)]"></span>
+        </div>
+        <div class="min-w-0">
+          <h2 id="chatbot-title" class="text-xs sm:text-sm font-semibold truncate leading-tight" style="color: var(--color-primary-text);">
+            AI Portfolio Assistant
+          </h2>
+          <p class="text-[10px] sm:text-[11px] truncate opacity-70" style="color: var(--color-muted-text);">
+            Grounded in Mehedi's portfolio
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1">
+        <!-- Clear / Restart Chat -->
+        <button
+          id="chatbot-clear-btn"
+          type="button"
+          aria-label="Restart conversation"
+          title="Restart conversation"
+          class="p-1.5 rounded-lg opacity-60 hover:opacity-100 hover:bg-[var(--color-hover)] transition-all cursor-pointer"
+          style="color: var(--color-secondary-text);"
+        >
+          <Icon name="lucide:rotate-ccw" size={15} />
+        </button>
+
+        <!-- Close button -->
+        <button
+          id="chatbot-close-btn"
+          type="button"
+          aria-label="Close Assistant"
+          title="Close (Esc)"
+          class="p-1.5 rounded-lg opacity-60 hover:opacity-100 hover:bg-[var(--color-hover)] transition-all cursor-pointer"
+          style="color: var(--color-secondary-text);"
+        >
+          <Icon name="lucide:x" size={17} />
+        </button>
+      </div>
+    </div>
+
+    <!-- MESSAGES SCROLL AREA -->
+    <div
+      id="chatbot-messages"
+      class="flex-1 overflow-y-auto px-4 py-4 space-y-3.5 scroll-smooth text-xs sm:text-sm"
+      tabindex="0"
+    >
+      <!-- Welcome message -->
+      <div class="flex gap-2.5 items-start message-bubble-bot">
+        <div class="w-6 h-6 rounded-full overflow-hidden shrink-0 mt-0.5 border border-[var(--color-border)]">
+          <img src={personalInfo.avatar} alt="Bot" width={24} height={24} class="w-full h-full object-cover" />
+        </div>
+        <div class="space-y-2 max-w-[85%]">
+          <div
+            class="p-3 rounded-2xl rounded-tl-sm border text-xs sm:text-sm leading-relaxed"
+            style="
+              background-color: var(--color-surface);
+              border-color: var(--color-border);
+              color: var(--color-primary-text);
+            "
+          >
+            Hi! I'm Mehedi's AI Portfolio Assistant. Ask me about his experience, projects, skills, or how to work with him.
+          </div>
+
+          <!-- Suggested quick prompt chips -->
+          <div id="quick-prompts-wrapper" class="flex flex-wrap gap-1.5 pt-1">
+            {suggestedPrompts.map((prompt) => (
+              <button
+                type="button"
+                data-quick-prompt={prompt}
+                class="quick-prompt-btn px-2.5 py-1 rounded-full text-[11px] font-medium border transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer text-left"
+                style="
+                  border-color: var(--color-border);
+                  background-color: var(--color-surface);
+                  color: var(--color-secondary-text);
+                "
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TYPING INDICATOR (Hidden by default) -->
+    <div
+      id="chatbot-typing"
+      class="hidden px-4 py-2 flex items-center gap-2 text-xs"
+      style="color: var(--color-muted-text);"
+    >
+      <div class="w-5 h-5 rounded-full overflow-hidden shrink-0 border border-[var(--color-border)]">
+        <img src={personalInfo.avatar} alt="Bot" width={20} height={20} class="w-full h-full object-cover" />
+      </div>
+      <div
+        class="flex items-center gap-1 px-3 py-2 rounded-2xl rounded-tl-sm border"
+        style="background-color: var(--color-surface); border-color: var(--color-border);"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse [animation-delay:150ms]"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse [animation-delay:300ms]"></span>
+        <span class="ml-1 text-[11px] font-medium">Thinking...</span>
+      </div>
+    </div>
+
+    <!-- INPUT CONTAINER -->
+    <div
+      class="p-3 border-t"
+      style="border-color: var(--color-border); background-color: var(--color-surface);"
+    >
+      <form id="chatbot-form" class="relative flex items-center gap-2">
+        <input
+          id="chatbot-input"
+          type="text"
+          name="query"
+          maxlength="500"
+          autocomplete="off"
+          placeholder="Ask about skills, projects, experience..."
+          class="flex-1 h-10 px-3.5 pr-10 rounded-xl border text-xs sm:text-sm bg-transparent placeholder:opacity-50 focus:outline-none transition-colors"
+          style="
+            border-color: var(--color-border);
+            color: var(--color-primary-text);
+          "
+        />
+        <button
+          id="chatbot-send-btn"
+          type="submit"
+          aria-label="Send Message"
+          disabled
+          class="absolute right-1.5 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer hover:bg-[var(--color-hover)]"
+          style="color: var(--color-accent);"
+        >
+          <Icon name="lucide:send" size={16} />
+        </button>
+      </form>
+      <p class="mt-1.5 text-[10px] text-center opacity-60" style="color: var(--color-muted-text);">
+        Answers are grounded in Mehedi's actual portfolio data.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  interface ActionItem {
+    type: "booking" | "resume" | "email" | "whatsapp" | "link";
+    label: string;
+    url: string;
+  }
+
+  interface ChatMessage {
+    role: "user" | "assistant";
+    content: string;
+    actions?: ActionItem[];
+  }
+
+  const STORAGE_KEY = "portfolio_chat_session_v1";
+
+  // Elements
+  const triggerBtn = document.getElementById("chatbot-trigger-btn") as HTMLButtonElement | null;
+  const panel = document.getElementById("chatbot-panel") as HTMLElement | null;
+  const closeBtn = document.getElementById("chatbot-close-btn") as HTMLButtonElement | null;
+  const clearBtn = document.getElementById("chatbot-clear-btn") as HTMLButtonElement | null;
+  const messagesContainer = document.getElementById("chatbot-messages") as HTMLElement | null;
+  const typingIndicator = document.getElementById("chatbot-typing") as HTMLElement | null;
+  const form = document.getElementById("chatbot-form") as HTMLFormElement | null;
+  const input = document.getElementById("chatbot-input") as HTMLInputElement | null;
+  const sendBtn = document.getElementById("chatbot-send-btn") as HTMLButtonElement | null;
+
+  let isOpen = false;
+  let isGenerating = false;
+  let conversationHistory: ChatMessage[] = [];
+
+  // Analytics event dispatcher
+  function trackEvent(name: string, data?: Record<string, unknown>) {
+    window.dispatchEvent(
+      new CustomEvent("portfolio:chatbot", {
+        detail: { event: name, ...data, timestamp: Date.now() },
+      })
+    );
+  }
+
+  // Load session history
+  function loadHistory() {
+    try {
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          conversationHistory = parsed;
+          renderAllMessages();
+        }
+      }
+    } catch {
+      // Ignore sessionStorage parsing issues
+    }
+  }
+
+  function saveHistory() {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(conversationHistory));
+    } catch {
+      // Ignore sessionStorage quota issues
+    }
+  }
+
+  // Simple markdown to HTML formatter (safe escape + bold, lists, links)
+  function formatMarkdown(text: string): string {
+    const escaped = text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    return escaped
+      // Bold
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      // Bullet lists
+      .replace(/(?:^|\n)[•*-]\s+(.+)/g, "<br/>• $1")
+      // Newlines
+      .replace(/\n\n/g, "<br/><br/>")
+      .replace(/\n/g, "<br/>");
+  }
+
+  // Render an action CTA button
+  function createActionButtons(actions?: ActionItem[]): HTMLElement | null {
+    if (!actions || actions.length === 0) return null;
+
+    const container = document.createElement("div");
+    container.className = "flex flex-wrap gap-1.5 pt-2";
+
+    actions.forEach((act) => {
+      const a = document.createElement("a");
+      a.href = act.url;
+      a.target = act.url.startsWith("mailto:") ? "_self" : "_blank";
+      a.rel = "noopener noreferrer";
+      a.className =
+        "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-semibold transition-all duration-200 shadow-sm border hover:scale-105 active:scale-95";
+
+      if (act.type === "booking") {
+        a.style.backgroundColor = "var(--color-accent)";
+        a.style.color = "var(--color-button-primary-text)";
+        a.style.borderColor = "transparent";
+        a.innerHTML = `<span>📅 ${act.label}</span>`;
+        a.addEventListener("click", () => trackEvent("chatbot_booking_clicked", { url: act.url }));
+      } else if (act.type === "resume") {
+        a.style.backgroundColor = "var(--color-surface)";
+        a.style.color = "var(--color-primary-text)";
+        a.style.borderColor = "var(--color-border)";
+        a.innerHTML = `<span>📄 ${act.label}</span>`;
+        a.addEventListener("click", () => trackEvent("chatbot_resume_clicked", { url: act.url }));
+      } else if (act.type === "email" || act.type === "whatsapp") {
+        a.style.backgroundColor = "var(--color-surface)";
+        a.style.color = "var(--color-primary-text)";
+        a.style.borderColor = "var(--color-border)";
+        a.innerHTML = `<span>✉️ ${act.label}</span>`;
+        a.addEventListener("click", () => trackEvent("chatbot_contact_clicked", { url: act.url }));
+      } else {
+        a.style.backgroundColor = "var(--color-surface)";
+        a.style.color = "var(--color-secondary-text)";
+        a.style.borderColor = "var(--color-border)";
+        a.innerHTML = `<span>🔗 ${act.label}</span>`;
+      }
+
+      container.appendChild(a);
+    });
+
+    return container;
+  }
+
+  // Render a single message DOM node
+  function appendMessageNode(msg: ChatMessage) {
+    if (!messagesContainer) return;
+
+    const row = document.createElement("div");
+    row.className =
+      msg.role === "user"
+        ? "flex justify-end message-bubble-user"
+        : "flex gap-2.5 items-start message-bubble-bot";
+
+    if (msg.role === "user") {
+      const bubble = document.createElement("div");
+      bubble.className = "p-3 rounded-2xl rounded-tr-sm max-w-[85%] text-xs sm:text-sm leading-relaxed";
+      bubble.style.backgroundColor = "var(--color-accent)";
+      bubble.style.color = "var(--color-button-primary-text)";
+      bubble.textContent = msg.content;
+      row.appendChild(bubble);
+    } else {
+      // Bot avatar
+      const avatarBox = document.createElement("div");
+      avatarBox.className = "w-6 h-6 rounded-full overflow-hidden shrink-0 mt-0.5 border border-[var(--color-border)]";
+      avatarBox.innerHTML = '<img src="/profile/mh.webp" alt="Bot" width="24" height="24" class="w-full h-full object-cover"/>';
+      row.appendChild(avatarBox);
+
+      const contentBox = document.createElement("div");
+      contentBox.className = "space-y-1 max-w-[85%]";
+
+      const bubble = document.createElement("div");
+      bubble.className = "p-3 rounded-2xl rounded-tl-sm border text-xs sm:text-sm leading-relaxed";
+      bubble.style.backgroundColor = "var(--color-surface)";
+      bubble.style.borderColor = "var(--color-border)";
+      bubble.style.color = "var(--color-primary-text)";
+      bubble.innerHTML = formatMarkdown(msg.content);
+      contentBox.appendChild(bubble);
+
+      const actionButtons = createActionButtons(msg.actions);
+      if (actionButtons) {
+        contentBox.appendChild(actionButtons);
+      }
+
+      row.appendChild(contentBox);
+    }
+
+    messagesContainer.appendChild(row);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function renderAllMessages() {
+    if (!messagesContainer) return;
+
+    // Remove existing appended message nodes, keeping the welcome header
+    const userNodes = messagesContainer.querySelectorAll(".message-bubble-user, .message-bubble-bot:not(:first-child)");
+    userNodes.forEach((n) => n.remove());
+
+    conversationHistory.forEach((msg) => {
+      appendMessageNode(msg);
+    });
+
+    // Hide quick prompts if history exists
+    const quickPrompts = document.getElementById("quick-prompts-wrapper");
+    if (quickPrompts) {
+      quickPrompts.style.display = conversationHistory.length > 0 ? "none" : "flex";
+    }
+  }
+
+  // Toggle open/close
+  function openChat() {
+    if (!panel || !triggerBtn) return;
+    isOpen = true;
+    panel.classList.remove("opacity-0", "pointer-events-none", "scale-95");
+    panel.classList.add("opacity-100", "pointer-events-auto", "scale-100");
+    triggerBtn.setAttribute("aria-expanded", "true");
+    triggerBtn.classList.add("opacity-0", "pointer-events-none");
+
+    trackEvent("chatbot_opened");
+
+    setTimeout(() => {
+      input?.focus();
+      if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }, 150);
+  }
+
+  function closeChat() {
+    if (!panel || !triggerBtn) return;
+    isOpen = false;
+    panel.classList.add("opacity-0", "pointer-events-none", "scale-95");
+    panel.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
+    triggerBtn.setAttribute("aria-expanded", "false");
+    triggerBtn.classList.remove("opacity-0", "pointer-events-none");
+    triggerBtn.focus();
+  }
+
+  // Send message flow
+  async function sendMessage(text: string) {
+    const query = text.trim();
+    if (!query || isGenerating) return;
+
+    if (input) input.value = "";
+    if (sendBtn) sendBtn.disabled = true;
+
+    // Append user message
+    const userMessage: ChatMessage = { role: "user", content: query };
+    conversationHistory.push(userMessage);
+    appendMessageNode(userMessage);
+    saveHistory();
+
+    trackEvent("chatbot_message_sent", { query });
+
+    // Hide quick prompts
+    const quickPrompts = document.getElementById("quick-prompts-wrapper");
+    if (quickPrompts) quickPrompts.style.display = "none";
+
+    // Show typing indicator
+    if (typingIndicator) typingIndicator.classList.remove("hidden");
+    if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    isGenerating = true;
+
+    // Create placeholder for bot message
+    let botMessageText = "";
+    let botActions: ActionItem[] = [];
+
+    const botMessageObj: ChatMessage = {
+      role: "assistant",
+      content: "",
+      actions: [],
+    };
+
+    // Prepare bot row
+    const row = document.createElement("div");
+    row.className = "flex gap-2.5 items-start message-bubble-bot";
+
+    const avatarBox = document.createElement("div");
+    avatarBox.className = "w-6 h-6 rounded-full overflow-hidden shrink-0 mt-0.5 border border-[var(--color-border)]";
+    avatarBox.innerHTML = '<img src="/profile/mh.webp" alt="Bot" width="24" height="24" class="w-full h-full object-cover"/>';
+    row.appendChild(avatarBox);
+
+    const contentBox = document.createElement("div");
+    contentBox.className = "space-y-1 max-w-[85%]";
+
+    const bubble = document.createElement("div");
+    bubble.className = "p-3 rounded-2xl rounded-tl-sm border text-xs sm:text-sm leading-relaxed";
+    bubble.style.backgroundColor = "var(--color-surface)";
+    bubble.style.borderColor = "var(--color-border)";
+    bubble.style.color = "var(--color-primary-text)";
+    contentBox.appendChild(bubble);
+
+    row.appendChild(contentBox);
+
+    let rowAppended = false;
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: query,
+          history: conversationHistory.slice(-4),
+        }),
+      });
+
+      if (typingIndicator) typingIndicator.classList.add("hidden");
+
+      if (!response.ok) {
+        let errMessage = "Sorry, I ran into an error connecting to the service. Please try again shortly or contact Mehedi directly at hello@mehedi-hasan.me.";
+        try {
+          const errData = await response.json();
+          if (errData.error) errMessage = errData.error;
+        } catch {
+          // ignore
+        }
+        bubble.textContent = errMessage;
+        if (!rowAppended && messagesContainer) {
+          messagesContainer.appendChild(row);
+          rowAppended = true;
+        }
+        botMessageObj.content = errMessage;
+        conversationHistory.push(botMessageObj);
+        saveHistory();
+        return;
+      }
+
+      // Check content-type: SSE or JSON
+      const contentType = response.headers.get("content-type") || "";
+
+      if (contentType.includes("text/event-stream") && response.body) {
+        if (!rowAppended && messagesContainer) {
+          messagesContainer.appendChild(row);
+          rowAppended = true;
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop() || "";
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || !trimmed.startsWith("data: ")) continue;
+
+            const jsonStr = trimmed.slice(6);
+            try {
+              const parsed = JSON.parse(jsonStr);
+
+              if (parsed.token) {
+                botMessageText += parsed.token;
+                bubble.innerHTML = formatMarkdown(botMessageText);
+                if (messagesContainer) {
+                  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+              }
+
+              if (parsed.done) {
+                if (parsed.actions) {
+                  botActions = parsed.actions;
+                }
+              }
+            } catch {
+              // Ignore partial JSON
+            }
+          }
+        }
+      } else {
+        // Regular JSON fallback
+        const data = await response.json();
+        botMessageText = data.text || "I have received your message.";
+        botActions = data.actions || [];
+        bubble.innerHTML = formatMarkdown(botMessageText);
+        if (!rowAppended && messagesContainer) {
+          messagesContainer.appendChild(row);
+          rowAppended = true;
+        }
+      }
+
+      // Render action CTA buttons if any
+      if (botActions && botActions.length > 0) {
+        const actionButtons = createActionButtons(botActions);
+        if (actionButtons) contentBox.appendChild(actionButtons);
+      }
+
+      botMessageObj.content = botMessageText;
+      botMessageObj.actions = botActions;
+      conversationHistory.push(botMessageObj);
+      saveHistory();
+
+    } catch (err) {
+      console.error("Chatbot request failed:", err);
+      if (typingIndicator) typingIndicator.classList.add("hidden");
+      const fallbackText = "I had trouble connecting. You can email Mehedi directly at hello@mehedi-hasan.me or schedule a call.";
+      bubble.textContent = fallbackText;
+      if (!rowAppended && messagesContainer) {
+        messagesContainer.appendChild(row);
+      }
+      const bookingAction = createActionButtons([
+        { type: "booking", label: "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" },
+        { type: "email", label: "Email Directly", url: "mailto:hello@mehedi-hasan.me" }
+      ]);
+      if (bookingAction) contentBox.appendChild(bookingAction);
+
+      botMessageObj.content = fallbackText;
+      conversationHistory.push(botMessageObj);
+      saveHistory();
+    } finally {
+      isGenerating = false;
+      if (input) {
+        input.disabled = false;
+        input.focus();
+      }
+      if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }
+  }
+
+  // Event Listeners
+  triggerBtn?.addEventListener("click", openChat);
+  closeBtn?.addEventListener("click", closeChat);
+
+  clearBtn?.addEventListener("click", () => {
+    conversationHistory = [];
+    sessionStorage.removeItem(STORAGE_KEY);
+    renderAllMessages();
+    const quickPrompts = document.getElementById("quick-prompts-wrapper");
+    if (quickPrompts) quickPrompts.style.display = "flex";
+    input?.focus();
+  });
+
+  // Handle form submission
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (input && input.value.trim()) {
+      sendMessage(input.value);
+    }
+  });
+
+  // Handle quick prompt clicks
+  document.addEventListener("click", (e) => {
+    const target = (e.target as HTMLElement)?.closest("[data-quick-prompt]") as HTMLElement | null;
+    if (target) {
+      const prompt = target.dataset.quickPrompt;
+      if (prompt) {
+        sendMessage(prompt);
+      }
+    }
+  });
+
+  // Enable/disable send button based on input
+  input?.addEventListener("input", () => {
+    if (sendBtn) {
+      sendBtn.disabled = !input.value.trim() || isGenerating;
+    }
+  });
+
+  // Keyboard accessibility: Escape to close
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) {
+      closeChat();
+    }
+  });
+
+  // Initialize
+  loadHistory();
+</script>

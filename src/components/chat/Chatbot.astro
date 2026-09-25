@@ -13,7 +13,8 @@ const suggestedPrompts = [
 ---
 
 <div id="ai-portfolio-chatbot" class="relative z-50">
-  <!-- FLOATING TRIGGER BUTTON -->
+ 
+<!-- FLOATING TRIGGER BUTTON -->
 <!-- FLOATING TRIGGER BUTTON -->
   <button
     id="chatbot-trigger-btn"
@@ -21,16 +22,29 @@ const suggestedPrompts = [
     aria-label="Open AI Portfolio Assistant"
     aria-expanded="false"
     aria-controls="chatbot-panel"
-    class="group fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md border"
+    class="group fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs sm:text-sm font-medium tracking-tight shadow-md transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 active:scale-95 cursor-pointer backdrop-blur-md border-[0.5px] border-[var(--color-border)]/60 hover:border-[#3A82F6]/60"
     style="
       background-color: var(--color-surface);
       color: var(--color-primary-text);
-      border-color: var(--color-border);
-      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--color-border);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.15);
     "
   >
-    <Icon name="lucide:sparkles" size={16} class="text-[#1FBFD8] transition-transform duration-300 group-hover:rotate-12" />
-    <span class="tracking-tight">Ask Me</span>
+    <!-- Brand Accent Glowing Sparkle -->
+    <span class="relative flex items-center justify-center">
+      <span class="absolute -inset-1 rounded-full bg-[#3A82F6]/25 blur-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+      <Icon
+        name="lucide:sparkles"
+        size={15}
+        class="relative text-[#3A82F6] transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
+      />
+    </span>
+
+    <span class="font-medium select-none">Ask Me</span>
+
+    <!-- Subtle AI Pill Tag -->
+    <span class="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-[#3A82F6]/10 text-[#3A82F6] border-[0.5px] border-[#3A82F6]/30 select-none">
+      AI
+    </span>
   </button>
 
   <!-- CHAT PANEL CONTAINER -->

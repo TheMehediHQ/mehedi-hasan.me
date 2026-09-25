@@ -246,7 +246,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Specific technology: TypeScript
   if (/typescript/i.test(q)) {
     return {
-      text: "Yes, Mehedi works extensively with **TypeScript** (90% proficiency). He uses TypeScript across both frontend (Next.js, React) and backend (Node.js, Express, Prisma) codebases to enforce type safety, clean contracts, and maintainable enterprise architectures.",
+      text: "Yes, Mehedi works extensively with **TypeScript** (90% proficiency). He uses TypeScript across both frontend (Next.js, React) and backend (Node.js) codebases to enforce type safety and maintainable architectures.",
       actions: [
         { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -256,7 +256,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Frontend technologies
   if (/frontend/i.test(q) && /technolog|skill|stack|use/i.test(q)) {
     return {
-      text: "Mehedi specializes in modern frontend engineering:\n\n• **React** (95%) — Component architecture, hooks, and scalable state management\n• **Next.js** (92%) — App Router, Server Components, SSR/SSG, and performance tuning\n• **TypeScript** (90%) — Type-safe client code and interface modeling\n• **Tailwind CSS** (93%) — Responsive design, theme systems, and micro-interactions\n• **JavaScript ES6+** (92%)",
+      text: "Mehedi specializes in modern frontend engineering:\n\n• **React** (95%) — Component architecture, hooks, and scalable state management\n• **Next.js** (92%) — App Router, Server Components, SSR/SSG, and performance tuning\n• **JavaScript** (95%) & **TypeScript** (90%) — Type-safe, modern development",
       actions: [
         { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -266,7 +266,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Backend technologies
   if (/backend/i.test(q) && /technolog|skill|stack|use/i.test(q)) {
     return {
-      text: "Mehedi's backend technology stack includes:\n\n• **Node.js** (88%) — Scalable server runtimes and asynchronous services\n• **Express** (85%) — RESTful API design and middleware architecture\n• **Prisma** (82%) — Type-safe ORM for relational databases\n• **PostgreSQL** (82%) & **MongoDB** (80%) — Relational and document databases\n• **Docker** (78%) & **AWS** (75%) — Containerization and cloud deployment",
+      text: "Mehedi's backend stack:\n\n• **Node.js** (90%) — Scalable server runtimes and asynchronous services\n• **FastAPI** (72%) — High-performance Python API framework\n• **PostgreSQL** (85%) & **MongoDB** (82%) — Relational and document databases\n• **Docker** (80%) & **AWS** (75%) — Containerization and cloud deployment",
       actions: [
         { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -298,7 +298,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Technologies & skills general
   if (retrieval.detectedIntents.includes("skills") || /\b(technolog|skill|stack)\b/i.test(q)) {
     return {
-      text: "Mehedi specializes in modern full-stack web and AI application development:\n\n• **Frontend:** React (95%), Next.js (92%), Tailwind CSS (93%)\n• **Languages:** TypeScript (90%), JavaScript (92%)\n• **Backend & DB:** Node.js (88%), Express (85%), Prisma (82%), PostgreSQL (82%), MongoDB (80%)\n• **DevOps & Cloud:** Docker (78%), AWS (75%), Git (90%), Linux (85%)\n• **AI Focus:** RAG architectures, LLM API integration, and AI agents.",
+      text: "Mehedi's tech stack:\n\n• **Frontend:** React (95%), Next.js (92%)\n• **Languages:** JavaScript (95%), TypeScript (90%), Python (75%)\n• **Backend:** Node.js (90%), FastAPI (72%)\n• **AI/LLM:** OpenAI (78%)\n• **Databases:** PostgreSQL (85%), MongoDB (82%)\n• **DevOps & Cloud:** Linux (88%), Git (92%), Docker (80%), AWS (75%)",
       actions: [
         { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],

@@ -29,13 +29,13 @@ export const PORTFOLIO_KNOWLEDGE: KnowledgeSection[] = [
     ],
     content: `Mehedi Hasan is an AI/LLM Developer and Full Stack Software Developer based in Dhaka, Bangladesh.
 He specializes in building modern, scalable, high-performance web applications and intelligent AI-powered solutions.
-Core expertise: React, Next.js, TypeScript, Node.js, Express, PostgreSQL, MongoDB, and modern AI/LLM integrations (RAG, AI agents, LLM APIs).
+Core expertise: React, Next.js, TypeScript, Node.js, Python, FastAPI, PostgreSQL, MongoDB, OpenAI, and modern AI/LLM integrations (RAG, AI agents, LLM APIs).
 Professional Title: "AI/LLM Developer" and Software Developer.
 Location: Dhaka, Bangladesh (Timezone: GMT+6 / BST).
 Current Focus:
 - Building high-performance, scalable software systems
 - Developing modern web applications with Next.js and TypeScript
-- Developing AI-powered applications with LLMs and modern AI APIs
+- Building AI-powered applications with Python, OpenAI, and LLM APIs
 - Exploring RAG (Retrieval-Augmented Generation), AI agents, and AI automation
 - Improving backend architecture, REST/RPC APIs, and cloud deployment.`,
     actions: [
@@ -49,29 +49,30 @@ Current Focus:
     title: "Technical Skills & Technologies",
     keywords: [
       "skills", "tech", "technologies", "stack", "frontend", "backend", "database", "tools", "languages",
-      "react", "next.js", "nextjs", "typescript", "javascript", "tailwind", "css", "node", "nodejs",
-      "express", "prisma", "postgresql", "postgres", "mongodb", "docker", "aws", "git", "linux"
+      "react", "next.js", "nextjs", "typescript", "javascript", "node", "nodejs", "python", "openai",
+      "fastapi", "postgresql", "postgres", "mongodb", "docker", "aws", "git", "linux", "ai", "llm", "ml"
     ],
     content: `Mehedi's technical skills and proficiencies:
 - Frontend:
   * React (Proficiency: 95%) - Component architecture, hooks, state management, modern UI/UX
   * Next.js (Proficiency: 92%) - App Router, Server Components, SSR/SSG, server actions, performance optimization
-  * Tailwind CSS (Proficiency: 93%) - Responsive designs, modern styling, design tokens, micro-animations
 - Programming Languages:
+  * JavaScript (Proficiency: 95%) - ES6+, asynchronous patterns, event loop, DOM manipulation
   * TypeScript (Proficiency: 90%) - Strong typing, type safety, generics, modern standards
-  * JavaScript (Proficiency: 92%) - ES6+, asynchronous patterns, event loop, DOM manipulation
+  * Python (Proficiency: 75%) - AI/ML development, scripting, data processing
 - Backend & APIs:
-  * Node.js (Proficiency: 88%) - Scalable server runtimes, event-driven services
-  * Express (Proficiency: 85%) - REST API design, middleware, auth integration
-  * Prisma (Proficiency: 82%) - Type-safe ORM, relational database schema management
+  * Node.js (Proficiency: 90%) - Scalable server runtimes, event-driven services
+  * FastAPI (Proficiency: 72%) - High-performance Python API framework, async endpoints
+- AI/LLM:
+  * OpenAI (Proficiency: 78%) - GPT APIs, prompt engineering, function calling, embeddings
 - Databases:
-  * PostgreSQL (Proficiency: 82%) - Relational data modeling, SQL queries, indexing
-  * MongoDB (Proficiency: 80%) - Document schemas, aggregation pipelines, NoSQL
+  * PostgreSQL (Proficiency: 85%) - Relational data modeling, SQL queries, indexing
+  * MongoDB (Proficiency: 82%) - Document schemas, aggregation pipelines, NoSQL
 - DevOps, Cloud & Tools:
-  * Docker (Proficiency: 78%) - Containerization, dev/prod environments
-  * AWS (Proficiency: 75%) - Cloud deployment, storage, serverless services
-  * Git & GitHub (Proficiency: 90%) - Version control, code reviews, collaboration
-  * Linux (Proficiency: 85%) - Server administration, command line, bash scripting`
+  * Linux (Proficiency: 88%) - Server administration, command line, bash scripting
+  * Git (Proficiency: 92%) - Version control, code reviews, collaboration
+  * Docker (Proficiency: 80%) - Containerization, dev/prod environments
+  * AWS (Proficiency: 75%) - Cloud deployment, storage, serverless services`
   },
   {
     id: "work-experience",

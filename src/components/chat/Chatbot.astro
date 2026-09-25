@@ -14,13 +14,14 @@ const suggestedPrompts = [
 
 <div id="ai-portfolio-chatbot" class="relative z-50">
   <!-- FLOATING TRIGGER BUTTON -->
+<!-- FLOATING TRIGGER BUTTON -->
   <button
     id="chatbot-trigger-btn"
     type="button"
     aria-label="Open AI Portfolio Assistant"
     aria-expanded="false"
     aria-controls="chatbot-panel"
-    class="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md border"
+    class="group fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md border"
     style="
       background-color: var(--color-surface);
       color: var(--color-primary-text);
@@ -28,12 +29,8 @@ const suggestedPrompts = [
       box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--color-border);
     "
   >
-    <span class="relative flex h-2 w-2">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-    </span>
-    <Icon name="lucide:sparkles" size={16} class="text-blue-500 transition-transform group-hover:rotate-12" />
-    <span class="tracking-tight font-medium">Ask Me</span>
+    <Icon name="lucide:sparkles" size={16} class="text-[#1FBFD8] transition-transform duration-300 group-hover:rotate-12" />
+    <span class="tracking-tight">Ask Me</span>
   </button>
 
   <!-- CHAT PANEL CONTAINER -->

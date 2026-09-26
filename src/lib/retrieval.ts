@@ -143,7 +143,7 @@ export function retrievePortfolioKnowledge(query: string, maxSections = 3): Retr
   }
 
   // Collect relevant action buttons (deduplicated by url)
-  const actionsMap = new Map<string, KnowledgeSection["actions"][number]>();
+  const actionsMap = new Map<string, NonNullable<KnowledgeSection["actions"]>[number]>();
   for (const s of selected) {
     if (s.actions) {
       for (const act of s.actions) {

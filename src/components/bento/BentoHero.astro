@@ -3,6 +3,7 @@ import { personalInfo } from "@/data/personalInfo";
 import { socials } from "@/data/socials";
 import { experiences } from "@/data/experience";
 import { skills } from "@/data/skills";
+import { educations } from "@/data/education";
 import HeroCTA from "@/components/ui/HeroCTA.astro";
 import BentoCard from "./BentoCard.astro";
 
@@ -289,24 +290,30 @@ const recentExperience = experiences.slice(0, 3);
         </a>
       </BentoCard>
 
-      <!-- ===== 09. FOCUS (col 3, row 4) ===== -->
-      <BentoCard
-        variant="dark"
-        padding="md"
-        class="bento-animate flex flex-col justify-between"
-        style="grid-column: span 1;"
-        data-delay="0.24s"
-      >
-        <div>
-          <span class="inline-flex w-fit rounded-full bg-[#C8FF00] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black mb-4">
-            Focus
+      <!-- ===== 09. EDUCATION (col 3, row 4) ===== -->
+      {educations.map((edu) => (
+        <BentoCard
+          variant="dark"
+          padding="md"
+          class="bento-animate flex flex-col"
+          style="grid-column: span 1;"
+          data-delay="0.24s"
+        >
+          <span class="inline-flex w-fit rounded-full bg-[#C8FF00] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black mb-3">
+            Education
           </span>
-          <h3 class="text-base font-semibold text-white mt-3">Scalable<br />Products</h3>
-        </div>
-        <p class="text-xs leading-5 text-white/50 mt-3">
-          AI-powered apps, modern web architecture, and reliable systems.
-        </p>
-      </BentoCard>
+          <h3 class="text-sm font-semibold text-white leading-snug">{edu.degree}</h3>
+          <p class="text-xs text-white/50 mt-1">{edu.institution}</p>
+          <p class="text-[10px] text-white/30 mt-1.5">{edu.period}</p>
+          <div class="flex flex-wrap gap-1 mt-3">
+            {edu.subjects?.map((subject) => (
+              <span class="rounded-full bg-white/10 px-2 py-0.5 text-[9px] text-white/60">
+                {subject}
+              </span>
+            ))}
+          </div>
+        </BentoCard>
+      ))}
 
       <!-- ===== 10. CONNECT / CTA (col 1-3, row 5) ===== -->
       <BentoCard

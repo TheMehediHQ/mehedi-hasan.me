@@ -1,0 +1,60 @@
+---
+import DhakaTimeCard from "@/components/live-signals/DhakaTimeCard.astro";
+import LocationCard from "@/components/live-signals/LocationCard.astro";
+import LastFmCard from "@/components/live-signals/LastFmCard.astro";
+---
+
+<section id="signals" class="px-4 py-8 sm:px-8 sm:py-12 lg:px-16">
+  <div class="mx-auto w-full max-w-[1400px]">
+
+    <p
+      class="mb-5 text-xs font-medium uppercase tracking-[0.2em] bento-fade"
+      style="color: var(--color-muted-text);"
+    >
+      Live Signals
+    </p>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+      <div class="bento-fade">
+        <DhakaTimeCard />
+      </div>
+      <div class="bento-fade">
+        <LocationCard />
+      </div>
+      <div class="bento-fade md:col-span-2 lg:col-span-1">
+        <LastFmCard />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .bento-fade {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .bento-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const section = document.getElementById("signals");
+  if (section) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.querySelectorAll(".bento-fade").forEach((el) => el.classList.add("visible"));
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(section);
+  }
+</script>

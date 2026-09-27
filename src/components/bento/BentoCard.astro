@@ -1,0 +1,58 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  class?: string;
+  style?: string;
+  variant?: "default" | "dark" | "accent" | "image" | "interactive";
+  href?: string;
+  target?: string;
+  rel?: string;
+  padding?: "none" | "sm" | "md" | "lg";
+}
+
+const {
+  class: className = "",
+  style: styleProp = "",
+  variant = "default",
+  href,
+  target,
+  rel,
+  padding = "md",
+} = Astro.props;
+
+const Tag = href ? "a" : "div";
+
+const paddingMap = {
+  none: "",
+  sm: "p-4 sm:p-5",
+  md: "p-5 sm:p-6",
+  lg: "p-6 sm:p-8 lg:p-10",
+};
+
+const variantMap = {
+  default:
+    "border border-[var(--color-border)] bg-[var(--color-surface)]",
+  dark: "border border-white/[0.08] bg-[#161616] text-white",
+  accent:
+    "border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5",
+  image: "border border-[var(--color-border)] overflow-hidden",
+  interactive:
+    "border border-[var(--color-border)] bg-[var(--color-surface)] transition-all duration-200 hover:border-[var(--color-hover-border)] hover:bg-[var(--color-hover)]",
+};
+---
+
+<Tag
+  href={href}
+  target={target}
+  rel={href ? (rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)) : undefined}
+  class={cn(
+    "rounded-2xl lg:rounded-3xl",
+    variantMap[variant],
+    paddingMap[padding],
+    className
+  )}
+  style={styleProp}
+>
+  <slot />
+</Tag>

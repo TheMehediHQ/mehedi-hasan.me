@@ -39,35 +39,35 @@
 }
 
 /* -------------------------------------------------------
-   DARK MODE — BASE COLOR: #171717
+   DARK MODE — BASE COLOR: #0E0E0E (BenBox-style)
 -------------------------------------------------------- */
 .dark {
-  --color-background: #171717;
-  --color-surface: #171717;
+  --color-background: #0E0E0E;
+  --color-surface: #1a1a1a;
   --color-card: transparent;
-  --color-border: rgba(255,255,255,0.18);
+  --color-border: rgba(255,255,255,0.08);
 
   --color-primary-text: #F5F4EF;
-  --color-secondary-text: #CFCFCF;
-  --color-muted-text: #A1A1AA;
+  --color-secondary-text: #A1A1AA;
+  --color-muted-text: #71717A;
 
-  --color-accent: #3B82F6;
-  --color-accent-hover: #60A5FA;
+  --color-accent: #C8FF00;
+  --color-accent-hover: #D4FF33;
 
-  --color-hover: rgba(255,255,255,0.06);
+  --color-hover: rgba(255,255,255,0.04);
 
   --color-selection: #1E3A8A;
-  --color-ring: #3B82F6;
+  --color-ring: #C8FF00;
 
-  --color-input: #1F1F1F;
+  --color-input: #1a1a1a;
 
-  --color-button-primary-text: #FFFFFF;
+  --color-button-primary-text: #0E0E0E;
   --color-button-secondary-text: #F5F4EF;
 
-  --color-scrollbar-thumb: #333333;
-  --color-scrollbar-thumb-hover: #444444;
+  --color-scrollbar-thumb: #2a2a2a;
+  --color-scrollbar-thumb-hover: #3a3a3a;
 
-  --nav-active-bg: rgba(255,255,255,0.10);
+  --nav-active-bg: rgba(200,255,0,0.10);
 }
 
 /* -------------------------------------------------------
@@ -127,12 +127,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark {
-  --secondary-border: rgba(255,255,255,0.18);
-  --btn-border: rgba(255,255,255,0.18);
+  --secondary-border: rgba(255,255,255,0.10);
+  --btn-border: rgba(255,255,255,0.10);
   --btn-bg: transparent;
-  --btn-bg-hover: rgba(255,255,255,0.08);
+  --btn-bg-hover: rgba(255,255,255,0.06);
   --btn-text: var(--color-primary-text);
-  --color-hover-border: rgba(255,255,255,0.10);
+  --color-hover-border: rgba(255,255,255,0.08);
 }
 
 .btn-flicker-fix {
@@ -188,5 +188,26 @@ h1, h2, h3, h4, h5, h6 {
 /* Active state for all buttons */
 .btn-active:active {
   transform: translateY(0px) scale(0.98);
+}
+
+/* -------------------------------------------------------
+   REDUCED MOTION
+-------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .bento-animate,
+  .bento-fade,
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 

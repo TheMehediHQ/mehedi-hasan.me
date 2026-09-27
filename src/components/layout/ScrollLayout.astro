@@ -1,30 +1,24 @@
 ---
-import Sidebar from "./Sidebar.astro";
 import BottomNav from "./BottomNav.astro";
 import MobileFooter from "./MobileFooter.astro";
 import Chatbot from "../chat/Chatbot.astro";
 
-import HomeSection from "../../sections/HomeSection.astro";
-
+import BentoHero from "../bento/BentoHero.astro";
 import AboutSection from "../../sections/AboutSection.astro";
 import ExperienceSection from "../../sections/ExperienceSection.astro";
-import ProjectsSection from "../../sections/ProjectsSection.astro";
-import RealWorldProjectsSection from "../../sections/RealWorldProjectsSection.astro";
-import SkillSection from "../../sections/SkillSection.astro";
+import BentoStack from "../bento/BentoStack.astro";
 import EducationSection from "../../sections/EducationSection.astro";
-import InsightSection from "../../sections/InsightSection.astro";
+import BentoSignals from "../bento/BentoSignals.astro";
 import GithubSection from "../../sections/GithubSection.astro";
 import ContactSection from "../../sections/ContactSection.astro";
 
 const sections = [
-  { id: "home", component: HomeSection },
+  { id: "home", component: BentoHero },
   { id: "about", component: AboutSection },
   { id: "experience", component: ExperienceSection },
-   { id: "projects", component: ProjectsSection },
-   { id: "real-world-projects", component: RealWorldProjectsSection },
-  { id: "skills", component: SkillSection },
+  { id: "skills", component: BentoStack },
   { id: "education", component: EducationSection },
-  { id: "insights", component: InsightSection },
+  { id: "insights", component: BentoSignals },
   { id: "github", component: GithubSection },
   { id: "contact", component: ContactSection },
 ];
@@ -37,13 +31,10 @@ const sectionIds = sections.map((section) => section.id);
   class="flex h-screen w-full overflow-hidden"
   style="background-color: var(--color-background);"
 >
-  <!-- Desktop Sidebar -->
-  <Sidebar />
-
   <!-- Main Scroll Container -->
   <main
     id="main-scroll-container"
-    class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:ml-[200px] lg:pb-0 xl:ml-[220px]"
+    class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:pb-0"
   >
     {
       sections.map(({ id, component: Component }) => (
@@ -68,8 +59,6 @@ const sectionIds = sections.map((section) => section.id);
     "home",
     "about",
     "experience",
-    "projects",
-    "real-world-projects",
     "skills",
     "education",
     "insights",

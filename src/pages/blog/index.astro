@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
-import Sidebar from '../../components/layout/Sidebar.astro';
 import BottomNav from '../../components/layout/BottomNav.astro';
 import MobileFooter from '../../components/layout/MobileFooter.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
@@ -33,13 +32,10 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
       class="flex h-screen w-full overflow-hidden"
       style="background-color: var(--color-background);"
     >
-      <!-- Desktop Sidebar -->
-      <Sidebar />
-
       <!-- Main Content -->
       <main
         id="main-scroll-container"
-        class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:ml-[200px] lg:pb-0 xl:ml-[220px]"
+        class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:pb-0"
       >
         <div class="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
           <div class="max-w-4xl mx-auto">

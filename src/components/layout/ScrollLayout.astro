@@ -4,12 +4,10 @@ import MobileFooter from "./MobileFooter.astro";
 import Chatbot from "../chat/Chatbot.astro";
 
 import BentoHero from "../bento/BentoHero.astro";
-import BentoSignals from "../bento/BentoSignals.astro";
 import ContactSection from "../../sections/ContactSection.astro";
 
 const sections = [
   { id: "home", component: BentoHero },
-  { id: "insights", component: BentoSignals },
   { id: "contact", component: ContactSection },
 ];
 
@@ -47,7 +45,6 @@ const sectionIds = sections.map((section) => section.id);
 <script>
   const sectionIds = [
     "home",
-    "insights",
     "contact",
   ];
 

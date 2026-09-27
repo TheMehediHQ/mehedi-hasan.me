@@ -4,6 +4,9 @@ import { socials } from "@/data/socials";
 import { experiences } from "@/data/experience";
 import { skills } from "@/data/skills";
 import { educations } from "@/data/education";
+import DhakaTimeCard from "@/components/live-signals/DhakaTimeCard.astro";
+import LocationCard from "@/components/live-signals/LocationCard.astro";
+import LastFmCard from "@/components/live-signals/LastFmCard.astro";
 import HeroCTA from "@/components/ui/HeroCTA.astro";
 import BentoCard from "./BentoCard.astro";
 
@@ -337,6 +340,27 @@ const recentExperience = experiences.slice(0, 3);
               class="w-full h-auto min-w-[400px] rounded-lg opacity-80"
               loading="lazy"
             />
+          </div>
+        </div>
+      </BentoCard>
+
+      <!-- ===== 11. LIVE SIGNALS (col 1-3, row 6) ===== -->
+      <BentoCard
+        variant="dark"
+        padding="none"
+        class="bento-animate"
+        style="grid-column: span 3;"
+        data-delay="0.28s"
+      >
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-0">
+          <div class="border-r border-white/[0.08] p-4">
+            <DhakaTimeCard />
+          </div>
+          <div class="border-r border-white/[0.08] p-4">
+            <LocationCard />
+          </div>
+          <div class="p-4">
+            <LastFmCard />
           </div>
         </div>
       </BentoCard>

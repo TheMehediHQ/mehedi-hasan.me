@@ -374,30 +374,33 @@ const recentExperience = experiences.slice(0, 3);
         </a>
       </BentoCard>
 
-      <!-- ===== 12. LIVE SIGNALS (col 1-2, row 6) ===== -->
+      <!-- ===== 12. LIVE SIGNALS (col 1-3, row 6) ===== -->
       <BentoCard
         variant="dark"
         padding="none"
         class="bento-animate"
-        style="grid-column: span 2;"
+        style="grid-column: span 3;"
         data-delay="0.30s"
       >
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-0">
           <div class="border-r border-white/[0.08] p-4">
             <DhakaTimeCard />
           </div>
-          <div class="p-4">
+          <div class="border-r border-white/[0.08] p-4">
             <LocationCard />
+          </div>
+          <div class="p-4">
+            <LastFmCard />
           </div>
         </div>
       </BentoCard>
 
-      <!-- ===== 13. BLOG (col 3-4, row 6) ===== -->
+      <!-- ===== 13. BLOG (col 4, row 6) ===== -->
       <BentoCard
         variant="dark"
         padding="md"
         class="bento-animate group"
-        style="grid-column: span 2;"
+        style="grid-column: span 1;"
         data-delay="0.32s"
       >
         <a
@@ -408,16 +411,16 @@ const recentExperience = experiences.slice(0, 3);
             Blog
           </span>
           <div class="mt-4">
-            <h3 class="text-lg font-semibold text-white group-hover:text-[#C8FF00] transition-colors">
+            <h3 class="text-base font-semibold text-white group-hover:text-[#C8FF00] transition-colors">
               Read my thoughts
             </h3>
-            <p class="text-sm text-white/50 mt-2">
+            <p class="text-xs text-white/50 mt-2">
               Tech, AI, and personal insights
             </p>
           </div>
-          <div class="mt-4 flex items-center gap-2 text-sm text-white/40 group-hover:text-[#C8FF00] transition-colors">
+          <div class="mt-4 flex items-center gap-2 text-xs text-white/40 group-hover:text-[#C8FF00] transition-colors">
             <span>View posts</span>
-            <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </div>
         </a>
       </BentoCard>

@@ -121,16 +121,16 @@ const recentExperience = experiences.slice(0, 3);
         </span>
         <div class="grid grid-cols-3 gap-3 flex-1">
           {skills.map((skill) => (
-            <div class="group flex flex-col items-center gap-1.5">
+            <div class="flex flex-col items-center gap-1.5">
               <img
                 src={`/tech/${skill.icon || "default.svg"}`}
                 alt={skill.name}
                 width="28"
                 height="28"
                 loading="lazy"
-                class="object-contain transition-transform duration-200 group-hover:scale-110"
+                class="object-contain"
               />
-              <span class="text-[8px] text-white/40 truncate w-full text-center hidden group-hover:block">
+              <span class="text-[8px] text-white/40 truncate w-full text-center">
                 {skill.name}
               </span>
             </div>
@@ -165,7 +165,7 @@ const recentExperience = experiences.slice(0, 3);
             href={personalInfo.resume}
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-white/10"
+            class="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-[#60A5FA] to-[#3B82F6] px-4 py-2 text-xs font-bold text-black transition-opacity hover:opacity-90"
           >
             View resume
             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
@@ -342,24 +342,17 @@ const recentExperience = experiences.slice(0, 3);
       >
         <a
           href="/blog"
-          class="flex items-center justify-between"
+          class="flex h-full flex-col items-center justify-center text-center gap-2"
         >
-          <div class="flex items-center gap-4">
-            <span class="inline-flex rounded-full bg-gradient-to-r from-[#60A5FA] to-[#3B82F6] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
-              Blog
-            </span>
-            <div>
-              <h3 class="text-base font-semibold text-white group-hover:text-[#93C5FD] transition-colors">
-                Read my thoughts
-              </h3>
-              <p class="text-xs text-white/50 mt-1">
-                Tech, AI, and personal insights
-              </p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2 text-sm text-white/40 group-hover:text-[#93C5FD] transition-colors">
+          <span class="inline-flex rounded-full bg-gradient-to-r from-[#60A5FA] to-[#3B82F6] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
+            Blog
+          </span>
+          <h3 class="text-sm font-semibold text-white group-hover:text-[#93C5FD] transition-colors">
+            Read my thoughts
+          </h3>
+          <div class="flex items-center gap-1 text-xs text-white/40 group-hover:text-[#93C5FD] transition-colors">
             <span>View posts</span>
-            <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg class="h-3 w-3 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </div>
         </a>
       </BentoCard>

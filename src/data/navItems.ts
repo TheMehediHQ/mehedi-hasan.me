@@ -14,12 +14,6 @@ export const navItems: NavItem[] = [
     icon: "Home",
   },
   {
-    id: "experience",
-    label: "Experience",
-    path: "#experience",
-    icon: "Briefcase",
-  },
-  {
     id: "blog",
     label: "Blog",
     path: "/blog",

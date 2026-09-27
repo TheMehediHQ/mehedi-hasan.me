@@ -5,13 +5,11 @@ import Chatbot from "../chat/Chatbot.astro";
 
 import BentoHero from "../bento/BentoHero.astro";
 import BentoSignals from "../bento/BentoSignals.astro";
-import GithubSection from "../../sections/GithubSection.astro";
 import ContactSection from "../../sections/ContactSection.astro";
 
 const sections = [
   { id: "home", component: BentoHero },
   { id: "insights", component: BentoSignals },
-  { id: "github", component: GithubSection },
   { id: "contact", component: ContactSection },
 ];
 
@@ -50,7 +48,6 @@ const sectionIds = sections.map((section) => section.id);
   const sectionIds = [
     "home",
     "insights",
-    "github",
     "contact",
   ];
 

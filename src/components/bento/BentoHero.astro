@@ -315,12 +315,12 @@ const recentExperience = experiences.slice(0, 3);
         </BentoCard>
       ))}
 
-      <!-- ===== 10. CONNECT / CTA (col 1-3, row 5) ===== -->
+      <!-- ===== 10. CONNECT / CTA (col 1-2, row 5) ===== -->
       <BentoCard
         variant="dark"
         padding="md"
         class="bento-animate"
-        style="grid-column: span 3;"
+        style="grid-column: span 2;"
         data-delay="0.26s"
       >
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -330,6 +330,29 @@ const recentExperience = experiences.slice(0, 3);
           </div>
           <div class="flex-shrink-0">
             <HeroCTA items={connectItems} />
+          </div>
+        </div>
+      </BentoCard>
+
+      <!-- ===== 11. GITHUB ACTIVITY (col 3-4, row 5) ===== -->
+      <BentoCard
+        variant="dark"
+        padding="md"
+        class="bento-animate"
+        style="grid-column: span 2;"
+        data-delay="0.28s"
+      >
+        <div class="flex flex-col">
+          <span class="inline-flex w-fit rounded-full bg-[#C8FF00] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black mb-3">
+            GitHub
+          </span>
+          <div class="overflow-x-auto -mx-1">
+            <img
+              src="https://ghchart.rshah.org/themehedihq"
+              alt="Mehedi Hasan's GitHub Contribution Graph"
+              class="w-full h-auto min-w-[280px] rounded-lg opacity-80"
+              loading="lazy"
+            />
           </div>
         </div>
       </BentoCard>

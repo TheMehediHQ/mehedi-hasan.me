@@ -412,25 +412,25 @@ const recentExperience = experiences.slice(0, 3);
       >
         <a
           href="/blog"
-          class="flex h-full flex-col items-center justify-center gap-2 text-center"
+          class="flex h-full flex-col justify-between"
         >
-          <h3
-            class="text-sm font-semibold text-[var(--color-primary-text)] transition-colors group-hover:text-[var(--color-accent)]"
-          >
-            Blog
-          </h3>
-
-          <p class="text-xs text-[var(--color-muted-text)]">
-            Read my thoughts
-          </p>
+          <div>
+            <h3
+              class="text-lg font-bold text-[var(--color-primary-text)]"
+            >
+              Blog
+            </h3>
+            <p class="mt-1 text-xs text-[var(--color-muted-text)]">
+              Writing code and sharing the journey.
+            </p>
+          </div>
 
           <div
-            class="flex items-center gap-1 text-xs text-[var(--color-muted-text)] transition-colors group-hover:text-[var(--color-accent)]"
+            class="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-2 text-xs font-medium text-[var(--color-primary-text)] transition-colors group-hover:border-[var(--color-accent)]/40 group-hover:text-[var(--color-accent)]"
           >
             <span>View posts</span>
-
             <svg
-              class="h-3 w-3 transition-transform group-hover:translate-x-1"
+              class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -491,25 +491,25 @@ const recentExperience = experiences.slice(0, 3);
         >
           <a
             href="/contact"
-            class="flex h-full min-h-[120px] flex-col items-center justify-center gap-2 text-center"
+            class="flex h-full min-h-[120px] flex-col justify-between"
           >
-            <h3
-              class="text-sm font-semibold text-[var(--color-primary-text)] transition-colors group-hover:text-[var(--color-accent)]"
-            >
-              Let's work together
-            </h3>
-
-            <p class="text-xs text-[var(--color-muted-text)]">
-              Available for full-time opportunities
-            </p>
+            <div>
+              <h3
+                class="text-lg font-bold text-[var(--color-primary-text)]"
+              >
+                Let's collab!
+              </h3>
+              <p class="mt-1 text-xs text-[var(--color-muted-text)]">
+                Let's turn your idea into reality with my development experience!
+              </p>
+            </div>
 
             <div
-              class="flex items-center gap-1 text-xs text-[var(--color-muted-text)] transition-colors group-hover:text-[var(--color-accent)]"
+              class="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-2 text-xs font-medium text-[var(--color-primary-text)] transition-colors group-hover:border-[var(--color-accent)]/40 group-hover:text-[var(--color-accent)]"
             >
-              <span>Get in touch</span>
-
+              <span>Send a message now!</span>
               <svg
-                class="h-3 w-3 transition-transform group-hover:translate-x-1"
+                class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

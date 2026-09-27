@@ -39,7 +39,7 @@ const recentExperience = experiences.slice(0, 3);
       style="grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(120px, auto);"
     >
 
-      <!-- ===== 01. ABOUT (col 1-2, row 1) ===== -->
+      <!-- ===== 01. ABOUT + CONNECT (col 1-2, row 1) ===== -->
       <BentoCard
         variant="dark"
         padding="lg"
@@ -58,6 +58,9 @@ const recentExperience = experiences.slice(0, 3);
             >
               {personalInfo.bio}
             </p>
+          </div>
+          <div class="mt-6">
+            <HeroCTA items={connectItems} />
           </div>
         </div>
       </BentoCard>
@@ -315,42 +318,23 @@ const recentExperience = experiences.slice(0, 3);
         </BentoCard>
       ))}
 
-      <!-- ===== 10. CONNECT / CTA (col 1-2, row 5) ===== -->
+      <!-- ===== 10. GITHUB ACTIVITY (col 1-4, row 5) ===== -->
       <BentoCard
         variant="dark"
         padding="md"
         class="bento-animate"
-        style="grid-column: span 2;"
+        style="grid-column: span 4;"
         data-delay="0.26s"
-      >
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <p class="text-xs uppercase tracking-[0.18em] text-white/50 mb-1">Connect with me</p>
-            <h3 class="text-lg font-semibold text-white sm:text-xl">Let's build something.</h3>
-          </div>
-          <div class="flex-shrink-0">
-            <HeroCTA items={connectItems} />
-          </div>
-        </div>
-      </BentoCard>
-
-      <!-- ===== 11. GITHUB ACTIVITY (col 3-4, row 5) ===== -->
-      <BentoCard
-        variant="dark"
-        padding="md"
-        class="bento-animate"
-        style="grid-column: span 2;"
-        data-delay="0.28s"
       >
         <div class="flex flex-col">
           <span class="inline-flex w-fit rounded-full bg-[#C8FF00] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black mb-3">
-            GitHub
+            GitHub Activity
           </span>
           <div class="overflow-x-auto -mx-1">
             <img
               src="https://ghchart.rshah.org/themehedihq"
               alt="Mehedi Hasan's GitHub Contribution Graph"
-              class="w-full h-auto min-w-[280px] rounded-lg opacity-80"
+              class="w-full h-auto min-w-[400px] rounded-lg opacity-80"
               loading="lazy"
             />
           </div>

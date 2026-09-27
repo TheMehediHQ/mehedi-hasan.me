@@ -2,6 +2,7 @@
 import { personalInfo } from "@/data/personalInfo";
 import { socials } from "@/data/socials";
 import { experiences } from "@/data/experience";
+import { skills } from "@/data/skills";
 import HeroCTA from "@/components/ui/HeroCTA.astro";
 import BentoCard from "./BentoCard.astro";
 
@@ -188,23 +189,34 @@ const recentExperience = experiences.slice(0, 3);
         </div>
       </BentoCard>
 
-      <!-- ===== 06. STACK (col 1, row 3) ===== -->
+      <!-- ===== 06. TECH STACK ICONS (col 1, row 3) ===== -->
       <BentoCard
         variant="dark"
         padding="md"
-        class="bento-animate flex flex-col justify-between"
+        class="bento-animate flex flex-col"
         style="grid-column: span 1;"
         data-delay="0.18s"
       >
-        <div>
-          <span class="inline-flex w-fit rounded-full bg-[#C8FF00] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black mb-4">
-            Stack
-          </span>
-          <h3 class="text-base font-semibold text-white mt-3">AI / LLM<br />Development</h3>
+        <span class="inline-flex w-fit rounded-full bg-[#C8FF00] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black mb-4">
+          Stack
+        </span>
+        <div class="grid grid-cols-4 gap-3 flex-1">
+          {skills.map((skill) => (
+            <div class="group flex flex-col items-center gap-1.5">
+              <img
+                src={`/tech/${skill.icon || "default.svg"}`}
+                alt={skill.name}
+                width="28"
+                height="28"
+                loading="lazy"
+                class="object-contain transition-transform duration-200 group-hover:scale-110"
+              />
+              <span class="text-[8px] text-white/40 truncate w-full text-center hidden group-hover:block">
+                {skill.name}
+              </span>
+            </div>
+          ))}
         </div>
-        <p class="text-xs leading-5 text-white/50 mt-3">
-          TypeScript · React · Next.js<br />Node.js · Python · PostgreSQL
-        </p>
       </BentoCard>
 
       <!-- ===== 07. CASE STUDY 2 — NexVibe (col 4, row 3-4) ===== -->

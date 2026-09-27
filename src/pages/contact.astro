@@ -4,6 +4,7 @@ import BottomNav from "../components/layout/BottomNav.astro";
 import MobileFooter from "../components/layout/MobileFooter.astro";
 import Chatbot from "../components/chat/Chatbot.astro";
 import ContactSection from "../sections/ContactSection.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <!doctype html>
@@ -20,20 +21,43 @@ import ContactSection from "../sections/ContactSection.astro";
     class="flex min-h-screen w-full flex-col"
     style="background-color: var(--color-background);"
   >
-    <!-- Back to Home -->
+    <!-- Index Button + Content (blog-style grid) -->
     <div class="px-4 sm:px-8 lg:px-16 pt-8 sm:pt-12">
-      <a
-        href="/"
-        class="inline-flex items-center gap-2 text-sm transition-colors hover:text-[var(--color-accent)]"
-        style="color: var(--color-secondary-text);"
-      >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        Back to Home
-      </a>
-    </div>
+      <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-8 sm:gap-6">
+        <!-- Index Button (left column on desktop) -->
+        <div>
+          <a
+            href="/"
+            class="group inline-flex items-center gap-1.5 text-sm transition-opacity hover:opacity-70"
+            style="color: var(--color-primary-text);"
+          >
+            <Icon
+              name="lucide:arrow-left"
+              class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
+            />
+            <span>Index</span>
+          </a>
+        </div>
 
-    <!-- Contact Section -->
-    <ContactSection />
+        <!-- Contact Content (right column on desktop) -->
+        <div>
+          <!-- Page Title -->
+          <div class="mb-8 sm:mb-10">
+            <h1
+              class="text-2xl sm:text-3xl font-bold mb-2"
+              style="color: var(--color-primary-text);"
+            >
+              Contact
+            </h1>
+            <p class="text-sm sm:text-base" style="color: var(--color-secondary-text);">
+              Get in touch. Available for full-time opportunities and collaborations.
+            </p>
+          </div>
+
+          <ContactSection />
+        </div>
+      </div>
+    </div>
 
     <MobileFooter />
     <BottomNav />

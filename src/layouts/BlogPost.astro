@@ -49,17 +49,25 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 )}
 
           <div class="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
-            <div class="max-w-3xl mx-auto">
+            <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-8 sm:gap-6">
 
-              <!-- Back Link -->
-              <a
-                href="/blog"
-                class="inline-flex items-center gap-1.5 text-sm mb-6 transition-colors duration-200 hover:opacity-70"
-                style="color: var(--color-accent);"
-              >
-                <Icon name="lucide:arrow-left" size={14} />
-                Back to Blog
-              </a>
+              <!-- Index Button (left column on desktop) -->
+              <div>
+                <a
+                  href="/"
+                  class="group inline-flex items-center gap-1.5 text-sm transition-opacity hover:opacity-70"
+                  style="color: var(--color-primary-text);"
+                >
+                  <Icon
+                    name="lucide:arrow-left"
+                    class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
+                  />
+                  <span>Index</span>
+                </a>
+              </div>
+
+              <!-- Main Content (right column on desktop) -->
+              <div>
 
               <!-- Header -->
               <header class="mb-8 sm:mb-10">
@@ -132,8 +140,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   </button>
 </div>
 
-            
 
+
+            </div>
             </div>
           </div>
         </article>

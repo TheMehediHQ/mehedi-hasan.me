@@ -4,11 +4,9 @@ import MobileFooter from "./MobileFooter.astro";
 import Chatbot from "../chat/Chatbot.astro";
 
 import BentoHero from "../bento/BentoHero.astro";
-import ContactSection from "../../sections/ContactSection.astro";
 
 const sections = [
   { id: "home", component: BentoHero },
-  { id: "contact", component: ContactSection },
 ];
 
 const sectionIds = sections.map((section) => section.id);
@@ -45,7 +43,6 @@ const sectionIds = sections.map((section) => section.id);
 <script>
   const sectionIds = [
     "home",
-    "contact",
   ];
 
   const main = document.getElementById("main-scroll-container");

@@ -344,28 +344,25 @@ const recentExperience = experiences.slice(0, 3);
         </div>
       </BentoCard>
 
-      <!-- ===== 11. LIVE SIGNALS (col 1-3, row 6) ===== -->
+      <!-- ===== 11. LIVE SIGNALS (col 1-2, row 6) ===== -->
       <BentoCard
         variant="dark"
         padding="none"
         class="bento-animate"
-        style="grid-column: span 3;"
+        style="grid-column: span 2;"
         data-delay="0.28s"
       >
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-0">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
           <div class="border-r border-white/[0.08] p-4">
             <DhakaTimeCard />
           </div>
-          <div class="border-r border-white/[0.08] p-4">
-            <LocationCard />
-          </div>
           <div class="p-4">
-            <LastFmCard />
+            <LocationCard />
           </div>
         </div>
       </BentoCard>
 
-      <!-- ===== 12. BLOG (col 4, row 6) ===== -->
+      <!-- ===== 12. BLOG (col 3, row 6) ===== -->
       <BentoCard
         variant="dark"
         padding="md"
@@ -390,6 +387,36 @@ const recentExperience = experiences.slice(0, 3);
           </div>
           <div class="mt-4 flex items-center gap-2 text-xs text-white/40 group-hover:text-[#C8FF00] transition-colors">
             <span>View posts</span>
+            <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+      </BentoCard>
+
+      <!-- ===== 13. CONTACT (col 4, row 6) ===== -->
+      <BentoCard
+        variant="dark"
+        padding="md"
+        class="bento-animate group"
+        style="grid-column: span 1;"
+        data-delay="0.32s"
+      >
+        <a
+          href="/contact"
+          class="flex h-full flex-col items-start justify-between"
+        >
+          <span class="inline-flex w-fit rounded-full bg-[#C8FF00] px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
+            Contact
+          </span>
+          <div class="mt-4">
+            <h3 class="text-base font-semibold text-white group-hover:text-[#C8FF00] transition-colors">
+              Get in touch
+            </h3>
+            <p class="text-xs text-white/50 mt-2">
+              Let's work together
+            </p>
+          </div>
+          <div class="mt-4 flex items-center gap-2 text-xs text-white/40 group-hover:text-[#C8FF00] transition-colors">
+            <span>Say hello</span>
             <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </div>
         </a>

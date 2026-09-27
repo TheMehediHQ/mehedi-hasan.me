@@ -1,0 +1,43 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import BottomNav from "../components/layout/BottomNav.astro";
+import MobileFooter from "../components/layout/MobileFooter.astro";
+import Chatbot from "../components/chat/Chatbot.astro";
+import ContactSection from "../sections/ContactSection.astro";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <BaseHead
+    title="Contact — Mehedi Hasan"
+    description="Get in touch with Mehedi Hasan. Available for full-time opportunities and collaborations."
+  />
+</head>
+
+<body>
+  <div
+    class="flex min-h-screen w-full flex-col"
+    style="background-color: var(--color-background);"
+  >
+    <!-- Back to Home -->
+    <div class="px-4 sm:px-8 lg:px-16 pt-8 sm:pt-12">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-sm transition-colors hover:text-[var(--color-accent)]"
+        style="color: var(--color-secondary-text);"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Home
+      </a>
+    </div>
+
+    <!-- Contact Section -->
+    <ContactSection />
+
+    <MobileFooter />
+    <BottomNav />
+    <Chatbot />
+  </div>
+</body>
+</html>

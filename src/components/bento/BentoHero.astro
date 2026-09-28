@@ -109,12 +109,23 @@ const socialLinks = [
       >
         <div class="flex h-full flex-col justify-between">
           <div>
-            <h2 class="text-xl font-bold text-[var(--color-primary-text)] sm:text-2xl">
-              Hey, I'm Mehedi Hasan
-            </h2>
-            <p class="mt-1 text-sm text-[var(--color-muted-text)] sm:text-base">
-              AI/LLM Developer & Full Stack Developer
-            </p>
+            <div class="flex items-center gap-3">
+              <img
+                src={personalInfo.profile}
+                alt="Mehedi Hasan"
+                width={48}
+                height={48}
+                class="h-10 w-10 rounded-full object-cover ring-2 ring-[var(--color-accent)]/30"
+              />
+              <div>
+                <h2 class="text-xl font-bold text-[var(--color-primary-text)] sm:text-2xl">
+                  Hey, I'm Mehedi Hasan
+                </h2>
+                <p class="mt-0.5 text-sm text-[var(--color-muted-text)] sm:text-base">
+                  AI/LLM Developer & Full Stack Developer
+                </p>
+              </div>
+            </div>
           </div>
 
           <div class="mt-4 sm:mt-6">

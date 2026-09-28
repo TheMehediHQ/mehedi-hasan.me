@@ -133,41 +133,40 @@ const socialLinks = [
       </BentoCard>
 
       <!-- Profile -->
-    
-<BentoCard
-  variant="dark"
-  padding="0"
-  class="bento-animate relative min-h-64 overflow-hidden sm:col-span-2 lg:col-span-1"
-  data-delay="0.05s"
->
-  <img
-    src={personalInfo.profile}
-    alt="Mehedi Hasan"
-    width={2500}
-    height={2500}
-    loading="eager"
-    fetchpriority="high"
-    class="absolute inset-0 h-full w-full object-cover"
-  />
+      <BentoCard
+        variant="dark"
+        padding="0"
+        class="bento-animate relative min-h-64 overflow-hidden sm:col-span-2 lg:col-span-1"
+        data-delay="0.05s"
+      >
+        <img
+          src={personalInfo.profile}
+          alt="Mehedi Hasan"
+          width={2500}
+          height={2500}
+          loading="eager"
+          fetchpriority="high"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
 
-  <div class="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 to-transparent p-4 pt-16">
-    <div class="flex items-center gap-2">
-      <span class="relative flex h-2.5 w-2.5 shrink-0">
-        <span
-          class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 motion-reduce:hidden"
-          style="background-color: #60A5FA;"
-        ></span>
-        <span
-          class="relative inline-flex h-2.5 w-2.5 rounded-full"
-          style="background-color: #60A5FA;"
-        ></span>
-      </span>
-      <span class="text-xs font-medium uppercase tracking-wide text-white">
-        Available
-      </span>
-    </div>
-  </div>
-</BentoCard>
+        <div class="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 to-transparent p-4 pt-16">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5 shrink-0">
+              <span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 motion-reduce:hidden"
+                style="background-color: #60A5FA;"
+              ></span>
+              <span
+                class="relative inline-flex h-2.5 w-2.5 rounded-full"
+                style="background-color: #60A5FA;"
+              ></span>
+            </span>
+            <span class="text-xs font-medium uppercase tracking-wide text-white">
+              Available
+            </span>
+          </div>
+        </div>
+      </BentoCard>
 
       <!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
 
@@ -249,15 +248,15 @@ const socialLinks = [
               Education
             </h3>
 
-            <h3 class="text-sm font-semibold leading-snug text-[var(--color-primary-text)]">
+            <h4 class="text-sm font-semibold leading-snug text-[var(--color-primary-text)]">
               {edu.degree}
-            </h3>
+            </h4>
 
             <p class="mt-1 text-xs text-[var(--color-muted-text)]">
               {edu.institution}
             </p>
 
-            <p class="mt-1.5 text-[10px] text-[var(--color-muted-text)]">
+            <p class="mt-1.5 text-xs text-[var(--color-muted-text)]">
               {edu.period}
             </p>
 
@@ -468,7 +467,7 @@ const socialLinks = [
               href={link.href}
               target={link.href.startsWith("mailto") ? undefined : "_blank"}
               rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              class="bento-animate social-link flex min-h-[90px] items-center justify-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-all duration-200 hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-accent)]/5 hover:shadow-[0_0_20px_rgba(96,165,250,0.08)] lg:rounded-3xl"
+              class="bento-animate social-link group flex min-h-[90px] items-center justify-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-all duration-200 hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-accent)]/5 hover:shadow-[0_0_20px_rgba(96,165,250,0.08)] lg:rounded-3xl"
               data-delay={`${0.7 + i * 0.05}s`}
             >
               <Icon name={link.icon} class="h-6 w-6 text-[var(--color-muted-text)] transition-colors group-hover:text-[var(--color-accent)]" />
@@ -495,6 +494,12 @@ const socialLinks = [
     opacity: 1;
     transform: translateY(0);
     transition-delay: var(--animation-delay, 0s);
+  }
+
+  [data-bento-section].is-visible .bento-animate:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease-out;
+    transition-delay: 0s;
   }
 
   @media (prefers-reduced-motion: reduce) {

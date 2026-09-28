@@ -47,17 +47,7 @@ import { Icon } from "astro-icon/components";
   </div>
 </section>
 
-<style>
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-  }
-  .animate-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
+<script src="@/scripts/animate-on-scroll.ts"></script>
 
 <script>
   const form = document.getElementById("newsletter-form") as HTMLFormElement;
@@ -68,19 +58,6 @@ import { Icon } from "astro-icon/components";
   const errorEl = document.getElementById("newsletter-error");
   const successEl = document.getElementById("newsletter-success");
   let isSubmitting = false;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "-20%" }
-  );
-  document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
 
   function showError(msg: string) {
     if (errorEl) { errorEl.textContent = msg; errorEl.classList.remove("hidden"); }

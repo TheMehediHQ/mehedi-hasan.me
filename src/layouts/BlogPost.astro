@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import MobileFooter from '../components/layout/MobileFooter.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import IndexLink from '@/components/ui/IndexLink.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Chatbot from '../components/chat/Chatbot.astro';
 import { Icon } from 'astro-icon/components';
@@ -52,17 +53,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
               <!-- Index Button (left column on desktop) -->
               <div>
-                <a
-                  href="/"
-                  class="group inline-flex items-center gap-1.5 text-sm transition-opacity hover:opacity-70"
-                  style="color: var(--color-primary-text);"
-                >
-                  <Icon
-                    name="lucide:arrow-left"
-                    class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
-                  />
-                  <span>Index</span>
-                </a>
+                <IndexLink />
               </div>
 
               <!-- Main Content (right column on desktop) -->

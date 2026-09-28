@@ -1,6 +1,7 @@
 ---
 import MobileFooter from "@/components/layout/MobileFooter.astro";
 import BaseHead from "../components/BaseHead.astro";
+import IndexLink from "@/components/ui/IndexLink.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -20,17 +21,7 @@ import { Icon } from "astro-icon/components";
   >
     <!-- Index -->
     <div>
-      <a
-        href="/"
-        class="group inline-flex items-center gap-1.5 text-sm transition-opacity hover:opacity-70"
-        style="color: var(--color-primary-text);"
-      >
-        <Icon
-          name="lucide:arrow-left"
-          class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
-        />
-        <span>Index</span>
-      </a>
+      <IndexLink />
     </div>
 
     <!-- 404 Content -->

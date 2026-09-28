@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import MobileFooter from "../components/layout/MobileFooter.astro";
 import Chatbot from "../components/chat/Chatbot.astro";
 import ContactSection from "../sections/ContactSection.astro";
+import IndexLink from "@/components/ui/IndexLink.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -25,17 +26,7 @@ import { Icon } from "astro-icon/components";
       <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-8 sm:gap-6">
         <!-- Index Button (left column on desktop) -->
         <div>
-          <a
-            href="/"
-            class="group inline-flex items-center gap-1.5 text-sm transition-opacity hover:opacity-70"
-            style="color: var(--color-primary-text);"
-          >
-            <Icon
-              name="lucide:arrow-left"
-              class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
-            />
-            <span>Index</span>
-          </a>
+          <IndexLink />
         </div>
 
         <!-- Contact Content (right column on desktop) -->

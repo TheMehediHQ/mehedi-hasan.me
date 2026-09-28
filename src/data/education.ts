@@ -1,4 +1,11 @@
-import type { Education } from "@/types";
+export interface Education {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  description: string;
+  subjects?: string[];
+}
 
 export const educations: Education[] = [
   {

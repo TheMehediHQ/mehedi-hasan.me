@@ -1,4 +1,13 @@
-import type { Experience } from "@/types";
+export interface Experience {
+  id: string;
+  role: string;
+  company: string;
+  companyUrl?: string;
+  period: string;
+  description: string;
+  technologies?: string[];
+  type?: "full-time" | "internship" | "volunteer";
+}
 
 export const experiences: Experience[] = [
   {

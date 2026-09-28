@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
-import BottomNav from '../components/layout/BottomNav.astro';
 import MobileFooter from '../components/layout/MobileFooter.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Newsletter from '../components/Newsletter.astro';
@@ -28,7 +27,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       <!-- Main Content -->
       <main
         id="main-scroll-container"
-        class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:pb-0"
+        class="flex-1 overflow-y-auto scroll-smooth"
       >
         <article>
           <!-- Hero Image -->
@@ -149,9 +148,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
         <MobileFooter />
       </main>
-
-      <!-- Mobile Navigation -->
-      <BottomNav />
 
       <!-- AI Portfolio Assistant Chatbot -->
       <Chatbot />

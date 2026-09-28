@@ -1,7 +1,6 @@
 export const personalInfo = {
   name: "Mehedi Hasan",
-
-  title: "Full-Stack & AI Developer",
+  title: "Software  Developer",
 
   avatar: "/profile/mh.webp",
   signature: "/profile/sign.webp",

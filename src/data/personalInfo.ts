@@ -8,7 +8,7 @@ export const personalInfo = {
   profile: "/profile/mehedi-hasan.webp",
   resume: "/Resume_of_Mehedi_Hasan.pdf",
 
-  bio: "I'm a Full-Stack & AI Developer from Bangladesh focused on building modern, scalable, and reliable software with React, Next.js, TypeScript, and Node.js, with a strong focus on AI/LLM development and intelligent applications.",
+  bio: "I am a passionate Full-Stack and AI Developer with expertise in building high-performance and scalable software solutions. I specialize in developing modern web applications using Next.js and TypeScript, as well as creating AI-powered applications leveraging LLMs and modern AI APIs. My focus is on exploring RAG, AI agents, and AI automation to enhance user experiences and streamline processes. I am dedicated to improving backend architecture, APIs, and cloud deployment to ensure robust and efficient systems.",
 
   currentFocus: [
     "Building high-performance and scalable software",

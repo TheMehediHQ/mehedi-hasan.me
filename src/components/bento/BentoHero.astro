@@ -86,46 +86,41 @@ const recentExperience = experiences.slice(0, 3);
       </BentoCard>
 
       <!-- Profile -->
-      <BentoCard
-        variant="dark"
-        padding="md"
-        class="bento-animate flex flex-col items-center justify-center gap-3 sm:col-span-2 sm:gap-4 lg:col-span-1"
-        data-delay="0.05s"
-      >
-        <div
-          class="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-[#60A5FA]/40 bg-[#60A5FA]/10 sm:h-28 sm:w-28 lg:h-32 lg:w-32"
-        >
-          <img
-            src={personalInfo.profile}
-            alt="Mehedi Hasan"
-            width={2500}
-            height={2500}
-            loading="eager"
-            fetchpriority="high"
-            class="h-full w-full object-cover"
-          />
-        </div>
+    
+<BentoCard
+  variant="dark"
+  padding="0"
+  class="bento-animate relative min-h-64 overflow-hidden sm:col-span-2 lg:col-span-1"
+  data-delay="0.05s"
+>
+  <img
+    src={personalInfo.profile}
+    alt="Mehedi Hasan"
+    width={2500}
+    height={2500}
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
 
-        <div class="flex items-center gap-2">
-          <span class="relative flex h-2.5 w-2.5 shrink-0">
-            <span
-              class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 motion-reduce:hidden"
-              style="background-color: #60A5FA;"
-            ></span>
-
-            <span
-              class="relative inline-flex h-2.5 w-2.5 rounded-full"
-              style="background-color: #60A5FA;"
-            ></span>
-          </span>
-
-          <span
-            class="text-xs font-medium uppercase tracking-wide text-[var(--color-muted-text)]"
-          >
-            Available
-          </span>
-        </div>
-      </BentoCard>
+  <div class="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 to-transparent p-4 pt-16">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2.5 w-2.5 shrink-0">
+        <span
+          class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 motion-reduce:hidden"
+          style="background-color: #60A5FA;"
+        ></span>
+        <span
+          class="relative inline-flex h-2.5 w-2.5 rounded-full"
+          style="background-color: #60A5FA;"
+        ></span>
+      </span>
+      <span class="text-xs font-medium uppercase tracking-wide text-white">
+        Available
+      </span>
+    </div>
+  </div>
+</BentoCard>
 
       <!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
 

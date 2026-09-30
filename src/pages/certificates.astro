@@ -1,0 +1,84 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Sidebar from "../components/layout/Sidebar.astro";
+import BottomNav from "../components/layout/BottomNav.astro";
+import MobileFooter from "../components/layout/MobileFooter.astro";
+import Chatbot from "../components/chat/Chatbot.astro";
+import SectionTitle from "../components/ui/SectionTitle.astro";
+import CertificateCard from "../components/ui/CertificateCard.astro";
+import { certificates } from "../data/certificates";
+import { Icon } from "astro-icon/components";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <BaseHead
+    title="Certificates — Mehedi Hasan"
+    description="Professional certifications and courses completed by Mehedi Hasan — Cloud, AI/ML, Web Development and more."
+  />
+</head>
+
+<body>
+  <div
+    id="portfolio-layout"
+    class="flex h-screen w-full overflow-hidden"
+    style="background-color: var(--color-background);"
+  >
+    <!-- Desktop Sidebar -->
+    <Sidebar />
+
+    <!-- Main Content -->
+    <main
+      id="main-scroll-container"
+      class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:ml-[200px] lg:pb-0 xl:ml-[220px]"
+    >
+      <div class="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+        <div class="max-w-4xl mx-auto">
+
+          <!-- Page Title -->
+          <div class="mb-8 sm:mb-10">
+            <h1
+              class="text-2xl sm:text-3xl font-bold mb-2"
+              style="color: var(--color-primary-text);"
+            >
+              Certificates
+            </h1>
+            <p class="text-sm sm:text-base" style="color: var(--color-secondary-text);">
+              Professional certifications and courses I've completed.
+            </p>
+          </div>
+
+          <!-- Certificate Count -->
+          <p class="mb-6 text-xs" style="color: var(--color-muted-text);">
+            {certificates.length} {certificates.length === 1 ? "certificate" : "certificates"}
+          </p>
+
+          <!-- Certificates List -->
+          <div class="space-y-6 lg:space-y-8">
+            {certificates.map((cert, index) => (
+              <CertificateCard certificate={cert} index={index} />
+            ))}
+          </div>
+
+          <!-- CTA -->
+          <div class="mt-12 text-center">
+            <p class="text-sm" style="color: var(--color-muted-text);">
+              Currently pursuing more certifications in AI/LLM and Cloud.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <MobileFooter />
+    </main>
+
+    <!-- Mobile Navigation -->
+    <BottomNav />
+
+    <!-- AI Portfolio Assistant Chatbot -->
+    <Chatbot />
+  </div>
+</body>
+</html>

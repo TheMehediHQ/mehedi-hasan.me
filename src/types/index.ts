@@ -49,3 +49,14 @@ export interface Education {
   description: string;
   subjects?: string[];
 }
+
+export interface Certificate {
+  id: string;
+  name: string;
+  issuer: string;
+  issuerIcon: string;
+  date: string;
+  credentialUrl: string;
+  thumbnail: string;
+  tags: string[];
+}

@@ -32,6 +32,12 @@ export const navItems: NavItem[] = [
     icon: "FolderOpen",
   },
   {
+    id: "certificates",
+    label: "Certificates",
+    path: "/certificates",
+    icon: "Award",
+  },
+  {
     id: "blog",
     label: "Blog",
     path: "/blog",

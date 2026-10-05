@@ -1,0 +1,214 @@
+---
+import { Icon } from "astro-icon/components";
+import { navItems } from "../../data/navItems";
+import ThemeToggle from "../ThemeToggle.astro";
+
+const isHome = Astro.url.pathname === "/";
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 lg:px-12 xl:px-16"
+  style="background-color: var(--color-background);"
+>
+  <div class="mx-auto flex max-w-4xl items-center justify-between py-4">
+    <!-- Logo -->
+    <a
+      href="/"
+      class="text-base font-semibold transition-opacity hover:opacity-70"
+      style="color: var(--color-primary-text);"
+    >
+      mehedi-hasan.me
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden items-center gap-6 md:flex">
+      {
+        navItems.map((item) => {
+          const isExternal = !!item.href;
+          const isPageLink = !!item.path && !isExternal;
+
+          if (isExternal) {
+            return (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
+                style="color: var(--color-secondary-text);"
+              >
+                {item.label}
+              </a>
+            );
+          }
+
+          if (isPageLink) {
+            const linkHref = (!isHome && item.path.startsWith("#"))
+              ? `/${item.path}`
+              : item.path;
+            return (
+              <a
+                href={linkHref}
+                class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
+                style="color: var(--color-secondary-text);"
+              >
+                {item.label}
+              </a>
+            );
+          }
+
+          if (isHome) {
+            return (
+              <a
+                href={`#${item.id}`}
+                data-nav-section={item.id}
+                class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
+                style="color: var(--color-secondary-text);"
+              >
+                {item.label}
+              </a>
+            );
+          }
+
+          return (
+            <a
+              href="/"
+              class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
+              style="color: var(--color-secondary-text);"
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+
+      <ThemeToggle />
+    </div>
+
+    <!-- Mobile Controls -->
+    <div class="flex items-center gap-3 md:hidden">
+      <ThemeToggle />
+
+      <!-- Hamburger Button -->
+      <button
+        id="hamburger-btn"
+        type="button"
+        class="text-sm font-medium transition-opacity hover:opacity-70"
+        style="color: var(--color-primary-text);"
+        aria-label="Toggle menu"
+      >
+        Menu
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 z-[60] hidden md:hidden"
+  style="background-color: rgba(0,0,0,0.5);"
+>
+  <div
+    class="absolute top-16 left-4 right-4 rounded-2xl p-2 sm:left-6 sm:right-6"
+    style="background-color: var(--color-background); border: 1px solid var(--color-border);"
+  >
+    <nav class="flex flex-col">
+      {
+        navItems.map((item) => {
+          const isExternal = !!item.href;
+          const isPageLink = !!item.path && !isExternal;
+
+          if (isExternal) {
+            return (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
+                style="color: var(--color-secondary-text);"
+              >
+                {item.label}
+              </a>
+            );
+          }
+
+          if (isPageLink) {
+            const linkHref = (!isHome && item.path.startsWith("#"))
+              ? `/${item.path}`
+              : item.path;
+            return (
+              <a
+                href={linkHref}
+                class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
+                style="color: var(--color-secondary-text);"
+              >
+                {item.label}
+              </a>
+            );
+          }
+
+          if (isHome) {
+            return (
+              <a
+                href={`#${item.id}`}
+                data-nav-section={item.id}
+                class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
+                style="color: var(--color-secondary-text);"
+              >
+                {item.label}
+              </a>
+            );
+          }
+
+          return (
+            <a
+              href="/"
+              class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
+              style="color: var(--color-secondary-text);"
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</div>
+
+<style>
+  [data-nav-section][data-active="true"] {
+    color: var(--color-accent) !important;
+  }
+
+  .mobile-nav-link:hover {
+    background-color: var(--color-hover);
+    color: var(--color-primary-text);
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+
+  if (hamburgerBtn && mobileMenuOverlay) {
+    hamburgerBtn.addEventListener("click", () => {
+      const isHidden = mobileMenuOverlay.classList.contains("hidden");
+      mobileMenuOverlay.classList.toggle("hidden");
+      hamburgerBtn.textContent = isHidden ? "Close" : "Menu";
+    });
+
+    mobileMenuOverlay.addEventListener("click", (e) => {
+      if (e.target === mobileMenuOverlay) {
+        mobileMenuOverlay.classList.add("hidden");
+        hamburgerBtn.textContent = "Menu";
+      }
+    });
+
+    mobileMenuOverlay.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenuOverlay.classList.add("hidden");
+        hamburgerBtn.textContent = "Menu";
+      });
+    });
+  }
+</script>

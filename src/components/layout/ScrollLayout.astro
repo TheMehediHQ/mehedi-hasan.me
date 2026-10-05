@@ -1,5 +1,5 @@
 ---
-import Sidebar from "./Sidebar.astro";
+import TopNav from "./TopNav.astro";
 import BottomNav from "./BottomNav.astro";
 import MobileFooter from "./MobileFooter.astro";
 import Chatbot from "../chat/Chatbot.astro";
@@ -35,13 +35,13 @@ const sectionIds = sections.map((section) => section.id);
   class="flex h-screen w-full overflow-hidden"
   style="background-color: var(--color-background);"
 >
-  <!-- Desktop Sidebar -->
-  <Sidebar />
+  <!-- Top Navigation -->
+  <TopNav />
 
   <!-- Main Scroll Container -->
   <main
     id="main-scroll-container"
-    class="flex-1 overflow-y-auto scroll-smooth pb-24 lg:ml-[200px] lg:pb-0 xl:ml-[220px]"
+    class="flex-1 overflow-y-auto scroll-smooth pt-16 pb-24 lg:pb-0"
   >
     {
       sections.map(({ id, component: Component }) => (

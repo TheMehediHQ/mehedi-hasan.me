@@ -1,6 +1,7 @@
 ---
 import TopNav from "./TopNav.astro";
 import MobileFooter from "./MobileFooter.astro";
+import GradientFooter from "./GradientFooter.astro";
 import Chatbot from "../chat/Chatbot.astro";
 
 import HomeSection from "../../sections/HomeSection.astro";
@@ -40,7 +41,7 @@ const sectionIds = sections.map((section) => section.id);
   <!-- Main Scroll Container -->
   <main
     id="main-scroll-container"
-    class="flex-1 overflow-y-auto scroll-smooth pt-16 pb-24 lg:pb-0"
+    class="flex-1 overflow-y-auto scroll-smooth pt-16 pb-0 lg:pb-0"
   >
     {
       sections.map(({ id, component: Component }) => (
@@ -51,6 +52,7 @@ const sectionIds = sections.map((section) => section.id);
     }
 
     <MobileFooter />
+    <GradientFooter />
   </main>
 
   <!-- AI Portfolio Assistant Chatbot -->

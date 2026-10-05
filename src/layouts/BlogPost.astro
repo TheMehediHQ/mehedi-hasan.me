@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import TopNav from '../components/layout/TopNav.astro';
 import MobileFooter from '../components/layout/MobileFooter.astro';
+import GradientFooter from '../components/layout/GradientFooter.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Chatbot from '../components/chat/Chatbot.astro';
@@ -142,6 +143,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         </article>
 
         <MobileFooter />
+        <GradientFooter />
       </main>
 
       <!-- AI Portfolio Assistant Chatbot -->

@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import TopNav from '../../components/layout/TopNav.astro';
 import MobileFooter from '../../components/layout/MobileFooter.astro';
+import GradientFooter from '../../components/layout/GradientFooter.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { Icon } from 'astro-icon/components';
 import Newsletter from '../../components/Newsletter.astro';
@@ -210,6 +211,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
         </div>
 
         <MobileFooter />
+        <GradientFooter />
       </main>
 
       <!-- AI Portfolio Assistant Chatbot -->

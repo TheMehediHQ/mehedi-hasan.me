@@ -6,7 +6,6 @@ import Chatbot from "../chat/Chatbot.astro";
 
 import HomeSection from "../../sections/HomeSection.astro";
 
-import AboutSection from "../../sections/AboutSection.astro";
 import ExperienceSection from "../../sections/ExperienceSection.astro";
 import ProjectsSection from "../../sections/ProjectsSection.astro";
 import RealWorldProjectsSection from "../../sections/RealWorldProjectsSection.astro";
@@ -18,7 +17,6 @@ import ContactSection from "../../sections/ContactSection.astro";
 
 const sections = [
   { id: "home", component: HomeSection },
-  { id: "about", component: AboutSection },
   { id: "experience", component: ExperienceSection },
    { id: "projects", component: ProjectsSection },
    { id: "real-world-projects", component: RealWorldProjectsSection },
@@ -66,7 +64,6 @@ const sectionIds = sections.map((section) => section.id);
 <script>
   const sectionIds = [
     "home",
-    "about",
     "experience",
     "projects",
     "real-world-projects",

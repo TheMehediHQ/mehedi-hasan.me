@@ -18,13 +18,15 @@ const { items } = Astro.props;
   {
     items.map((item) => {
       const isResume = item.label === "Resume";
+      const isEmail = item.href.startsWith("mailto:");
+      const email = isEmail ? item.href.replace("mailto:", "") : "";
 
       return (
         <span class:list={["hero-cta-wrapper", { "has-preview": !!item.previewImage }]}>
           <a
-            href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={isEmail ? "#" : item.href}
+            target={isEmail ? undefined : "_blank"}
+            rel={isEmail ? undefined : "noopener noreferrer"}
             class:list={[
               "flex items-center gap-2 px-2 py-1 rounded-xl text-sm font-medium btn-flicker-fix transition-all duration-200",
               isResume ? "hero-cta-btn resume" : "hero-cta-btn default border",
@@ -38,10 +40,13 @@ const { items } = Astro.props;
                 ? "var(--color-button-primary-text)"
                 : "var(--btn-text)",
             }}
+            data-copy-email={isEmail ? email : undefined}
           >
-            {item.label}
+            <span class="cta-label">{item.label}</span>
 
-            <Icon name="lucide:arrow-up-right" size={14} class="opacity-70" />
+            <Icon name="lucide:arrow-up-right" size={14} class="opacity-70 cta-icon" class:list={[{ "hidden": isEmail }]} />
+            <Icon name="lucide:copy" size={14} class="opacity-70 cta-copy-icon" class:list={[{ "hidden": !isEmail }]} />
+            <Icon name="lucide:check" size={14} class="opacity-70 cta-check hidden" />
           </a>
           {item.previewImage && (
             <span class="hero-cta-preview">
@@ -94,3 +99,33 @@ const { items } = Astro.props;
     object-position: center;
   }
 </style>
+
+<script>
+  document.querySelectorAll("[data-copy-email]").forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = (btn as HTMLElement).dataset.copyEmail;
+      if (!email) return;
+
+      try {
+        await navigator.clipboard.writeText(email);
+        const label = btn.querySelector(".cta-label");
+        const icon = btn.querySelector(".cta-icon");
+        const copyIcon = btn.querySelector(".cta-copy-icon");
+        const check = btn.querySelector(".cta-check");
+
+        if (icon) icon.classList.add("hidden");
+        if (copyIcon) copyIcon.classList.add("hidden");
+        if (check) check.classList.remove("hidden");
+
+        setTimeout(() => {
+          if (icon) icon.classList.add("hidden");
+          if (copyIcon) copyIcon.classList.remove("hidden");
+          if (check) check.classList.add("hidden");
+        }, 2000);
+      } catch (err) {
+        console.error("Failed to copy:", err);
+      }
+    });
+  });
+</script>

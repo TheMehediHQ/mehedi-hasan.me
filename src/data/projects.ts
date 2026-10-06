@@ -1,24 +1,11 @@
 import type { Project } from "@/types";
 
 export const projects: Project[] = [
-  // {
-  //   id: "1",
-  //   title: "XGari",
-  //   description:
-  //     "A modern automotive marketplace platform where users can browse, compare, and discover vehicles with a fast and responsive user experience.",
-  //   image: "/projects/xgari.webp",
-  //   technologies: ["Next.js", "PostgreSQL", "Hono", "Tailwind CSS"],
-  //   github: "",
-  //   liveDemo: "https://xgari.com",
-  //   details:
-  //     "Built a scalable automotive marketplace with secure authentication, advanced search, responsive UI, and a powerful admin dashboard for managing vehicles, users, and platform content.",
-  //   type: "professional",
-  // },
   {
-    id: "2",
+    id: "1",
     title: "AY Voice",
     description:
-      "A cloud-based bulk SMS and voice calling platform that enables businesses to manage campaigns, contacts, and communication efficiently.",
+      "A cloud-based SMS and voice platform for businesses to manage campaigns, contacts, and bulk communications efficiently.",
     image: "/projects/ayvoice.webp",
     technologies: ["Next.js", "Hono", "PostgreSQL"],
     github: "",
@@ -28,10 +15,10 @@ export const projects: Project[] = [
     type: "professional",
   },
   {
-    id: "3",
+    id: "2",
     title: "NexVibe",
     description:
-      "A modern software agency website showcasing services, portfolio, and business solutions with a clean, responsive, and high-performance design.",
+      "A modern software agency website showcasing services, portfolio, and business solutions with a clean, responsive design.",
     image: "/projects/nexvibe.webp",
     technologies: ["Next.js", "Tailwind CSS"],
     github: "",
@@ -41,12 +28,18 @@ export const projects: Project[] = [
     type: "professional",
   },
   {
-    id: "4",
+    id: "3",
     title: "Kashly",
     description:
-      "A modern money management app that helps users track income and expenses, set budgets, and achieve financial goals with real-time dashboards.",
+      "A modern money management app for tracking income, expenses, budgets, and financial goals with real-time dashboards.",
     image: "/projects/kashly.webp",
-    technologies: ["Next.js", "TypeScript", "Express", "MongoDB", "Tailwind CSS"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+    ],
     github: "https://github.com/TheMehediHQ/Kashly",
     liveDemo: "https://kashly.mehedi-hasan.me",
     details:
@@ -54,12 +47,18 @@ export const projects: Project[] = [
     type: "personal",
   },
   {
-    id: "5",
+    id: "4",
     title: "Treely",
     description:
-      "Treely is a plant care tracking and management web application that helps users manage their plant collections, access care guides, and track watering schedules.",
+      "Treely is a plant care app for managing plant collections, care guides, and watering schedules in one place.",
     image: "/projects/treely.webp",
-    technologies: ["React", "Express", "MongoDB", "Firebase", "Tailwind CSS"],
+    technologies: [
+      "React",
+      "Express",
+      "MongoDB",
+      "Firebase",
+      "Tailwind CSS",
+    ],
     github: "https://github.com/TheMehediHQ/Treely",
     liveDemo: "https://treely.mehedi-hasan.me",
     details:
@@ -67,12 +66,18 @@ export const projects: Project[] = [
     type: "personal",
   },
   {
-    id: "6",
+    id: "5",
     title: "Foodly",
     description:
-      "Foodly is a smart food inventory app that tracks expiry dates, monitors freshness, and prevents food waste in real-time.",
+      "Foodly is a smart food inventory app that tracks expiry dates, monitors freshness, and helps prevent food waste.",
     image: "/projects/foodly.webp",
-    technologies: ["React", "Express", "MongoDB", "Firebase", "Tailwind CSS"],
+    technologies: [
+      "React",
+      "Express",
+      "MongoDB",
+      "Firebase",
+      "Tailwind CSS",
+    ],
     github: "https://github.com/TheMehediHQ/Foodly",
     liveDemo: "https://foodly.mehedi-hasan.me",
     details:

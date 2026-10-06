@@ -35,14 +35,14 @@ const sectionIds = sections.map((section) => section.id);
   class="flex h-screen w-full overflow-hidden"
   style="background-color: var(--color-background);"
 >
-  <!-- Top Navigation -->
-  <TopNav />
-
   <!-- Main Scroll Container -->
   <main
     id="main-scroll-container"
-    class="flex-1 overflow-y-auto scroll-smooth pt-16 pb-0 lg:pb-0"
+    class="flex-1 overflow-y-auto scroll-smooth pb-0 lg:pb-0"
   >
+    <!-- Top Navigation -->
+    <TopNav />
+
     {
       sections.map(({ id, component: Component }) => (
         <section id={id} data-section={id}>

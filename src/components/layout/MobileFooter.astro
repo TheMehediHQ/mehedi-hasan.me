@@ -3,11 +3,11 @@ import { personalInfo } from "@/data/personalInfo";
 ---
 
 <footer
-  class="max-w-3xl mx-auto flex items-center justify-between gap-3 px-6 lg:px-0 py-4"
+  class="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 px-6 lg:px-0 py-4"
   style="border-color: var(--color-border);"
 >
   <!-- Copyright Text -->
-   <div class="space-y-1.5"> <p
+  <p
     class="text-xs font-medium whitespace-nowrap"
     style="color: var(--color-muted-text);"
   >
@@ -15,9 +15,9 @@ import { personalInfo } from "@/data/personalInfo";
   </p>
 
   <!-- Last Visitor -->
-  <div id="last-visitor" class="text-xs text-right truncate flex items-center justify-end gap-1" style="color: var(--color-muted-text);">
+  <div id="last-visitor" class="text-xs truncate flex items-center gap-1" style="color: var(--color-muted-text);">
    <span>Last visitor</span> <span id="last-visitor-text"></span>
-  </div></div>
+  </div>
 </footer>
 
 <script>

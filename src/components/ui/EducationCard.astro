@@ -17,39 +17,25 @@ const { education, index = 0 } = Astro.props;
     style="border-color: var(--btn-border);"
   >
     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
-      <div class="flex items-center gap-2.5 sm:gap-3">
-        <div
-          class="flex-shrink-0"
-          style="background-color: var(--color-button-secondary-bg); color: var(--color-button-secondary-text);"
+      <div>
+        <h3
+          class="text-base sm:text-lg font-semibold"
+          style="color: var(--color-primary-text);"
         >
-          <img
-            src="/icon/education.svg"
-            alt="Education"
-            class="w-6 h-6 object-contain"
-          />
-        </div>
-
-        <div>
-          <h3
-            class="text-base sm:text-lg font-semibold"
-            style="color: var(--color-primary-text);"
-          >
-            {education.degree}
-          </h3>
-          <p
-            class="text-xs sm:text-sm"
-            style="color: var(--color-accent);"
-          >
-            {education.institution}
-          </p>
-        </div>
+          {education.degree}
+        </h3>
+        <p
+          class="text-xs sm:text-sm"
+          style="color: var(--color-accent);"
+        >
+          {education.institution}
+        </p>
       </div>
 
       <div
-        class="flex items-center gap-1.5 text-xs sm:text-sm"
+        class="text-xs sm:text-sm"
         style="color: var(--color-muted-text);"
       >
-        <Icon name="lucide:calendar" size={12} />
         {education.period}
       </div>
     </div>

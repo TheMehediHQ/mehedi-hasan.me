@@ -113,7 +113,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
             </div>
 
             <!-- Posts Grid -->
-            <div id="blog-posts-grid" class="flex flex-col gap-6">
+            <div id="blog-posts-grid" class="flex flex-col gap-6 lg:gap-10">
               {posts.map((post) => (
                 <a
                   href={`/blog/${post.id}/`}

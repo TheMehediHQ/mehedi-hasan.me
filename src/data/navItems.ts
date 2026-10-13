@@ -8,12 +8,6 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   {
-    id: "home",
-    label: "Home",
-    path: "#home",
-    icon: "Home",
-  },
-  {
     id: "experience",
     label: "Experience",
     path: "#experience",

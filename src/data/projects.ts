@@ -48,25 +48,6 @@ export const projects: Project[] = [
   },
   {
     id: "4",
-    title: "Treely",
-    description:
-      "Treely is a plant care app for managing plant collections, care guides, and watering schedules in one place.",
-    image: "/projects/treely.webp",
-    technologies: [
-      "React",
-      "Express",
-      "MongoDB",
-      "Firebase",
-      "Tailwind CSS",
-    ],
-    github: "https://github.com/TheMehediHQ/Treely",
-    liveDemo: "https://treely.mehedi-hasan.me",
-    details:
-      "Built a full-stack plant care application with secure authentication via Clerk, plant collection management, care guides, watering schedule tracking, and a responsive UI using React, Express, MongoDB, Firebase, and Tailwind CSS.",
-    type: "personal",
-  },
-  {
-    id: "5",
     title: "Foodly",
     description:
       "Foodly is a smart food inventory app that tracks expiry dates, monitors freshness, and helps prevent food waste.",

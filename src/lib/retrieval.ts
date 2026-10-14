@@ -40,7 +40,7 @@ export function retrievePortfolioKnowledge(query: string, maxSections = 3): Retr
       /\bwork with (mehedi|him|you)\b/i.test(normalizedQuery)) {
     detectedIntents.push("hiring");
   }
-  if (/\b(project|projects|built|kashly|treely|foodly|ayvoice|nexvibe|app|software)\b/i.test(normalizedQuery) ||
+  if (/\b(project|projects|built|kashly|foodly|ayvoice|nexvibe|app|software)\b/i.test(normalizedQuery) ||
       /ay\s*voice/i.test(normalizedQuery)) {
     detectedIntents.push("projects");
   }
@@ -308,7 +308,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Projects general
   if (retrieval.detectedIntents.includes("projects") || /\b(project|projects|built)\b/i.test(q)) {
     return {
-      text: "Mehedi has built both professional and open-source applications:\n\n• **AY Voice:** Cloud-based bulk SMS & voice calling communication platform (Next.js, Hono, PostgreSQL).\n• **NexVibe:** Modern software agency website (Next.js, Tailwind CSS).\n• **Kashly:** Smart money management app with Clerk auth and real-time expense monitoring (Next.js, Express, MongoDB).\n• **Treely:** Plant care tracking and guide app (React, Express, MongoDB, Firebase).\n• **Foodly:** Real-time food inventory and freshness tracking app (React, Express, MongoDB, Firebase).",
+      text: "Mehedi has built both professional and open-source applications:\n\n• **AY Voice:** Cloud-based bulk SMS & voice calling communication platform (Next.js, Hono, PostgreSQL).\n• **NexVibe:** Modern software agency website (Next.js, Tailwind CSS).\n• **Kashly:** Smart money management app with Clerk auth and real-time expense monitoring (Next.js, Express, MongoDB).\n• **Foodly:** Real-time food inventory and freshness tracking app (React, Express, MongoDB, Firebase).",
       actions: [
         { type: "link", label: "Visit AY Voice", url: "https://ayvoice.com" },
         { type: "link", label: "Kashly on GitHub", url: "https://github.com/TheMehediHQ/Kashly" },

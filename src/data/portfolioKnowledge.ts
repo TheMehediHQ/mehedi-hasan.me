@@ -135,9 +135,9 @@ Current Focus:
   {
     id: "projects-personal",
     category: "projects",
-    title: "Open Source & Personal Projects (Kashly, Treely, Foodly)",
+    title: "Open Source & Personal Projects (Kashly, Foodly)",
     keywords: [
-      "kashly", "treely", "foodly", "personal", "open source", "finance", "plants", "food", "inventory", "clerk", "mongodb"
+      "kashly", "foodly", "personal", "open source", "finance", "food", "inventory", "clerk", "mongodb"
     ],
     content: `Open Source & Personal Projects:
 1. Kashly (https://kashly.mehedi-hasan.me | GitHub: https://github.com/TheMehediHQ/Kashly)
@@ -146,20 +146,13 @@ Current Focus:
    Features: Secure authentication via Clerk, real-time expense monitoring, smart budgeting, categorized transaction history, responsive UI.
    Tech Stack: Next.js, TypeScript, Express, MongoDB, Tailwind CSS.
 
-2. Treely (https://treely.mehedi-hasan.me | GitHub: https://github.com/TheMehediHQ/Treely)
-   Type: Personal / Open Source Full-Stack App
-   Description: A plant care tracking and management web application helping gardeners and enthusiasts manage plant collections, read care guides, and track watering schedules.
-   Features: Clerk authentication, collection management, plant care guides, automated watering schedules.
-   Tech Stack: React, Express, MongoDB, Firebase, Tailwind CSS.
-
-3. Foodly (https://foodly.mehedi-hasan.me | GitHub: https://github.com/TheMehediHQ/Foodly)
+2. Foodly (https://foodly.mehedi-hasan.me | GitHub: https://github.com/TheMehediHQ/Foodly)
    Type: Personal / Open Source Full-Stack App
    Description: A smart food inventory tracking application that monitors expiry dates, tracks item freshness, and prevents food waste in real-time.
    Features: Clerk authentication, expiry date alerts, freshness monitoring, waste prevention metrics.
    Tech Stack: React, Express, MongoDB, Firebase, Tailwind CSS.`,
     actions: [
       { type: "link", label: "Kashly GitHub", url: "https://github.com/TheMehediHQ/Kashly" },
-      { type: "link", label: "Treely GitHub", url: "https://github.com/TheMehediHQ/Treely" },
       { type: "link", label: "Foodly GitHub", url: "https://github.com/TheMehediHQ/Foodly" }
     ]
   },

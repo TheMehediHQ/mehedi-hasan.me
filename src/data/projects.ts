@@ -8,7 +8,7 @@ export const projects: Project[] = [
       "A cloud-based SMS and voice platform for businesses to manage campaigns, contacts, and bulk communications efficiently.",
     image: "/projects/ayvoice.webp",
     technologies: ["Next.js", "Hono", "PostgreSQL"],
-    github: "",
+    github: "https://github.com/TheMehediHQ",
     liveDemo: "https://ayvoice.com",
     details:
       "Developed a communication platform with campaign management, contact organization, message history, and third-party API integration for bulk SMS and voice call services.",
@@ -21,7 +21,7 @@ export const projects: Project[] = [
       "A modern software agency website showcasing services, portfolio, and business solutions with a clean, responsive design.",
     image: "/projects/nexvibe.webp",
     technologies: ["Next.js", "Tailwind CSS"],
-    github: "",
+    github: "https://github.com/TheMehediHQ/NexvibeHq",
     liveDemo: "https://nexvibe.tech",
     details:
       "Built a fast and SEO-friendly business website using Next.js with responsive layouts, smooth animations, optimized performance, and a professional user experience.",

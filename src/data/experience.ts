@@ -3,7 +3,7 @@ import type { Experience } from "@/types";
 export const experiences: Experience[] = [
   {
     id: "1",
-    role: "Full Stack Developer",
+    role: "Full Stack Software Developer",
     company: "NexVibe",
     companyUrl: "https://www.nexvibe.tech",
     period: "May 2026 - Present",

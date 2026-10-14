@@ -7,7 +7,7 @@ export const projects: Project[] = [
     description:
       "A cloud-based SMS and voice platform for businesses to manage campaigns, contacts, and bulk communications efficiently.",
     image: "/projects/ayvoice.webp",
-    technologies: ["Next.js", "Hono", "PostgreSQL"],
+    technologies: ["Next.js", "Hono", "PostgreSQL", "Docker"],
     github: "https://github.com/TheMehediHQ/ayvoice-case-study",
     liveDemo: "https://ayvoice.com",
     details:

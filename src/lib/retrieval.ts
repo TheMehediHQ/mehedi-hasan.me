@@ -44,7 +44,7 @@ export function retrievePortfolioKnowledge(query: string, maxSections = 3): Retr
       /ay\s*voice/i.test(normalizedQuery)) {
     detectedIntents.push("projects");
   }
-  if (/\b(skill|skills|technology|technologies|tech|stack|frontend|backend|database|databases|tools|react|next|next\.js|typescript|javascript|node|node\.js|express|prisma|postgres|postgresql|mongo|mongodb|docker|aws)\b/i.test(normalizedQuery)) {
+  if (/\b(skill|skills|technology|technologies|tech|stack|frontend|backend|database|databases|tools|react|next|next\.js|typescript|javascript|node|node\.js|express|prisma|go|golang|hono|postgres|postgresql|mongo|mongodb|docker|aws)\b/i.test(normalizedQuery)) {
     detectedIntents.push("skills");
   }
   if (/\b(experience|career|history|company|companies|role|intern|internship|nexvibe|apexiums|quantum)\b/i.test(normalizedQuery)) {
@@ -256,7 +256,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Frontend technologies
   if (/frontend/i.test(q) && /technolog|skill|stack|use/i.test(q)) {
     return {
-      text: "Mehedi specializes in modern frontend engineering:\n\n• **React** (95%) — Component architecture, hooks, and scalable state management\n• **Next.js** (92%) — App Router, Server Components, SSR/SSG, and performance tuning\n• **JavaScript** (95%) & **TypeScript** (90%) — Type-safe, modern development",
+      text: "Mehedi specializes in modern frontend engineering:\n\n• **React.js** (95%) — Component architecture, hooks, and scalable state management\n• **Next.js** (92%) — App Router, Server Components, SSR/SSG, and performance tuning\n• **JavaScript** (95%) & **TypeScript** (90%) — Type-safe, modern development",
       actions: [
         { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -266,7 +266,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Backend technologies
   if (/backend/i.test(q) && /technolog|skill|stack|use/i.test(q)) {
     return {
-      text: "Mehedi's backend stack:\n\n• **Node.js** (90%) — Scalable server runtimes and asynchronous services\n• **FastAPI** (72%) — High-performance Python API framework\n• **PostgreSQL** (85%) & **MongoDB** (82%) — Relational and document databases\n• **Docker** (80%) & **AWS** (75%) — Containerization and cloud deployment",
+      text: "Mehedi's backend stack:\n\n• **Node.js** (90%) — Scalable server runtimes and asynchronous, event-driven services\n• **Express.js** (88%) — RESTful APIs and middleware-based services\n• **Golang** (80%) — High-performance, concurrent backend services\n• **PostgreSQL** (85%), **Prisma ORM** (85%) & **MongoDB** (82%) — Relational and document databases with type-safe data access\n• **Docker** (80%) & **AWS** (75%) — Containerization and cloud deployment",
       actions: [
         { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -276,7 +276,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Specialization & Current Role
   if (/specialize|specialization|current role|role/i.test(q)) {
     return {
-      text: "Mehedi is an **AI/LLM Developer** and **Full Stack Developer**. He's currently at **NexVibe**, leading engineering for a SaaS platform with 100k+ users. His focus is on high-performance web apps with React, Next.js, and TypeScript, plus AI-powered applications using LLMs.",
+      text: "Mehedi is a **Full-Stack Software Developer** based in Dhaka, Bangladesh. He's currently at **NexVibe**, leading engineering for a SaaS platform with 100k+ users. His focus is on high-performance web apps with React, Next.js, and TypeScript, and scalable, event-driven backends with Node.js, Hono, and Golang.",
       actions: [
         { type: "resume", label: "Read Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
         { type: "booking", label: "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" }
@@ -287,7 +287,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Availability / hiring
   if (retrieval.detectedIntents.includes("hiring") || /\b(available|hire|freelance|job|opportunity)\b/i.test(q)) {
     return {
-      text: "Yes, Mehedi is actively looking for full-time software engineering and AI/LLM developer roles. He's also open to high-impact contract work. Feel free to reach out or book a call!",
+      text: "Yes, Mehedi is actively looking for full-time software engineering roles. He's also open to high-impact contract work. Feel free to reach out or book a call!",
       actions: [
         { type: "booking", label: "Schedule a 15-min Call", url: "https://cal.com/TheMehediHQ/15min" },
         { type: "email", label: "hello@mehedi-hasan.me", url: "mailto:hello@mehedi-hasan.me" },
@@ -298,7 +298,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Technologies & skills general
   if (retrieval.detectedIntents.includes("skills") || /\b(technolog|skill|stack)\b/i.test(q)) {
     return {
-      text: "Mehedi's tech stack:\n\n• **Frontend:** React (95%), Next.js (92%)\n• **Languages:** JavaScript (95%), TypeScript (90%), Python (75%)\n• **Backend:** Node.js (90%), FastAPI (72%)\n• **AI/LLM:** OpenAI (78%)\n• **Databases:** PostgreSQL (85%), MongoDB (82%)\n• **DevOps & Cloud:** Linux (88%), Git (92%), Docker (80%), AWS (75%)",
+      text: "Mehedi's tech stack:\n\n• **Frontend:** React.js (95%), Next.js (92%)\n• **Languages:** JavaScript (95%), TypeScript (90%), Golang (80%)\n• **Backend:** Node.js (90%), Express.js (88%)\n• **Databases:** PostgreSQL (85%), Prisma ORM (85%), MongoDB (82%)\n• **DevOps, Cloud & Tools:** Docker (80%), AWS (75%), Linux (88%), Git (92%)",
       actions: [
         { type: "resume", label: "View Full Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -319,7 +319,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
   // Experience general
   if (retrieval.detectedIntents.includes("experience") || /\b(experience|history|companies)\b/i.test(q)) {
     return {
-      text: "Mehedi's professional experience includes:\n\n1. **Full Stack Developer at NexVibe** (May 2026 – Present): Leading full-stack engineering for a SaaS platform serving 100k+ users, implemented micro-frontends, and boosted performance by 40%.\n2. **Full Stack Developer Intern at Apexiums Technologies** (March 2026 – April 2026): Built client applications using React, Node.js, Express, and PostgreSQL.\n3. **Volunteer at Quantum Foundation** (2018 – Present): Motivational speaking, leadership, and community outreach.",
+      text: "Mehedi's professional experience includes:\n\n1. **Full Stack Software Developer at NexVibe** (May 2026 – Present): Leading full-stack engineering for a SaaS platform serving 100k+ users, implemented micro-frontends, and boosted performance by 40%.\n2. **Full Stack Developer Intern at Apexiums Technologies** (March 2026 – April 2026): Built client applications using React, Node.js, Express, and PostgreSQL.\n3. **Volunteer at Quantum Foundation** (2018 – Present): Motivational speaking, leadership, and community outreach.",
       actions: [
         { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       ],
@@ -361,7 +361,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
 
   // Default bio & overview
   return {
-    text: "Mehedi is an AI/LLM Developer and Full Stack Developer based in Dhaka, Bangladesh. He builds scalable web apps with React, Next.js, and TypeScript, along with AI-powered solutions using LLMs and RAG architectures. Want to know more about his projects, skills, or experience?",
+    text: "Mehedi is a Full-Stack Software Developer based in Dhaka, Bangladesh. He builds scalable, high-performance web apps with React, Next.js, and TypeScript, and event-driven backends with Node.js, Hono, and Golang. Want to know more about his projects, skills, or experience?",
     actions: retrieval.suggestedActions,
   };
 }

@@ -27,17 +27,17 @@ export const PORTFOLIO_KNOWLEDGE: KnowledgeSection[] = [
     keywords: [
       "mehedi", "hasan", "who", "about", "bio", "title", "developer", "engineer", "location", "bangladesh", "dhaka", "intro"
     ],
-    content: `Mehedi Hasan is an AI/LLM Developer and Full Stack Software Developer based in Dhaka, Bangladesh.
-He specializes in building modern, scalable, high-performance web applications and intelligent AI-powered solutions.
-Core expertise: React, Next.js, TypeScript, Node.js, Python, FastAPI, PostgreSQL, MongoDB, OpenAI, and modern AI/LLM integrations (RAG, AI agents, LLM APIs).
-Professional Title: "AI/LLM Developer" and Software Developer.
+    content: `Mehedi Hasan is a Full-Stack Software Developer based in Dhaka, Bangladesh.
+He specializes in building modern, scalable, high-performance web applications and reliable, event-driven backend systems.
+Core expertise: React, Next.js, TypeScript, Node.js, Express.js, Golang, PostgreSQL, MongoDB, Prisma ORM, Docker, and AWS.
+Professional Title: "Full-Stack Software Developer".
 Location: Dhaka, Bangladesh (Timezone: GMT+6 / BST).
 Current Focus:
 - Building high-performance, scalable software systems
 - Developing modern web applications with Next.js and TypeScript
-- Building AI-powered applications with Python, OpenAI, and LLM APIs
-- Exploring RAG (Retrieval-Augmented Generation), AI agents, and AI automation
-- Improving backend architecture, REST/RPC APIs, and cloud deployment.`,
+- Architecting event-driven backends with Node.js, Hono, and Golang
+- Managing cloud infrastructure, Docker, and Linux environments
+- Improving backend architecture, APIs, and production stability.`,
     actions: [
       { type: "resume", label: "Read Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
       { type: "booking", label: "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" }
@@ -49,30 +49,29 @@ Current Focus:
     title: "Technical Skills & Technologies",
     keywords: [
       "skills", "tech", "technologies", "stack", "frontend", "backend", "database", "tools", "languages",
-      "react", "next.js", "nextjs", "typescript", "javascript", "node", "nodejs", "python", "openai",
-      "fastapi", "postgresql", "postgres", "mongodb", "docker", "aws", "git", "linux", "ai", "llm", "ml"
+      "react", "next.js", "nextjs", "typescript", "javascript", "node", "nodejs", "express", "golang", "go",
+      "prisma", "hono", "postgresql", "postgres", "mongodb", "docker", "aws", "git", "linux"
     ],
     content: `Mehedi's technical skills and proficiencies:
 - Frontend:
-  * React (Proficiency: 95%) - Component architecture, hooks, state management, modern UI/UX
+  * React.js (Proficiency: 95%) - Component architecture, hooks, state management, modern UI/UX
   * Next.js (Proficiency: 92%) - App Router, Server Components, SSR/SSG, server actions, performance optimization
 - Programming Languages:
   * JavaScript (Proficiency: 95%) - ES6+, asynchronous patterns, event loop, DOM manipulation
   * TypeScript (Proficiency: 90%) - Strong typing, type safety, generics, modern standards
-  * Python (Proficiency: 75%) - AI/ML development, scripting, data processing
+  * Golang (Proficiency: 80%) - High-performance, concurrent backend services
 - Backend & APIs:
   * Node.js (Proficiency: 90%) - Scalable server runtimes, event-driven services
-  * FastAPI (Proficiency: 72%) - High-performance Python API framework, async endpoints
-- AI/LLM:
-  * OpenAI (Proficiency: 78%) - GPT APIs, prompt engineering, function calling, embeddings
+  * Express.js (Proficiency: 88%) - RESTful APIs, middleware, and routing
 - Databases:
   * PostgreSQL (Proficiency: 85%) - Relational data modeling, SQL queries, indexing
+  * Prisma ORM (Proficiency: 85%) - Type-safe database access and schema migrations
   * MongoDB (Proficiency: 82%) - Document schemas, aggregation pipelines, NoSQL
 - DevOps, Cloud & Tools:
-  * Linux (Proficiency: 88%) - Server administration, command line, bash scripting
-  * Git (Proficiency: 92%) - Version control, code reviews, collaboration
   * Docker (Proficiency: 80%) - Containerization, dev/prod environments
-  * AWS (Proficiency: 75%) - Cloud deployment, storage, serverless services`
+  * AWS (Proficiency: 75%) - Cloud deployment, storage, serverless services
+  * Linux (Proficiency: 88%) - Server administration, command line, bash scripting
+  * Git (Proficiency: 92%) - Version control, code reviews, collaboration`
   },
   {
     id: "work-experience",
@@ -186,9 +185,9 @@ Current Focus:
       "available", "availability", "hire", "hiring", "work", "job", "contract", "freelance", "full-time", "remote", "opportunity", "schedule", "call", "meet"
     ],
     content: `Availability & Hiring:
-- Mehedi is actively available for full-time software engineering and AI/LLM developer opportunities.
+- Mehedi is actively available for full-time software engineering opportunities.
 - He is open to remote worldwide roles, high-impact contract projects, and forward-thinking engineering teams.
-- Primary working focus: Full Stack Development (Next.js/React/Node/TypeScript) and AI/LLM Application Engineering.
+- Primary working focus: Full Stack Development (Next.js/React/Node/TypeScript) and scalable, event-driven backend engineering (Node.js, Hono, Golang).
 - Interested recruiters, founders, or clients can schedule a direct 15-minute introductory call or email him directly.`,
     actions: [
       { type: "booking", label: "Book a 15-min Call", url: "https://cal.com/TheMehediHQ/15min" },

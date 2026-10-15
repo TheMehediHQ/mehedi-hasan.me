@@ -2,9 +2,12 @@
 import { Icon } from "astro-icon/components";
 import { navItems } from "../../data/navItems";
 import ThemeToggle from "../ThemeToggle.astro";
+import ScrollProgress from "../ui/ScrollProgress.astro";
 
 const isHome = Astro.url.pathname === "/";
 ---
+
+<ScrollProgress />
 
 <nav
   class="left-0 right-0 px-4 sm:px-8 lg:px-16"

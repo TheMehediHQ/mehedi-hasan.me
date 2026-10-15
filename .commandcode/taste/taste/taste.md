@@ -1,0 +1,8 @@
+# Taste
+- Writes requests in romanized Bengali (Banglish) mixed with English technical terms; expects the agent to understand without asking for translation. Confidence: 0.75
+- Prefers the agent to answer in Bengali (keeping English technical terms/code as-is), mirroring the language of their question rather than replying in English. Confidence: 0.5
+- Explores and asks "what does X do / where does X live / is X actually used" before editing: wants the purpose and existing usage (and whether a component is even wired up anywhere) explained first, then concrete steps for the change. Confidence: 0.6
+- Prefers deleting dead/unused code outright instead of keeping it around for possible future use: once a component is confirmed unused ("kono file e import kora nei"), a terse "delete it" is the whole instruction expected — just remove the file, and act on the agent's own dead-code report without further back-and-forth. Confidence: 0.85
+- Distinguishes truly-unused code from intentionally disabled features: confirmed-dead components get deleted, but a feature that is deliberately commented out (a section chain plus its supporting cards, API route, and env entries) should be left in place and merely listed in a report rather than removed. Confidence: 0.5
+- Periodically asks for a whole-project dead-code sweep ("full project check kore dekho dead components ase kina — ja use hoy na"), expecting every component to be cross-referenced against real imports/usage rather than assumed live. Confidence: 0.6
+- Expects the agent to commit and push finished work straight to `main` (not a branch/PR, no confirmation stop) when told "commit and push". Confidence: 0.55

@@ -1,0 +1,66 @@
+---
+// src/components/ui/ScrollProgress.astro
+---
+
+<!-- Fixed Top Scroll Progress Bar -->
+<div
+  id="scroll-progress-bar"
+  class="fixed top-0 left-0 h-[3px] bg-[#60A5FA] z-[9999] w-full origin-left scale-x-0 transition-transform duration-75 ease-out pointer-events-none"
+  aria-hidden="true"
+></div>
+
+<script>
+  function setupScrollProgress() {
+    const progressBar = document.getElementById("scroll-progress-bar");
+    if (!progressBar) return;
+
+    // Detect custom scroll container (#main-scroll-container) or fallback to window
+    const scrollContainer = document.getElementById("main-scroll-container");
+
+    const updateProgress = () => {
+      let progress = 0;
+
+      if (scrollContainer) {
+        const scrollTop = scrollContainer.scrollTop;
+        const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+        if (maxScroll > 0) {
+          progress = scrollTop / maxScroll;
+        }
+      } else {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (maxScroll > 0) {
+          progress = scrollTop / maxScroll;
+        }
+      }
+
+      const clamped = Math.min(Math.max(progress, 0), 1);
+      progressBar.style.scale = `${clamped} 1`;
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    updateProgress();
+  }
+
+  // Support initial load and Astro page transitions
+  setupScrollProgress();
+  document.addEventListener("astro:page-load", setupScrollProgress);
+</script>
+

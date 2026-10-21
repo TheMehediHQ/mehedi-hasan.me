@@ -7,7 +7,7 @@ export const certificates: Certificate[] = [
     issuer: "Google",
     issuerIcon: "/certificates/icons/google.svg",
     date: "2026",
-    credentialUrl: "/public/certificates/pdf/GeminiCertifiedEducator.pdf",
+    credentialUrl: "/certificates/pdf/GeminiCertifiedEducator.pdf",
     thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/GeminiCertifiedEducator.png",
     tags: ["AI/LLM", "Google Gemini"],
   },

@@ -16,7 +16,7 @@ export const certificates: Certificate[] = [
     name: "Web Development Internship Certificate",
     issuer: "Apexiums Technologies",
     issuerIcon: "/certificates/icons/apexiums.svg",
-    date: "2026",
+    date: "2025",
     credentialUrl: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Apexiums_Certificate.jpg",
     thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Apexiums_Certificate.jpg",
     tags: ["Web Development", "Internship"],

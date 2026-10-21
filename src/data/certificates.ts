@@ -8,7 +8,7 @@ export const certificates: Certificate[] = [
     issuerIcon: "/certificates/icons/google.svg",
     date: "2026",
     credentialUrl: "/certificates/pdf/GeminiCertifiedEducator.pdf",
-    thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/GeminiCertifiedEducator.png",
+    thumbnail: "/certificates/pdf/GeminiCertifiedEducator.pdf",
     tags: ["AI/LLM", "Google Gemini"],
   },
   {
@@ -17,8 +17,8 @@ export const certificates: Certificate[] = [
     issuer: "Apexiums Technologies",
     issuerIcon: "/certificates/icons/apexiums.svg",
     date: "2025",
-    credentialUrl: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Apexiums_Certificate.jpg",
-    thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Apexiums_Certificate.jpg",
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_Apexiums_Certificate.pdf",
+    thumbnail: "/certificates/pdf/Mehedi_Hasan_Apexiums_Certificate.pdf",
     tags: ["Web Development", "Internship"],
   },
   {
@@ -27,8 +27,8 @@ export const certificates: Certificate[] = [
     issuer: "Quantum Foundation",
     issuerIcon: "/certificates/icons/quantum.svg",
     date: "2022",
-    credentialUrl: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Blood_Donation_Certificate.png",
-    thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Blood_Donation_Certificate.png",
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_Blood_Donation_Certificate.pdf",
+    thumbnail: "/certificates/pdf/Mehedi_Hasan_Blood_Donation_Certificate.pdf",
     tags: ["Volunteer", "Community"],
   },
   {
@@ -37,8 +37,8 @@ export const certificates: Certificate[] = [
     issuer: "British Council",
     issuerIcon: "/certificates/icons/british-council.svg",
     date: "2019",
-    credentialUrl: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_APTIS_Certificate.png",
-    thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_APTIS_Certificate.png",
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_APTIS_Certificate.pdf",
+    thumbnail: "/certificates/pdf/Mehedi_Hasan_APTIS_Certificate.pdf",
     tags: ["English", "Language Proficiency"],
   },
   {
@@ -47,8 +47,8 @@ export const certificates: Certificate[] = [
     issuer: "Bangladesh Hi-Tech Park Authority",
     issuerIcon: "/certificates/icons/hi-tech-park.svg",
     date: "2019",
-    credentialUrl: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Web_Certificate.png",
-    thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Web_Certificate.png",
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_Web_Certificate .pdf",
+    thumbnail: "/certificates/pdf/Mehedi_Hasan_Web_Certificate.pdf",
     tags: ["Laravel", "Web Development"],
   },
   {
@@ -57,8 +57,8 @@ export const certificates: Certificate[] = [
     issuer: "Bangladesh Hi-Tech Park Authority",
     issuerIcon: "/certificates/icons/hi-tech-park.svg",
     date: "2019",
-    credentialUrl: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Video_Editing_Certificate.png",
-    thumbnail: "https://web.mehedi-hasan.me/assets/images/certificates/Mehedi_Hasan_Video_Editing_Certificate.png",
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_Video_Editing_Certificate.pdf",
+    thumbnail: "/certificates/pdf/Mehedi_Hasan_Video_Editing_Certificate.pdf",
     tags: ["Video Editing", "Animation"],
   },
 ];

@@ -57,6 +57,5 @@ export interface Certificate {
   issuerIcon: string;
   date: string;
   credentialUrl: string;
-  thumbnail: string;
   tags: string[];
 }

@@ -51,18 +51,5 @@ export const projects: Project[] = [
     details:
       "Built a full-stack food inventory application with secure authentication via Clerk, expiry date tracking, freshness monitoring, waste prevention, and a responsive UI using React, Express, MongoDB, Firebase, and Tailwind CSS.",
     type: "personal",
-  },
-  {
-    id: "4",
-    title: "NexVibe",
-    description:
-      "A modern software agency website showcasing services, portfolio, and business solutions with a clean, responsive design.",
-    image: "/projects/nexvibe.webp",
-    technologies: ["Next.js", "Tailwind CSS"],
-    github: "https://github.com/TheMehediHQ/nexvibe-case-study",
-    liveDemo: "https://nexvibe.tech",
-    details:
-      "Built a fast and SEO-friendly business website using Next.js with responsive layouts, smooth animations, optimized performance, and a professional user experience.",
-    type: "professional",
-  },
+  }
 ];

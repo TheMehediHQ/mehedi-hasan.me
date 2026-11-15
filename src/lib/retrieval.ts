@@ -361,7 +361,7 @@ export function generateLocalPortfolioResponse(query: string): { text: string; a
 
   // Default bio & overview
   return {
-    text: "Mehedi is a Full-Stack Software Developer based in Dhaka, Bangladesh. He builds scalable, high-performance web apps with React, Next.js, and TypeScript, and event-driven backends with Node.js, Hono, and Golang. Want to know more about his projects, skills, or experience?",
+    text: "Mehedi is a Full-Stack Software Engineer based in Dhaka, Bangladesh. He builds scalable, high-performance web apps with React, Next.js, and TypeScript, and event-driven backends with Node.js, Hono, and Golang. Want to know more about his projects, skills, or experience?",
     actions: retrieval.suggestedActions,
   };
 }

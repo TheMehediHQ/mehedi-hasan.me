@@ -27,10 +27,10 @@ export const PORTFOLIO_KNOWLEDGE: KnowledgeSection[] = [
     keywords: [
       "mehedi", "hasan", "who", "about", "bio", "title", "developer", "engineer", "location", "bangladesh", "dhaka", "intro"
     ],
-    content: `Mehedi Hasan is a Full-Stack Software Developer based in Dhaka, Bangladesh.
+    content: `Mehedi Hasan is a Full-Stack Software Engineer based in Dhaka, Bangladesh.
 He specializes in building modern, scalable, high-performance web applications and reliable, event-driven backend systems.
 Core expertise: React, Next.js, TypeScript, Node.js, Express.js, Golang, PostgreSQL, MongoDB, Prisma ORM, Docker, and AWS.
-Professional Title: "Full-Stack Software Developer".
+Professional Title: "Full-Stack Software Engineer".
 Location: Dhaka, Bangladesh (Timezone: GMT+6 / BST).
 Current Focus:
 - Building high-performance, scalable software systems

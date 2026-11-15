@@ -3,10 +3,10 @@ import type { Experience } from "@/types";
 export const experiences: Experience[] = [
   {
     id: "1",
-    role: "Full Stack Software Developer",
+    role: "Full Stack Software Engineer",
     company: "NexVibe",
     companyUrl: "https://www.nexvibe.tech",
-    period: "January 2026 - Present",
+    period: "January 2026 - October 2026",
     description:
       "Leading full-stack development for a SaaS platform serving 100k+ users. Implemented micro-frontend architecture and improved performance by 40%.",
    technologies: ["React", "Next.js", "TypeScript","PostgreSQL", "Node.js"]

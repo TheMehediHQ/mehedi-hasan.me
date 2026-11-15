@@ -1,14 +1,14 @@
 export const personalInfo = {
   name: "Mehedi Hasan",
 
-  title: "Full-Stack Software Developer",
+  title: "Software Engineer",
 
   avatar: "/profile/mh.webp",
   signature: "/profile/sign.webp",
   profile: "/profile/mehedi-hasan.webp",
   resume: "/Resume_of_Mehedi_Hasan.pdf",
 
-  bio: "I'm a Full-Stack Software Developer from Bangladesh focused on building modern, scalable, and reliable software with React, Next.js, TypeScript, Node.js, and Golang, with a strong focus on high-performance web applications and cloud deployments.",
+  bio: "I'm a software engineer from Bangladesh focused on building modern, scalable, and reliable software with React, Next.js, TypeScript, Node.js, and Golang, with a strong focus on high-performance web applications and cloud deployments.",
 
   currentFocus: [
     "Building high-performance and scalable software",

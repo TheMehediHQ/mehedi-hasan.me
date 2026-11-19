@@ -1,9 +1,18 @@
-export interface NavItem {
+export interface NavDropdownItem {
   id: string;
   label: string;
   path: string;
-  icon: string;
+  icon?: string;
   href?: string;
+}
+
+export interface NavItem {
+  id: string;
+  label: string;
+  path?: string;
+  icon?: string;
+  href?: string;
+  children?: NavDropdownItem[];
 }
 
 export const navItems: NavItem[] = [
@@ -20,16 +29,34 @@ export const navItems: NavItem[] = [
     icon: "FolderOpen",
   },
   {
-    id: "certificates",
-    label: "Certificates",
-    path: "/certificates",
-    icon: "Award",
-  },
-  {
     id: "blog",
     label: "Blog",
     path: "/blog",
     icon: "BookOpen",
+  },
+  {
+    id: "more",
+    label: "More",
+    children: [
+      {
+        id: "certificates",
+        label: "Certificates",
+        path: "/certificates",
+        icon: "Award",
+      },
+      {
+        id: "awards",
+        label: "Awards",
+        path: "/awards",
+        icon: "Trophy",
+      },
+      {
+        id: "inspiration",
+        label: "Inspiration",
+        path: "/inspiration",
+        icon: "Sparkles",
+      },
+    ],
   },
   {
     id: "contact",
@@ -40,5 +67,5 @@ export const navItems: NavItem[] = [
 ];
 
 export const sectionIds = navItems
-  .filter((item) => !item.href)
+  .filter((item) => !item.href && item.path)
   .map((item) => item.id);

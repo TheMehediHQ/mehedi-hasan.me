@@ -1,9 +1,18 @@
-export interface NavItem {
+export interface NavDropdownItem {
   id: string;
   label: string;
   path: string;
-  icon: string;
+  icon?: string;
   href?: string;
+}
+
+export interface NavItem {
+  id: string;
+  label: string;
+  path?: string;
+  icon?: string;
+  href?: string;
+  children?: NavDropdownItem[];
 }
 
 export interface Skill {

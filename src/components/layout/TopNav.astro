@@ -27,8 +27,51 @@ const isHome = Astro.url.pathname === "/";
     <div class="hidden items-center gap-6 md:flex">
       {
         navItems.map((item) => {
+          if (item.children && item.children.length > 0) {
+            return (
+              <div class="relative inline-block" id="desktop-more-dropdown">
+                <button
+                  type="button"
+                  id="desktop-more-btn"
+                  class="flex items-center gap-1 text-sm font-medium transition-colors duration-200 hover:opacity-70 focus:outline-none cursor-pointer"
+                  style="color: var(--color-secondary-text);"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-controls="desktop-more-menu"
+                >
+                  <span>{item.label}</span>
+                  <Icon
+                    name="lucide:chevron-down"
+                    id="desktop-more-chevron"
+                    class="h-3.5 w-3.5 transition-transform duration-200"
+                  />
+                </button>
+
+                <div
+                  id="desktop-more-menu"
+                  class="invisible absolute left-1/2 top-full z-50 mt-2 min-w-[160px] -translate-x-1/2 rounded-2xl p-1.5 opacity-0 shadow-lg transition-all duration-200 focus:outline-none pointer-events-none before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']"
+                  style="background-color: var(--color-background); border: 1px solid var(--color-border);"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="desktop-more-btn"
+                >
+                  {item.children.map((child) => (
+                    <a
+                      href={child.path}
+                      role="menuitem"
+                      tabindex="-1"
+                      class="desktop-dropdown-link block rounded-xl px-3.5 py-2 text-sm font-medium transition-colors duration-150"
+                      style="color: var(--color-secondary-text);"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
           const isExternal = !!item.href;
-          const isPageLink = !!item.path && !isExternal;
 
           if (isExternal) {
             return (
@@ -44,13 +87,11 @@ const isHome = Astro.url.pathname === "/";
             );
           }
 
-          if (isPageLink) {
-            const linkHref = (!isHome && item.path.startsWith("#"))
-              ? `/${item.path}`
-              : item.path;
+          if (isHome && item.path?.startsWith("#")) {
             return (
               <a
-                href={linkHref}
+                href={item.path}
+                data-nav-section={item.id}
                 class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
                 style="color: var(--color-secondary-text);"
               >
@@ -59,11 +100,13 @@ const isHome = Astro.url.pathname === "/";
             );
           }
 
-          if (isHome) {
+          if (item.path) {
+            const linkHref = (!isHome && item.path.startsWith("#"))
+              ? `/${item.path}`
+              : item.path;
             return (
               <a
-                href={`#${item.id}`}
-                data-nav-section={item.id}
+                href={linkHref}
                 class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
                 style="color: var(--color-secondary-text);"
               >
@@ -136,8 +179,43 @@ const isHome = Astro.url.pathname === "/";
     <nav class="flex flex-col">
       {
         navItems.map((item) => {
+          if (item.children && item.children.length > 0) {
+            return (
+              <div class="flex flex-col">
+                <button
+                  type="button"
+                  id="mobile-more-btn"
+                  class="mobile-nav-link flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors text-left cursor-pointer"
+                  style="color: var(--color-secondary-text);"
+                  aria-expanded="false"
+                  aria-controls="mobile-more-menu"
+                >
+                  <span>{item.label}</span>
+                  <Icon
+                    name="lucide:chevron-down"
+                    id="mobile-more-chevron"
+                    class="h-4 w-4 transition-transform duration-200"
+                  />
+                </button>
+                <div
+                  id="mobile-more-menu"
+                  class="hidden flex-col pl-4 pb-1 space-y-1"
+                >
+                  {item.children.map((child) => (
+                    <a
+                      href={child.path}
+                      class="mobile-nav-link rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"
+                      style="color: var(--color-secondary-text);"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
           const isExternal = !!item.href;
-          const isPageLink = !!item.path && !isExternal;
 
           if (isExternal) {
             return (
@@ -153,13 +231,11 @@ const isHome = Astro.url.pathname === "/";
             );
           }
 
-          if (isPageLink) {
-            const linkHref = (!isHome && item.path.startsWith("#"))
-              ? `/${item.path}`
-              : item.path;
+          if (isHome && item.path?.startsWith("#")) {
             return (
               <a
-                href={linkHref}
+                href={item.path}
+                data-nav-section={item.id}
                 class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
                 style="color: var(--color-secondary-text);"
               >
@@ -168,11 +244,13 @@ const isHome = Astro.url.pathname === "/";
             );
           }
 
-          if (isHome) {
+          if (item.path) {
+            const linkHref = (!isHome && item.path.startsWith("#"))
+              ? `/${item.path}`
+              : item.path;
             return (
               <a
-                href={`#${item.id}`}
-                data-nav-section={item.id}
+                href={linkHref}
                 class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
                 style="color: var(--color-secondary-text);"
               >
@@ -201,35 +279,164 @@ const isHome = Astro.url.pathname === "/";
     color: var(--color-accent) !important;
   }
 
-  .mobile-nav-link:hover {
+  .mobile-nav-link:hover,
+  .desktop-dropdown-link:hover {
     background-color: var(--color-hover);
     color: var(--color-primary-text);
+  }
+
+  #desktop-more-menu.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 </style>
 
 <script>
-  const hamburgerBtn = document.getElementById("hamburger-btn");
-  const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+  function setupNav() {
+    const hamburgerBtn = document.getElementById("hamburger-btn");
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMoreBtn = document.getElementById("mobile-more-btn");
+    const mobileMoreMenu = document.getElementById("mobile-more-menu");
+    const mobileMoreChevron = document.getElementById("mobile-more-chevron");
 
-  if (hamburgerBtn && mobileMenuOverlay) {
-    hamburgerBtn.addEventListener("click", () => {
-      const isHidden = mobileMenuOverlay.classList.contains("hidden");
-      mobileMenuOverlay.classList.toggle("hidden");
-      hamburgerBtn.textContent = isHidden ? "Close" : "Menu";
-    });
-
-    mobileMenuOverlay.addEventListener("click", (e) => {
-      if (e.target === mobileMenuOverlay) {
+    function closeMobileMenu() {
+      if (mobileMenuOverlay && hamburgerBtn) {
         mobileMenuOverlay.classList.add("hidden");
         hamburgerBtn.textContent = "Menu";
+        if (mobileMoreMenu && !mobileMoreMenu.classList.contains("hidden")) {
+          mobileMoreMenu.classList.add("hidden");
+          mobileMoreMenu.classList.remove("flex");
+          mobileMoreBtn?.setAttribute("aria-expanded", "false");
+          mobileMoreChevron?.classList.remove("rotate-180");
+        }
       }
-    });
+    }
 
-    mobileMenuOverlay.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenuOverlay.classList.add("hidden");
-        hamburgerBtn.textContent = "Menu";
+    if (hamburgerBtn && mobileMenuOverlay) {
+      hamburgerBtn.addEventListener("click", () => {
+        const isHidden = mobileMenuOverlay.classList.contains("hidden");
+        if (isHidden) {
+          mobileMenuOverlay.classList.remove("hidden");
+          hamburgerBtn.textContent = "Close";
+        } else {
+          closeMobileMenu();
+        }
       });
-    });
+
+      mobileMenuOverlay.addEventListener("click", (e) => {
+        if (e.target === mobileMenuOverlay) {
+          closeMobileMenu();
+        }
+      });
+
+      mobileMenuOverlay.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          closeMobileMenu();
+        });
+      });
+    }
+
+    if (mobileMoreBtn && mobileMoreMenu) {
+      mobileMoreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isHidden = mobileMoreMenu.classList.contains("hidden");
+        mobileMoreMenu.classList.toggle("hidden", !isHidden);
+        mobileMoreMenu.classList.toggle("flex", isHidden);
+        mobileMoreBtn.setAttribute("aria-expanded", String(isHidden));
+        if (mobileMoreChevron) {
+          mobileMoreChevron.classList.toggle("rotate-180", isHidden);
+        }
+      });
+    }
+
+    // Desktop "More" dropdown
+    const desktopMoreDropdown = document.getElementById("desktop-more-dropdown");
+    const desktopMoreBtn = document.getElementById("desktop-more-btn");
+    const desktopMoreMenu = document.getElementById("desktop-more-menu");
+    const desktopMoreChevron = document.getElementById("desktop-more-chevron");
+
+    if (desktopMoreDropdown && desktopMoreBtn && desktopMoreMenu) {
+      let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+      const openMenu = () => {
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+        desktopMoreMenu.classList.add("open");
+        desktopMoreBtn.setAttribute("aria-expanded", "true");
+        desktopMoreChevron?.classList.add("rotate-180");
+      };
+
+      const closeMenu = () => {
+        desktopMoreMenu.classList.remove("open");
+        desktopMoreBtn.setAttribute("aria-expanded", "false");
+        desktopMoreChevron?.classList.remove("rotate-180");
+      };
+
+      desktopMoreDropdown.addEventListener("mouseenter", openMenu);
+      desktopMoreDropdown.addEventListener("mouseleave", () => {
+        closeTimer = setTimeout(closeMenu, 150);
+      });
+
+      desktopMoreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = desktopMoreMenu.classList.contains("open");
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!desktopMoreDropdown.contains(e.target as Node)) {
+          closeMenu();
+        }
+      });
+
+      const menuLinks = Array.from(desktopMoreMenu.querySelectorAll<HTMLAnchorElement>("a"));
+
+      desktopMoreDropdown.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeMenu();
+          desktopMoreBtn.focus();
+        }
+      });
+
+      desktopMoreBtn.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          openMenu();
+          menuLinks[0]?.focus();
+        }
+      });
+
+      menuLinks.forEach((link, idx) => {
+        link.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            menuLinks[(idx + 1) % menuLinks.length]?.focus();
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            menuLinks[(idx - 1 + menuLinks.length) % menuLinks.length]?.focus();
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            menuLinks[0]?.focus();
+          } else if (e.key === "End") {
+            e.preventDefault();
+            menuLinks[menuLinks.length - 1]?.focus();
+          }
+        });
+
+        link.addEventListener("click", () => {
+          closeMenu();
+        });
+      });
+    }
   }
+
+  setupNav();
+  document.addEventListener("astro:page-load", setupNav);
 </script>

@@ -1,0 +1,154 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import TopNav from "../components/layout/TopNav.astro";
+import MobileFooter from "../components/layout/MobileFooter.astro";
+import GradientFooter from "../components/layout/GradientFooter.astro";
+import Chatbot from "../components/chat/Chatbot.astro";
+import InspirationCard from "../components/ui/InspirationCard.astro";
+import { inspirationItems } from "../data/inspiration";
+
+const categories = [
+  { key: "all", label: "All" },
+  { key: "book", label: "Literature & Books" },
+  { key: "philosophy", label: "Philosophy & Mysticism" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <BaseHead
+    title="Inspiration & Philosophy — Mehedi Hasan"
+    description="Guiding principles, influential thinkers, and quotes that inspire Mehedi Hasan's life and engineering craft."
+  />
+</head>
+
+<body>
+  <div
+    id="portfolio-layout"
+    class="flex h-screen w-full overflow-hidden"
+    style="background-color: var(--color-background);"
+  >
+    <!-- Main Content -->
+    <main
+      id="main-scroll-container"
+      class="flex-1 overflow-y-auto scroll-smooth lg:pb-0"
+    >
+      <!-- Top Navigation -->
+      <TopNav />
+
+      <div class="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+        <div class="max-w-3xl mx-auto">
+
+          <!-- Page Title -->
+          <div class="mb-8 sm:mb-10">
+            <h1
+              class="text-2xl sm:text-3xl font-bold mb-2"
+              style="color: var(--color-primary-text);"
+            >
+              Inspiration & Philosophy
+            </h1>
+            <p class="text-sm sm:text-base" style="color: var(--color-secondary-text);">
+              Guiding principles, influential thinkers, and quotes that shape my craft and worldview.
+            </p>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="mb-6 flex flex-col gap-3">
+            <div class="-mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto scrollbar-none">
+              <div class="flex gap-2 w-max sm:flex-wrap sm:w-auto" id="inspiration-filters">
+                {categories.map((cat, idx) => (
+                  <button
+                    type="button"
+                    data-filter={cat.key}
+                    class:list={[
+                      "inspiration-filter-btn shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer",
+                      idx === 0 ? "active" : ""
+                    ]}
+                    style={idx === 0 ? "background-color: var(--color-hover); color: var(--color-primary-text); border: 1px solid var(--color-border);" : "background-color: transparent; color: var(--color-secondary-text); border: 1px solid transparent;"}
+                  >
+                    {cat.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- Item Count -->
+            <p
+              id="inspiration-count"
+              class="text-xs"
+              style="color: var(--color-muted-text);"
+            >
+              {inspirationItems.length} quotes & thinkers
+            </p>
+          </div>
+
+          <!-- Inspiration Cards List -->
+          <div id="inspiration-list" class="space-y-6 lg:space-y-10">
+            {inspirationItems.map((item, index) => (
+              <div data-inspiration-item data-type={item.type}>
+                <InspirationCard item={item} index={index} />
+              </div>
+            ))}
+          </div>
+
+          <!-- CTA / Footer note -->
+          <div class="mt-12 text-center">
+            <p class="text-sm" style="color: var(--color-muted-text);">
+              "Stay curious, embrace discipline, and build things that genuinely help people."
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <MobileFooter />
+      <GradientFooter />
+    </main>
+
+    <!-- AI Portfolio Assistant Chatbot -->
+    <Chatbot />
+  </div>
+
+  <script>
+    function setupFilters() {
+      const filterBtns = document.querySelectorAll<HTMLButtonElement>(".inspiration-filter-btn");
+      const items = document.querySelectorAll<HTMLElement>("[data-inspiration-item]");
+      const countEl = document.getElementById("inspiration-count");
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const selected = btn.getAttribute("data-filter") || "all";
+
+          filterBtns.forEach((b) => {
+            b.classList.remove("active");
+            b.style.backgroundColor = "transparent";
+            b.style.color = "var(--color-secondary-text)";
+            b.style.borderColor = "transparent";
+          });
+
+          btn.classList.add("active");
+          btn.style.backgroundColor = "var(--color-hover)";
+          btn.style.color = "var(--color-primary-text)";
+          btn.style.borderColor = "var(--color-border)";
+
+          let visibleCount = 0;
+          items.forEach((item) => {
+            const itemType = item.getAttribute("data-type");
+            const matches = selected === "all" || itemType === selected;
+            item.style.display = matches ? "" : "none";
+            if (matches) visibleCount++;
+          });
+
+          if (countEl) {
+            countEl.textContent = `${visibleCount} quotes & thinkers`;
+          }
+        });
+      });
+    }
+
+    setupFilters();
+    document.addEventListener("astro:page-load", setupFilters);
+  </script>
+</body>
+</html>

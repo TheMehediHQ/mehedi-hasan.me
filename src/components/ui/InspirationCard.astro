@@ -1,0 +1,175 @@
+---
+import { Icon } from "astro-icon/components";
+import type { InspirationItem } from "@/types";
+import Badge from "./Badge.astro";
+
+interface Props {
+  item: InspirationItem;
+  index: number;
+}
+
+const { item, index = 0 } = Astro.props;
+
+const typeLabel = {
+  book: "Book",
+  philosophy: "Philosophy",
+  science: "Physics & Science",
+  engineering: "Software Craft",
+}[item.type] || "Inspiration";
+---
+
+<div class="animate-on-scroll" style={`transition-delay: ${index * 0.08}s`}>
+  <div
+    class="transition-all duration-300 h-full btn-flicker-fix block"
+    style="border-color: var(--btn-border);"
+  >
+    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+      <!-- Large Author Portrait -->
+      <div class="flex items-center sm:items-start gap-4 sm:block shrink-0">
+        {item.authorImage ? (
+          <div class="relative w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden shrink-0 border border-[var(--color-border)] shadow-md bg-[var(--color-surface)] group">
+            <img
+              src={item.authorImage}
+              alt={item.author}
+              width="144"
+              height="144"
+              class="w-full h-full object-cover filter contrast-[1.03] brightness-[0.98] transition-transform duration-500 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-60"></div>
+          </div>
+        ) : (
+          <div
+            class="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl flex items-center justify-center shrink-0 border border-[var(--color-border)]"
+            style="background-color: var(--color-button-secondary-bg);"
+          >
+            <Icon name="lucide:user" class="w-10 h-10 sm:w-12 sm:h-12" style="color: var(--color-accent);" />
+          </div>
+        )}
+
+        <!-- Mobile-only Author Info (next to portrait on <sm screens) -->
+        <div class="sm:hidden min-w-0 flex-1">
+          <h3
+            class="text-base font-bold leading-tight"
+            style="color: var(--color-primary-text);"
+          >
+            {item.author}
+          </h3>
+          <p
+            class="text-xs font-medium mt-1"
+            style="color: var(--color-accent);"
+          >
+            {item.authorRole}
+          </p>
+          <p
+            class="text-[11px] mt-0.5"
+            style="color: var(--color-muted-text);"
+          >
+            {item.sourceOrContext}
+          </p>
+          <div class="mt-2">
+            <span
+              class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium"
+              style="background-color: var(--color-surface); color: var(--color-muted-text); border: 1px solid var(--color-border);"
+            >
+              {typeLabel}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Block -->
+      <div class="flex-1 min-w-0 w-full">
+        <!-- Desktop Author Header (hidden on mobile) -->
+        <div class="hidden sm:flex items-start justify-between gap-3 mb-2.5">
+          <div>
+            <h3
+              class="text-lg sm:text-xl font-bold leading-tight"
+              style="color: var(--color-primary-text);"
+            >
+              {item.author}
+            </h3>
+            <p
+              class="text-xs sm:text-sm font-medium mt-1"
+              style="color: var(--color-accent);"
+            >
+              {item.authorRole}
+            </p>
+            <p
+              class="text-xs mt-0.5"
+              style="color: var(--color-muted-text);"
+            >
+              {item.sourceOrContext}
+            </p>
+          </div>
+
+          <span
+            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium shrink-0"
+            style="background-color: var(--color-surface); color: var(--color-muted-text); border: 1px solid var(--color-border);"
+          >
+            {typeLabel}
+          </span>
+        </div>
+
+        <!-- Author Quote -->
+        <div
+          class="relative pl-3.5 sm:pl-4 my-2.5 sm:my-3 border-l-2 py-0.5"
+          style="border-color: var(--color-accent);"
+        >
+          <blockquote
+            class="text-sm sm:text-base italic leading-relaxed"
+            style="color: var(--color-primary-text);"
+          >
+            "{item.quote}"
+          </blockquote>
+        </div>
+
+        <!-- Personal Reflection / Engineering Takeaway -->
+        {item.reflection && (
+          <p
+            class="text-xs sm:text-sm leading-6 mb-3 sm:mb-4"
+            style="color: var(--color-secondary-text);"
+          >
+            {item.reflection}
+          </p>
+        )}
+
+        <!-- Tags & Badges -->
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
+            {item.tags.map((tag) => (
+              <Badge variant="default">{tag}</Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "-10%" }
+  );
+  document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
+</script>

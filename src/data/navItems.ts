@@ -45,12 +45,6 @@ export const navItems: NavItem[] = [
         icon: "Award",
       },
       {
-        id: "awards",
-        label: "Awards",
-        path: "/awards",
-        icon: "Trophy",
-      },
-      {
         id: "inspiration",
         label: "Inspiration",
         path: "/inspiration",

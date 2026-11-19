@@ -1,0 +1,53 @@
+import type { Award } from "@/types";
+
+export const awards: Award[] = [
+  {
+    id: "1",
+    title: "AI Education & Technical Impact Recognition",
+    organization: "Google",
+    date: "2026",
+    description: "Honored as a Certified Educator for demonstrated mastery in modern generative AI and educational technology tooling.",
+    tags: ["AI/LLM", "Google Gemini", "Recognition"],
+    credentialUrl: "/certificates/pdf/GeminiCertifiedEducator.pdf",
+    icon: "lucide:sparkles",
+  },
+  {
+    id: "2",
+    title: "Excellence in Engineering Internship",
+    organization: "Apexiums Technologies",
+    date: "2025",
+    description: "Awarded for exceptional contributions to frontend architecture, API integration, and shipping client-facing web products ahead of schedule.",
+    tags: ["Software Engineering", "Full-Stack", "Performance"],
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_Apexiums_Certificate.pdf",
+    icon: "lucide:award",
+  },
+  {
+    id: "3",
+    title: "Quantum Humanitarian Service Recognition",
+    organization: "Quantum Foundation",
+    date: "2022",
+    description: "Recognized for active participation and continuous voluntary blood donation and humanitarian community outreach campaigns.",
+    tags: ["Volunteering", "Social Impact", "Leadership"],
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_Blood_Donation_Certificate.pdf",
+    icon: "lucide:heart-handshake",
+  },
+  {
+    id: "4",
+    title: "Top Performer in Web Technologies",
+    organization: "Bangladesh Hi-Tech Park Authority",
+    date: "2019",
+    description: "Achieved top evaluation ranking in practical web development and full-stack system architecture training program.",
+    tags: ["Web Architecture", "PHP/Laravel", "Achievement"],
+    credentialUrl: "/certificates/pdf/Mehedi_Hasan_Web_Certificate .pdf",
+    icon: "lucide:trophy",
+  },
+  {
+    id: "5",
+    title: "Academic Merit Recognition in Physics",
+    organization: "National University, Bangladesh",
+    date: "2021",
+    description: "Recognized for consistent academic rigor, scientific problem-solving, and analytical excellence in physical sciences.",
+    tags: ["Physics", "STEM", "Academic Excellence"],
+    icon: "lucide:medal",
+  },
+];

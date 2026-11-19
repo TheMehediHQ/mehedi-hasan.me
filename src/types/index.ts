@@ -68,3 +68,27 @@ export interface Certificate {
   credentialUrl: string;
   tags: string[];
 }
+
+export interface Award {
+  id: string;
+  title: string;
+  organization: string;
+  date: string;
+  description: string;
+  tags: string[];
+  credentialUrl?: string;
+  icon?: string;
+}
+
+export interface InspirationItem {
+  id: string;
+  type: "book" | "philosophy" | "science" | "engineering";
+  author: string;
+  authorRole: string;
+  authorImage?: string;
+  quote: string;
+  sourceOrContext: string;
+  reflection?: string;
+  tags: string[];
+  link?: string;
+}

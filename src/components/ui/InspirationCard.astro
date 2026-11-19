@@ -1,0 +1,140 @@
+---
+import { Icon } from "astro-icon/components";
+import type { InspirationItem } from "@/types";
+import Badge from "./Badge.astro";
+
+interface Props {
+  item: InspirationItem;
+  index: number;
+}
+
+const { item, index = 0 } = Astro.props;
+
+const typeLabel = {
+  book: "Book",
+  philosophy: "Philosophy",
+  science: "Physics & Science",
+  engineering: "Software Craft",
+}[item.type] || "Inspiration";
+---
+
+<div class="animate-on-scroll" style={`transition-delay: ${index * 0.08}s`}>
+  <div
+    class="transition-all duration-300 h-full btn-flicker-fix block"
+    style="border-color: var(--btn-border);"
+  >
+    <!-- Author Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+      <div class="flex items-center gap-3 sm:gap-3.5">
+        {item.authorImage ? (
+          <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden shrink-0 border border-[var(--color-border)] shadow-xs">
+            <img
+              src={item.authorImage}
+              alt={item.author}
+              width="48"
+              height="48"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div
+            class="w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 border border-[var(--color-border)]"
+            style="background-color: var(--color-button-secondary-bg);"
+          >
+            <Icon name="lucide:user" class="w-5 h-5" style="color: var(--color-accent);" />
+          </div>
+        )}
+
+        <div>
+          <h3
+            class="text-base sm:text-lg font-semibold leading-tight"
+            style="color: var(--color-primary-text);"
+          >
+            {item.author}
+          </h3>
+          <p
+            class="text-xs sm:text-sm font-medium mt-0.5"
+            style="color: var(--color-accent);"
+          >
+            {item.authorRole}
+          </p>
+          <p
+            class="text-[11px] sm:text-xs mt-0.5"
+            style="color: var(--color-muted-text);"
+          >
+            {item.sourceOrContext}
+          </p>
+        </div>
+      </div>
+
+      <div class="shrink-0 self-start sm:self-center">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium"
+          style="background-color: var(--color-surface); color: var(--color-muted-text); border: 1px solid var(--color-border);"
+        >
+          {typeLabel}
+        </span>
+      </div>
+    </div>
+
+    <!-- Author Quote -->
+    <div
+      class="relative pl-3.5 sm:pl-4 my-3 sm:my-3.5 border-l-2 py-0.5"
+      style="border-color: var(--color-accent);"
+    >
+      <blockquote
+        class="text-sm sm:text-base italic leading-relaxed"
+        style="color: var(--color-primary-text);"
+      >
+        "{item.quote}"
+      </blockquote>
+    </div>
+
+    <!-- Personal Reflection / Engineering Takeaway -->
+    {item.reflection && (
+      <p
+        class="text-xs sm:text-sm leading-6 mb-3 sm:mb-4"
+        style="color: var(--color-secondary-text);"
+      >
+        {item.reflection}
+      </p>
+    )}
+
+    <!-- Tags & Badges -->
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap gap-1.5 sm:gap-2">
+        {item.tags.map((tag) => (
+          <Badge variant="default">{tag}</Badge>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "-10%" }
+  );
+  document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
+</script>

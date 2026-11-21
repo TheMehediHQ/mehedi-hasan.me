@@ -10,22 +10,43 @@ import { Icon } from 'astro-icon/components';
 import Newsletter from '../../components/Newsletter.astro';
 import Chatbot from '../../components/chat/Chatbot.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { useTranslations } from '../../i18n/ui';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const currentLocale = Astro.currentLocale ?? 'en';
+const t = useTranslations(currentLocale);
+
+const allPosts = await getCollection('blog');
+const bnPosts = allPosts.filter((p) => p.id.startsWith('bn/'));
+const enPosts = allPosts.filter((p) => !p.id.startsWith('bn/'));
+
+const posts = (currentLocale === 'bn'
+  ? Array.from(
+      new Set([...bnPosts.map((p) => p.id.replace(/^bn\//, '')), ...enPosts.map((p) => p.id)])
+    ).map((slug) => {
+      const bn = bnPosts.find((p) => p.id === `bn/${slug}`);
+      return bn || enPosts.find((p) => p.id === slug)!;
+    })
+  : enPosts
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const categories = [...new Set(posts.map((p) => p.data.category))];
+
+const categoryMapBn: Record<string, string> = {
+  "Personal Growth": "ব্যক্তিগত উন্নয়ন",
+  "Psychology": "মনোবিজ্ঞান",
+  "Reading": "বই ও পাঠাভ্যাস",
+  "Tech": "প্রযুক্তি",
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
 
 
   <BaseHead
-  title={SITE_TITLE}
-  description={SITE_DESCRIPTION}
-/>
+    title={currentLocale === 'bn' ? 'ব্লগ — Mehedi Hasan' : SITE_TITLE}
+    description={currentLocale === 'bn' ? 'প্রযুক্তি, কোডিং এবং জীবনের নানা অভিজ্ঞতার সংকলন।' : SITE_DESCRIPTION}
+  />
 
   <body>
     <div
@@ -50,10 +71,10 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                 class="text-2xl sm:text-3xl font-bold mb-2"
                 style="color: var(--color-primary-text);"
               >
-                Blog
+                {t('blog.title')}
               </h1>
               <p class="text-sm sm:text-base" style="color: var(--color-secondary-text);">
-                Writing code and sharing the journey.
+                {t('blog.subtitle')}
               </p>
             </div>
 
@@ -74,7 +95,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                   id="blog-search"
                   type="text"
                   inputmode="search"
-                  placeholder="Search posts..."
+                  placeholder={t('blog.searchPlaceholder')}
                   class="w-full min-w-0 bg-transparent text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none"
                   style="color: var(--color-primary-text);"
                 />
@@ -88,7 +109,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                     class="blog-filter-btn shrink-0 rounded-full px-3.5 py-2 text-xs font-medium transition-all duration-200 sm:py-1.5"
                     style="background-color: var(--color-hover); color: var(--color-primary-text);"
                   >
-                    All
+                    {t('blog.all')}
                   </button>
                   {categories.map((cat) => (
                     <button
@@ -96,7 +117,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                       class="blog-filter-btn shrink-0 rounded-full px-3.5 py-2 text-xs font-medium transition-all duration-200 sm:py-1.5"
                       style="background-color: var(--color-card); color: var(--color-secondary-text);"
                     >
-                      {cat}
+                      {currentLocale === 'bn' ? (categoryMapBn[cat] || cat) : cat}
                     </button>
                   ))}
                 </div>
@@ -107,16 +128,20 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                 id="blog-post-count"
                 class="text-xs"
                 style="color: var(--color-muted-text);"
+                data-locale={currentLocale}
               >
-                {posts.length} {posts.length === 1 ? 'post' : 'posts'} found
+                {posts.length} {currentLocale === 'bn' ? 'টি লেখা পাওয়া গেছে' : (posts.length === 1 ? 'post' : 'posts') + ' found'}
               </p>
             </div>
 
             <!-- Posts Grid -->
             <div id="blog-posts-grid" class="flex flex-col gap-6 lg:gap-10">
-              {posts.map((post) => (
+              {posts.map((post) => {
+                const slug = post.id.replace(/^bn\//, '');
+                const postHref = currentLocale === 'bn' ? `/bn/blog/${slug}/` : `/blog/${slug}/`;
+                return (
                 <a
-                  href={`/blog/${post.id}/`}
+                  href={postHref}
                   data-blog-post
                   data-category={post.data.category}
                   data-title={post.data.title.toLowerCase()}
@@ -151,7 +176,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                           class="rounded-full px-2 py-0.5 text-[10px] font-medium"
                           style="background-color: var(--color-hover); color: var(--color-secondary-text);"
                         >
-                          {post.data.category}
+                          {currentLocale === 'bn' ? (categoryMapBn[post.data.category] || post.data.category) : post.data.category}
                         </span>
                       </div>
 
@@ -169,13 +194,14 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                       )}
 
                       <div class="mt-3 flex items-center gap-1 text-xs font-medium transition-colors duration-200" style="color: var(--color-accent);">
-                        Read more
+                        {t('blog.readArticle')}
                         <Icon name="lucide:arrow-right" size={12} />
                       </div>
                     </div>
                   </div>
                 </a>
-              ))}
+              );
+            })}
             </div>
 
             <!-- Empty State -->
@@ -192,13 +218,13 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
                 class="mt-4 text-sm font-medium"
                 style="color: var(--color-secondary-text);"
               >
-                No posts found
+                {t('blog.emptyTitle')}
               </p>
               <p
                 class="mt-1 text-xs"
                 style="color: var(--color-muted-text);"
               >
-                Try a different search term or category.
+                {t('blog.emptySubtitle')}
               </p>
             </div>
 
@@ -273,7 +299,14 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
     });
 
     if (postCount) {
-      postCount.textContent = `${visibleCount} ${visibleCount === 1 ? "post" : "posts"} found`;
+      const isBn = postCount.dataset.locale === "bn";
+      const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+      const formattedCount = isBn
+        ? String(visibleCount).replace(/[0-9]/g, (d) => bnDigits[Number(d)])
+        : visibleCount;
+      postCount.textContent = isBn
+        ? `${formattedCount} টি লেখা পাওয়া গেছে`
+        : `${visibleCount} ${visibleCount === 1 ? "post" : "posts"} found`;
     }
 
     if (postsGrid) {

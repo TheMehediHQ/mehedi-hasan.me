@@ -1,11 +1,15 @@
 ---
 import SectionTitle from "@/components/ui/SectionTitle.astro";
 import { skills } from "@/data/skills";
+import { useTranslations } from "@/i18n/ui";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const t = useTranslations(currentLocale);
 ---
 
 <section class="px-4 py-8 sm:px-8 sm:py-12 lg:px-16">
   <div class="mx-auto max-w-3xl">
-    <SectionTitle title="Tech Stack" subtitle="" />
+    <SectionTitle title={t("section.skills")} subtitle="" />
 
     <div class="animate-on-scroll grid grid-cols-4 gap-x-8 gap-y-10 sm:grid-cols-5 sm:gap-x-10 md:grid-cols-6 lg:grid-cols-7">
       {skills.slice(0, 20).map((skill) => (

@@ -1,14 +1,17 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import ScrollLayout from "../components/layout/ScrollLayout.astro";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const isBn = currentLocale === "bn";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
 <head>
   <BaseHead
-    title="Mehedi Hasan — Software Engineer"
-    description="Mehedi Hasan is a Full-Stack Software Engineer from Bangladesh specializing in scalable SaaS platforms, event-driven backends, and modern web development with Next.js, TypeScript, Node.js, and Golang."
+    title={isBn ? "মেহেদী হাসান — সফটওয়্যার ইঞ্জিনিয়ার" : "Mehedi Hasan — Software Engineer"}
+    description={isBn ? "মেহেদী হাসান — বাংলাদেশ ভিত্তিক একজন ফুল-স্ট্যাক সফটওয়্যার ইঞ্জিনিয়ার। স্কেলেবল SaaS প্ল্যাটফর্ম, ব্যাকএন্ড আর্কিটেকচার এবং আধুনিক ওয়েব প্রযুক্তিতে দক্ষ।" : "Mehedi Hasan is a Full-Stack Software Engineer from Bangladesh specializing in scalable SaaS platforms, event-driven backends, and modern web development with Next.js, TypeScript, Node.js, and Golang."}
   />
 </head>
 

@@ -3,6 +3,9 @@
 import { personalInfo } from "../data/personalInfo";
 import { socials } from "../data/socials";
 import HeroCTA from "../components/ui/HeroCTA.astro";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const isBn = currentLocale === "bn";
 ---
 
 <section
@@ -43,14 +46,14 @@ import HeroCTA from "../components/ui/HeroCTA.astro";
           data-delay="0.2s"
           style="color: var(--color-primary-text);"
         >
-          Hello there! <img src="/images/wave.gif" alt="Wave" class="inline-block w-7 h-7 sm:w-8 sm:h-8 -mt-1 align-middle" />
+          {isBn ? "হ্যালো!" : "Hello there!"} <img src="/images/wave.gif" alt="Wave" class="inline-block w-7 h-7 sm:w-8 sm:h-8 -mt-1 align-middle" />
         </h1>
         <h1
           class="home-animate mb-4 text-left text-xl font-bold leading-tight sm:text-2xl md:text-3xl lg:text-4xl"
           data-delay="0.2s"
           style="color: var(--color-primary-text);"
         >
-          I'm Mehedi Hasan.
+          {isBn ? "আমি মেহেদী হাসান।" : "I'm Mehedi Hasan."}
         </h1>
 
         <!-- Bio -->
@@ -62,19 +65,38 @@ import HeroCTA from "../components/ui/HeroCTA.astro";
             class="text-sm leading-6 sm:text-base sm:leading-7"
             style="color: var(--color-secondary-text);"
           >
-            I'm a Software Engineer from Dhaka, Bangladesh <img src="/icon/flag.svg" alt="Bangladesh" class="inline w-6 h-5 align-middle mx-0.5" /> with years of experience building scalable web applications, developing backend systems, and integrating AI to solve real-world problems.
+            {
+              isBn ? (
+                <>
+                ঢাকা, বাংলাদেশে   <img src="/icon/flag.svg" alt="Bangladesh" class="inline w-6 h-5 align-middle mx-0.5" /> বসেই সফটওয়্যার ইঞ্জিনিয়ার হিসেবে কাজ করছি গ্লোবাল প্রতিষ্ঠানের সাথে । স্কেলেবল ওয়েব অ্যাপ্লিকেশন তৈরি, ব্যাকএন্ড সিস্টেম আর্কিটেকচার এবং বাস্তব সমস্যার সমাধানে কৃত্রিম বুদ্ধিমত্তা (AI) ইন্টিগ্রেশনে আমার কয়েক বছরের অভিজ্ঞতা রয়েছে।
+                </>
+              ) : (
+                <>
+                  I'm a Software Engineer from Dhaka, Bangladesh <img src="/icon/flag.svg" alt="Bangladesh" class="inline w-6 h-5 align-middle mx-0.5" /> with years of experience building scalable web applications, developing backend systems, and integrating AI to solve real-world problems.
+                </>
+              )
+            }
           </p>
 
           <p
             class="text-sm leading-6 sm:text-base sm:leading-7"
             style="color: var(--color-secondary-text);"
           >
-            I've worked with different teams, taken on new challenges, and learned a lot along the way.
-          </p>  <p
+            {
+              isBn
+                ? "আমি বিভিন্ন দলের সাথে কাজ করেছি, নতুন নতুন প্রযুক্তিগত চ্যালেঞ্জ মোকাবিলা করেছি এবং প্রতিনিয়ত নতুন কিছু শিখে নিজেকে সমৃদ্ধ করেছি।"
+                : "I've worked with different teams, taken on new challenges, and learned a lot along the way."
+            }
+          </p>
+          <p
             class="text-sm leading-6 sm:text-base sm:leading-7"
             style="color: var(--color-secondary-text);"
           >
-            When I'm not coding, I enjoy helping others through social work or exploring new places.
+            {
+              isBn
+                ? "কোডিংয়ের বাইরে আমি সমাজসেবামূলক কাজে যুক্ত থাকতে এবং নতুন নতুন জায়গা ঘুরে দেখতে ভালোবাসি।"
+                : "When I'm not coding, I enjoy helping others through social work or exploring new places."
+            }
           </p>
         </div>
 

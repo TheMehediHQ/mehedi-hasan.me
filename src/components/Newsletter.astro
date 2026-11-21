@@ -1,5 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
+import { useTranslations } from "@/i18n/ui";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const t = useTranslations(currentLocale);
 ---
 
 <section
@@ -12,20 +16,29 @@ import { Icon } from "astro-icon/components";
       class="text-lg sm:text-xl font-semibold mb-2"
       style="color: var(--color-primary-text);"
     >
-      Subscribe to the Newsletter
+      {t("newsletter.title")}
     </h3>
     <p class="text-sm leading-6 mb-6" style="color: var(--color-secondary-text);">
-      Get notified when I publish new blog posts. No spam, unsubscribe anytime.
+      {t("newsletter.subtitle")}
     </p>
 
-    <form id="newsletter-form" class="w-full flex flex-col sm:flex-row gap-3">
+    <form
+      id="newsletter-form"
+      class="w-full flex flex-col sm:flex-row gap-3"
+      data-subscribing={t("newsletter.sending")}
+      data-subscribe={t("newsletter.btn")}
+      data-req={currentLocale === "bn" ? "ইমেইল প্রদান করা আবশ্যক" : "Email is required"}
+      data-success={t("newsletter.success")}
+      data-err-net={currentLocale === "bn" ? "নেটওয়ার্ক ত্রুটি। আবার চেষ্টা করুন।" : "Network error. Please try again."}
+      data-err-fail={currentLocale === "bn" ? "সাবস্ক্রাইব করতে ব্যর্থ হয়েছে" : "Failed to subscribe"}
+    >
       <input type="text" name="honeypot" class="hidden" tabindex={-1} autocomplete="off" />
 
       <input
         id="newsletter-email"
         name="email"
         type="email"
-        placeholder="your@email.com"
+        placeholder={t("newsletter.placeholder")}
         required
         class="w-full sm:flex-1 sm:min-w-0 h-12 rounded-xl border border-[var(--color-border)] bg-transparent px-4 text-sm placeholder:text-[var(--color-secondary-text)] focus:outline-none focus:border-[var(--color-primary-text)] disabled:opacity-50"
         style="color: var(--color-primary-text);"
@@ -37,7 +50,7 @@ import { Icon } from "astro-icon/components";
         class="inline-flex items-center justify-center gap-2 h-12 w-full sm:w-auto px-6 rounded-xl text-sm font-medium bg-transparent border border-[var(--secondary-border)] transition-all duration-200 hover:!bg-[var(--color-hover)] hover:!border-[var(--color-hover-border)] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
         style="color: var(--color-button-secondary-text);"
       >
-        <span id="newsletter-btn-text">Subscribe</span>
+        <span id="newsletter-btn-text">{t("newsletter.btn")}</span>
         <Icon name="lucide:arrow-right" size={16} id="newsletter-btn-icon" />
       </button>
     </form>
@@ -68,6 +81,15 @@ import { Icon } from "astro-icon/components";
   const errorEl = document.getElementById("newsletter-error");
   const successEl = document.getElementById("newsletter-success");
   let isSubmitting = false;
+
+  const msgs = {
+    subscribing: form?.dataset.subscribing || "Subscribing...",
+    subscribe: form?.dataset.subscribe || "Subscribe",
+    req: form?.dataset.req || "Email is required",
+    success: form?.dataset.success || "Subscribed! Check your inbox to confirm.",
+    net: form?.dataset.errNet || "Network error. Please try again.",
+    fail: form?.dataset.errFail || "Failed to subscribe",
+  };
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -101,16 +123,16 @@ import { Icon } from "astro-icon/components";
     isSubmitting = true;
     hideMessages();
 
-    if (btnText) btnText.textContent = "Subscribing...";
+    if (btnText) btnText.textContent = msgs.subscribing;
     if (btn) btn.disabled = true;
     if (btnIcon) btnIcon.style.display = "none";
 
     const email = emailInput?.value?.trim();
 
     if (!email) {
-      showError("Email is required");
+      showError(msgs.req);
       isSubmitting = false;
-      if (btnText) btnText.textContent = "Subscribe";
+      if (btnText) btnText.textContent = msgs.subscribe;
       if (btn) btn.disabled = false;
       if (btnIcon) btnIcon.style.display = "";
       return;
@@ -129,15 +151,15 @@ import { Icon } from "astro-icon/components";
 
       if (res.ok || res.status === 201) {
         form.reset();
-        showSuccess(data.message || "Subscribed! Check your inbox to confirm.");
+        showSuccess(msgs.success);
       } else {
-        showError(data.error || "Failed to subscribe");
+        showError(data.error || msgs.fail);
       }
     } catch {
-      showError("Network error. Please try again.");
+      showError(msgs.net);
     } finally {
       isSubmitting = false;
-      if (btnText) btnText.textContent = "Subscribe";
+      if (btnText) btnText.textContent = msgs.subscribe;
       if (btn) btn.disabled = false;
       if (btnIcon) btnIcon.style.display = "";
     }

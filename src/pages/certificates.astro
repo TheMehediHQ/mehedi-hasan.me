@@ -6,16 +6,20 @@ import GradientFooter from "../components/layout/GradientFooter.astro";
 import Chatbot from "../components/chat/Chatbot.astro";
 import SectionTitle from "../components/ui/SectionTitle.astro";
 import CertificateCard from "../components/ui/CertificateCard.astro";
-import { certificates } from "../data/certificates";
+import { certificates, certificatesBn } from "../data/certificates";
 import { Icon } from "astro-icon/components";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const isBn = currentLocale === "bn";
+const currentCertificates = isBn ? certificatesBn : certificates;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
 <head>
   <BaseHead
-    title="Certificates — Mehedi Hasan"
-    description="Professional certifications and courses completed by Mehedi Hasan — Cloud, AI/ML, Web Development and more."
+    title={isBn ? "সার্টিফিকেট ও সনদ — Mehedi Hasan" : "Certificates — Mehedi Hasan"}
+    description={isBn ? "মেহেদী হাসানের অর্জিত পেশাগত সার্টিফিকেশন ও কোর্সের তালিকা — ক্লাউড, এআই/এমএল, ওয়েব ডেভেলপমেন্ট ইত্যাদি।" : "Professional certifications and courses completed by Mehedi Hasan — Cloud, AI/ML, Web Development and more."}
   />
 </head>
 
@@ -42,21 +46,21 @@ import { Icon } from "astro-icon/components";
               class="text-2xl sm:text-3xl font-bold mb-2"
               style="color: var(--color-primary-text);"
             >
-              Certificates
+              {isBn ? "সার্টিফিকেট ও সনদ" : "Certificates"}
             </h1>
             <p class="text-sm sm:text-base" style="color: var(--color-secondary-text);">
-              Professional certifications and courses I've completed.
+              {isBn ? "পেশাগত দক্ষতা বৃদ্ধির জন্য সম্পন্ন করা কোর্স ও সার্টিফিকেশনসমূহ।" : "Professional certifications and courses I've completed."}
             </p>
           </div>
 
           <!-- Certificate Count -->
           <p class="mb-6 text-xs" style="color: var(--color-muted-text);">
-            {certificates.length} {certificates.length === 1 ? "certificate" : "certificates"}
+            {certificates.length} {isBn ? "টি সার্টিফিকেট" : (certificates.length === 1 ? "certificate" : "certificates")}
           </p>
 
           <!-- Certificates List -->
           <div class="space-y-6 lg:space-y-10">
-            {certificates.map((cert, index) => (
+            {currentCertificates.map((cert, index) => (
               <CertificateCard certificate={cert} index={index} />
             ))}
           </div>
@@ -64,7 +68,7 @@ import { Icon } from "astro-icon/components";
           <!-- CTA -->
           <div class="mt-12 text-center">
             <p class="text-sm" style="color: var(--color-muted-text);">
-              Continuously expanding my knowledge through certifications and hands-on learning.
+              {isBn ? "সার্টিফিকেশন ও ব্যবহারিক অনুশীলনের মাধ্যমে প্রতিনিয়ত নতুন প্রযুক্তি শিখছি।" : "Continuously expanding my knowledge through certifications and hands-on learning."}
             </p>
           </div>
 

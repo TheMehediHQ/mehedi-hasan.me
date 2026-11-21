@@ -1,0 +1,32 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BlogPost from '../../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	const bnPosts = posts.filter((post) => post.id.startsWith('bn/'));
+	const enPosts = posts.filter((post) => !post.id.startsWith('bn/'));
+
+	const bnMap = new Map(bnPosts.map((p) => [p.id.replace(/^bn\//, ''), p]));
+	const allSlugs = new Set([
+		...enPosts.map((p) => p.id),
+		...bnPosts.map((p) => p.id.replace(/^bn\//, '')),
+	]);
+
+	return Array.from(allSlugs).map((slug) => {
+		const post = bnMap.get(slug) || enPosts.find((p) => p.id === slug)!;
+		return {
+			params: { slug },
+			props: post,
+		};
+	});
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+	<Content />
+</BlogPost>

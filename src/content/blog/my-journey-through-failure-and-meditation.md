@@ -9,13 +9,7 @@ tags: ['meditation', 'mindfulness', 'self-improvement']
 ---
 
 
-## 🌱 My Journey Through Failure and Meditation
 
-Life rarely unfolds the way we plan. For me, the years surrounding my HSC examinations became a defining chapter—one shaped by failure, self-doubt, emotional struggle, and eventually, transformation.
-
-This story shares how meditation helped me find balance, clarity, and direction when I needed it most.
-
----
 
 ## 📉 2011–2014: Failure, Pressure, and Depression
 

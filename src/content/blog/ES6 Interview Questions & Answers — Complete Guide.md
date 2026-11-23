@@ -7,13 +7,7 @@ category: 'Tech'
 tags: ['javascript', 'interview', 'es6']
 ---
 
-# ES6 Interview Questions — Complete Guide
 
-JavaScript interviews heavily test ES6 concepts. This guide explains common ES6 questions with code examples.
-
-> **Tip:** Don't just memorize definitions — understand the concepts and practice. Follow-up questions are guaranteed in interviews.
-
----
 
 ## 1. What is ES6? What features have you used?
 

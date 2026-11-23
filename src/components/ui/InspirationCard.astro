@@ -133,18 +133,8 @@ const typeLabel = isBn
           </blockquote>
         </div>
 
-        <!-- Personal Reflection / Engineering Takeaway -->
-        {item.reflection && (
-          <p
-            class="text-xs sm:text-sm leading-6 mb-3 sm:mb-4"
-            style="color: var(--color-secondary-text);"
-          >
-            {item.reflection}
-          </p>
-        )}
-
         <!-- Tags & Badges -->
-        <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center justify-between gap-2 mt-3 sm:mt-4">
           <div class="flex flex-wrap gap-1.5 sm:gap-2">
             {item.tags.map((tag) => (
               <Badge variant="default">{tag}</Badge>

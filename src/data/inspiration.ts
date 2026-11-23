@@ -9,7 +9,6 @@ export const inspirationItems: InspirationItem[] = [
     authorImage: "/authors/paulo-coelho.webp",
     quote: "When you want something, all the universe conspires in helping you to achieve it.",
     sourceOrContext: "The Alchemist",
-    reflection: "A timeless reminder of purpose and conviction. Pursuing ambitious engineering milestones and building meaningful products demands faith in the journey and relentless dedication through setbacks.",
     tags: ["Destiny", "Belief", "Perseverance", "The Alchemist"],
   },
   {
@@ -20,7 +19,6 @@ export const inspirationItems: InspirationItem[] = [
     authorImage: "/authors/jalaluddin-rumi.webp",
     quote: "The wound is the place where the Light enters you.",
     sourceOrContext: "The Masnavi",
-    reflection: "Hardships, bugs, and failures are not defeats — they are transformative teachers that deepen wisdom, empathy, patience, and character both in engineering and in life.",
     tags: ["Mindfulness", "Spiritual Growth", "Resilience", "Inner Peace"],
   },
   {
@@ -31,7 +29,6 @@ export const inspirationItems: InspirationItem[] = [
     authorImage: "/authors/haruki-murakami.webp",
     quote: "Pain is inevitable. Suffering is optional.",
     sourceOrContext: "What I Talk About When I Talk About Running",
-    reflection: "Whether running long distances or debugging intricate distributed systems late into the night, discipline and positive mental framing transform hardship into steady, quiet progress.",
     tags: ["Discipline", "Endurance", "Mindset", "Craftsmanship"],
   },
 ];
@@ -45,7 +42,6 @@ export const inspirationItemsBn: InspirationItem[] = [
     authorImage: "/authors/paulo-coelho.webp",
     quote: "যখন তুমি কোনো কিছু পাওয়ার তীব্র ইচ্ছা পোষণ করবে, তখন পুরো সৃষ্টিজগৎ তোমাকে তা পাইয়ে দিতে সহায়তা করবে।",
     sourceOrContext: "দ্য অ্যালকেমিস্ট",
-    reflection: "উদ্দেশ্য ও দৃঢ় বিশ্বাসের এক চিরন্তন স্মারক। বড় কোনো ইঞ্জিনিয়ারিং মাইলফলক অর্জন এবং অর্থবহ সফটওয়্যার তৈরির জন্য নিজের যাত্রার ওপর বিশ্বাস এবং প্রতিকূলতার মাঝেও নিরলস চেষ্টা চালিয়ে যাওয়া অপরিহার্য।",
     tags: ["ভাগ্য", "বিশ্বাস", "অধ্যবসায়", "দ্য অ্যালকেমিস্ট"],
   },
   {
@@ -56,7 +52,6 @@ export const inspirationItemsBn: InspirationItem[] = [
     authorImage: "/authors/jalaluddin-rumi.webp",
     quote: "ক্ষতই হলো সেই প্রবেশদ্বার, যেখান দিয়ে তোমার ভেতরে আলোর আগমন ঘটে।",
     sourceOrContext: "মসনবী শরীফ",
-    reflection: "কঠিন পরিস্থিতি, কোডিংয়ের জটিল সমস্যা কিংবা ব্যক্তিগত ব্যর্থতা কোনো চূড়ান্ত পরাজয় নয়—বরং সেগুলো আত্মিক রূপান্তরকারী শিক্ষক যা আমাদের জ্ঞান, সহানুভূতি, ধৈর্য ও চরিত্রকে আরও গভীর করে।",
     tags: ["মনোযোগ", "আধ্যাত্মিক বিকাশ", "ধৈর্য", "আত্মিক শান্তি"],
   },
   {
@@ -67,7 +62,6 @@ export const inspirationItemsBn: InspirationItem[] = [
     authorImage: "/authors/haruki-murakami.webp",
     quote: "কষ্ট অনিবার্য, কিন্তু ভেঙে পড়া বা যন্ত্রণা বেছে নেওয়া ঐচ্ছিক।",
     sourceOrContext: "হোয়াট আই টক অ্যাবাউট হোয়েন আই টক অ্যাবাউট রানিং",
-    reflection: "ম্যারাথন দৌড় কিংবা গভীর রাতে জটিল ডিস্ট্রিবিউটেড সিস্টেম ডিবাগ করা—নিয়মানুবর্তিতা ও ইতিবাচক মানসিক দৃষ্টিভঙ্গি যেকোনো কঠিন পরিশ্রমকে ধীর ও অবিচল সাফল্যে রূপান্তর করতে সক্ষম।",
     tags: ["নিয়মানুবর্তিতা", "সহনশীলতা", "মনোভাব", "কারুশিল্প"],
   },
 ];

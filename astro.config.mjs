@@ -22,6 +22,11 @@ export default defineConfig({
     },
   },
 
+  redirects: {
+    "/inspiration": "/quotes",
+    "/bn/inspiration": "/bn/quotes",
+  },
+
   alias: {
     "@": "./src",
   },

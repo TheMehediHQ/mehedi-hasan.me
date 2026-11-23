@@ -9,13 +9,22 @@ interface Props {
 }
 
 const { item, index = 0 } = Astro.props;
+const currentLocale = Astro.currentLocale ?? "en";
+const isBn = currentLocale === "bn";
 
-const typeLabel = {
-  book: "Book",
-  philosophy: "Philosophy",
-  science: "Physics & Science",
-  engineering: "Software Craft",
-}[item.type] || "Inspiration";
+const typeLabel = isBn
+  ? {
+      book: "সাহিত্য",
+      philosophy: "দর্শন",
+      science: "বিজ্ঞান",
+      engineering: "সফটওয়্যার ক্রাফট",
+    }[item.type] || "অনুপ্রেরণা"
+  : {
+      book: "Book",
+      philosophy: "Philosophy",
+      science: "Physics & Science",
+      engineering: "Software Craft",
+    }[item.type] || "Inspiration";
 ---
 
 <div class="animate-on-scroll" style={`transition-delay: ${index * 0.08}s`}>

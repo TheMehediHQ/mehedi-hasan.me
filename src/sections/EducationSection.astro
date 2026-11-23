@@ -1,15 +1,20 @@
 ---
 import SectionTitle from "@/components/ui/SectionTitle.astro";
 import EducationCard from "@/components/ui/EducationCard.astro";
-import { educations } from "@/data/education";
+import { educations, educationsBn } from "@/data/education";
+import { useTranslations } from "@/i18n/ui";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const t = useTranslations(currentLocale);
+const currentEducations = currentLocale === "bn" ? educationsBn : educations;
 ---
 
 <div class="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
   <div class="max-w-3xl mx-auto">
-    <SectionTitle title="Education" subtitle="" />
+    <SectionTitle title={t("section.education")} subtitle="" />
 
     <div class="space-y-6 lg:space-y-10">
-      {educations.map((education, index) => (
+      {currentEducations.map((education, index) => (
         <EducationCard education={education} index={index} />
       ))}
     </div>

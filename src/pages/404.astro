@@ -2,14 +2,19 @@
 import MobileFooter from "@/components/layout/MobileFooter.astro";
 import BaseHead from "../components/BaseHead.astro";
 import { Icon } from "astro-icon/components";
+import { useTranslations } from "@/i18n/ui";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const t = useTranslations(currentLocale);
+const isBn = currentLocale === "bn";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     <BaseHead
-      title="404 — Page Not Found"
-      description="The page you're looking for doesn't exist."
+      title={t("404.title")}
+      description={t("404.description")}
     />
   </head>
 
@@ -21,7 +26,7 @@ import { Icon } from "astro-icon/components";
     <!-- Index -->
     <div>
       <a
-        href="/"
+        href={isBn ? "/bn" : "/"}
         class="group inline-flex items-center gap-1.5 text-sm transition-opacity hover:opacity-70"
         style="color: var(--color-primary-text);"
       >
@@ -29,7 +34,7 @@ import { Icon } from "astro-icon/components";
           name="lucide:arrow-left"
           class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
         />
-        <span>Index</span>
+        <span>{t("404.index")}</span>
       </a>
     </div>
 
@@ -39,26 +44,26 @@ import { Icon } from "astro-icon/components";
         class="text-base sm:text-[16px] font-semibold tracking-tight mb-7"
         style="color: var(--color-primary-text);"
       >
-        404—<span class="font-bold">not found</span>
+        {isBn ? "৪০৪—" : "404—"}<span class="font-bold">{t("404.notFound")}</span>
       </h1>
 
       <p
         class="max-w-xl text-sm sm:text-[16px] leading-6"
         style="color: var(--color-secondary-text);"
       >
-        The page you're looking for is no longer available.
+        {t("404.message")}
         <a
-          href="/contact"
+          href={isBn ? "/bn#contact" : "/#contact"}
           class="group inline-flex items-center gap-1 mx-1 font-medium transition-opacity duration-200 hover:opacity-70"
           style="color: var(--color-primary-text);"
         >
-          Contact me
+          {t("404.contactMe")}
           <Icon
             name="lucide:arrow-up-right"
             class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </a>
-        if you need help finding something.
+        {isBn ? "করতে পারেন।" : "if you need help finding something."}
       </p>
     </div>
   </div>
@@ -69,6 +74,5 @@ import { Icon } from "astro-icon/components";
   </div>
 </main>
 
-    
   </body>
 </html>

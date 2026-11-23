@@ -5,21 +5,32 @@ import MobileFooter from "../components/layout/MobileFooter.astro";
 import GradientFooter from "../components/layout/GradientFooter.astro";
 import Chatbot from "../components/chat/Chatbot.astro";
 import InspirationCard from "../components/ui/InspirationCard.astro";
-import { inspirationItems } from "../data/inspiration";
+import { inspirationItems, inspirationItemsBn } from "../data/inspiration";
 
-const categories = [
-  { key: "all", label: "All" },
-  { key: "book", label: "Literature & Books" },
-  { key: "philosophy", label: "Philosophy & Mysticism" },
-];
+const currentLocale = Astro.currentLocale ?? "en";
+const isBn = currentLocale === "bn";
+
+const categories = isBn
+  ? [
+      { key: "all", label: "সব" },
+      { key: "book", label: "সাহিত্য ও গ্রন্থ" },
+      { key: "philosophy", label: "দর্শন ও সুফিবাদ" },
+    ]
+  : [
+      { key: "all", label: "All" },
+      { key: "book", label: "Literature & Books" },
+      { key: "philosophy", label: "Philosophy & Mysticism" },
+    ];
+
+const items = isBn ? inspirationItemsBn : inspirationItems;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
 <head>
   <BaseHead
-    title="Inspiration & Philosophy — Mehedi Hasan"
-    description="Guiding principles, influential thinkers, and quotes that inspire Mehedi Hasan's life and engineering craft."
+    title={isBn ? "অনুপ্রেরণা ও দর্শন — Mehedi Hasan" : "Inspiration & Philosophy — Mehedi Hasan"}
+    description={isBn ? "জীবনদর্শন, প্রভাবশালী চিন্তাবিদ এবং যে উক্তিগুলো মেহেদী হাসানের জীবন ও কাজকে অনুপ্রাণিত করে।" : "Guiding principles, influential thinkers, and quotes that inspire Mehedi Hasan's life and engineering craft."}
   />
 </head>
 
@@ -46,10 +57,10 @@ const categories = [
               class="text-2xl sm:text-3xl font-bold mb-2"
               style="color: var(--color-primary-text);"
             >
-              Inspiration & Philosophy
+              {isBn ? "অনুপ্রেরণা ও দর্শন" : "Inspiration & Philosophy"}
             </h1>
             <p class="text-sm sm:text-base" style="color: var(--color-secondary-text);">
-              Guiding principles, influential thinkers, and quotes that shape my craft and worldview.
+              {isBn ? "জীবনদর্শন, প্রভাবশালী চিন্তাবিদ এবং যে উক্তিগুলো আমার কাজ ও চিন্তাধারাকে অনুপ্রাণিত করে।" : "Guiding principles, influential thinkers, and quotes that shape my craft and worldview."}
             </p>
           </div>
 
@@ -76,16 +87,17 @@ const categories = [
             <!-- Item Count -->
             <p
               id="inspiration-count"
+              data-suffix={isBn ? "টি উক্তি ও চিন্তাবিদ" : "quotes & thinkers"}
               class="text-xs"
               style="color: var(--color-muted-text);"
             >
-              {inspirationItems.length} quotes & thinkers
+              {items.length} {isBn ? "টি উক্তি ও চিন্তাবিদ" : "quotes & thinkers"}
             </p>
           </div>
 
           <!-- Inspiration Cards List -->
           <div id="inspiration-list" class="space-y-6 lg:space-y-10">
-            {inspirationItems.map((item, index) => (
+            {items.map((item, index) => (
               <div data-inspiration-item data-type={item.type}>
                 <InspirationCard item={item} index={index} />
               </div>
@@ -95,7 +107,7 @@ const categories = [
           <!-- CTA / Footer note -->
           <div class="mt-12 text-center">
             <p class="text-sm" style="color: var(--color-muted-text);">
-              "Stay curious, embrace discipline, and build things that genuinely help people."
+              {isBn ? '"কৌতূহলী থাকুন, নিয়মানুবর্তিতা বজায় রাখুন এবং এমন কিছু তৈরি করুন যা মানুষের উপকারে আসে।"' : '"Stay curious, embrace discipline, and build things that genuinely help people."'}
             </p>
           </div>
 
@@ -115,6 +127,7 @@ const categories = [
       const filterBtns = document.querySelectorAll<HTMLButtonElement>(".inspiration-filter-btn");
       const items = document.querySelectorAll<HTMLElement>("[data-inspiration-item]");
       const countEl = document.getElementById("inspiration-count");
+      const suffix = countEl?.getAttribute("data-suffix") || "quotes & thinkers";
 
       filterBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -141,7 +154,7 @@ const categories = [
           });
 
           if (countEl) {
-            countEl.textContent = `${visibleCount} quotes & thinkers`;
+            countEl.textContent = `${visibleCount} ${suffix}`;
           }
         });
       });

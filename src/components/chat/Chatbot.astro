@@ -1,25 +1,38 @@
 ---
 import { Icon } from "astro-icon/components";
 import { personalInfo } from "@/data/personalInfo";
+import { useTranslations } from "@/i18n/ui";
 
-const suggestedPrompts = [
-  "What does Mehedi do?",
-  "What's his tech stack?",
-  "Show me his projects",
-  "Where has he worked?",
-  "Is he available for hire?",
-  "Can I book a call?",
-];
+const currentLocale = Astro.currentLocale ?? "en";
+const t = useTranslations(currentLocale);
+const isBn = currentLocale === "bn";
+
+const suggestedPrompts = isBn
+  ? [
+      t("chatbot.prompt1"),
+      t("chatbot.prompt2"),
+      t("chatbot.prompt3"),
+      t("chatbot.prompt4"),
+      t("chatbot.prompt5"),
+      t("chatbot.prompt6"),
+    ]
+  : [
+      "What does Mehedi do?",
+      "What's his tech stack?",
+      "Show me his projects",
+      "Where has he worked?",
+      "Is he available for hire?",
+      "Can I book a call?",
+    ];
 ---
 
-<div id="ai-portfolio-chatbot" class="relative z-50">
+<div id="ai-portfolio-chatbot" class="relative z-50" data-locale={currentLocale}>
  
-<!-- FLOATING TRIGGER BUTTON -->
 <!-- FLOATING TRIGGER BUTTON -->
   <button
     id="chatbot-trigger-btn"
     type="button"
-    aria-label="Open AI Portfolio Assistant"
+    aria-label={isBn ? "এআই পোর্টফোলিও অ্যাসিস্ট্যান্ট খুলুন" : "Open AI Portfolio Assistant"}
     aria-expanded="false"
     aria-controls="chatbot-panel"
     class="group fixed bottom-6 right-4 sm:bottom-6 sm:right-6 z-40 inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs sm:text-sm font-medium tracking-tight cursor-pointer backdrop-blur-md border-[0.5px] border-[var(--color-border)]/60 hover:border-[#3A82F6]/50 hover:bg-[#3A82F6]/[0.04] transition-all duration-300 ease-out active:scale-[0.98]"
@@ -39,7 +52,7 @@ const suggestedPrompts = [
       />
     </span>
 
-    <span class="font-medium select-none pr-0.5">Ask Me</span>
+    <span class="font-medium select-none pr-0.5">{t("chatbot.askMe")}</span>
   </button>
 
   <!-- CHAT PANEL CONTAINER -->
@@ -74,10 +87,10 @@ const suggestedPrompts = [
         </div>
         <div class="min-w-0">
           <h2 id="chatbot-title" class="text-xs sm:text-sm font-semibold truncate leading-tight" style="color: var(--color-primary-text);">
-            AI Portfolio Assistant
+            {t("chatbot.title")}
           </h2>
           <p class="text-[10px] sm:text-[11px] truncate opacity-70" style="color: var(--color-muted-text);">
-            Grounded in Mehedi's portfolio
+            {t("chatbot.grounded")}
           </p>
         </div>
       </div>
@@ -87,8 +100,8 @@ const suggestedPrompts = [
         <button
           id="chatbot-clear-btn"
           type="button"
-          aria-label="Restart conversation"
-          title="Restart conversation"
+          aria-label={isBn ? "নতুন কথোপকথন শুরু করুন" : "Restart conversation"}
+          title={isBn ? "নতুন কথোপকথন শুরু করুন" : "Restart conversation"}
           class="p-1.5 rounded-lg opacity-60 hover:opacity-100 hover:bg-[var(--color-hover)] transition-all cursor-pointer"
           style="color: var(--color-secondary-text);"
         >
@@ -99,8 +112,8 @@ const suggestedPrompts = [
         <button
           id="chatbot-close-btn"
           type="button"
-          aria-label="Close Assistant"
-          title="Close (Esc)"
+          aria-label={isBn ? "বন্ধ করুন" : "Close Assistant"}
+          title={isBn ? "বন্ধ করুন (Esc)" : "Close (Esc)"}
           class="p-1.5 rounded-lg opacity-60 hover:opacity-100 hover:bg-[var(--color-hover)] transition-all cursor-pointer"
           style="color: var(--color-secondary-text);"
         >
@@ -129,7 +142,7 @@ const suggestedPrompts = [
               color: var(--color-primary-text);
             "
           >
-            Hey there! 👋 I'm Mehedi's AI assistant. Ask me anything about his work, skills, projects, or how to get in touch — I'm here to help!
+            {t("chatbot.welcome")}
           </div>
 
           <!-- Suggested quick prompt chips -->
@@ -169,7 +182,7 @@ const suggestedPrompts = [
         <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
         <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse [animation-delay:150ms]"></span>
         <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse [animation-delay:300ms]"></span>
-        <span class="ml-1 text-[11px] font-medium">Thinking...</span>
+        <span class="ml-1 text-[11px] font-medium">{t("chatbot.thinking")}</span>
       </div>
     </div>
 
@@ -185,7 +198,7 @@ const suggestedPrompts = [
           name="query"
           maxlength="500"
           autocomplete="off"
-          placeholder="Ask about skills, projects, experience..."
+          placeholder={t("chatbot.placeholder")}
           class="flex-1 h-10 px-3.5 pr-10 rounded-xl border text-xs sm:text-sm bg-transparent placeholder:opacity-50 focus:outline-none transition-colors"
           style="
             border-color: var(--color-border);
@@ -195,7 +208,7 @@ const suggestedPrompts = [
         <button
           id="chatbot-send-btn"
           type="submit"
-          aria-label="Send Message"
+          aria-label={isBn ? "বার্তা পাঠান" : "Send Message"}
           disabled
           class="absolute right-1.5 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer hover:bg-[var(--color-hover)]"
           style="color: var(--color-accent);"
@@ -204,7 +217,7 @@ const suggestedPrompts = [
         </button>
       </form>
       <p class="mt-1.5 text-[10px] text-center opacity-60" style="color: var(--color-muted-text);">
-        Answers are grounded in Mehedi's actual portfolio data.
+        {t("chatbot.groundedNote")}
       </p>
     </div>
   </div>
@@ -489,6 +502,9 @@ const suggestedPrompts = [
 
     let rowAppended = false;
 
+    const chatContainer = document.getElementById("ai-portfolio-chatbot");
+    const isBn = chatContainer?.dataset.locale === "bn" || window.location.pathname.startsWith("/bn");
+
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -496,13 +512,16 @@ const suggestedPrompts = [
         body: JSON.stringify({
           message: query,
           history: conversationHistory.slice(-4),
+          locale: isBn ? "bn" : "en",
         }),
       });
 
       if (typingIndicator) typingIndicator.classList.add("hidden");
 
       if (!response.ok) {
-        let errMessage = "Sorry, I ran into an error connecting to the service. Please try again shortly or contact Mehedi directly at hello@mehedi-hasan.me.";
+        let errMessage = isBn
+          ? "দুঃখিত, সংযোগে একটি সমস্যা হয়েছে। দয়া করে কিছুক্ষণ পর আবার চেষ্টা করুন অথবা সরাসরি hello@mehedi-hasan.me ঠিকানায় যোগাযোগ করুন।"
+          : "Sorry, I ran into an error connecting to the service. Please try again shortly or contact Mehedi directly at hello@mehedi-hasan.me.";
         try {
           const errData = await response.json();
           if (errData.error) errMessage = errData.error;
@@ -593,14 +612,16 @@ const suggestedPrompts = [
     } catch (err) {
       console.error("Chatbot request failed:", err);
       if (typingIndicator) typingIndicator.classList.add("hidden");
-      const fallbackText = "I had trouble connecting. You can email Mehedi directly at hello@mehedi-hasan.me or schedule a call.";
+      const fallbackText = isBn
+        ? "সংযোগ স্থাপন করতে সমস্যা হচ্ছে। আপনি সরাসরি hello@mehedi-hasan.me ঠিকানায় ইমেইল করতে পারেন অথবা একটি কল বুক করতে পারেন।"
+        : "I had trouble connecting. You can email Mehedi directly at hello@mehedi-hasan.me or schedule a call.";
       bubble.textContent = fallbackText;
       if (!rowAppended && messagesContainer) {
         messagesContainer.appendChild(row);
       }
       const bookingAction = createActionButtons([
-        { type: "booking", label: "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" },
-        { type: "email", label: "Email Directly", url: "mailto:hello@mehedi-hasan.me" }
+        { type: "booking", label: isBn ? "কল শিডিউল করুন" : "Schedule a Call", url: "https://cal.com/TheMehediHQ/15min" },
+        { type: "email", label: isBn ? "ইমেইল পাঠান" : "Email Directly", url: "mailto:hello@mehedi-hasan.me" }
       ]);
       if (bookingAction) contentBox.appendChild(bookingAction);
 

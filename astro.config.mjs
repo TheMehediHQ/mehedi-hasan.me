@@ -10,6 +10,18 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://mehedi-hasan.me",
 
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "bn"],
+    routing: {
+      prefixDefaultLocale: false,
+      fallbackType: "rewrite",
+    },
+    fallback: {
+      bn: "en",
+    },
+  },
+
   alias: {
     "@": "./src",
   },

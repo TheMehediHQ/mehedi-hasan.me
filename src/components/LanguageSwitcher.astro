@@ -1,0 +1,48 @@
+---
+const currentLocale = Astro.currentLocale ?? "en";
+const pathname = Astro.url.pathname;
+
+// Calculate URLs for EN and BN
+const enPath = pathname.replace(/^\/bn(\/|$)/, "$1") || "/";
+const bnPath = pathname.startsWith("/bn")
+  ? pathname
+  : (pathname === "/" ? "/bn" : `/bn${pathname}`);
+---
+
+<div
+  class="language-switcher inline-flex items-center rounded-lg p-0.5"
+  style="border: 1px solid var(--color-border); background-color: var(--color-hover);"
+  role="group"
+  aria-label="Language selection"
+>
+  <a
+    href={enPath}
+    class:list={[
+      "px-2 py-0.5 text-xs font-medium rounded-md transition-all duration-150",
+      currentLocale === "en"
+        ? "bg-[var(--color-background)] font-semibold shadow-xs"
+        : "opacity-60 hover:opacity-100"
+    ]}
+    style={currentLocale === "en" ? "color: var(--color-primary-text);" : "color: var(--color-secondary-text);"}
+    aria-current={currentLocale === "en" ? "page" : undefined}
+    lang="en"
+    title="Switch to English"
+  >
+    EN
+  </a>
+  <a
+    href={bnPath}
+    class:list={[
+      "px-2 py-0.5 text-xs font-medium rounded-md transition-all duration-150",
+      currentLocale === "bn"
+        ? "bg-[var(--color-background)] font-semibold shadow-xs"
+        : "opacity-60 hover:opacity-100"
+    ]}
+    style={currentLocale === "bn" ? "color: var(--color-primary-text);" : "color: var(--color-secondary-text);"}
+    aria-current={currentLocale === "bn" ? "page" : undefined}
+    lang="bn"
+    title="বাংলায় পরিবর্তন করুন"
+  >
+    বাং
+  </a>
+</div>

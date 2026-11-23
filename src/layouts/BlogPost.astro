@@ -13,9 +13,10 @@ import { Icon } from 'astro-icon/components';
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const currentLocale = Astro.currentLocale ?? 'en';
 ---
 
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     <BaseHead title={`${title} — Mehedi Hasan`} description={description} />
   </head>
@@ -57,12 +58,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
               <!-- Back Link -->
               <a
-                href="/blog"
+                href={currentLocale === 'bn' ? '/bn/blog' : '/blog'}
                 class="inline-flex items-center gap-1.5 text-sm mb-6 transition-colors duration-200 hover:opacity-70"
                 style="color: var(--color-accent);"
               >
                 <Icon name="lucide:arrow-left" size={14} />
-                Back to Blog
+                {currentLocale === 'bn' ? 'ব্লগে ফিরে যান' : 'Back to Blog'}
               </a>
 
               <!-- Header -->
@@ -74,7 +75,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
                   </span>
                   {updatedDate && (
                     <span class="text-xs italic" style="color: var(--color-muted-text);">
-                      · Updated <FormattedDate date={updatedDate} />
+                      · {currentLocale === 'bn' ? 'পরিমার্জিত ' : 'Updated '} <FormattedDate date={updatedDate} />
                     </span>
                   )}
                 </div>
@@ -116,22 +117,22 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   style="border-top: 1px solid var(--color-border);"
 >
   <a
-    href="/blog"
+    href={currentLocale === 'bn' ? '/bn/blog' : '/blog'}
     class="inline-flex items-center gap-1.5 text-sm font-medium transition-all duration-200 hover:brightness-125"
     style="color: var(--color-accent);"
   >
     <Icon name="lucide:arrow-left" size={14} />
-    All Posts
+    {currentLocale === 'bn' ? 'সব লেখা' : 'All Posts'}
   </a>
 
   <button
     id="back-to-top"
     type="button"
-    class="inline-flex items-center gap-1.5 text-sm font-medium transition-all duration-200 hover:brightness-125"
+    class="inline-flex items-center gap-1.5 text-sm font-medium transition-all duration-200 hover:brightness-125 cursor-pointer"
     style="color: var(--color-accent);"
     aria-label="Back to top"
   >
-    Back to Top
+    {currentLocale === 'bn' ? 'উপরে যান' : 'Back to Top'}
     <Icon name="lucide:arrow-up" size={14} />
   </button>
 </div>

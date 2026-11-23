@@ -2,9 +2,34 @@
 import { Icon } from "astro-icon/components";
 import { navItems } from "../../data/navItems";
 import ThemeToggle from "../ThemeToggle.astro";
+import LanguageSwitcher from "../LanguageSwitcher.astro";
 import ScrollProgress from "../ui/ScrollProgress.astro";
+import { useTranslations } from "../../i18n/ui";
 
-const isHome = Astro.url.pathname === "/";
+const currentLocale = Astro.currentLocale ?? "en";
+const t = useTranslations(currentLocale);
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/bn" || Astro.url.pathname === "/bn/";
+
+function getLocalizedPath(path?: string, isExternal?: boolean) {
+  if (!path || isExternal) return path ?? "/";
+  if (path.startsWith("#")) {
+    if (isHome) return path;
+    return currentLocale === "bn" ? `/bn${path}` : `/${path}`;
+  }
+  if (path.startsWith("/")) {
+    if (currentLocale === "bn") {
+      return path.startsWith("/bn") ? path : `/bn${path}`;
+    }
+    return path;
+  }
+  return path;
+}
+
+function getLocalizedLabel(id: string, defaultLabel: string) {
+  const key = `nav.${id}` as any;
+  const translated = t(key);
+  return translated || defaultLabel;
+}
 ---
 
 <ScrollProgress />
@@ -16,151 +41,123 @@ const isHome = Astro.url.pathname === "/";
   <div class="mx-auto flex max-w-3xl items-center justify-between py-4">
     <!-- Logo -->
     <a
-      href="/"
+      href={currentLocale === "bn" ? "/bn" : "/"}
       class="text-base font-semibold transition-opacity hover:opacity-70"
       style="color: var(--color-primary-text);"
     >
       mehedi-hasan.me
     </a>
 
-    <!-- Desktop Nav Links -->
-    <div class="hidden items-center gap-6 md:flex">
-      {
-        navItems.map((item) => {
-          if (item.children && item.children.length > 0) {
-            return (
-              <div class="relative inline-block" id="desktop-more-dropdown">
-                <button
-                  type="button"
-                  id="desktop-more-btn"
-                  class="flex items-center gap-1 text-sm font-medium transition-colors duration-200 hover:opacity-70 focus:outline-none cursor-pointer"
-                  style="color: var(--color-secondary-text);"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                  aria-controls="desktop-more-menu"
-                >
-                  <span>{item.label}</span>
-                  <Icon
-                    name="lucide:chevron-down"
-                    id="desktop-more-chevron"
-                    class="h-3.5 w-3.5 transition-transform duration-200"
-                  />
-                </button>
+    <!-- Right Controls Wrapper -->
+    <div class="flex items-center gap-3 sm:gap-4 md:gap-6">
+      <!-- Desktop Nav Links -->
+      <div class="hidden items-center gap-6 md:flex">
+        {
+          navItems.map((item) => {
+            const label = getLocalizedLabel(item.id, item.label);
+            if (item.children && item.children.length > 0) {
+              return (
+                <div class="relative inline-block" id="desktop-more-dropdown">
+                  <button
+                    type="button"
+                    id="desktop-more-btn"
+                    class="flex items-center gap-1 text-sm font-medium transition-colors duration-200 hover:opacity-70 focus:outline-none cursor-pointer"
+                    style="color: var(--color-secondary-text);"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-controls="desktop-more-menu"
+                  >
+                    <span>{label}</span>
+                    <Icon
+                      name="lucide:chevron-down"
+                      id="desktop-more-chevron"
+                      class="h-3.5 w-3.5 transition-transform duration-200"
+                    />
+                  </button>
 
-                <div
-                  id="desktop-more-menu"
-                  class="invisible absolute left-1/2 top-full z-50 mt-2 min-w-[160px] -translate-x-1/2 rounded-2xl p-1.5 opacity-0 shadow-lg transition-all duration-200 focus:outline-none pointer-events-none before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']"
-                  style="background-color: var(--color-background); border: 1px solid var(--color-border);"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="desktop-more-btn"
-                >
-                  {item.children.map((child) => (
-                    <a
-                      href={child.path}
-                      role="menuitem"
-                      tabindex="-1"
-                      class="desktop-dropdown-link block rounded-xl px-3.5 py-2 text-sm font-medium transition-colors duration-150"
-                      style="color: var(--color-secondary-text);"
-                    >
-                      {child.label}
-                    </a>
-                  ))}
+                  <div
+                    id="desktop-more-menu"
+                    class="invisible absolute left-1/2 top-full z-50 mt-2 min-w-[160px] -translate-x-1/2 rounded-2xl p-1.5 opacity-0 shadow-lg transition-all duration-200 focus:outline-none pointer-events-none before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']"
+                    style="background-color: var(--color-background); border: 1px solid var(--color-border);"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="desktop-more-btn"
+                  >
+                    {item.children.map((child) => (
+                      <a
+                        href={getLocalizedPath(child.path, !!child.href)}
+                        role="menuitem"
+                        tabindex="-1"
+                        class="desktop-dropdown-link block rounded-xl px-3.5 py-2 text-sm font-medium transition-colors duration-150"
+                        style="color: var(--color-secondary-text);"
+                      >
+                        {getLocalizedLabel(child.id, child.label)}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          }
+              );
+            }
 
-          const isExternal = !!item.href;
+            const isExternal = !!item.href;
 
-          if (isExternal) {
+            if (isExternal) {
+              return (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
+                  style="color: var(--color-secondary-text);"
+                >
+                  {label}
+                </a>
+              );
+            }
+
+            const targetPath = getLocalizedPath(item.path);
+
             return (
               <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
-                style="color: var(--color-secondary-text);"
-              >
-                {item.label}
-              </a>
-            );
-          }
-
-          if (isHome && item.path?.startsWith("#")) {
-            return (
-              <a
-                href={item.path}
+                href={targetPath}
                 data-nav-section={item.id}
                 class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
                 style="color: var(--color-secondary-text);"
               >
-                {item.label}
+                {label}
               </a>
             );
-          }
+          })
+        }
+      </div>
 
-          if (item.path) {
-            const linkHref = (!isHome && item.path.startsWith("#"))
-              ? `/${item.path}`
-              : item.path;
-            return (
-              <a
-                href={linkHref}
-                class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
-                style="color: var(--color-secondary-text);"
-              >
-                {item.label}
-              </a>
-            );
-          }
+      <!-- Action Icons: RSS, LanguageSwitcher, ThemeToggle -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <a
+          href="/rss.xml"
+          class="flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-[var(--nav-active-bg)]"
+          style="color: var(--color-primary-text);"
+          aria-label="RSS feed"
+        >
+          <Icon name="lucide:rss" class="h-4 w-4" />
+        </a>
 
-          return (
-            <a
-              href="/"
-              class="text-sm font-medium transition-colors duration-200 hover:opacity-70"
-              style="color: var(--color-secondary-text);"
-            >
-              {item.label}
-            </a>
-          );
-        })
-      }
+        <LanguageSwitcher />
 
-      <a
-        href="/rss.xml"
-        class="flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-[var(--nav-active-bg)]"
-        style="color: var(--color-primary-text);"
-        aria-label="RSS feed"
-      >
-        <Icon name="lucide:rss" class="h-4 w-4" />
-      </a>
+        <ThemeToggle />
+      </div>
 
-      <ThemeToggle />
-    </div>
-
-    <!-- Mobile Controls -->
-    <div class="flex items-center gap-3 md:hidden">
-      <a
-        href="/rss.xml"
-        class="flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-[var(--nav-active-bg)]"
-        style="color: var(--color-primary-text);"
-        aria-label="RSS feed"
-      >
-        <Icon name="lucide:rss" class="h-4 w-4" />
-      </a>
-
-      <ThemeToggle />
-
-      <!-- Hamburger Button -->
+      <!-- Hamburger Button (Mobile only) -->
       <button
         id="hamburger-btn"
         type="button"
-        class="text-sm font-medium transition-opacity hover:opacity-70"
+        class="text-sm font-medium transition-opacity hover:opacity-70 md:hidden cursor-pointer"
         style="color: var(--color-primary-text);"
         aria-label="Toggle menu"
+        data-menu-text={t("nav.menu")}
+        data-close-text={t("nav.close")}
       >
-        Menu
+        {t("nav.menu")}
       </button>
     </div>
   </div>
@@ -179,6 +176,7 @@ const isHome = Astro.url.pathname === "/";
     <nav class="flex flex-col">
       {
         navItems.map((item) => {
+          const label = getLocalizedLabel(item.id, item.label);
           if (item.children && item.children.length > 0) {
             return (
               <div class="flex flex-col">
@@ -190,7 +188,7 @@ const isHome = Astro.url.pathname === "/";
                   aria-expanded="false"
                   aria-controls="mobile-more-menu"
                 >
-                  <span>{item.label}</span>
+                  <span>{label}</span>
                   <Icon
                     name="lucide:chevron-down"
                     id="mobile-more-chevron"
@@ -203,11 +201,11 @@ const isHome = Astro.url.pathname === "/";
                 >
                   {item.children.map((child) => (
                     <a
-                      href={child.path}
+                      href={getLocalizedPath(child.path, !!child.href)}
                       class="mobile-nav-link rounded-xl px-4 py-2.5 text-sm font-medium transition-colors"
                       style="color: var(--color-secondary-text);"
                     >
-                      {child.label}
+                      {getLocalizedLabel(child.id, child.label)}
                     </a>
                   ))}
                 </div>
@@ -226,46 +224,21 @@ const isHome = Astro.url.pathname === "/";
                 class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
                 style="color: var(--color-secondary-text);"
               >
-                {item.label}
+                {label}
               </a>
             );
           }
 
-          if (isHome && item.path?.startsWith("#")) {
-            return (
-              <a
-                href={item.path}
-                data-nav-section={item.id}
-                class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
-                style="color: var(--color-secondary-text);"
-              >
-                {item.label}
-              </a>
-            );
-          }
-
-          if (item.path) {
-            const linkHref = (!isHome && item.path.startsWith("#"))
-              ? `/${item.path}`
-              : item.path;
-            return (
-              <a
-                href={linkHref}
-                class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
-                style="color: var(--color-secondary-text);"
-              >
-                {item.label}
-              </a>
-            );
-          }
+          const targetPath = getLocalizedPath(item.path);
 
           return (
             <a
-              href="/"
+              href={targetPath}
+              data-nav-section={item.id}
               class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-medium transition-colors"
               style="color: var(--color-secondary-text);"
             >
-              {item.label}
+              {label}
             </a>
           );
         })
@@ -303,7 +276,7 @@ const isHome = Astro.url.pathname === "/";
     function closeMobileMenu() {
       if (mobileMenuOverlay && hamburgerBtn) {
         mobileMenuOverlay.classList.add("hidden");
-        hamburgerBtn.textContent = "Menu";
+        hamburgerBtn.textContent = hamburgerBtn.getAttribute("data-menu-text") || "Menu";
         if (mobileMoreMenu && !mobileMoreMenu.classList.contains("hidden")) {
           mobileMoreMenu.classList.add("hidden");
           mobileMoreMenu.classList.remove("flex");
@@ -318,7 +291,7 @@ const isHome = Astro.url.pathname === "/";
         const isHidden = mobileMenuOverlay.classList.contains("hidden");
         if (isHidden) {
           mobileMenuOverlay.classList.remove("hidden");
-          hamburgerBtn.textContent = "Close";
+          hamburgerBtn.textContent = hamburgerBtn.getAttribute("data-close-text") || "Close";
         } else {
           closeMobileMenu();
         }

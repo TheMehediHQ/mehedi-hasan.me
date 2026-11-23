@@ -68,7 +68,7 @@ const { certificate, index = 0 } = Astro.props;
         class="flex items-center gap-1 text-xs font-medium shrink-0"
         style="color: var(--color-accent);"
       >
-        View Credential
+        {Astro.currentLocale === 'bn' ? 'সনদপত্র দেখুন' : 'View Credential'}
         <Icon name="lucide:external-link" size={12} />
       </span>
     </div>

@@ -8,7 +8,7 @@ export const experiences: Experience[] = [
     companyUrl: "https://www.nexvibe.tech",
     period: "January 2026 - October 2026",
     description:
-      "Leading full-stack development for a SaaS platform serving 100k+ users. Implemented micro-frontend architecture and improved performance by 40%.",
+      "Worked with Astro, Hono, and full-stack tools on projects like AYVoice (bulk call, SMS, and email management), Meghpeon, and XGari. Gained hands-on experience in end-to-end feature development, API integration, and project delivery.",
     technologies: ["React", "Next.js", "TypeScript","PostgreSQL", "Node.js"]
   },
   {
@@ -18,7 +18,7 @@ export const experiences: Experience[] = [
     companyUrl: "https://www.apexiumstechnologies.com",
     period: "October 2025 - December 2025",
     description:
-      "Built and maintained multiple client projects from concept to deployment. Specialized in React ecosystems and RESTful API design.",
+      "I've seen up close how an idea turns into a live project. Working on the School Management SaaS and client work at Apexiums, I built live projects using React and RESTful APIs.",
     technologies: ["React", "Node.js", "Express", "PostgreSQL", "AWS"],
   },
   {
@@ -42,7 +42,7 @@ export const experiencesBn: Experience[] = [
     companyUrl: "https://www.nexvibe.tech",
     period: "জানুয়ারি ২০২৬ - অক্টোবর ২০২৬",
     description:
-      "১০০ হাজারেরও বেশি ব্যবহারকারীর জন্য একটি SaaS প্ল্যাটফর্মে ফুল-স্ট্যাক ডেভেলপমেন্ট পরিচালনা। মাইক্রো-ফ্রন্টএন্ড আর্কিটেকচার বাস্তবায়ন এবং পারফরম্যান্স ৪০% বৃদ্ধি।",
+      "AYVoice (বাল্ক কল, SMS ও ইমেইল ম্যানেজমেন্ট), Meghpeon এবং XGari-এর মতো প্রজেক্টে Astro, Hono এবং ফুল-স্ট্যাক টুলস নিয়ে কাজ করেছি। এন্ড-টু-এন্ড ফিচার ডেভেলপমেন্ট, API ইন্টিগ্রেশন এবং প্রজেক্ট ডেলিভারির বাস্তব অভিজ্ঞতা অর্জন করেছি।",
     technologies: ["React", "Next.js", "TypeScript", "PostgreSQL", "Node.js"]
   },
   {
@@ -52,7 +52,7 @@ export const experiencesBn: Experience[] = [
     companyUrl: "https://www.apexiumstechnologies.com",
     period: "অক্টোবর ২০২৫ - ডিসেম্বর ২০২৫",
     description:
-      "ধারণা থেকে ডেপ্লয়মেন্ট পর্যন্ত একাধিক ক্লায়েন্ট প্রজেক্ট তৈরি ও রক্ষণাবেক্ষণ। React ইকোসিস্টেম ও RESTful API ডিজাইনে বিশেষ দক্ষতা অর্জন।",
+      "একটা আইডিয়া কীভাবে লাইভ প্রজেক্টে রূপ নেয়, সেটা খুব কাছ থেকে দেখেছি। অ্যাপেক্সিয়ামস-এ School Management SaaS আর ক্লায়েন্টদের কাজ করতে গিয়ে React আর RESTful API দিয়ে লাইভ প্রজেক্ট তৈরি করেছি।",
     technologies: ["React", "Node.js", "Express", "PostgreSQL", "AWS"],
   },
   {

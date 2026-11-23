@@ -65,7 +65,7 @@ export const certificatesBn: Certificate[] = [
     issuerIcon: "/certificates/icons/google.svg",
     date: "২০২৬",
     credentialUrl: "/certificates/pdf/GeminiCertifiedEducator.pdf",
-    tags: ["এআই/এলএলএম", "গুগল জেমিনাই"],
+    tags: ["AI/LLM", "Google Gemini"],
   },
   {
     id: "2",
@@ -74,7 +74,7 @@ export const certificatesBn: Certificate[] = [
     issuerIcon: "/certificates/icons/apexiums.svg",
     date: "২০২৫",
     credentialUrl: "/certificates/pdf/Mehedi_Hasan_Apexiums_Certificate.pdf",
-    tags: ["ওয়েব ডেভেলপমেন্ট", "ইন্টার্নশিপ"],
+    tags: ["Web Development", "Internship"],
   },
   {
     id: "3",
@@ -83,7 +83,7 @@ export const certificatesBn: Certificate[] = [
     issuerIcon: "/certificates/icons/quantum.svg",
     date: "২০২২",
     credentialUrl: "/certificates/pdf/Mehedi_Hasan_Blood_Donation_Certificate.pdf",
-    tags: ["স্বেচ্ছাসেবী", "কমিউনিটি"],
+    tags: ["Volunteer", "Community"],
   },
   {
     id: "4",
@@ -92,7 +92,7 @@ export const certificatesBn: Certificate[] = [
     issuerIcon: "/certificates/icons/british-council.svg",
     date: "২০১৯",
     credentialUrl: "/certificates/pdf/Mehedi_Hasan_APTIS_Certificate.pdf",
-    tags: ["ইংরেজি ভাষা", "ভাষাগত দক্ষতা"],
+    tags: ["English", "Language Proficiency"],
   },
   {
     id: "5",
@@ -101,7 +101,7 @@ export const certificatesBn: Certificate[] = [
     issuerIcon: "/certificates/icons/hi-tech-park.svg",
     date: "২০১৯",
     credentialUrl: "/certificates/pdf/Mehedi_Hasan_Web_Certificate .pdf",
-    tags: ["লারাভেল", "ওয়েব ডেভেলপমেন্ট"],
+    tags: ["Laravel", "Web Development"],
   },
   {
     id: "6",
@@ -110,6 +110,6 @@ export const certificatesBn: Certificate[] = [
     issuerIcon: "/certificates/icons/hi-tech-park.svg",
     date: "২০১৯",
     credentialUrl: "/certificates/pdf/Mehedi_Hasan_Video_Editing_Certificate.pdf",
-    tags: ["ভিডিও এডিটিং", "অ্যানিমেশন"],
+    tags: ["Video Editing", "Animation"],
   },
 ];

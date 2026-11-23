@@ -50,6 +50,12 @@ export const navItems: NavItem[] = [
         path: "/inspiration",
         icon: "Sparkles",
       },
+      {
+        id: "media",
+        label: "Media",
+        path: "/media",
+        icon: "Film",
+      },
     ],
   },
   {

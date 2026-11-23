@@ -1,0 +1,222 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import TopNav from "../components/layout/TopNav.astro";
+import MobileFooter from "../components/layout/MobileFooter.astro";
+import GradientFooter from "../components/layout/GradientFooter.astro";
+import Chatbot from "../components/chat/Chatbot.astro";
+import { mediaEvents, mediaEventsBn } from "../data/media";
+import { Icon } from "astro-icon/components";
+
+const currentLocale = Astro.currentLocale ?? "en";
+const isBn = currentLocale === "bn";
+
+const events = isBn ? mediaEventsBn : mediaEvents;
+---
+
+<!doctype html>
+<html lang={currentLocale}>
+<head>
+  <BaseHead
+    title={isBn ? "মিডিয়া — Mehedi Hasan" : "Media — Mehedi Hasan"}
+    description={isBn ? "ইভেন্ট, অনুষ্ঠান ও পেছনের গল্প — মেহদী হাসান।" : "Events, offsites, and behind the scenes — Mehedi Hasan."}
+  />
+</head>
+
+<body>
+  <div
+    id="portfolio-layout"
+    class="flex h-screen w-full overflow-hidden"
+    style="background-color: var(--color-background);"
+  >
+    <!-- Main Content -->
+    <main
+      id="main-scroll-container"
+      class="flex-1 overflow-y-auto scroll-smooth lg:pb-0"
+    >
+      <!-- Top Navigation -->
+      <TopNav />
+
+      <div class="px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
+        <div class="max-w-3xl mx-auto">
+
+          <!-- Page Header (Exact match to reference UI) -->
+          <header class="mb-10 sm:mb-14">
+            <h1
+              class="text-2xl sm:text-3xl font-bold tracking-tight"
+              style="color: var(--color-primary-text);"
+            >
+              {isBn ? "মিডিয়া" : "Media"}
+            </h1>
+            <p
+              class="text-sm italic mt-1.5"
+              style="color: var(--color-muted-text);"
+            >
+              {isBn ? "ইভেন্ট, অনুষ্ঠান ও পেছনের গল্প" : "Events, offsites, and behind the scenes"}
+            </p>
+          </header>
+
+          <!-- Events & Image Galleries -->
+          <div class="space-y-12 sm:space-y-16">
+            {events.map((event) => (
+              <section class="media-event-block">
+                <!-- Event Title & Subtitle -->
+                <div class="mb-3 sm:mb-4">
+                  <h2
+                    class="text-base sm:text-lg font-bold tracking-tight"
+                    style="color: var(--color-primary-text);"
+                  >
+                    {event.title}
+                  </h2>
+                  {event.subtitle && (
+                    <p
+                      class="text-xs sm:text-sm mt-0.5"
+                      style="color: var(--color-muted-text);"
+                    >
+                      {event.subtitle}
+                    </p>
+                  )}
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
+                  {event.images.map((img, idx) => {
+                    const isFeatured = img.featured || idx === 0;
+                    return (
+                      <div
+                        class:list={[
+                          "group relative overflow-hidden rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] cursor-zoom-in transition-all duration-300 hover:border-[var(--color-accent)]",
+                          isFeatured ? "sm:col-span-7 sm:row-span-2 min-h-[260px] sm:min-h-[380px]" : "sm:col-span-5 min-h-[170px] sm:min-h-[185px]"
+                        ]}
+                        data-lightbox-trigger
+                        data-img-src={img.src}
+                        data-img-alt={img.alt}
+                        data-img-caption={img.caption || img.alt}
+                      >
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          loading="lazy"
+                          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                        />
+                        <div class="absolute inset-0 bg-black/0 transition-colors duration-200 group-hover:bg-black/15 pointer-events-none" />
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      <MobileFooter />
+      <GradientFooter />
+    </main>
+
+    <!-- AI Portfolio Assistant Chatbot -->
+    <Chatbot />
+  </div>
+
+  <!-- Lightbox Modal for Full View -->
+  <div
+    id="media-lightbox"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 p-4 backdrop-blur-sm transition-opacity duration-200 opacity-0"
+    aria-hidden="true"
+  >
+    <button
+      id="lightbox-close"
+      type="button"
+      class="absolute top-4 right-4 z-10 rounded-full p-2 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
+      aria-label="Close"
+    >
+      <Icon name="lucide:x" class="w-6 h-6" />
+    </button>
+
+    <div class="max-w-4xl max-h-[90vh] flex flex-col items-center">
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-w-full max-h-[82vh] object-contain rounded-lg shadow-2xl"
+      />
+      <p
+        id="lightbox-caption"
+        class="text-xs sm:text-sm text-center text-white/80 mt-3 px-4 max-w-2xl"
+      >
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function setupLightbox() {
+      const triggers = document.querySelectorAll<HTMLElement>("[data-lightbox-trigger]");
+      const lightbox = document.getElementById("media-lightbox");
+      const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement | null;
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const closeBtn = document.getElementById("lightbox-close");
+
+      if (!lightbox || !lightboxImg || !triggers.length) return;
+
+      function openModal(src: string, alt: string, caption: string) {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        if (lightboxCaption) lightboxCaption.textContent = caption;
+
+        lightbox.classList.remove("hidden");
+        lightbox.classList.add("flex");
+        // Trigger opacity transition
+        requestAnimationFrame(() => {
+          lightbox.classList.remove("opacity-0");
+          lightbox.classList.add("opacity-100");
+        });
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        if (!lightbox) return;
+        lightbox.classList.remove("opacity-100");
+        lightbox.classList.add("opacity-0");
+        setTimeout(() => {
+          lightbox.classList.remove("flex");
+          lightbox.classList.add("hidden");
+          if (lightboxImg) lightboxImg.src = "";
+          document.body.style.overflow = "";
+        }, 200);
+        lightbox.setAttribute("aria-hidden", "true");
+      }
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const src = trigger.dataset.imgSrc || "";
+          const alt = trigger.dataset.imgAlt || "";
+          const caption = trigger.dataset.imgCaption || "";
+          openModal(src, alt, caption);
+        });
+      });
+
+      closeBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeModal();
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox || (e.target as HTMLElement).tagName !== "IMG") {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+    }
+
+    setupLightbox();
+    document.addEventListener("astro:page-load", setupLightbox);
+  </script>
+</body>
+</html>

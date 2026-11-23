@@ -81,3 +81,18 @@ export interface InspirationItem {
   tags: string[];
   link?: string;
 }
+
+export interface MediaImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  featured?: boolean;
+}
+
+export interface MediaEvent {
+  id: string;
+  title: string;
+  subtitle?: string;
+  date?: string;
+  images: MediaImage[];
+}

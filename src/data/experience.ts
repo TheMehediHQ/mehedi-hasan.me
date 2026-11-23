@@ -28,7 +28,7 @@ export const experiences: Experience[] = [
     companyUrl: "https://quantummethod.org",
     period: "February 2018 - Present",
     description:
-      "Working as a volunteer, contributing to motivational initiatives and community outreach programs to inspire and uplift people.",
+      "For the past 8 years, I’ve been trying to stand by people through Quantum Foundation—sometimes by donating blood, sometimes by mentoring students, and other times by volunteering in social and humanitarian work.",
     technologies: ["Motivational Speaking", "Community Outreach", "Leadership", "Public Speaking"],
     type: "volunteer",
   }
@@ -62,7 +62,7 @@ export const experiencesBn: Experience[] = [
     companyUrl: "https://quantummethod.org",
     period: "ফেব্রুয়ারি ২০১৮ - বর্তমান",
     description:
-      "মানুষকে অনুপ্রাণিত ও উন্নত জীবন গঠনে সহায়তা করার জন্য বিভিন্ন মোটিভেশনাল উদ্যোগ ও সামাজিক কল্যাণমূলক কার্যক্রমে স্বেচ্ছাসেবী হিসেবে অবদান রাখা।",
+      "গত ৮ বছর ধরে কোয়ান্টাম ফাউন্ডেশনের সাথে যুক্ত থেকে মানুষের পাশে দাঁড়ানোর চেষ্টা করছি—কখনও রক্তদানের মাধ্যমে, কখনও শিক্ষার্থীদের পথ দেখিয়ে, আবার কখনও বিভিন্ন সামাজিক ও মানবিক কাজে স্বেচ্ছাসেবী হিসেবে।",
     technologies: ["Motivational Speaking", "Community Outreach", "Leadership", "Public Speaking"],
     type: "volunteer",
   }

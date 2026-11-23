@@ -70,7 +70,7 @@ export const certificatesBn: Certificate[] = [
   {
     id: "2",
     name: "ওয়েব ডেভেলপমেন্ট ইন্টার্নশিপ সনদ",
-    issuer: "অ্যাপেক্সিয়ামস টেকনোলজিস",
+    issuer: "অ্যাপেক্সিয়ামস টেকনোলজিস",
     issuerIcon: "/certificates/icons/apexiums.svg",
     date: "২০২৫",
     credentialUrl: "/certificates/pdf/Mehedi_Hasan_Apexiums_Certificate.pdf",

@@ -64,7 +64,7 @@ export function retrievePortfolioKnowledge(query: string, maxSections = 3): Retr
   }
   if (
     /\b(experience|career|history|company|companies|role|intern|internship|nexvibe|apexiums|quantum)\b/i.test(normalizedQuery) ||
-    /(অভিজ্ঞতা|কর্মঅভিজ্ঞতা|কোথায় কাজ|ক্যারিয়ার|কোম্পানি|পদবি)/.test(query)
+    /(অভিজ্ঞতা|কর্মঅভিজ্ঞতা|কোথায় কাজ|ক্যারিয়ার|কোম্পানি|পদবি|নেক্সভাইব|অ্যাপেক্সিয়ামস)/.test(query)
   ) {
     detectedIntents.push("experience");
   }
@@ -306,12 +306,12 @@ export function generateLocalPortfolioResponse(query: string, isBn = false): { t
   }
 
   // 4. Specific project: NexVibe
-  if (/nexvibe/i.test(q) && !/experience|role|কাজ|অভিজ্ঞতা/.test(q)) {
+  if ((/nexvibe/i.test(q) || /নেক্সভাইব/.test(query)) && !/experience|role|কাজ|অভিজ্ঞতা/.test(q)) {
     if (isBengali) {
       return {
-        text: "**NexVibe** (https://nexvibe.tech) হলো Next.js এবং Tailwind CSS দিয়ে তৈরি একটি আধুনিক সফটওয়্যার এজেন্সি ওয়েবসাইট। এতে রেসপনসিভ লেআউট, স্মুথ ইন্টারঅ্যাকশন এবং অত্যন্ত দ্রুত গতির পারফরম্যান্স নিশ্চিত করা হয়েছে।",
+        text: "**নেক্সভাইব** (https://nexvibe.tech) হলো Next.js এবং Tailwind CSS দিয়ে তৈরি একটি আধুনিক সফটওয়্যার এজেন্সি ওয়েবসাইট। এতে রেসপনসিভ লেআউট, স্মুথ ইন্টারঅ্যাকশন এবং অত্যন্ত দ্রুত গতির পারফরম্যান্স নিশ্চিত করা হয়েছে।",
         actions: [
-          { type: "link", label: "NexVibe ভিজিট করুন", url: "https://nexvibe.tech" },
+          { type: "link", label: "নেক্সভাইব ভিজিট করুন", url: "https://nexvibe.tech" },
         ],
       };
     }
@@ -365,7 +365,7 @@ export function generateLocalPortfolioResponse(query: string, isBn = false): { t
   if (retrieval.detectedIntents.includes("projects") || /\b(project|projects|built)\b/i.test(q) || /(প্রজেক্ট|কাজগুলো|তৈরি)/.test(query)) {
     if (isBengali) {
       return {
-        text: "মেহেদী বেশ কয়েকটি প্রফেশনাল ও ওপেন-সোর্স প্রজেক্ট তৈরি করেছেন:\n\n• **AY Voice:** ক্লাউড-ভিত্তিক এসএমএস ও ভয়েস প্ল্যাটফর্ম (Next.js, Hono, PostgreSQL)।\n• **NexVibe:** আধুনিক সফটওয়্যার এজেন্সি ওয়েবসাইট (Next.js, Tailwind CSS)।\n• **Kashly:** রিয়েল-টাইম আয়-ব্যয় ট্র্যাকিং পার্সোনাল মানি অ্যাপ (Next.js, TypeScript, Express, MongoDB)।\n• **Foodly:** খাবারের মেয়াদ ও সতেজতা পর্যবেক্ষণকারী ইনভেন্টরি অ্যাপ (React, Express, MongoDB, Firebase)।",
+        text: "মেহেদী বেশ কয়েকটি প্রফেশনাল ও ওপেন-সোর্স প্রজেক্ট তৈরি করেছেন:\n\n• **AY Voice:** ক্লাউড-ভিত্তিক এসএমএস ও ভয়েস প্ল্যাটফর্ম (Next.js, Hono, PostgreSQL)।\n• **নেক্সভাইব:** আধুনিক সফটওয়্যার এজেন্সি ওয়েবসাইট (Next.js, Tailwind CSS)।\n• **Kashly:** রিয়েল-টাইম আয়-ব্যয় ট্র্যাকিং পার্সোনাল মানি অ্যাপ (Next.js, TypeScript, Express, MongoDB)।\n• **Foodly:** খাবারের মেয়াদ ও সতেজতা পর্যবেক্ষণকারী ইনভেন্টরি অ্যাপ (React, Express, MongoDB, Firebase)।",
         actions: localizeActions([
           { type: "link", label: "Visit AY Voice", url: "https://ayvoice.com" },
           { type: "link", label: "Kashly on GitHub", url: "https://github.com/TheMehediHQ/Kashly" },
@@ -385,7 +385,7 @@ export function generateLocalPortfolioResponse(query: string, isBn = false): { t
   if (retrieval.detectedIntents.includes("experience") || /\b(experience|history|companies)\b/i.test(q) || /(অভিজ্ঞতা|কর্মঅভিজ্ঞতা|কোথায় কাজ|ক্যারিয়ার)/.test(query)) {
     if (isBengali) {
       return {
-        text: "মেহেদীর পেশাগত অভিজ্ঞতা:\n\n১. **Full Stack Software Developer — NexVibe** (মে ২০২৬ – বর্তমান): ১০০k+ ব্যবহারকারীর SaaS প্ল্যাটফর্মে মাইক্রো-ফ্রন্টএন্ড আর্কিটেকচার বাস্তবায়ন ও পারফরম্যান্স ৪০% বৃদ্ধি।\n২. **Full Stack Developer Intern — Apexiums Technologies** (মার্চ ২০২৬ – এপ্রিল ২০২৬): React, Node.js, Express এবং PostgreSQL দিয়ে ক্লায়েন্ট প্রজেক্ট নির্মাণ।\n৩. **Volunteer — কোয়ান্টাম ফাউন্ডেশন** (২০১৮ – বর্তমান): মোটিভেশনাল বক্তব্য, নেতৃত্ব ও সমাজসেবামূলক কার্যক্রমে অংশগ্রহণ।",
+        text: "মেহেদীর পেশাগত অভিজ্ঞতা:\n\n১. **Full Stack Software Developer — নেক্সভাইব** (মে ২০২৬ – বর্তমান): ১০০k+ ব্যবহারকারীর SaaS প্ল্যাটফর্মে মাইক্রো-ফ্রন্টএন্ড আর্কিটেকচার বাস্তবায়ন ও পারফরম্যান্স ৪০% বৃদ্ধি।\n২. **Full Stack Developer Intern — অ্যাপেক্সিয়ামস টেকনোলজিস** (মার্চ ২০২৬ – এপ্রিল ২০২৬): React, Node.js, Express এবং PostgreSQL দিয়ে ক্লায়েন্ট প্রজেক্ট নির্মাণ।\n৩. **Volunteer — কোয়ান্টাম ফাউন্ডেশন** (২০১৮ – বর্তমান): মোটিভেশনাল বক্তব্য, নেতৃত্ব ও সমাজসেবামূলক কার্যক্রমে অংশগ্রহণ।",
         actions: localizeActions([
           { type: "resume", label: "View Resume", url: "/Resume_of_Mehedi_Hasan.pdf" },
         ]),

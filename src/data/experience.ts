@@ -38,7 +38,7 @@ export const experiencesBn: Experience[] = [
   {
     id: "1",
     role: "ফুল স্ট্যাক সফটওয়্যার ইঞ্জিনিয়ার",
-    company: "NexVibe",
+    company: "নেক্সভাইব",
     companyUrl: "https://www.nexvibe.tech",
     period: "জানুয়ারি ২০২৬ - অক্টোবর ২০২৬",
     description:
@@ -48,7 +48,7 @@ export const experiencesBn: Experience[] = [
   {
     id: "2",
     role: "ফুল স্ট্যাক ডেভেলপার ইন্টার্ন",
-    company: "Apexiums Technologies",
+    company: "অ্যাপেক্সিয়ামস টেকনোলজিস",
     companyUrl: "https://www.apexiumstechnologies.com",
     period: "অক্টোবর ২০২৫ - ডিসেম্বর ২০২৫",
     description:
@@ -63,7 +63,7 @@ export const experiencesBn: Experience[] = [
     period: "ফেব্রুয়ারি ২০১৮ - বর্তমান",
     description:
       "মানুষকে অনুপ্রাণিত ও উন্নত জীবন গঠনে সহায়তা করার জন্য বিভিন্ন মোটিভেশনাল উদ্যোগ ও সামাজিক কল্যাণমূলক কার্যক্রমে স্বেচ্ছাসেবী হিসেবে অবদান রাখা।",
-    technologies: ["মোটিভেশনাল স্পিকিং", "কমিউনিটি আউটরিচ", "নেতৃত্ব", "পাবলিক স্পিকিং"],
+    technologies: ["Motivational Speaking", "Community Outreach", "Leadership", "Public Speaking"],
     type: "volunteer",
   }
 ];

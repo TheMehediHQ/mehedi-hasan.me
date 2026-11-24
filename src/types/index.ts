@@ -93,6 +93,7 @@ export interface MediaEvent {
   id: string;
   title: string;
   subtitle?: string;
+  location?: string;
   date?: string;
   images: MediaImage[];
 }

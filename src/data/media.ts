@@ -4,7 +4,8 @@ export const mediaEvents: MediaEvent[] = [
   {
     id: "nexvibe-launch-party",
     title: "NexVibe Launch Party",
-    subtitle: "NexVibe Official Launch Event, 2026",
+    subtitle: "Official Launch Event",
+    location: "Dhaka, Bangladesh",
     date: "2026",
     images: [
       {
@@ -20,6 +21,10 @@ export const mediaEvents: MediaEvent[] = [
         src: "/media/nexvibe/nexvibe3.jpg",
         alt: "NexVibe Launch Party — Behind the scenes and launch atmosphere",
       },
+      {
+        src: "/media/nexvibe/nexvibe4.jpg",
+        alt: "NexVibe Launch Party — Memorable highlights and team showcase",
+      },
     ],
   },
 ];
@@ -28,7 +33,8 @@ export const mediaEventsBn: MediaEvent[] = [
   {
     id: "nexvibe-launch-party",
     title: "NexVibe Launch Party",
-    subtitle: "নেক্সভাইব অফিশিয়াল লঞ্চ ইভেন্ট, ২০২৬",
+    subtitle: "অফিশিয়াল লঞ্চ ইভেন্ট",
+    location: "ঢাকা, বাংলাদেশ",
     date: "২০২৬",
     images: [
       {
@@ -43,6 +49,10 @@ export const mediaEventsBn: MediaEvent[] = [
       {
         src: "/media/nexvibe/nexvibe3.jpg",
         alt: "নেক্সভাইব লঞ্চ পার্টি — পেছনের গল্প ও পরিবেশ",
+      },
+      {
+        src: "/media/nexvibe/nexvibe4.jpg",
+        alt: "নেক্সভাইব লঞ্চ পার্টি — স্মরণীয় মুহূর্ত ও টিম ছবি",
       },
     ],
   },

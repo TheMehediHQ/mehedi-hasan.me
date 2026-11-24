@@ -27,7 +27,7 @@ export const mediaEvents: MediaEvent[] = [
     id: "quantum-volunteer-tour",
     title: "Quantum Volunteer Tour",
     subtitle: "Annual Volunteer Gathering & Tour",
-    location: "Susang Durgapur, Bangladesh",
+    location: "Susang Durgapur , Bangladesh",
     date: "2025",
     images: [
       {
@@ -49,7 +49,7 @@ export const mediaEvents: MediaEvent[] = [
     id: "quantum-volunteer-awards-2020",
     title: "Quantum Volunteer Awards 2020",
     subtitle: "Volunteer Recognition Ceremony",
-    location: "Dhaka, Bangladesh",
+    location: "Netrokona, Bangladesh",
     date: "2020",
     images: [
       {
@@ -110,7 +110,7 @@ export const mediaEventsBn: MediaEvent[] = [
     id: "quantum-volunteer-awards-2020",
     title: "Quantum Volunteer Awards 2020",
     subtitle: "স্বেচ্ছাসেবী সম্মাননা ও স্বীকৃতি অনুষ্ঠান",
-    location: "ঢাকা, বাংলাদেশ",
+    location: "নেত্রকোনা, বাংলাদেশ",
     date: "২০২০",
     images: [
       {

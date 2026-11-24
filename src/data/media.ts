@@ -3,8 +3,8 @@ import type { MediaEvent } from "@/types";
 export const mediaEvents: MediaEvent[] = [
   {
     id: "nexvibe-launch-party",
-    title: "NexVibe Launch Party",
-    subtitle: "Official Launch Event",
+    title: "NexVibe Team Reunion & Lunch",
+    subtitle: "Team Gathering & Launch Celebration",
     location: "Dhaka, Bangladesh",
     date: "2026",
     images: [
@@ -64,24 +64,24 @@ export const mediaEvents: MediaEvent[] = [
 export const mediaEventsBn: MediaEvent[] = [
   {
     id: "nexvibe-launch-party",
-    title: "নেক্সভাইবের লাঞ্চ পার্টি",
-    subtitle: "অফিশিয়াল লাঞ্চ ইভেন্ট",
+    title: "নেক্সভাইব টিম পুনর্মিলনী ও মধ্যাহ্নভোজ",
+    subtitle: "দলের মিলনমেলা ও উদ্বোধন উদযাপন",
     location: "ঢাকা, বাংলাদেশ",
     date: "২০২৬",
-    images: [
-      {
-        src: "/media/NexVibe Launch Party/nexvibe1.jpg",
-        alt: "নেক্সভাইবের লাঞ্চ পার্টি — আনন্দঘন মুহূর্ত ও টিম সেলিব্রেশন",
-        featured: true,
-      },
-      {
-        src: "/media/NexVibe Launch Party/nexvibe2.jpg",
-        alt: "নেক্সভাইবের লাঞ্চ পার্টি — ইভেন্ট হাইলাইটস",
-      },
-      {
-        src: "/media/NexVibe Launch Party/nexvibe3.jpg",
-        alt: "নেক্সভাইবের লাঞ্চ পার্টি — পেছনের গল্প ও পরিবেশ",
-      },
+   images: [
+  {
+    src: "/media/NexVibe Launch Party/nexvibe1.jpg",
+    alt: "নেক্সভাইব টিম গেট-টুগেদার — আনন্দঘন মুহূর্ত ও উদযাপন",
+    featured: true,
+  },
+  {
+    src: "/media/NexVibe Launch Party/nexvibe2.jpg",
+    alt: "নেক্সভাইব টিম গেট-টুগেদার — একসঙ্গে কাটানো মুহূর্ত",
+  },
+  {
+    src: "/media/NexVibe Launch Party/nexvibe3.jpg",
+    alt: "নেক্সভাইব টিম গেট-টুগেদার — স্মরণীয় কিছু মুহূর্ত",
+  },
     ],
   },
   {

@@ -64,29 +64,29 @@ export const mediaEvents: MediaEvent[] = [
 export const mediaEventsBn: MediaEvent[] = [
   {
     id: "nexvibe-launch-party",
-    title: "NexVibe Launch Party",
+    title: "নেক্সভাইবের লাঞ্চ পার্টি",
     subtitle: "অফিশিয়াল লাঞ্চ ইভেন্ট",
     location: "ঢাকা, বাংলাদেশ",
     date: "২০২৬",
     images: [
       {
         src: "/media/NexVibe Launch Party/nexvibe1.jpg",
-        alt: "নেক্সভাইব লাঞ্চ পার্টি — আনন্দঘন মুহূর্ত ও টিম সেলিব্রেশন",
+        alt: "নেক্সভাইবের লাঞ্চ পার্টি — আনন্দঘন মুহূর্ত ও টিম সেলিব্রেশন",
         featured: true,
       },
       {
         src: "/media/NexVibe Launch Party/nexvibe2.jpg",
-        alt: "নেক্সভাইব লাঞ্চ পার্টি — ইভেন্ট হাইলাইটস",
+        alt: "নেক্সভাইবের লাঞ্চ পার্টি — ইভেন্ট হাইলাইটস",
       },
       {
         src: "/media/NexVibe Launch Party/nexvibe3.jpg",
-        alt: "নেক্সভাইব লাঞ্চ পার্টি — পেছনের গল্প ও পরিবেশ",
+        alt: "নেক্সভাইবের লাঞ্চ পার্টি — পেছনের গল্প ও পরিবেশ",
       },
     ],
   },
   {
     id: "quantum-volunteer-tour",
-    title: "Quantum Volunteer Tour",
+    title: "কোয়ান্টাম ভলান্টিয়ার ট্যুর",
     subtitle: "বার্ষিক স্বেচ্ছাসেবক ট্যুর ও মিলনমেলা",
     location: "সুসং দুর্গাপুর, বাংলাদেশ",
     date: "২০২৫",
@@ -108,7 +108,7 @@ export const mediaEventsBn: MediaEvent[] = [
   },
   {
     id: "quantum-volunteer-awards-2020",
-    title: "Quantum Volunteer Awards 2020",
+    title: "কোয়ান্টাম ভলান্টিয়ার অ্যাওয়ার্ড ২০২০",
     subtitle: "স্বেচ্ছাসেবী সম্মাননা ও স্বীকৃতি অনুষ্ঠান",
     location: "নেত্রকোনা, বাংলাদেশ",
     date: "২০২০",

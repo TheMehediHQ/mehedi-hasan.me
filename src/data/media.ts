@@ -27,7 +27,7 @@ export const mediaEvents: MediaEvent[] = [
     id: "quantum-volunteer-tour",
     title: "Quantum Volunteer Tour",
     subtitle: "Annual Volunteer Gathering & Tour",
-    location: "Bandarban, Bangladesh",
+    location: "Susang Durgapur, Bangladesh",
     date: "2025",
     images: [
       {
@@ -88,7 +88,7 @@ export const mediaEventsBn: MediaEvent[] = [
     id: "quantum-volunteer-tour",
     title: "Quantum Volunteer Tour",
     subtitle: "বার্ষিক স্বেচ্ছাসেবক ট্যুর ও মিলনমেলা",
-    location: "বান্দরবান, বাংলাদেশ",
+    location: "সুসং দুর্গাপুর, বাংলাদেশ",
     date: "২০২৫",
     images: [
       {

@@ -65,22 +65,22 @@ export const mediaEventsBn: MediaEvent[] = [
   {
     id: "nexvibe-launch-party",
     title: "NexVibe Launch Party",
-    subtitle: "অফিশিয়াল লঞ্চ ইভেন্ট",
+    subtitle: "অফিশিয়াল লাঞ্চ ইভেন্ট",
     location: "ঢাকা, বাংলাদেশ",
     date: "২০২৬",
     images: [
       {
         src: "/media/NexVibe Launch Party/nexvibe1.jpg",
-        alt: "নেক্সভাইব লঞ্চ পার্টি — আনন্দঘন মুহূর্ত ও টিম সেলিব্রেশন",
+        alt: "নেক্সভাইব লাঞ্চ পার্টি — আনন্দঘন মুহূর্ত ও টিম সেলিব্রেশন",
         featured: true,
       },
       {
         src: "/media/NexVibe Launch Party/nexvibe2.jpg",
-        alt: "নেক্সভাইব লঞ্চ পার্টি — ইভেন্ট হাইলাইটস",
+        alt: "নেক্সভাইব লাঞ্চ পার্টি — ইভেন্ট হাইলাইটস",
       },
       {
         src: "/media/NexVibe Launch Party/nexvibe3.jpg",
-        alt: "নেক্সভাইব লঞ্চ পার্টি — পেছনের গল্প ও পরিবেশ",
+        alt: "নেক্সভাইব লাঞ্চ পার্টি — পেছনের গল্প ও পরিবেশ",
       },
     ],
   },

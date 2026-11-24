@@ -9,19 +9,54 @@ export const mediaEvents: MediaEvent[] = [
     date: "2026",
     images: [
       {
-        src: "/media/nexvibe/nexvibe1.jpg",
+        src: "/media/NexVibe Launch Party/nexvibe1.jpg",
         alt: "NexVibe Launch Party — Celebration and team moments",
         featured: true,
       },
       {
-        src: "/media/nexvibe/nexvibe2.jpg",
+        src: "/media/NexVibe Launch Party/nexvibe2.jpg",
         alt: "NexVibe Launch Party — Networking and event highlights",
       },
       {
-        src: "/media/nexvibe/nexvibe3.jpg",
+        src: "/media/NexVibe Launch Party/nexvibe3.jpg",
         alt: "NexVibe Launch Party — Behind the scenes and launch atmosphere",
       },
-      
+    ],
+  },
+  {
+    id: "quantum-volunteer-tour",
+    title: "Quantum Volunteer Tour",
+    subtitle: "Annual Volunteer Gathering & Tour",
+    location: "Bandarban, Bangladesh",
+    date: "2025",
+    images: [
+      {
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour2.jpg",
+        alt: "Quantum Volunteer Tour — Group gathering and celebration",
+        featured: true,
+      },
+      {
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour1.jpg",
+        alt: "Quantum Volunteer Tour — Scenic exploration and memories",
+      },
+      {
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour3.jpg",
+        alt: "Quantum Volunteer Tour — Community bonding and volunteer fellowship",
+      },
+    ],
+  },
+  {
+    id: "quantum-volunteer-awards-2020",
+    title: "Quantum Volunteer Awards 2020",
+    subtitle: "Volunteer Recognition Ceremony",
+    location: "Dhaka, Bangladesh",
+    date: "2020",
+    images: [
+      {
+        src: "/media/Quantum Volunteer Awards 2020/Quantum Volunteer Awards 2020.jpg",
+        alt: "Quantum Volunteer Awards 2020 — Volunteer recognition and celebration",
+        featured: true,
+      },
     ],
   },
 ];
@@ -35,21 +70,53 @@ export const mediaEventsBn: MediaEvent[] = [
     date: "২০২৬",
     images: [
       {
-        src: "/media/nexvibe/nexvibe1.jpg",
+        src: "/media/NexVibe Launch Party/nexvibe1.jpg",
         alt: "নেক্সভাইব লঞ্চ পার্টি — আনন্দঘন মুহূর্ত ও টিম সেলিব্রেশন",
         featured: true,
       },
       {
-        src: "/media/nexvibe/nexvibe2.jpg",
+        src: "/media/NexVibe Launch Party/nexvibe2.jpg",
         alt: "নেক্সভাইব লঞ্চ পার্টি — ইভেন্ট হাইলাইটস",
       },
       {
-        src: "/media/nexvibe/nexvibe3.jpg",
+        src: "/media/NexVibe Launch Party/nexvibe3.jpg",
         alt: "নেক্সভাইব লঞ্চ পার্টি — পেছনের গল্প ও পরিবেশ",
       },
+    ],
+  },
+  {
+    id: "quantum-volunteer-tour",
+    title: "Quantum Volunteer Tour",
+    subtitle: "বার্ষিক স্বেচ্ছাসেবক ট্যুর ও মিলনমেলা",
+    location: "বান্দরবান, বাংলাদেশ",
+    date: "২০২৫",
+    images: [
       {
-        src: "/media/nexvibe/nexvibe4.jpg",
-        alt: "নেক্সভাইব লঞ্চ পার্টি — স্মরণীয় মুহূর্ত ও টিম ছবি",
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour2.jpg",
+        alt: "কোয়ান্টাম ভলান্টিয়ার ট্যুর — দলগত স্মৃতি ও আনন্দঘন মুহূর্ত",
+        featured: true,
+      },
+      {
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour1.jpg",
+        alt: "কোয়ান্টাম ভলান্টিয়ার ট্যুর — প্রাকৃতিক সৌন্দর্য ও ভ্রমণ স্মৃতি",
+      },
+      {
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour3.jpg",
+        alt: "কোয়ান্টাম ভলান্টিয়ার ট্যুর — আত্মিক মেলবন্ধন ও সেবা কার্যক্রম",
+      },
+    ],
+  },
+  {
+    id: "quantum-volunteer-awards-2020",
+    title: "Quantum Volunteer Awards 2020",
+    subtitle: "স্বেচ্ছাসেবী সম্মাননা ও স্বীকৃতি অনুষ্ঠান",
+    location: "ঢাকা, বাংলাদেশ",
+    date: "২০২০",
+    images: [
+      {
+        src: "/media/Quantum Volunteer Awards 2020/Quantum Volunteer Awards 2020.jpg",
+        alt: "কোয়ান্টাম ভলান্টিয়ার অ্যাওয়ার্ড ২০২০ — স্বেচ্ছাসেবী সম্মাননা ও স্মৃতি",
+        featured: true,
       },
     ],
   },

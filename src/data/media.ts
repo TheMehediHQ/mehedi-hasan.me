@@ -21,10 +21,7 @@ export const mediaEvents: MediaEvent[] = [
         src: "/media/nexvibe/nexvibe3.jpg",
         alt: "NexVibe Launch Party — Behind the scenes and launch atmosphere",
       },
-      {
-        src: "/media/nexvibe/nexvibe4.jpg",
-        alt: "NexVibe Launch Party — Memorable highlights and team showcase",
-      },
+      
     ],
   },
 ];

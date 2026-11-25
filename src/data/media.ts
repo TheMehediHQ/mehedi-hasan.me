@@ -31,16 +31,16 @@ export const mediaEvents: MediaEvent[] = [
     date: "2025",
     images: [
       {
-        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour2.jpg",
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour2.webp",
         alt: "Quantum Volunteer Tour — Group gathering and celebration",
         featured: true,
       },
       {
-        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour1.jpg",
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour1.webp",
         alt: "Quantum Volunteer Tour — Scenic exploration and memories",
       },
       {
-        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour3.jpg",
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour3.webp",
         alt: "Quantum Volunteer Tour — Community bonding and volunteer fellowship",
       },
     ],
@@ -92,16 +92,16 @@ export const mediaEventsBn: MediaEvent[] = [
     date: "২০২৫",
     images: [
       {
-        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour2.jpg",
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour2.webp",
         alt: "কোয়ান্টাম ভলান্টিয়ার ট্যুর — দলগত স্মৃতি ও আনন্দঘন মুহূর্ত",
         featured: true,
       },
       {
-        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour1.jpg",
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour1.webp",
         alt: "কোয়ান্টাম ভলান্টিয়ার ট্যুর — প্রাকৃতিক সৌন্দর্য ও ভ্রমণ স্মৃতি",
       },
       {
-        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour3.jpg",
+        src: "/media/Quantum Volunteer Tour/Quantum Volunteer Tour3.webp",
         alt: "কোয়ান্টাম ভলান্টিয়ার ট্যুর — আত্মিক মেলবন্ধন ও সেবা কার্যক্রম",
       },
     ],

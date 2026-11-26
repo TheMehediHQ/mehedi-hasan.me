@@ -9,6 +9,20 @@ interface Props {
 }
 
 const { experience, index = 0 } = Astro.props;
+
+const linkEntries = Object.entries(experience.links ?? {});
+const linkPattern =
+  linkEntries.length > 0
+    ? new RegExp(
+        `(${linkEntries
+          .map(([label]) => label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+          .join("|")})`,
+        "g"
+      )
+    : null;
+const descriptionParts = linkPattern
+  ? experience.description.split(linkPattern)
+  : [experience.description];
 ---
 
 <div class="animate-on-scroll" style={`transition-delay: ${index * 0.08}s`}>
@@ -56,7 +70,21 @@ const { experience, index = 0 } = Astro.props;
       class="text-sm leading-6 mb-3 sm:mb-4"
       style="color: var(--color-secondary-text);"
     >
-      {experience.description}
+      {descriptionParts.map((part) => {
+        const href = experience.links?.[part];
+        return href ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="description-link"
+          >
+            {part}
+          </a>
+        ) : (
+          part
+        );
+      })}
     </p>
 
     <div class="flex flex-wrap gap-1.5 sm:gap-2">
@@ -101,6 +129,17 @@ const { experience, index = 0 } = Astro.props;
   .company-link:hover svg {
     opacity: 1;
     transform: translateX(0);
+  }
+  .description-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+    transition: text-decoration-color 0.2s ease, opacity 0.2s ease;
+  }
+  .description-link:hover {
+    text-decoration-color: var(--color-accent);
+    opacity: 0.85;
   }
 </style>
 

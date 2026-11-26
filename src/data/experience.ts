@@ -1,5 +1,11 @@
 import type { Experience } from "@/types";
 
+const nexvibeProjectLinks: Record<string, string> = {
+  AYVoice: "https://ayvoice.com",
+  Meghpeon: "https://meghpeon.shop",
+  XGari: "https://xgari.com",
+};
+
 export const experiences: Experience[] = [
   {
     id: "1",
@@ -9,6 +15,7 @@ export const experiences: Experience[] = [
     period: "January 2026 - October 2026",
     description:
       "Worked with Astro, Hono, and full-stack tools on projects like AYVoice (bulk call, SMS, and email management), Meghpeon, and XGari. Gained hands-on experience in end-to-end feature development, API integration, and project delivery.",
+    links: nexvibeProjectLinks,
     technologies: ["React", "Next.js", "TypeScript","PostgreSQL", "Node.js"]
   },
   {
@@ -43,6 +50,7 @@ export const experiencesBn: Experience[] = [
     period: "জানুয়ারি ২০২৬ - অক্টোবর ২০২৬",
     description:
       "AYVoice (বাল্ক কল, SMS ও ইমেইল ম্যানেজমেন্ট), Meghpeon এবং XGari-এর মতো প্রজেক্টে Astro, Hono এবং ফুল-স্ট্যাক টুলস নিয়ে কাজ করেছি। এন্ড-টু-এন্ড ফিচার ডেভেলপমেন্ট, API ইন্টিগ্রেশন এবং প্রজেক্ট ডেলিভারির বাস্তব অভিজ্ঞতা অর্জন করেছি।",
+    links: nexvibeProjectLinks,
     technologies: ["React", "Next.js", "TypeScript", "PostgreSQL", "Node.js"]
   },
   {

@@ -28,6 +28,7 @@ export interface Experience {
   companyUrl?: string;
   period: string;
   description: string;
+  links?: Record<string, string>;
   technologies?: string[];
   type?: "full-time" | "internship" | "volunteer";
 }

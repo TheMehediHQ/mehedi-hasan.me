@@ -36,6 +36,9 @@ export const experiences: Experience[] = [
     period: "February 2018 - Present",
     description:
       "For the past 8 years, I’ve been trying to stand by people through Quantum Foundation—sometimes by donating blood, sometimes by mentoring students, and other times by volunteering in social and humanitarian work.",
+    links: {
+      "donating blood": "https://blood.quantummethod.org.bd/en/donor-profile/OPML68437",
+    },
     technologies: ["Motivational Speaking", "Community Outreach", "Leadership", "Public Speaking"],
     type: "volunteer",
   }
@@ -71,6 +74,9 @@ export const experiencesBn: Experience[] = [
     period: "ফেব্রুয়ারি ২০১৮ - বর্তমান",
     description:
       "গত ৮ বছর ধরে কোয়ান্টাম ফাউন্ডেশনের সাথে যুক্ত থেকে মানুষের পাশে দাঁড়ানোর চেষ্টা করছি—কখনও রক্তদানের মাধ্যমে, কখনও শিক্ষার্থীদের পথ দেখিয়ে, আবার কখনও বিভিন্ন সামাজিক ও মানবিক কাজে স্বেচ্ছাসেবী হিসেবে।",
+    links: {
+      "রক্তদানের": "https://blood.quantummethod.org.bd/en/donor-profile/OPML68437",
+    },
     technologies: ["Motivational Speaking", "Community Outreach", "Leadership", "Public Speaking"],
     type: "volunteer",
   }
